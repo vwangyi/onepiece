@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <template id="image-box-template">
+        <div class="image-box">
+            <img class="img" src="" alt="" />
+            <div class="title">${title}</div>
+            <div class="price"></div>
+            <div class="action">
+                <slot name="btn-action"></slot>
+            </div>
+        </div>
+    </template>
+    <div class="content">
+        <image-box url="图片地址" title="图片标题" price="图片价格"></image-box>
+
+    </div>
+    <script>
+        class ImageBox extends HTMLElement {
+            constructor() {
+                super();
+                this.render();
+            }
+            render() {
+                const url = this.getAttribute('url');
+                const title = this.getAttribute('title');
+                const price = this.getAttribute('price');
+
+                const shadow = this.attachShadow({ mode: 'open' });
+                const img = document.createElement('img');
+                img.src = this.getAttribute('src');
+                shadow.appendChild(img);
+            }
+        }
+        window.customElements.define('image-box', ImageBox); 
+    </script>
+</body>
+
+</html>

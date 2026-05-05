@@ -60,7 +60,7 @@ export default defineConfig({
         activeMatch: "^/08_运维/"
       },
       {
-        text: "人工智能", 
+        text: "人工智能",
         link: "/07_AI/01_大语言模型.md",
         activeMatch: "^/07_AI/"
       }
@@ -114,7 +114,7 @@ export default defineConfig({
             },
             {
               text: "pageage.json",
-              link: "/02_JavaScript/01_Nodejs/04_pageage.json.md"
+              link: "/02_JavaScript/01_Nodejs/04_包说明文件.md"
             },
             {
               text: "发布npm包",
@@ -196,6 +196,19 @@ export default defineConfig({
             {
               text: "async/await",
               link: "/02_JavaScript/04_异步编程/03_async-await.md"
+            }
+          ]
+        },
+        {
+          text: "其他",
+          items: [
+            {
+              text: 'DOM',
+              link: '/02_JavaScript/07_其他/01_DOM.md',
+            },
+            {
+              text: 'js',
+              link: '/02_JavaScript/07_其他/xxx.md',
             }
           ]
         },
@@ -393,7 +406,7 @@ export default defineConfig({
             {
               text: "v-for列表渲染",
               link: "/04_前端框架/00_Vue/25_v-for列表渲染.md"
-            }, 
+            },
             {
               text: "25_v-model",
               link: "/04_前端框架/00_Vue/25_v-model.md"
@@ -578,6 +591,14 @@ export default defineConfig({
           text: "微前端",
           items: [
             {
+              text: "概念",
+              link: "/06_业务/07_微前端/01_概念.md"
+            },
+            {
+              text: "web components",
+              link: "/06_业务/07_微前端/02_web-components.md"
+            },
+            {
               text: "qiankun",
               link: "/06_业务/07_微前端/index.md"
             }
@@ -675,7 +696,7 @@ export default defineConfig({
         },
       ],
       "/07_AI/": [
-        { 
+        {
           text: "基础概念",
           items: [
             {
@@ -690,8 +711,8 @@ export default defineConfig({
               text: "AI应用",
               link: "/07_AI/03_AI应用.md"
             }
- 
-          ] 
+
+          ]
         }
       ]
     },
