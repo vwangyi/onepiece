@@ -20,37 +20,61 @@ export default defineConfig({
       //   activeMatch: "^/00_简历/",
       // },
       {
-        text: "JavaScript",
-        link: "/02_JavaScript/01_Nodejs/index.md",
-        activeMatch: "^/02_JavaScript/"
-      },
-      {
         text: "数据库",
         link: "/01_数据库/01_mysql/04_查.md",
         activeMatch: "^/01_数据库/"
       },
       {
-        text: "后端框架",
-        link: "/05_后端框架/01_Koa/index.md",
-        activeMatch: "^/05_后端框架/"
+        text: "JavaScript",
+        link: "/02_JavaScript/01_Nodejs/index.md",
+        activeMatch: "^/02_JavaScript/"
       },
       {
-        text: "前端框架",
-        link: "/04_前端框架/00_Vue/00_Vue是什么.md",
-        activeMatch: "^/04_前端框架/"
-      },
-      {
-        text: "构建工具",
-        link: "/03_构建工具/01_Webpack/00_简介.md",
+        text: "工程搭建",
+        link: "/03_构建工具/01_Webpack/00_简介.md", 
         activeMatch: "^/03_构建工具/"
       },
+      // {
+      //   text: "高级框架",
+      //   link: "/05_高级框架/01_Koa/index.md",
+      //   activeMatch: "^/05_高级框架/"
+      // },
+      {
+        text: '高级框架', 
+        items: [
+          { 
+            // text: 'web前端框架',
+            items: [
+              { text: 'Vue', link: "/05_高级框架/00_Vue/00_Vue是什么.md",activeMatch: "^/05_高级框架/00_Vue/" }
+            ]
+          },
+          { 
+            // text: '桌面端框架',
+            items: [ 
+              { text: 'Electron', link: "/05_高级框架/04_Electron/electron.md",activeMatch: "^/05_高级框架/04_Electron/" }
+            ]
+          },
+          { 
+            // text: '后端框架',
+            items: [
+              { text: 'Koa', link: "/05_高级框架/01_Koa/index.md",},
+              { text: 'NestJS', link: '/05_高级框架/02_Nest/index.md' }
+            ]
+          },
+        ]
+      },
+      // {
+      //   text: "前端框架",
+      //   link: "/05_高级框架/00_Vue/00_Vue是什么.md",
+      //   activeMatch: "^/05_高级框架/"
+      // },
       {
         text: "业务场景",
         link: "/06_业务/01_可视化/01_canvas.md",
         activeMatch: "^/06_业务/"
       },
       {
-        text: "常见算法",
+        text: "数据结构和算法",
         link: "/09_常见算法/01_数据结构与算法/index.md",
         activeMatch: "^/09_常见算法/"
       },
@@ -63,30 +87,8 @@ export default defineConfig({
         text: "人工智能",
         link: "/07_AI/01_大语言模型.md",
         activeMatch: "^/07_AI/"
-      }
-
-      // { text: "数据库", link: "/数据库/" }, // mysql redis mongodb
-
-      // { text: "数据结构算法", link: "/数据结构算法/" }, // 数据结构与算法题
-      // { text: "设计模式", link: "/设计模式/" }, // 常用设计模式
-      // { text: "网络", link: "/网络/" }, // HTTP TCP UDP WebSocket
-      // { text: "单词", link: "/单词/" }, // 前端相关单词
-    ],
-    // sidebar >>>
-    // {
-    //   "/Nodejs/": [ // 前缀为 /Nodejs/ 的路由会使用这个侧边栏配置
-    //     {
-    //       text: "Nodejs", // 二级目录名称
-    //       collapsed: false,
-    //       items: [
-    //         {
-    //           text: "文件1", // 显示的文本
-    //           link: "/Nodejs/文件1.md", // 跳转的路由地址
-    //         },
-    //       ],
-    //     },
-    //   ],
-    // };
+      } 
+    ], 
     sidebar: {
       "/02_JavaScript/": [
         {
@@ -274,146 +276,151 @@ export default defineConfig({
         },
 
       ],
-      "/05_后端框架": [
+      "/05_高级框架/01_Koa/": [
         {
-          text: "Koa",
-          link: "/05_后端框架/01_Koa/index.md",
-        },
-        {
-          text: "洋葱圈模型",
-          link: "/05_后端框架/01_Koa/02_洋葱圈模型.md",
-        },
-        {
-          text: "服务端路由KoaRouter",
-          link: "/05_后端框架/01_Koa/03_服务端路由KoaRouter.md",
-        },
-        {
-          text: "SpringMVC架构",
-          link: "/05_后端框架/01_Koa/04_SpringMVC架构.md",
-        },
+          text: 'koajs.com',
+          items: [ 
+            {
+              text: "Koa",
+              link: "/05_高级框架/01_Koa/index.md",
+            },
+            {
+              text: "洋葱圈模型",
+              link: "/05_高级框架/01_Koa/02_洋葱圈模型.md",
+            },
+            {
+              text: "服务端路由KoaRouter",
+              link: "/05_高级框架/01_Koa/03_服务端路由KoaRouter.md",
+            },
+            {
+              text: "SpringMVC架构",
+              link: "/05_高级框架/01_Koa/04_SpringMVC架构.md",
+            },
+          ]
+        }
       ],
-      "/04_前端框架/": [
+      "/05_高级框架/00_Vue/": [
         {
-          text: "Vue",
+          text: "cn.vuejs.org" ,
           items: [
             {
               text: "简介",
-              link: "/04_前端框架/00_Vue/00_Vue是什么.md"
+              link: "/05_高级框架/00_Vue/00_Vue是什么.md"
             },
             {
               text: "响应式数据",
-              link: "/04_前端框架/00_Vue/01_响应式数据.md"
+              link: "/05_高级框架/00_Vue/01_响应式数据.md"
             },
             {
               text: "模版语法",
-              link: "/04_前端框架/00_Vue/02_模版语法.md"
+              link: "/05_高级框架/00_Vue/02_模版语法.md"
             },
             {
               text: "依赖注入 provide/inject",
-              link: "/04_前端框架/00_Vue/03_依赖注入.md"
+              link: "/05_高级框架/00_Vue/03_依赖注入.md"
             },
             {
               text: "计算属性computed",
-              link: "/04_前端框架/00_Vue/04_计算属性computed.md"
+              link: "/05_高级框架/00_Vue/04_计算属性computed.md"
             },
             {
               text: "监听",
-              link: "/04_前端框架/00_Vue/05_监听.md"
+              link: "/05_高级框架/00_Vue/05_监听.md"
             },
             {
               text: "异步组件",
-              link: "/04_前端框架/00_Vue/06_异步组件.md"
+              link: "/05_高级框架/00_Vue/06_异步组件.md"
             },
             {
               text: "07_状态管理1store",
-              link: "/04_前端框架/00_Vue/07_状态管理1store.md"
+              link: "/05_高级框架/00_Vue/07_状态管理1store.md"
             },
             {
               text: "07_状态管理pinia",
-              link: "/04_前端框架/00_Vue/07_状态管理pinia.md"
+              link: "/05_高级框架/00_Vue/07_状态管理pinia.md"
             },
             {
               text: "07_状态管理vuex",
-              link: "/04_前端框架/00_Vue/07_状态管理vuex.md"
+              link: "/05_高级框架/00_Vue/07_状态管理vuex.md"
             },
             {
               text: "前端路由VueRouter",
-              link: "/04_前端框架/00_Vue/08_前端路由VueRouter.md"
+              link: "/05_高级框架/00_Vue/08_前端路由VueRouter.md"
             },
             {
               text: "09_测试",
-              link: "/04_前端框架/00_Vue/09_测试.md"
+              link: "/05_高级框架/00_Vue/09_测试.md"
             },
             {
               text: "11_模版引用",
-              link: "/04_前端框架/00_Vue/11_模版引用.md"
+              link: "/05_高级框架/00_Vue/11_模版引用.md"
             },
             {
               text: "12_生命周期",
-              link: "/04_前端框架/00_Vue/12_生命周期.md"
+              link: "/05_高级框架/00_Vue/12_生命周期.md"
             },
             {
               text: "性能优化",
-              link: "/04_前端框架/00_Vue/13_性能优化.md"
+              link: "/05_高级框架/00_Vue/13_性能优化.md"
             },
             {
               text: "14_组合式API",
-              link: "/04_前端框架/00_Vue/14_组合式API.md"
+              link: "/05_高级框架/00_Vue/14_组合式API.md"
             },
             {
               text: "响应式系统",
-              link: "/04_前端框架/00_Vue/15_响应式系统.md"
+              link: "/05_高级框架/00_Vue/15_响应式系统.md"
             },
             {
               text: "模版渲染机制",
-              link: "/04_前端框架/00_Vue/16_模版渲染机制.md"
+              link: "/05_高级框架/00_Vue/16_模版渲染机制.md"
             },
             {
               text: "渲染函数",
-              link: "/04_前端框架/00_Vue/17_渲染函数.md"
+              link: "/05_高级框架/00_Vue/17_渲染函数.md"
             },
             {
               text: "web-components和vue-components",
-              link: "/04_前端框架/00_Vue/18_web-components和vue-components.md"
+              link: "/05_高级框架/00_Vue/18_web-components和vue-components.md"
             },
             {
               text: "组合式函数hooks",
-              link: "/04_前端框架/00_Vue/19_组合式函数hooks.md"
+              link: "/05_高级框架/00_Vue/19_组合式函数hooks.md"
             },
 
             {
               text: "组件",
-              link: "/04_前端框架/00_Vue/20_组件.md"
+              link: "/05_高级框架/00_Vue/20_组件.md"
             },
             {
               text: "自定义指令",
-              link: "/04_前端框架/00_Vue/21_自定义指令.md"
+              link: "/05_高级框架/00_Vue/21_自定义指令.md"
             },
             {
               text: "插件",
-              link: "/04_前端框架/00_Vue/22_插件.md"
+              link: "/05_高级框架/00_Vue/22_插件.md"
             },
 
 
             {
               text: "v-bind和props",
-              link: "/04_前端框架/00_Vue/23_v-bind和props.md"
+              link: "/05_高级框架/00_Vue/23_v-bind和props.md"
             },
             {
               text: "v-on和emit",
-              link: "/04_前端框架/00_Vue/24_v-on和emit.md"
+              link: "/05_高级框架/00_Vue/24_v-on和emit.md"
             },
             {
               text: "v-for列表渲染",
-              link: "/04_前端框架/00_Vue/25_v-for列表渲染.md"
+              link: "/05_高级框架/00_Vue/25_v-for列表渲染.md"
             },
             {
               text: "25_v-model",
-              link: "/04_前端框架/00_Vue/25_v-model.md"
+              link: "/05_高级框架/00_Vue/25_v-model.md"
             },
             {
               text: "样式穿透",
-              link: "/04_前端框架/00_Vue/27_样式穿透.md"
+              link: "/05_高级框架/00_Vue/27_样式穿透.md"
             },
 
           ]
@@ -423,11 +430,24 @@ export default defineConfig({
         //   items: [
         //     {
         //       text: "简介",
-        //       link: "/04_前端框架/03_Nuxt/index.md"
+        //       link: "/05_高级框架/03_Nuxt/index.md"
         //     },
         //   ]
         // }
       ],
+      "/05_高级框架/05_Nestjs/": [],
+      "/05_高级框架/04_Electron/":[
+          {
+            text: 'electronjs.org/zh/',
+            items: [ 
+            {
+              text: "electron",
+              link: "/05_高级框架/04_Electron/electron.md"
+            },
+            ]
+          }
+      ],
+
       "/03_构建工具/": [
         {
           text: "架构",
