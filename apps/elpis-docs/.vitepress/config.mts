@@ -278,7 +278,7 @@ export default defineConfig({
       ],
       "/05_高级框架/01_Koa/": [
         {
-          text: 'koajs.com',
+          text: '\<a href="https://koajs.com/" \/\>Koajs\<a\>',
           items: [ 
             {
               text: "Koa",
@@ -300,8 +300,8 @@ export default defineConfig({
         }
       ],
       "/05_高级框架/00_Vue/": [
-        {
-          text: "cn.vuejs.org" ,
+        { 
+          text: '\<a href="https://cn.vuejs.org/" \/\>Vuejs\<a\>',
           items: [
             {
               text: "简介",
@@ -437,8 +437,8 @@ export default defineConfig({
       ],
       "/05_高级框架/05_Nestjs/": [],
       "/05_高级框架/04_Electron/":[
-          {
-            text: 'electronjs.org/zh/',
+          { 
+            text: '\<a href="https://www.electronjs.org/zh/docs/latest/" \/\>Electronjs\<a\>', 
             items: [ 
             {
               text: "electron",
