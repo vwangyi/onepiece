@@ -30,35 +30,146 @@ export default defineConfig({
         activeMatch: "^/02_JavaScript/"
       },
       {
-        text: "工程搭建",
-        link: "/03_构建工具/01_Webpack/00_简介.md", 
-        activeMatch: "^/03_构建工具/"
-      },
-      // {
-      //   text: "高级框架",
-      //   link: "/05_高级框架/01_Koa/index.md",
-      //   activeMatch: "^/05_高级框架/"
-      // },
-      {
-        text: '高级框架', 
+        text: "工程管理",
         items: [
-          { 
-            // text: 'web前端框架',
+          {
+            text: '包管理',
             items: [
-              { text: 'Vue', link: "/05_高级框架/00_Vue/00_Vue是什么.md",activeMatch: "^/05_高级框架/00_Vue/" }
+              {
+                text: '模块化',
+                link: "/03_构建工具/03_包管理/01_模块化.md",
+                activeMatch: "^/03_构建工具/03_包管理/",
+              },
+              {
+                text: '包',
+                link: "/03_构建工具/03_包管理/01_npm.md",
+                activeMatch: "^/03_构建工具/03_包管理/",
+              },
+              {
+                text: '包管理器',
+                link: "/03_构建工具/03_包管理/01_npm.md",
+                activeMatch: "^/03_构建工具/03_包管理/",
+              },
+              {
+                text: '多包管理方案',
+                link: "/03_构建工具/04_多包管理方案/01_多包管理方案.md",
+                activeMatch: "^/03_构建工具/04_多包管理方案/",
+              },
             ]
           },
-          { 
-            // text: '桌面端框架',
-            items: [ 
-              { text: 'Electron', link: "/05_高级框架/04_Electron/electron.md",activeMatch: "^/05_高级框架/04_Electron/" }
+          {
+            text: '工具链',
+            items: [
+              {
+                text: 'babel',
+                link: 'babel',
+              },
+              {
+                text: 'eslint',
+                link: 'eslint',
+              },
+              {
+                text: 'jest/vitest',
+                link: 'jest',
+              },
+              {
+                text: 'less/sass/stylus',
+                link: 'sass',
+              },
+              {
+                text: 'postcss',
+                link: 'postcss',
+              },
+              {
+                text: 'tailwindcss',
+                link: 'tailwindcss',
+              },
+              {
+                text: 'ts',
+                link: 'ts',
+              },
+              {
+                text: '自定义工具链',
+                link: '自定义工具链',
+              },
+
             ]
           },
-          { 
-            // text: '后端框架',
+          {
+            text: '构建器',
             items: [
-              { text: 'Koa', link: "/05_高级框架/01_Koa/index.md",},
-              { text: 'NestJS', link: '/05_高级框架/02_Nest/index.md' }
+              {
+                text: 'webpack',
+                link: 'webpack',
+              },
+              {
+                text: 'vite',
+                link: 'vite',
+              },
+              {
+                text: 'rollup',
+                link: 'rollup',
+              },
+              {
+                text: 'esbuild',
+                link: 'esbuild',
+              },
+              {
+                text: '自定义构建器',
+                link: '自定义构建器',
+              },
+
+            ]
+          },
+          {
+            text: '脚手架',
+            items: [
+              {
+                text: 'vue-cli',
+                link: '1',
+              },
+              {
+                text: 'vite',
+                link: '11',
+              },
+              {
+                text: 'create-react-app',
+                link: '2',
+              },
+              {
+                text: 'umijs',
+                link: '3',
+              },
+              {
+                text: '自定义脚手架',
+                link: '4',
+              },
+
+            ]
+          }
+        ],
+      },
+      {
+        text: '高级框架',
+        items: [
+          {
+            text: 'web框架',
+            items: [
+              { text: 'Vue', link: "/05_高级框架/00_Vue/00_Vue是什么.md", activeMatch: "^/05_高级框架/00_Vue/" }
+            ]
+          },
+          {
+            text: '桌面端框架',
+            items: [
+              { text: 'Electron', link: "/05_高级框架/04_Electron/electron.md", activeMatch: "^/05_高级框架/04_Electron/" }
+            ]
+          },
+          {
+            text: 'BFF',
+            items: [
+              { text: 'Koajs', link: "/05_高级框架/01_Koa/index.md", },
+              { text: 'Eggjs', link: "/05_高级框架/01_Koa/index.md", },
+              { text: 'Nestjs', link: '/05_高级框架/02_Nest/index.md' }
             ]
           },
         ]
@@ -87,9 +198,49 @@ export default defineConfig({
         text: "人工智能",
         link: "/07_AI/01_大语言模型.md",
         activeMatch: "^/07_AI/"
-      } 
-    ], 
+      }
+    ],
     sidebar: {
+      "/03_构建工具/03_包管理/": [
+        {
+          text: '\<a href="https://koajs.com/" \/\>npm\<a\>',
+          items: [
+            {
+              text: "npm",
+              link: "/03_构建工具/03_包管理/01_npm.md",
+            },
+          ]
+        },
+        {
+          text: '\<a href="https://koajs.com/" \/\>yarn\<a\>',
+          items: [
+            {
+              text: "yarn",
+              link: "/03_构建工具/03_包管理/02_yarn.md",
+            },
+          ]
+        },
+        {
+          text: '\<a href="https://pnpm.io/zh/" \/\>pnpm\<a\>',
+          items: [
+            {
+              text: "pnpm",
+              link: '/03_构建工具/03_包管理/03_pnpm.md',
+            },
+          ]
+        }
+      ],
+      "/03_构建工具/04_多包管理方案/": [
+        {
+          // text: '\<a href="https://pnpm.io/zh/" \/\>多包管理方案\<a\>',
+          items: [
+            {
+              text: "多包管理方案",
+              link: '/03_构建工具/04_多包管理方案/01_多包管理方案.md',
+            },
+          ]
+        }
+      ],
       "/02_JavaScript/": [
         {
           text: "Nodejs",
@@ -279,7 +430,7 @@ export default defineConfig({
       "/05_高级框架/01_Koa/": [
         {
           text: '\<a href="https://koajs.com/" \/\>Koajs\<a\>',
-          items: [ 
+          items: [
             {
               text: "Koa",
               link: "/05_高级框架/01_Koa/index.md",
@@ -300,7 +451,7 @@ export default defineConfig({
         }
       ],
       "/05_高级框架/00_Vue/": [
-        { 
+        {
           text: '\<a href="https://cn.vuejs.org/" \/\>Vuejs\<a\>',
           items: [
             {
@@ -436,16 +587,16 @@ export default defineConfig({
         // }
       ],
       "/05_高级框架/05_Nestjs/": [],
-      "/05_高级框架/04_Electron/":[
-          { 
-            text: '\<a href="https://www.electronjs.org/zh/docs/latest/" \/\>Electronjs\<a\>', 
-            items: [ 
+      "/05_高级框架/04_Electron/": [
+        {
+          text: '\<a href="https://www.electronjs.org/zh/docs/latest/" \/\>Electronjs\<a\>',
+          items: [
             {
               text: "electron",
               link: "/05_高级框架/04_Electron/electron.md"
             },
-            ]
-          }
+          ]
+        }
       ],
 
       "/03_构建工具/": [

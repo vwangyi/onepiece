@@ -1,0 +1,11 @@
+/* .vitepress/theme/custom.css */
+
+
+.VPMenuGroup .title {
+    font-size: 10px;
+    /* 调小字体 */
+    color: #909399;
+    /* 设为柔和的灰色，调低视觉权重 */
+    font-weight: normal;
+    /* 可选的，如果默认是粗体，可以改回常规 */
+}
