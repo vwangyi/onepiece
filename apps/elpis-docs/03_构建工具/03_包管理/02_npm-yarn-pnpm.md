@@ -1,3 +1,16 @@
+# 包管理器 
+
+- package.json https://docs.npmjs.com/cli/v11/configuring-npm/package-json 
+- npm官网：https://docs.npmjs.com/
+- pnpm官网 https://pnpm.io/configuring 
+- yarn 官网 https://yarnpkg.com/getting-started 
+## npm 
+- npm是node包管理器，用于管理软件包、库以及依赖关系的一种工具。
+
+## CLI 
+- CLI（command line interface）是命令行接口，在控制台输入命令进行交互。
+ 
+
 
 ## npm yarn pnpm 
 - npm官网：https://www.npmjs.com/

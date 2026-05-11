@@ -25,82 +25,62 @@ export default defineConfig({
         activeMatch: "^/01_数据库/"
       },
       {
-        text: "JavaScript",
-        link: "/02_JavaScript/01_Nodejs/index.md",
-        activeMatch: "^/02_JavaScript/"
+        text: "高级语言", 
+        activeMatch: "^/02_高级语言/", 
+        items: [
+          {
+            text: 'Nodejs',
+            link: '/02_高级语言/00_Nodejs/01_globalThis全局对象.md',
+            activeMatch: "^/02_高级语言/00_Nodejs/", 
+          },
+          {
+            text: 'JavaScript',
+            link: '/02_高级语言/02_JavaScript/index.md',
+            activeMatch: "^/02_高级语言/02_JavaScript/", 
+          },
+          {
+            text: 'TypeScript',
+            link: '/02_高级语言/03_TypeScript/index.md',
+            activeMatch: "^/02_高级语言/03_TypeScript/", 
+          }
+        ],
       },
       {
         text: "工程管理",
+        activeMatch: "^/03_构建工具/",
         items: [
           {
             text: '包管理',
             items: [
               {
-                text: '模块化',
-                link: "/03_构建工具/03_包管理/01_模块化.md",
-                activeMatch: "^/03_构建工具/03_包管理/",
+                text: '模块module', 
+                link: "/03_构建工具/03_包管理/00_模块/00_ESM.md", 
+                activeMatch: "^/03_构建工具/03_包管理/00_模块",
               },
               {
-                text: '包',
-                link: "/03_构建工具/03_包管理/01_npm.md",
-                activeMatch: "^/03_构建工具/03_包管理/",
+                text: '包package',
+                link: "/03_构建工具/03_包管理/01_包/00_package.md",
+                activeMatch: "^/03_构建工具/03_包管理/01_包",
               },
               {
                 text: '包管理器',
-                link: "/03_构建工具/03_包管理/01_npm.md",
-                activeMatch: "^/03_构建工具/03_包管理/",
+                link: "/03_构建工具/03_包管理/02_npm-yarn-pnpm.md",
+                activeMatch: "^/03_构建工具/03_包管理/02_npm-yarn-pnpm",
               },
               {
                 text: '多包管理方案',
-                link: "/03_构建工具/04_多包管理方案/01_多包管理方案.md",
-                activeMatch: "^/03_构建工具/04_多包管理方案/",
+                link: "/03_构建工具/03_包管理/03_monorepo.md",
+                activeMatch: "^/03_构建工具/03_包管理/03_monorepo",
               },
-            ]
-          },
-          {
-            text: '工具链',
-            items: [
-              {
-                text: 'babel',
-                link: 'babel',
-              },
-              {
-                text: 'eslint',
-                link: 'eslint',
-              },
-              {
-                text: 'jest/vitest',
-                link: 'jest',
-              },
-              {
-                text: 'less/sass/stylus',
-                link: 'sass',
-              },
-              {
-                text: 'postcss',
-                link: 'postcss',
-              },
-              {
-                text: 'tailwindcss',
-                link: 'tailwindcss',
-              },
-              {
-                text: 'ts',
-                link: 'ts',
-              },
-              {
-                text: '自定义工具链',
-                link: '自定义工具链',
-              },
-
             ]
           },
           {
             text: '构建器',
             items: [
               {
-                text: 'webpack',
-                link: 'webpack',
+                text: 'webpack', 
+                link: "/03_构建工具/01_Webpack/00_简介.md",
+                activeMatch: "^/03_构建工具/01_Webpack/",
               },
               {
                 text: 'vite',
@@ -146,20 +126,50 @@ export default defineConfig({
               },
 
             ]
-          }
+          }, 
+          {
+            text: '工具链',
+            items: [
+              {
+                text: '自定义工具链',
+                link: '/03_构建工具/04_工具链/00_自定义工具链.md',
+                activeMatch: '^/03_构建工具/04_工具链/',
+              },
+              {
+                text: 'babel',
+                link: '/03_构建工具/04_工具链/01_babel.md',
+                activeMatch: '^/03_构建工具/04_工具链/',
+              },
+              {
+                text: '代码规范',
+                link: '/03_构建工具/04_工具链/02_代码规范.md',
+                activeMatch: '^/03_构建工具/04_工具链/',
+              },
+              {
+                text: '前端测试框架',
+                link: '/03_构建工具/04_工具链/03_前端测试框架.md',
+                activeMatch: '^/03_构建工具/04_工具链/',
+              },
+              {
+                text: 'css预编译器',
+                link: '/03_构建工具/04_工具链/04_css预编译器.md',
+                activeMatch: '^/03_构建工具/04_工具链/',
+              },  
+            ]
+          },
         ],
       },
       {
         text: '高级框架',
         items: [
           {
-            text: 'web框架',
+            text: 'web',
             items: [
               { text: 'Vue', link: "/05_高级框架/00_Vue/00_Vue是什么.md", activeMatch: "^/05_高级框架/00_Vue/" }
             ]
           },
           {
-            text: '桌面端框架',
+            text: 'desktop',
             items: [
               { text: 'Electron', link: "/05_高级框架/04_Electron/electron.md", activeMatch: "^/05_高级框架/04_Electron/" }
             ]
@@ -199,45 +209,88 @@ export default defineConfig({
         link: "/07_AI/01_大语言模型.md",
         activeMatch: "^/07_AI/"
       }
-    ],
-    sidebar: {
-      "/03_构建工具/03_包管理/": [
-        {
-          text: '\<a href="https://koajs.com/" \/\>npm\<a\>',
-          items: [
+    ], 
+    sidebar: {  
+      "/02_高级语言/02_JavaScript/": [
+        {  
+          text: '\<a href="https://cn.vuejs.org/" \/\>变量\<a\>',
+          items: [ 
             {
-              text: "npm",
-              link: "/03_构建工具/03_包管理/01_npm.md",
+              text: '变量声明',
+              link: "/02_高级语言/02_JavaScript/01_变量声明.md"
+            },
+            {
+              text: '数据类型',
+              link: "/02_高级语言/02_JavaScript/02_数据类型.md"
             },
           ]
         },
-        {
-          text: '\<a href="https://koajs.com/" \/\>yarn\<a\>',
-          items: [
+        {  
+          text: '\<a href="https://cn.vuejs.org/" \/\>函数\<a\>',
+          items: [ 
             {
-              text: "yarn",
-              link: "/03_构建工具/03_包管理/02_yarn.md",
-            },
-          ]
-        },
-        {
-          text: '\<a href="https://pnpm.io/zh/" \/\>pnpm\<a\>',
-          items: [
-            {
-              text: "pnpm",
-              link: '/03_构建工具/03_包管理/03_pnpm.md',
+              text: '函数声明',
+              link: "/02_高级语言/02_JavaScript/01_函数声明.md"
             },
           ]
         }
-      ],
-      "/03_构建工具/04_多包管理方案/": [
-        {
-          // text: '\<a href="https://pnpm.io/zh/" \/\>多包管理方案\<a\>',
-          items: [
+      ], 
+      "/02_高级语言/03_TypeScript/": [
+        {  
+          text: '\<a href="https://cn.vuejs.org/" \/\>TypeScript\<a\>',
+          items: [ 
             {
-              text: "多包管理方案",
-              link: '/03_构建工具/04_多包管理方案/01_多包管理方案.md',
+              text: '简介',
+              link: "/02_高级语言/03_TypeScript/index.md"
             },
+          ]
+        },
+      ],
+      "/03_构建工具/03_包管理/01_包":[
+        {
+          text: '包',
+          items: [
+
+            {
+              text: 'package',
+              link: "/03_构建工具/03_包管理/01_包/00_package.md"
+            },
+            {
+              text: '包版本',
+              link: "/03_构建工具/03_包管理/01_包/01_包版本.md"
+            }, 
+            {
+              text: '包依赖',
+              link: "/03_构建工具/03_包管理/01_包/96_包依赖.md"
+            },
+            {
+              text: '包入口',
+              link: "/03_构建工具/03_包管理/01_包/96_包入口.md"
+            },
+            {
+              text: '包执行脚本',
+              link: "/03_构建工具/03_包管理/01_包/94_包执行脚本.md"
+            },
+            {
+              text: '包环境',
+              link: "/03_构建工具/03_包管理/01_包/95_包环境.md"
+            },
+
+
+
+
+            {
+              text: '指定包的模块化规范',
+              link: "/03_构建工具/03_包管理/01_包/93_包模块化规范.md"
+            },  
+            {
+              text: '发布npm包',
+              link: "/03_构建工具/03_包管理/01_包/98_发布npm包.md"
+            }, 
+            {
+              text: '搭建npm私服',
+              link: "/03_构建工具/03_包管理/01_包/99_搭建npm私服.md"
+            }, 
           ]
         }
       ],
@@ -260,23 +313,7 @@ export default defineConfig({
             {
               text: "fs文件系统模块",
               link: "/02_JavaScript/01_Nodejs/02_fs文件系统模块.md"
-            },
-            {
-              text: "包管理器",
-              link: "/02_JavaScript/01_Nodejs/03_包管理器.md"
-            },
-            {
-              text: "pageage.json",
-              link: "/02_JavaScript/01_Nodejs/04_包说明文件.md"
-            },
-            {
-              text: "发布npm包",
-              link: "/02_JavaScript/01_Nodejs/05_发布npm包.md"
-            },
-            {
-              text: "模块化",
-              link: "/02_JavaScript/01_Nodejs/06_模块化.md"
-            },
+            },    
           ]
         },
         {
@@ -575,16 +612,27 @@ export default defineConfig({
             },
 
           ]
+        }, 
+      ],
+      "/03_构建工具/03_包管理/00_模块": [
+        { 
+          text: '\<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Modules" \/\>ESM\<a\>',
+          items: [
+            {
+              text: 'es module',
+              link: "/03_构建工具/03_包管理/00_模块/00_ESM.md"
+            }, 
+          ]
         },
-        // {
-        //   text: "Nuxt",
-        //   items: [
-        //     {
-        //       text: "简介",
-        //       link: "/05_高级框架/03_Nuxt/index.md"
-        //     },
-        //   ]
-        // }
+        { 
+          text: '\<a href="https://nodejs.org/docs/latest/api/modules.html#modules-commonjs-modules" \/\>Commonjs\<a\>',
+          items: [ 
+            {
+              text: 'Commonjs',
+              link: "/03_构建工具/03_包管理/00_模块/01_Commonjs.md"
+            }
+          ]
+        }
       ],
       "/05_高级框架/05_Nestjs/": [],
       "/05_高级框架/04_Electron/": [
@@ -597,34 +645,10 @@ export default defineConfig({
             },
           ]
         }
-      ],
-
-      "/03_构建工具/": [
+      ], 
+      "/03_构建工具/01_Webpack/": [
         {
-          text: "架构",
-          items: [
-            {
-              text: "multirepo",
-              link: "/03_构建工具/00_架构/01_multirepo.md"
-            },
-            {
-              text: "monorepo",
-              link: "/03_构建工具/00_架构/02_monorepo.md"
-            }
-          ]
-        },
-        {
-
-          text: "Vite",
-          items: [
-            {
-              text: 'Vite',
-              link: '/03_构建工具/04_Vite/index.md',
-            }
-          ]
-        },
-        {
-          text: "Webpack",
+          text: '\<a href="https://webpack.docschina.org/concepts/" \/\>Webpack\<a\>', 
           items: [
             {
               text: "简介",
@@ -680,8 +704,9 @@ export default defineConfig({
               link: "/03_构建工具/01_Webpack/05_Babel.md"
             }
           ]
-        }
+        }, 
       ],
+ 
       "/06_业务/": [
         {
           text: "业务sense",

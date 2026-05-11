@@ -1,15 +1,19 @@
 
-
 ### 技术专长 
-1. JavaScript TypeScript  （node）
-2. webpack
-3. vite
-5. rollup 组件库
-6. vue 源码
-7. 业务sence和主动性
+
+1. JavaScript Nodejs 引导
+2. TypeScript 引导
+3. webpack vite rollup
+4. 工具链 eslint prettier 可维护性
+5. 框架vue 
+6. BFF
+7. 数据库
 8. 运维
-9. AI提效
-2. eslint prettier 可维护性
+9. 业务sence和主动性 
+10. AI
+ 
+
+### sdfds 
 1. 难点：侧重体现出 涉及的知识点多，展现出庞大的知识体系。（简单的curd涉及的知识点就只有数组map filter比较少）
 2. 亮点：侧重体现出 创造的价值大，比如节约了5万，多赚了5万等等。
 3. 这就是我 从概念到原理到应用 的理解 

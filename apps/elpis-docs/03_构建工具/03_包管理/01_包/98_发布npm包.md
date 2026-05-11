@@ -2,6 +2,9 @@
 
 ```js
 
+files: ["index.js", "dist"] // 发布npm时 只上传这2个文件 
+
+
 1 注册npm账号  https://www.npmjs.com/signup 得到 账号和密码  
   账号：codewy 邮箱：codewy@qq.com 
 2 本地新建文件夹作为项目 执行npm init 生成package.json 
@@ -40,3 +43,4 @@ npm link @codewy/elpis
 npm unlink @codewy/elpis 
 
 ```
+
