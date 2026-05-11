@@ -1032,7 +1032,6 @@ async/await：语法糖本质，错误处理
 
 ## ES6+ 特性  
 
-模块化：ES Module 与 CommonJS 的区别
 
 解构赋值：数组和对象的解构
 
@@ -1778,10 +1777,6 @@ bom是什么 bom是浏览器对象模型  每个浏览器都有自己的实现  
 
 
 
-
-### 问：es module 和 commonsjs 区别？
-<!-- 这是一张图片，ocr 内容为：值的引用 EXPORT或EXPORT DEFAULT 导出 值的浅拷贝 MODULE.EXPORTS 或 EXPORTS 异步加载 IMPORT FORM 导入 IMPORT和REQUIRE的区别 ES MODULE和COMMONJS区别 同步加载 REQUIRE函数 因为是严格模式 THIS指向UNDEFINED THIS指向 THIS指向MODULE.EXPORTS对象 -->
-![](https://cdn.nlark.com/yuque/0/2025/png/34696752/1753951883805-a17e5b1b-2246-422c-803a-734ed8da6ca5.png)
 
 ### 问：Symbol 是什么？
 <!-- 这是一张图片，ocr 内容为：是什么 SYMBOL是ES6新增的基础数据类型,可以创建绝对唯一的标识符 好处 SYMBOL()能保证绝对唯一不需要关注值本身是什么 SYMBOL() 常量名 FOR-OF FOR-IN OBJECT.KEYS() OBJECT.GETOWNPROPERTYNAMES() 对象的KEY属性避免被覆盖 应用场景 SYMBOL()不会被追历 VUE中KEY属性 SYMBOL()是绝对唯一的 -->

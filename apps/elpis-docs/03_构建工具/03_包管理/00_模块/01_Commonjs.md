@@ -1,20 +1,47 @@
-# 模块化
+# Commonjs
+```js 
+
+exports.a = 1
+exports.b = function() {};
+
+// 一定不要对 exports 进行赋值 因为exports指向 module.exports   exports = module.exports 
+// 一旦赋值 就切断了引用 export就失去导出的作用了 
 
 
-## es module推荐
-- package.json 设置 type:module， 从 nodejs的v12+ 开始稳定支持esm
-```json
-{
-  "type": "module",
+const a = require('./a.js'); 
+
+
+
+
+// math.js - 定义模块
+function add(a, b) {
+  return a + b;
 }
-```
-```js
-import xx from 'xx';
 
-export const a = {};
-export const b = {};
+function multiply(a, b) {
+  return a * b;
+}
 
-export default {};
+// 导出模块
+module.exports = {
+  add,
+  multiply
+};
+
+// 或者
+exports.add = add;
+exports.multiply = multiply;
+
+// main.js - 使用模块
+const math = require('./math.js');
+console.log(math.add(2, 3)); // 5
+
+// 特性：
+// 1. 同步加载（服务端适用）
+// 2. 模块是对象
+// 3. 每个文件都是一个模块
+// 4. 有缓存机制
+
 ```
 
 ## commonjs
@@ -37,9 +64,6 @@ module.exports = {}; // 默认导出一个空对象
 ```
 
  
-
- 
-
 ## commonjs模块加载机制
 ```js
 
