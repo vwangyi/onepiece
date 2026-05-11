@@ -1,3 +1,1 @@
-export function isArray(value) {
-  return Array.isArray(value);
-}
+export * from './src/a.ts';
