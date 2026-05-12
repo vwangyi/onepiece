@@ -25,52 +25,52 @@ export default defineConfig({
         activeMatch: "^/01_数据库/"
       },
       {
-        text: "高级语言", 
-        activeMatch: "^/02_高级语言/", 
+        text: "高级语言",
+        activeMatch: "^/02_高级语言/",
         items: [
           {
-            text: 'JavaScript', 
+            text: 'JavaScript',
             link: "/02_高级语言/02_JavaScript/00_JavaScript.md",
-            activeMatch: "^/02_高级语言/02_JavaScript/", 
+            activeMatch: "^/02_高级语言/02_JavaScript/",
           },
           {
             text: 'TypeScript',
             link: '/02_高级语言/03_TypeScript/index.md',
-            activeMatch: "^/02_高级语言/03_TypeScript/", 
-          }, 
+            activeMatch: "^/02_高级语言/03_TypeScript/",
+          },
           {
             text: 'Nodejs',
             link: '/02_高级语言/00_Nodejs/01_globalThis全局对象.md',
-            activeMatch: "^/02_高级语言/00_Nodejs/", 
+            activeMatch: "^/02_高级语言/00_Nodejs/",
           },
         ],
       },
       {
         text: "工程管理",
-        activeMatch: "^/03_构建工具/",
+        activeMatch: "^/03_工程搭建/",
         items: [
           {
             text: '包管理',
             items: [
               {
-                text: '模块module', 
-                link: "/03_构建工具/03_包管理/00_模块/00_ESM.md", 
-                activeMatch: "^/03_构建工具/03_包管理/00_模块",
+                text: '模块module',
+                link: "/03_工程搭建/03_包管理/00_模块/00_ESM.md",
+                activeMatch: "^/03_工程搭建/03_包管理/00_模块",
               },
               {
                 text: '包package',
-                link: "/03_构建工具/03_包管理/01_包/00_package.md",
-                activeMatch: "^/03_构建工具/03_包管理/01_包",
+                link: "/03_工程搭建/03_包管理/01_包/00_package.md",
+                activeMatch: "^/03_工程搭建/03_包管理/01_包",
               },
               {
                 text: '包管理器',
-                link: "/03_构建工具/03_包管理/02_npm-yarn-pnpm.md",
-                activeMatch: "^/03_构建工具/03_包管理/02_npm-yarn-pnpm",
+                link: "/03_工程搭建/03_包管理/02_npm-yarn-pnpm.md",
+                activeMatch: "^/03_工程搭建/03_包管理/02_npm-yarn-pnpm",
               },
               {
                 text: '多包管理方案',
-                link: "/03_构建工具/03_包管理/03_monorepo.md",
-                activeMatch: "^/03_构建工具/03_包管理/03_monorepo",
+                link: "/03_工程搭建/03_包管理/03_monorepo.md",
+                activeMatch: "^/03_工程搭建/03_包管理/03_monorepo",
               },
             ]
           },
@@ -78,9 +78,9 @@ export default defineConfig({
             text: '构建器',
             items: [
               {
-                text: 'webpack', 
-                link: "/03_构建工具/01_Webpack/00_简介.md",
-                activeMatch: "^/03_构建工具/01_Webpack/",
+                text: 'webpack',
+                link: "/03_工程搭建/01_Webpack/00_简介.md",
+                activeMatch: "^/03_工程搭建/01_Webpack/",
               },
               {
                 text: 'vite',
@@ -126,35 +126,35 @@ export default defineConfig({
               },
 
             ]
-          }, 
+          },
           {
             text: '工具链',
             items: [
               {
                 text: '自定义工具链',
-                link: '/03_构建工具/04_工具链/00_自定义工具链.md',
-                activeMatch: '^/03_构建工具/04_工具链/',
+                link: '/03_工程搭建/04_工具链/00_自定义工具链.md',
+                activeMatch: '^/03_工程搭建/04_工具链/',
               },
               {
                 text: 'babel',
-                link: '/03_构建工具/04_工具链/01_babel.md',
-                activeMatch: '^/03_构建工具/04_工具链/',
+                link: '/03_工程搭建/04_工具链/01_babel.md',
+                activeMatch: '^/03_工程搭建/04_工具链/',
               },
               {
                 text: '代码规范',
-                link: '/03_构建工具/04_工具链/02_代码规范.md',
-                activeMatch: '^/03_构建工具/04_工具链/',
+                link: '/03_工程搭建/04_工具链/02_代码规范.md',
+                activeMatch: '^/03_工程搭建/04_工具链/',
               },
               {
                 text: '前端测试框架',
-                link: '/03_构建工具/04_工具链/03_前端测试框架.md',
-                activeMatch: '^/03_构建工具/04_工具链/',
+                link: '/03_工程搭建/04_工具链/03_前端测试框架.md',
+                activeMatch: '^/03_工程搭建/04_工具链/',
               },
               {
                 text: 'css预编译器',
-                link: '/03_构建工具/04_工具链/04_css预编译器.md',
-                activeMatch: '^/03_构建工具/04_工具链/',
-              },  
+                link: '/03_工程搭建/04_工具链/04_css预编译器.md',
+                activeMatch: '^/03_工程搭建/04_工具链/',
+              },
             ]
           },
         ],
@@ -209,16 +209,16 @@ export default defineConfig({
         link: "/07_AI/01_大语言模型.md",
         activeMatch: "^/07_AI/"
       }
-    ], 
-    sidebar: {  
-      "/02_高级语言/02_JavaScript/": [ 
+    ],
+    sidebar: {
+      "/02_高级语言/02_JavaScript/": [
         {
           text: '核心概念',
           link: "/02_高级语言/02_JavaScript/00_JavaScript.md"
         },
-        {  
+        {
           text: '\<a href="https://cn.vuejs.org/" \/\>变量\<a\>',
-          items: [ 
+          items: [
             {
               text: '变量声明',
               link: "/02_高级语言/02_JavaScript/01_变量声明.md"
@@ -229,20 +229,20 @@ export default defineConfig({
             },
           ]
         },
-        {  
+        {
           text: '\<a href="https://cn.vuejs.org/" \/\>函数\<a\>',
-          items: [ 
+          items: [
             {
               text: '函数声明',
               link: "/02_高级语言/02_JavaScript/01_函数声明.md"
             },
           ]
         }
-      ], 
+      ],
       "/02_高级语言/03_TypeScript/": [
-        {  
+        {
           text: '\<a href="https://cn.vuejs.org/" \/\>TypeScript\<a\>',
-          items: [ 
+          items: [
             {
               text: '简介',
               link: "/02_高级语言/03_TypeScript/index.md"
@@ -250,34 +250,34 @@ export default defineConfig({
           ]
         },
       ],
-      "/03_构建工具/03_包管理/01_包":[
+      "/03_工程搭建/03_包管理/01_包": [
         {
           text: '包',
           items: [
 
             {
               text: 'package',
-              link: "/03_构建工具/03_包管理/01_包/00_package.md"
+              link: "/03_工程搭建/03_包管理/01_包/00_package.md"
             },
             {
               text: '包版本',
-              link: "/03_构建工具/03_包管理/01_包/01_包版本.md"
-            }, 
+              link: "/03_工程搭建/03_包管理/01_包/01_包版本.md"
+            },
             {
               text: '包依赖',
-              link: "/03_构建工具/03_包管理/01_包/96_包依赖.md"
+              link: "/03_工程搭建/03_包管理/01_包/96_包依赖.md"
             },
             {
               text: '包入口',
-              link: "/03_构建工具/03_包管理/01_包/96_包入口.md"
+              link: "/03_工程搭建/03_包管理/01_包/96_包入口.md"
             },
             {
               text: '包执行脚本',
-              link: "/03_构建工具/03_包管理/01_包/94_包执行脚本.md"
+              link: "/03_工程搭建/03_包管理/01_包/94_包执行脚本.md"
             },
             {
               text: '包环境',
-              link: "/03_构建工具/03_包管理/01_包/95_包环境.md"
+              link: "/03_工程搭建/03_包管理/01_包/95_包环境.md"
             },
 
 
@@ -285,16 +285,16 @@ export default defineConfig({
 
             {
               text: '指定包的模块化规范',
-              link: "/03_构建工具/03_包管理/01_包/93_包模块化规范.md"
-            },  
+              link: "/03_工程搭建/03_包管理/01_包/93_包模块化规范.md"
+            },
             {
               text: '发布npm包',
-              link: "/03_构建工具/03_包管理/01_包/98_发布npm包.md"
-            }, 
+              link: "/03_工程搭建/03_包管理/01_包/98_发布npm包.md"
+            },
             {
               text: '搭建npm私服',
-              link: "/03_构建工具/03_包管理/01_包/99_搭建npm私服.md"
-            }, 
+              link: "/03_工程搭建/03_包管理/01_包/99_搭建npm私服.md"
+            },
           ]
         }
       ],
@@ -317,7 +317,7 @@ export default defineConfig({
             {
               text: "fs文件系统模块",
               link: "/02_JavaScript/01_Nodejs/02_fs文件系统模块.md"
-            },    
+            },
           ]
         },
         {
@@ -616,24 +616,24 @@ export default defineConfig({
             },
 
           ]
-        }, 
+        },
       ],
-      "/03_构建工具/03_包管理/00_模块": [
-        { 
+      "/03_工程搭建/03_包管理/00_模块": [
+        {
           text: '\<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Modules" \/\>ESM\<a\>',
           items: [
             {
               text: 'es module',
-              link: "/03_构建工具/03_包管理/00_模块/00_ESM.md"
-            }, 
+              link: "/03_工程搭建/03_包管理/00_模块/00_ESM.md"
+            },
           ]
         },
-        { 
+        {
           text: '\<a href="https://nodejs.org/docs/latest/api/modules.html#modules-commonjs-modules" \/\>Commonjs\<a\>',
-          items: [ 
+          items: [
             {
               text: 'Commonjs',
-              link: "/03_构建工具/03_包管理/00_模块/01_Commonjs.md"
+              link: "/03_工程搭建/03_包管理/00_模块/01_Commonjs.md"
             }
           ]
         }
@@ -649,68 +649,68 @@ export default defineConfig({
             },
           ]
         }
-      ], 
-      "/03_构建工具/01_Webpack/": [
+      ],
+      "/03_工程搭建/01_Webpack/": [
         {
-          text: '\<a href="https://webpack.docschina.org/concepts/" \/\>Webpack\<a\>', 
+          text: '\<a href="https://webpack.docschina.org/concepts/" \/\>Webpack\<a\>',
           items: [
             {
               text: "简介",
-              link: "/03_构建工具/01_Webpack/00_简介.md"
+              link: "/03_工程搭建/01_Webpack/00_简介.md"
             },
             {
               text: "入口出口",
-              link: "/03_构建工具/01_Webpack/01_入口出口.md"
+              link: "/03_工程搭建/01_Webpack/01_入口出口.md"
             },
             {
               text: "处理vue文件",
-              link: "/03_构建工具/01_Webpack/02_处理vue文件.md"
+              link: "/03_工程搭建/01_Webpack/02_处理vue文件.md"
             },
             {
               text: "处理js文件",
-              link: "/03_构建工具/01_Webpack/03_处理js文件.md"
+              link: "/03_工程搭建/01_Webpack/03_处理js文件.md"
             },
             {
               text: "处理样式文件",
-              link: "/03_构建工具/01_Webpack/04_处理样式文件.md"
+              link: "/03_工程搭建/01_Webpack/04_处理样式文件.md"
             },
             {
               text: "处理图片资源",
-              link: "/03_构建工具/01_Webpack/05_处理图片资源.md"
+              link: "/03_工程搭建/01_Webpack/05_处理图片资源.md"
             },
             {
               text: "处理html资源",
-              link: "/03_构建工具/01_Webpack/06_处理html资源.md"
+              link: "/03_工程搭建/01_Webpack/06_处理html资源.md"
             },
             {
               text: "devServer",
-              link: "/03_构建工具/01_Webpack/07_devServer.md"
+              link: "/03_工程搭建/01_Webpack/07_devServer.md"
             },
 
             {
               text: "SourceMap",
-              link: "/03_构建工具/01_Webpack/10_SourceMap.md"
+              link: "/03_工程搭建/01_Webpack/10_SourceMap.md"
             },
             {
               text: "TreeShaking",
-              link: "/03_构建工具/01_Webpack/04_TreeShaking.md"
+              link: "/03_工程搭建/01_Webpack/04_TreeShaking.md"
             },
             {
               text: "Loader",
-              link: "/03_构建工具/01_Webpack/06_Loader加载器.md"
+              link: "/03_工程搭建/01_Webpack/06_Loader加载器.md"
             },
             {
               text: "军哥webpack",
-              link: "/03_构建工具/01_Webpack/军哥webpack.md"
+              link: "/03_工程搭建/01_Webpack/军哥webpack.md"
             },
             {
               text: "Babel",
-              link: "/03_构建工具/01_Webpack/05_Babel.md"
+              link: "/03_工程搭建/01_Webpack/05_Babel.md"
             }
           ]
-        }, 
+        },
       ],
- 
+
       "/06_业务/": [
         {
           text: "业务sense",
