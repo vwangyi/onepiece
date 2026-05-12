@@ -4,7 +4,7 @@
 ## 获取最新的github的ip地址
 1. [https://seo.chinaz.com/github.com]
 2. [https://digwebinterface.com/]  
-3. https://api.github.com/meta
+3. https://api.github.com/meta 
 6. 可百度 获取 github.com 最新的ip地址 (若上面都不行 可能是获取ip不是最新的 换其他方式获取ip 去百度重新找获取ip的方法)
 
 ## 修改host文件

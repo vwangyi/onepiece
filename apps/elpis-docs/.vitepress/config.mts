@@ -29,20 +29,20 @@ export default defineConfig({
         activeMatch: "^/02_高级语言/", 
         items: [
           {
-            text: 'Nodejs',
-            link: '/02_高级语言/00_Nodejs/01_globalThis全局对象.md',
-            activeMatch: "^/02_高级语言/00_Nodejs/", 
-          },
-          {
-            text: 'JavaScript',
-            link: '/02_高级语言/02_JavaScript/index.md',
+            text: 'JavaScript', 
+            link: "/02_高级语言/02_JavaScript/00_JavaScript.md",
             activeMatch: "^/02_高级语言/02_JavaScript/", 
           },
           {
             text: 'TypeScript',
             link: '/02_高级语言/03_TypeScript/index.md',
             activeMatch: "^/02_高级语言/03_TypeScript/", 
-          }
+          }, 
+          {
+            text: 'Nodejs',
+            link: '/02_高级语言/00_Nodejs/01_globalThis全局对象.md',
+            activeMatch: "^/02_高级语言/00_Nodejs/", 
+          },
         ],
       },
       {
@@ -211,7 +211,11 @@ export default defineConfig({
       }
     ], 
     sidebar: {  
-      "/02_高级语言/02_JavaScript/": [
+      "/02_高级语言/02_JavaScript/": [ 
+        {
+          text: '核心概念',
+          link: "/02_高级语言/02_JavaScript/00_JavaScript.md"
+        },
         {  
           text: '\<a href="https://cn.vuejs.org/" \/\>变量\<a\>',
           items: [ 

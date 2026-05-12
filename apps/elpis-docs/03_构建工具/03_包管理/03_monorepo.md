@@ -51,3 +51,11 @@ packages:
   - "packages/**" # packages/** 表示packages下的所有子目录都是子包 包含子目录的子目录 
   - "!**/test/**" # 排除test目录
 ```
+
+工作空间: 全局空间 共享
+子包：局部空间
+
+
+第一次都安装到 工作空间里面 -w
+pnpm add -w -S vue
+pnpm add -w -D typescript vitest
