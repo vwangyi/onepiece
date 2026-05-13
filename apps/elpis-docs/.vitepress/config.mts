@@ -44,36 +44,19 @@ export default defineConfig({
             activeMatch: "^/02_高级语言/00_Nodejs/",
           },
           {
-            text: '标记语言', 
+            text: '标记语言',
             items: [
-                {
-                  text: 'Markdown',  
-                  link: "/02_高级语言/04_标记语言/Markdown/MD语法.md", 
-                  // activeMatch: "^/02_高级语言/04_标记语言/Markdown/" 
-                },
-                {
-                  text: 'HTML1', 
-                  link: "/02_高级语言/04_标记语言/HTML/00_HTML.md", 
-                  // activeMatch: "^/02_高级语言/04_标记语言/HTML/"
-                },
+              {
+                text: 'HTML',
+                link: "/02_高级语言/04_标记语言/HTML/00_HTML.md",
+                // activeMatch: "^/02_高级语言/04_标记语言/HTML/"
+              },
+              {
+                text: 'Markdown',
+                link: "/02_高级语言/04_标记语言/MD/MD语法.md",
+                // activeMatch: "^/02_高级语言/04_标记语言/Markdown/" 
+              },
             ]
-          }, 
-          {
-            text: '标记语言', 
-            items: [
-                {
-                  text: 'Markdown',  
-                  link: "/02_高级语言/04_标记语言/Markdown/MD语法.md", 
-                  // activeMatch: "^/02_高级语言/04_标记语言/Markdown/" 
-                },
-                {
-                  text: 'HTML1', 
-                  link: "/02_高级语言/04_标记语言/HTML/00_HTML.md", 
-                  // activeMatch: "^/02_高级语言/04_标记语言/HTML/"
-                },
-
-            ]
-
           }
         ],
       },
@@ -111,8 +94,8 @@ export default defineConfig({
             items: [
               {
                 text: 'webpack',
-                link: "/03_工程搭建/01_Webpack/00_简介.md",
-                activeMatch: "^/03_工程搭建/01_Webpack/",
+                link: "/03_工程搭建/04_构建器/01_Webpack/00_webpack.md",
+                activeMatch: "^/03_工程搭建/04_构建器/01_Webpack/",
               },
               {
                 text: 'vite',
@@ -244,52 +227,52 @@ export default defineConfig({
     ],
     sidebar: {
       "/02_高级语言/04_标记语言/HTML/": [
-         {
-          text: 'HTML', 
-          link: "/02_高级语言/04_标记语言/HTML/00_HTML.md", 
-         },
-         {
-          text: '盒模型', 
-          link: "/02_高级语言/04_标记语言/HTML/css-盒子-盒模型.md", 
-         },
-         {
-          text: '块盒变换', 
-          link: "/02_高级语言/04_标记语言/HTML/css-盒子-块盒变换.md", 
-         }, 
-         {
-          text: '盒子显示隐藏', 
-          link: "/02_高级语言/04_标记语言/HTML/css-盒子-显示隐藏.md", 
-         },   
-         {
-          text: '标准流布局', 
-          link: "/02_高级语言/04_标记语言/HTML/css-布局-标准流布局.md", 
-         },
-         {
-          text: '定位布局', 
-          link: "/02_高级语言/04_标记语言/HTML/css-布局-定位布局.md", 
-         },
-         {
-          text: '浮动布局', 
-          link: "/02_高级语言/04_标记语言/HTML/css-布局-浮动布局.md", 
-         },
-         {
-          text: 'flex布局', 
-          link: "/02_高级语言/04_标记语言/HTML/css-布局-flex布局.md", 
-         },
-         {
-          text: 'grid布局', 
-          link: "/02_高级语言/04_标记语言/HTML/css-布局-grid布局.md", 
-         },
-         {
-          text: '过渡动画', 
-          link: "/02_高级语言/04_标记语言/HTML/css-盒子-过渡动画.md", 
-         },
-         {
-          text: '帧动画', 
-          link: "/02_高级语言/04_标记语言/HTML/css-盒子-帧动画.md", 
-         },
- 
- 
+        {
+          text: 'HTML',
+          link: "/02_高级语言/04_标记语言/HTML/00_HTML.md",
+        },
+        {
+          text: '盒模型',
+          link: "/02_高级语言/04_标记语言/HTML/css-盒子-盒模型.md",
+        },
+        {
+          text: '块盒变换',
+          link: "/02_高级语言/04_标记语言/HTML/css-盒子-块盒变换.md",
+        },
+        {
+          text: '盒子显示隐藏',
+          link: "/02_高级语言/04_标记语言/HTML/css-盒子-显示隐藏.md",
+        },
+        {
+          text: '标准流布局',
+          link: "/02_高级语言/04_标记语言/HTML/css-布局-标准流布局.md",
+        },
+        {
+          text: '定位布局',
+          link: "/02_高级语言/04_标记语言/HTML/css-布局-定位布局.md",
+        },
+        {
+          text: '浮动布局',
+          link: "/02_高级语言/04_标记语言/HTML/css-布局-浮动布局.md",
+        },
+        {
+          text: 'flex布局',
+          link: "/02_高级语言/04_标记语言/HTML/css-布局-flex布局.md",
+        },
+        {
+          text: 'grid布局',
+          link: "/02_高级语言/04_标记语言/HTML/css-布局-grid布局.md",
+        },
+        {
+          text: '过渡动画',
+          link: "/02_高级语言/04_标记语言/HTML/css-盒子-过渡动画.md",
+        },
+        {
+          text: '帧动画',
+          link: "/02_高级语言/04_标记语言/HTML/css-盒子-帧动画.md",
+        },
+
+
       ],
       "/02_高级语言/02_JavaScript/": [
         {
@@ -730,62 +713,70 @@ export default defineConfig({
           ]
         }
       ],
-      "/03_工程搭建/01_Webpack/": [
+      "/03_工程搭建/04_构建器/01_Webpack/": [
         {
           text: '\<a href="https://webpack.docschina.org/concepts/" \/\>Webpack\<a\>',
           items: [
             {
+              text: "webpack",
+              link: "/03_工程搭建/04_构建器/01_Webpack/00_webpack.md"
+            },
+            {
+              text: "打包入口",
+              link: "/03_工程搭建/04_构建器/01_Webpack/01_打包入口.md"
+            },
+            {
               text: "简介",
-              link: "/03_工程搭建/01_Webpack/00_简介.md"
+              link: "/03_工程搭建/04_构建器/01_Webpack/01_简介.md"
             },
             {
               text: "入口出口",
-              link: "/03_工程搭建/01_Webpack/01_入口出口.md"
+              link: "/03_工程搭建/04_构建器/01_Webpack/01_入口出口.md"
             },
             {
               text: "处理vue文件",
-              link: "/03_工程搭建/01_Webpack/02_处理vue文件.md"
+              link: "/03_工程搭建/04_构建器/01_Webpack/02_处理vue文件.md"
             },
             {
               text: "处理js文件",
-              link: "/03_工程搭建/01_Webpack/03_处理js文件.md"
+              link: "/03_工程搭建/04_构建器/01_Webpack/03_处理js文件.md"
             },
             {
               text: "处理样式文件",
-              link: "/03_工程搭建/01_Webpack/04_处理样式文件.md"
+              link: "/03_工程搭建/04_构建器/01_Webpack/04_处理样式文件.md"
             },
             {
               text: "处理图片资源",
-              link: "/03_工程搭建/01_Webpack/05_处理图片资源.md"
+              link: "/03_工程搭建/04_构建器/01_Webpack/05_处理图片资源.md"
             },
             {
               text: "处理html资源",
-              link: "/03_工程搭建/01_Webpack/06_处理html资源.md"
+              link: "/03_工程搭建/04_构建器/01_Webpack/06_处理html资源.md"
             },
             {
               text: "devServer",
-              link: "/03_工程搭建/01_Webpack/07_devServer.md"
+              link: "/03_工程搭建/04_构建器/01_Webpack/07_devServer.md"
             },
 
             {
               text: "SourceMap",
-              link: "/03_工程搭建/01_Webpack/10_SourceMap.md"
+              link: "/03_工程搭建/04_构建器/01_Webpack/10_SourceMap.md"
             },
             {
               text: "TreeShaking",
-              link: "/03_工程搭建/01_Webpack/04_TreeShaking.md"
+              link: "/03_工程搭建/04_构建器/01_Webpack/04_TreeShaking.md"
             },
             {
               text: "Loader",
-              link: "/03_工程搭建/01_Webpack/06_Loader加载器.md"
+              link: "/03_工程搭建/04_构建器/01_Webpack/06_Loader加载器.md"
             },
             {
               text: "军哥webpack",
-              link: "/03_工程搭建/01_Webpack/军哥webpack.md"
+              link: "/03_工程搭建/04_构建器/01_Webpack/军哥webpack.md"
             },
             {
               text: "Babel",
-              link: "/03_工程搭建/01_Webpack/05_Babel.md"
+              link: "/03_工程搭建/04_构建器/01_Webpack/05_Babel.md"
             }
           ]
         },
