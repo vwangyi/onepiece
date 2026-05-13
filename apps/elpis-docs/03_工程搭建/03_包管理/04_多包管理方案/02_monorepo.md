@@ -1,230 +1,199 @@
-# monorepo工程管理
 
-## mutirepo vs monorepo
+## monorepo multirepo
 
-![monorepo vs multirepo](https://resource.duyiedu.com/yuanjin/202509190953043.svg)
+常见monorepo管理工具：`pnpm` `Turborepo` `npm` `yarn` `lerna` `nx` `Rush` `...`
 
-常见monorepo管理工具：
+工具库
+组件库
 
-- **pnpm**
-- npm
-- Yarn
-- Lerna
-- Nx
-- Turborepo
-- Rush
-- ...
+打包
 
-### pnpm monorepo
 
-```shell
-touch pnpm-workspace.yaml
-```
+仓库就是 用版本控制系统（git svn）初始化之后，就是一个仓库。存在 .git 或 .svn 
+
+多包管理方案：
+- monorepo： 一个仓库里面有多个包 
+- multirepo：一个仓库里面只有一个包（新建多个仓库 来管理多个包）
+
+
+
+
+monorepo的好处
+1. 多个包之间 可以共享， 比如 组件库 公共函数 公共依赖 公共api  eslint等工具链   
+
+monorepo缺点
+仓库庞大
+每个包缺少独立版本控制
+
+
+multirepo的好处
+1. 独立的版本控制
+2. 仓库小
+
+multirepo的缺点
+1. 多个项目中不方便共享代码
+
+
+monorepo的缺点就是multirepo的优点
+monorepo的优点就是multirepo的缺点
+
+
+
+## workspace 
+workspace是什么
+工作空间就是 这个空间专门用来工作 这里存放有很多工作用到的资源
+
+pnpm的workspace是什么
+pnpm的workspace就是 管理多个包的统一的一个工作空间 通过 pnpm-workspace.yaml文件来定义哪些包是子包。
+默认情况下 所有子目录都是子包。
 
 ```yaml
-# pnpm-workspace.yaml
-
 packages:
-  - "packages/*"
-  - "apps/*"
+  - "packages/*" # packages/* 表示packages下的所有子目录都是子包 但是不包含子目录的子目录 
+  - "packages/**" # packages/** 表示packages下的所有子目录都是子包 包含子目录的子目录 
+  - "!**/test/**" # 排除test目录
 ```
 
-执行工程级命令
+工作空间: 全局空间 共享
+子包：局部空间
 
-```shell
-pnpm --workspace-root [...]
+
+第一次都安装到 工作空间里面 -w
+pnpm add -w -S vue
+pnpm add -w -D typescript vitest
+
+
+
+
+## 1. 基础概念
+- 生活中的工作空间是指  这个空间专门用来工作 这里存放电脑 书籍 都是工作用的。
+- pnpm中的workspace 管理多个包的统一的一个工作空间 通过 pnpm-workspace.yaml文件来定义哪些包是子包。
+monorepo 解决什么问题
+
+有哪些方案
+
+技术选型
+
+技术实施
+
+呈现效果
+
+业务项目：前端 后端
+基建项目：组件库 函数库 请求库 脚手架 低码平台
+
+业务项目和基建项目 都是为了做一件事 都是相互关联的 所以用 monorepo管理 环境要求是一致 比如 同一个node版本 同一个包管理器pnpm
+
+凡事要对所有子包做统一管理 那就是在根目录下完成
+
+pnpm是包管理器 同时也提供了 monorepo管理方式
+
+project
+apps >>> 业务项目目录
+packages >>> 基建项目目录
+packages.cli 命令行脚手架项目
+packages.utils 工具类函数项目
+packages.design 组件库项目
+
+pnpm具体管理什么
+
+## 2. 搭建Monorepo工程步骤
+ 
+
+1. 创建pnpm-workspace.yaml
+- 根目录新建pnpm-workspace.yaml配置文件
+```yaml
+# touch pnpm-workspace.yaml
+# 表示 apps和packages里面都是子包
+packages:
+  - "packages/*" # 表示packages下所有子文件都是子包
+  - "apps/*" # 表示apps下所有子文件都是子包
 ```
 
-或
-
-```shell
-pnpm -w [...]
+2. 初始化生成package.json
+```sh 
+pnpm --workspace-root init # 表示在 pnpm-workspace.yaml 的同级目录 生成pageage.json文件
+# 或者
+pnpm init # 表示在当前目录 生成pageage.json文件 （
 ```
-
-执行子包命令
-
-```shell
-进入子目录中执行
-```
-
-或
-
-```shell
-pnpm -C 子包路径 [...]
-```
-
-## 环境版本锁定
-
+3. 工作空间中 通过package.json的engines统一制定所有包版本 
+- package.json 
 ```json
-// package.json
-"engines": {
-  "node": ">=22.14.0",
-  "npm": ">=10.9.2",
-  "pnpm": ">=10.15.1"
+// 在根目录的package.json中
+{
+  "engines": {
+    "node": ">=22.14.0",
+    "npm": ">=10.9.2", // 表示 大于等于某个版本
+    "pnpm": "10.15.1" // 表示精确版本
+  }
 }
-```
-
+// 若子包的版本不符合 在pnpm i的时候就报警告 如果想直接报错 则在根目录下 .npmrc中 追加 engine-strict=true
+``` 
+- .npmrc 
 ```yaml
 # .npmrc
 engine-strict=true
 ```
 
-## TypeScript
-
-```shell
-pnpm -Dw add typescript @types/node
-```
-
-```shell
-touch tsconfig.json
-```
-
+4. 根目录的tsconfig.json统一管理子包的TS配置 
+- 团队中ts的严格程度应该是一致的 所以由工作空间统一管理
 ```json
 // tsconfig.json
 {
-  "compilerOptions": {
-    "baseUrl": ".",
-    "module": "esnext",
-    "target": "esnext",
-    "types": [],
-    "lib": ["esnext"],
-    "sourceMap": true,
-    "declaration": true,
-    "declarationMap": true,
-    "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true,
-    "strict": true,
-    "verbatimModuleSyntax": false,
-    "moduleResolution": "bundler",
-    "isolatedModules": true,
-    "noUncheckedSideEffectImports": true,
-    "moduleDetection": "force",
-    "skipLibCheck": true
-  },
+  "compilerOptions": {},
   "exclude": ["node_modules", "dist"]
 }
 ```
 
+- node项目个性化配置
+- 在子包项目的更目录下新建 tsconfig.json
+
 ```json
-// apps/backend/tsconfig.json
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.json", // 继承根目录下的ts配置
+  // 写个性化配置
   "compilerOptions": {
     "types": ["node"],
-    "lib": ["esnext"]
+    "lib": ["ESNext"]
   },
   "include": ["src"]
 }
 ```
 
-```json
-// apps/frontend/tsconfig.json
-{
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "types": ["node"],
-    "lib": ["esnext", "DOM"]
-  },
-  "include": ["src"]
-}
-```
 
-## 代码风格与质量检查
-
-### prettier
-
-`prettier`安装
-
-```shell
-pnpm -Dw add prettier
-```
-
-`prettier`配置
-
-```shell
-touch prettier.config.js
-```
-
+5. 代码风格检查和代码质量检查
+- prettier.config.js 
 ```js
-// prettier.config.js
-/**
- * @type {import('prettier').Config}
- * @see https://www.prettier.cn/docs/options.html
- */
+// pnpm -Dw add prettier # -Dw表示工作空间中安装
+// touch prettier.config.js  所有子包统一 所以也是根目录下
 export default {
   // 指定最大换行长度
-  printWidth: 120,
-  // 缩进制表符宽度 | 空格数
-  tabWidth: 2,
-  // 使用制表符而不是空格缩进行 (true：制表符，false：空格)
-  useTabs: false,
-  // 结尾不用分号 (true：有，false：没有)
-  semi: true,
-  // 使用单引号 (true：单引号，false：双引号)
-  singleQuote: false,
-  // 在对象字面量中决定是否将属性名用引号括起来 可选值 "<as-needed|consistent|preserve>"
-  quoteProps: "as-needed",
-  // 在JSX中使用单引号而不是双引号 (true：单引号，false：双引号)
-  jsxSingleQuote: false,
-  // 多行时尽可能打印尾随逗号 可选值"<none|es5|all>"
-  trailingComma: "none",
-  // 在对象，数组括号与文字之间加空格 "{ foo: bar }" (true：有，false：没有)
-  bracketSpacing: true,
-  // 将 > 多行元素放在最后一行的末尾，而不是单独放在下一行 (true：放末尾，false：单独一行)
-  bracketSameLine: false,
-  // (x) => {} 箭头函数参数只有一个时是否要有小括号 (avoid：省略括号，always：不省略括号)
-  arrowParens: "avoid",
-  // 指定要使用的解析器，不需要写文件开头的 @prettier
-  requirePragma: false,
-  // 可以在文件顶部插入一个特殊标记，指定该文件已使用 Prettier 格式化
-  insertPragma: false,
-  // 用于控制文本是否应该被换行以及如何进行换行
-  proseWrap: "preserve",
-  // 在html中空格是否是敏感的 "css" - 遵守 CSS 显示属性的默认值， "strict" - 空格被认为是敏感的 ，"ignore" - 空格被认为是不敏感的
-  htmlWhitespaceSensitivity: "css",
-  // 控制在 Vue 单文件组件中 <script> 和 <style> 标签内的代码缩进方式
-  vueIndentScriptAndStyle: false,
-  // 换行符使用 lf 结尾是 可选值 "<auto|lf|crlf|cr>"
-  endOfLine: "auto",
-  // 这两个选项可用于格式化以给定字符偏移量（分别包括和不包括）开始和结束的代码 (rangeStart：开始，rangeEnd：结束)
-  rangeStart: 0,
-  rangeEnd: Infinity
+  printWidth: 120
 };
-```
-
-`prettier`忽略项
-
-```shell
-touch .prettierignore
-```
-
-```yaml
-# .prettierignore
-dist
-public
-.local
-node_modules
-pnpm-lock.yaml
-```
-
-`prettier`脚本命令
-
+``` 
+- .prettierignore  
+```sh
+# .prettierignore中排除文件检查 
+dist;
+public.local;
+node_modules;
+pnpm-lock.yaml;
+``` 
+- 执行检查prettier命令 
 ```json
-"scripts":{
-    //......其他省略
-    "lint:prettier": "prettier --write \"**/*.{js,ts,mjs,cjs,json,tsx,css,less,scss,vue,html,md}\"",
+// pageage.json
+{
+  "script": {
+    // 执行命令 安装规范 重写  通过 pnpm lint:prettier 执行
+    "lint:prettier": "prettier --write \"**/*.{js,ts,mjs,cjs,json,tsx,css,less,scss,vue,html,md}\""
+  }
 }
+``` 
+- vscode插件辅助开发方便自己
+```js
+// 搜索 prettier
+// vscode插件只是辅助开发 在保存时 自动执行命令 只是辅助作用 方便本地开发
 ```
-
-执行命令
-
-```shell
-pnpm run lint:prettier
-pnpm lint:prettier
-```
-
-### ESLint
-
+- eslint  
 ```shell
 pnpm -Dw add eslint@latest @eslint/js globals typescript-eslint eslint-plugin-prettier eslint-config-prettier eslint-plugin-vue
 ```
@@ -239,13 +208,10 @@ pnpm -Dw add eslint@latest @eslint/js globals typescript-eslint eslint-plugin-pr
 | **Prettier 集成**    | `eslint-plugin-prettier`, `eslint-config-prettier` |
 | **Vue.js 支持**      | `eslint-plugin-vue`                                |
 
-配置
 
-```shell
-touch eslint.config.js
-```
-
+- eslint.config.js
 ```js
+// touch eslint.config.js
 import { defineConfig } from "eslint/config";
 import eslint from "@eslint/js";
 import tseslint from "typescript-eslint";
@@ -271,10 +237,10 @@ export default defineConfig(
     },
     rules: {
       // 自定义
-      'no-var': '2'
+      "no-var": "2"
     }
   },
-  // 前端配置
+  // 前端某个项目配置
   {
     ignores,
     files: ["apps/frontend/**/*.{ts,js,tsx,jsx,vue}", "packages/components/**/*.{ts,js,tsx,jsx,vue}"],
@@ -285,7 +251,7 @@ export default defineConfig(
       }
     }
   },
-  // 后端配置
+  // 后端某个项目配置
   {
     ignores,
     files: ["apps/backend/**/*.{ts,js}"],
@@ -297,35 +263,17 @@ export default defineConfig(
   }
 );
 ```
-
-脚本命令
-
+- 配置eslint脚本命令
 ```json
-"scripts":{
-    //......其他省略
-    "lint:eslint": "eslint",
+"scripts":{ 
+    "lint:eslint": "eslint", // 通过 pnpm lint:eslint 执行
 }
 ```
 
-
-
-### 拼写检查
-
-vscode插件： Code Spell Checker
-
-安装
-
-```shell
-pnpm -Dw add cspell @cspell/dict-lorem-ipsum
-```
-
-配置
-
-```shell
-touch cspell.json
-```
-
+6. 拼写检查和自定义字典
+- cspell.json
 ```json
+// touch cspell.json
 {
   "import": ["@cspell/dict-lorem-ipsum/cspell-ext.json"],
   "caseSensitive": false,
@@ -362,29 +310,38 @@ touch cspell.json
 }
 ```
 
-自定义字典
 
+- 自定义字典 
 ```shell
-mkdir -p ./.cspell && touch ./.cspell/custom-dictionary.txt
+pnpm -Dw add cspell @cspell/dict-lorem-ipsum
+```
+ 
+```shell
+# mkdir -p ./.cspell && touch ./.cspell/custom-dictionary.txt
+duyi # 就不会报错了 认为是合法单词
 ```
 
-检查脚本
-
+- 拼写检查执行脚本 
 ```json
-"lint:spellcheck": "cspell lint \"(packages|apps)/**/*.{js,ts,mjs,cjs,json,css,less,scss,vue,html,md}\""
+"scripts":{
+   "lint:spellcheck": "cspell lint \"(packages|apps)/**/*.{js,ts,mjs,cjs,json,css,less,scss,vue,html,md}\""
+} 
 ```
 
-## git提交规范
-
-git仓库创建
-
+- vscode插件： Code Spell Checker
 ```shell
-touch .gitignore
+# vscode插件： Code Spell Checker
 ```
 
+
+7. 制定git提交规范
+ 
+- git忽略文件 .gitignore 
 ```yaml
-# .gitignore
-# Node
+# touch .gitignore
+
+
+# Node相关
 node_modules/
 dist/
 build/
@@ -396,7 +353,7 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# IDE
+# IDE相关
 .vscode/
 .idea/
 *.suo
@@ -405,30 +362,26 @@ pnpm-debug.log*
 *.sln
 *.sw?
 
-# OS
+# OS相关
 .DS_Store
 Thumbs.db
 
-# TypeScript
+# TypeScript相关
 *.tsbuildinfo
 
-# Misc
+# Misc相关
 coverage/
 *.local
 *.cache
 *.tmp
 
-# Git
+# Git相关
 .git/
 ```
 
-```shell
-git init
-```
 
-### 安装 commitizen
-
-安装
+ 
+- 安装commitizen
 
 ```shell
 pnpm -Dw add @commitlint/cli @commitlint/config-conventional commitizen cz-git
@@ -441,13 +394,9 @@ pnpm -Dw add @commitlint/cli @commitlint/config-conventional commitizen cz-git
 
 
 
-配置`cz-git`
-
-```shell
-touch commitlint.config.js
-```
-
+- 配置`cz-git` 
 ```js
+// touch commitlint.config.js
 /** @type {import('cz-git').UserConfig} */
 export default {
   extends: ["@commitlint/config-conventional"],
@@ -510,7 +459,7 @@ export default {
 ```
 
 
-配置命令
+- 配置执行命令
 
 ```json
 // package.json
@@ -524,15 +473,24 @@ export default {
 } 
 ```
 
-### 提交代码
+- 实践提交代码
 ```sh
 git add . # 添加暂存区
 pnpm commit # 提交 (不用原生的 git commit)
-
 # 自己可以使用 git commit 看能不能防住
+
+# 方式1 
+git add .
+pnpm commit # 
+git push
+
+# 方式2 
+git add .
+git commit -m "feat: xxx"
+git push
 ```
 
-### husky 和 lint-staged
+- husky 和 lint-staged
 - husky 是 连接git hook 钩子函数 在提交之前之后做一些事
 - 
 
@@ -550,23 +508,23 @@ pnpx husky init
 #!/usr/bin/env sh
 pnpm lint:prettier && pnpm lint:eslint && pnpm lint:spellcheck
 ```
-
-### lint-staged
-- lint-staged 检查暂存区的代码问题
-安装
-
+ 
+- 安装 lint-staged：lint-staged 是用于 检查暂存区的代码问题
 ```shell
 pnpm -Dw add lint-staged
 ```
 
-配置命令
-
+- 配置脚本命令 
 ```json
-"precommit": "lint-staged"
+// package.json
+{
+  "script": { 
+    "precommit": "lint-staged"
+  }
+}
 ```
 
-配置文件
-
+- 新建配置文件 .lintstagedrc.js
 ```js
 // .lintstagedrc.js
 export default {
@@ -582,10 +540,20 @@ export default {
 #!/usr/bin/env sh
 ```
 
-## 公共库打包
 
-安装`rollup`
 
+
+
+ 
+## 如何统一打包 
+- 统一打包是指 packages里面的子包是相互依赖的， 比如 组件库 和 工具库 是相互依赖的，所以必须统一打包 
+- 在script中写打包的脚本
+
+- script/build-rollup.js
+```js
+
+```
+安装`rollup` 
 ```shell
 pnpm -Dw add rollup @rollup/plugin-node-resolve @rollup/plugin-commonjs rollup-plugin-typescript2 @rollup/plugin-terser @vitejs/plugin-vue rollup-plugin-postcss
 ```
@@ -596,10 +564,31 @@ pnpm -Dw add rollup @rollup/plugin-node-resolve @rollup/plugin-commonjs rollup-p
 - `@rollup/plugin-terser`： 压缩和混淆
 - `@vitejs/plugin-vue`： 支持SFC编译
 - `rollup-plugin-postcss`： 处理css代码
+ 
 
-配置： 略
 
-## 子包间依赖
+## 如何建立包依赖
+- 比如 packages下的组件库 需要使用 packages下的工具库的代码 
+- 再比如 apps下业务项目需要用packages下的组件库代码 
+
+生产环境：工具库先发布到npm 组件库从npm下载
+开发环境：
+方案1； 工具库先发布到npm 组件库从npm下载
+方案2
+只适用本地开发 发布如何解决后续改进
+```json
+// 在组件库项目的 package.json里面 
+"devDependencies": {
+  "vue": "^3.5.21",
+  "工具库项目的pageage.json的name包名": "workspace:*", 
+  "elpis-utils": "workspace:^1.0.0", 
+  "elpis-utils": "workspace:*",  // *表示 工具库是什么版本就是什么版本 
+  "xxxx": "workspace:*",
+  "xxxx": "workspace:^1.0.0"
+}
+// 这样配置后 组件库的node_modules 里面就有工具库项目文件夹的快捷方式 就可以直接使用工具库代码了
+```
+
 
 ```json
 {
@@ -607,9 +596,18 @@ pnpm -Dw add rollup @rollup/plugin-node-resolve @rollup/plugin-commonjs rollup-p
   "bar": "workspace:^1.0.0"
 }
 ```
+-- 发布问题
+-- 引入使用问题
+```js
+import { sum } from 'elpis-utils';  
+// 这里是 esm的方式引入 
+```
 
-## 单元测试
 
+## 如何统一单元测试
+- 对于核心功能 需要详细写好单元测试脚本 以便后续增删功能 可以直接跑单元测试。
+
+- 框架 jest mocha vitest 学一个就行 
 安装
 
 ```shell
@@ -630,9 +628,12 @@ pnpm -Dw add vitest @vitest/browser vitest-browser-vue vue
 ```
 
 安装vscode插件： vitest
+## 如何发布 
+如何发布 累了，不想写了
 
-编写测试脚本： 略
 
-## 发布
-
-累了，不想写了
+## 其他
+```sh
+# 在 elpis-doc 目录下运行 只在elpis-doc项目执行pnpm i 
+pnpm i --filter elpis-doc
+```

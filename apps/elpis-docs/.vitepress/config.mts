@@ -46,7 +46,7 @@ export default defineConfig({
         ],
       },
       {
-        text: "工程管理",
+        text: "工程搭建",
         activeMatch: "^/03_工程搭建/",
         items: [
           {
@@ -69,7 +69,7 @@ export default defineConfig({
               },
               {
                 text: '多包管理方案',
-                link: "/03_工程搭建/03_包管理/03_monorepo.md",
+                link: "/03_工程搭建/03_包管理/04_多包管理方案/02_monorepo.md",
                 activeMatch: "^/03_工程搭建/03_包管理/03_monorepo",
               },
             ]
