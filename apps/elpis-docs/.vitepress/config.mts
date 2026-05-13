@@ -43,6 +43,38 @@ export default defineConfig({
             link: '/02_高级语言/00_Nodejs/01_globalThis全局对象.md',
             activeMatch: "^/02_高级语言/00_Nodejs/",
           },
+          {
+            text: '标记语言', 
+            items: [
+                {
+                  text: 'Markdown',  
+                  link: "/02_高级语言/04_标记语言/Markdown/MD语法.md", 
+                  // activeMatch: "^/02_高级语言/04_标记语言/Markdown/" 
+                },
+                {
+                  text: 'HTML1', 
+                  link: "/02_高级语言/04_标记语言/HTML/00_HTML.md", 
+                  // activeMatch: "^/02_高级语言/04_标记语言/HTML/"
+                },
+            ]
+          }, 
+          {
+            text: '标记语言', 
+            items: [
+                {
+                  text: 'Markdown',  
+                  link: "/02_高级语言/04_标记语言/Markdown/MD语法.md", 
+                  // activeMatch: "^/02_高级语言/04_标记语言/Markdown/" 
+                },
+                {
+                  text: 'HTML1', 
+                  link: "/02_高级语言/04_标记语言/HTML/00_HTML.md", 
+                  // activeMatch: "^/02_高级语言/04_标记语言/HTML/"
+                },
+
+            ]
+
+          }
         ],
       },
       {
@@ -211,6 +243,54 @@ export default defineConfig({
       }
     ],
     sidebar: {
+      "/02_高级语言/04_标记语言/HTML/": [
+         {
+          text: 'HTML', 
+          link: "/02_高级语言/04_标记语言/HTML/00_HTML.md", 
+         },
+         {
+          text: '盒模型', 
+          link: "/02_高级语言/04_标记语言/HTML/css-盒子-盒模型.md", 
+         },
+         {
+          text: '块盒变换', 
+          link: "/02_高级语言/04_标记语言/HTML/css-盒子-块盒变换.md", 
+         }, 
+         {
+          text: '盒子显示隐藏', 
+          link: "/02_高级语言/04_标记语言/HTML/css-盒子-显示隐藏.md", 
+         },   
+         {
+          text: '标准流布局', 
+          link: "/02_高级语言/04_标记语言/HTML/css-布局-标准流布局.md", 
+         },
+         {
+          text: '定位布局', 
+          link: "/02_高级语言/04_标记语言/HTML/css-布局-定位布局.md", 
+         },
+         {
+          text: '浮动布局', 
+          link: "/02_高级语言/04_标记语言/HTML/css-布局-浮动布局.md", 
+         },
+         {
+          text: 'flex布局', 
+          link: "/02_高级语言/04_标记语言/HTML/css-布局-flex布局.md", 
+         },
+         {
+          text: 'grid布局', 
+          link: "/02_高级语言/04_标记语言/HTML/css-布局-grid布局.md", 
+         },
+         {
+          text: '过渡动画', 
+          link: "/02_高级语言/04_标记语言/HTML/css-盒子-过渡动画.md", 
+         },
+         {
+          text: '帧动画', 
+          link: "/02_高级语言/04_标记语言/HTML/css-盒子-帧动画.md", 
+         },
+ 
+ 
+      ],
       "/02_高级语言/02_JavaScript/": [
         {
           text: '核心概念',
