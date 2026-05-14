@@ -2,6 +2,92 @@
 
 
 
+## 18. 事件循环机制 event loop
+> 任务的执行顺序
+>
+> 规律：主线程优先，消息队列拿任务到主线程
+>
+> 消息队列先微任务 后宏任务
+>
+> Promise.then是微，setXxx是宏任务，setTimeout setInterval setImmidate
+>
+
+```javascript
+// 案例1
+console.log('a');
+
+for (var i = 0; i < 5; i++) {
+  setTimeout(() => {
+    setTimeout(() => {
+      console.log(i);
+    }, 1000 * i);
+  }, 1000 * i);
+}
+
+new Promise((resolve, reject) => {
+  console.log('c');
+  setInterval(() => {
+    console.log('d');
+  }, 1000);
+  setTimeout(() => {
+    resolve('e');
+  }, 1000)
+}).then((res) => {
+  console.log(res);
+});
+
+console.log('f');
+
+// 案例2
+setTimeout(() => {
+  new Promise((resolve) => {
+    console.log('b');
+    resolve('c');
+    setTimeout(() => {
+      console.log('d');
+      setTimeout(() => {
+        console.log('f');
+      });
+    });
+  })
+  .then((res) => {
+    console.log(res);
+    setTimeout(() => {
+      console.log('e');
+    });
+  });
+  console.log('a');
+});
+console.log('z');
+
+// 案例3
+console.log('a');
+
+new Promise(function (resolve) {
+    console.log('b');
+    for (var i = 1; i <= 2; i++) {
+        setTimeout(() => {
+            console.log(i);
+        }, i * 1000);
+        console.log(i);
+    }
+    resolve();
+})
+.then(function () {
+    console.log('c');
+});
+
+setTimeout(() => {
+    console.log('d');
+    new Promise(function (resolve) {
+        console.log('e');
+        resolve();
+    })
+    .then(function () {
+        console.log('f');
+    });
+}, 2000);
+```
 ```js
 ● 事件循环
   ○ 是什么

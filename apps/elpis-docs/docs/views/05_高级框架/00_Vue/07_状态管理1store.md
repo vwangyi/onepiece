@@ -1,6 +1,12 @@
 # store 
 - 状态管理: https://cn.vuejs.org/guide/scaling-up/state-management.html#state-management
- 
+ ## 10. vuex / eventBus / data 的使用场景
+> data：本页面的临时的页面状态数据（visible，isOpen，inputValue）
+>
+> eventBus：不用vuex的时候（项目很轻的时候）
+>
+> vuex：管理项目的model层
+>
 
 ## 方案1 pinia / vuex
 - 大型项目 通用解决方案  pinia / vuex

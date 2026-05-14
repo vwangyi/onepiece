@@ -249,7 +249,7 @@ A[方形] --> B(圆角)
 > 标准流程图源码格式：
 >
 
-```flowchart
+```txt
 st=>start: 开始框
 op=>operation: 处理框
 cond=>condition: 判断框(是或否?)
@@ -278,7 +278,7 @@ cond(no)->sub1(right)->op
 > 标准流程图源码格式（横向）：
 >
 
-```flowchart
+```txt
 st=>start: 开始框
 op=>operation: 处理框
 cond=>condition: 判断框(是或否?)

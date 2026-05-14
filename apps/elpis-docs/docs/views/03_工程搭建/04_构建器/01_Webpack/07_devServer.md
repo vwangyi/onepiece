@@ -58,8 +58,7 @@ module.exports = {};
 ## 问：devServer 开发服务器原理是什么？
 
 > webpack-dev-server
-
-[http://localhost:8080/webpack-dev-server](http://localhost:8080/webpack-dev-server)
+ 
 
 - 业务文件（.vue .jsx .less） >>> 业务产物（.html .css .js)
 - devServer 监控能力 用webpack-dev-middleware 中间件实现 监控业务文件是否修改

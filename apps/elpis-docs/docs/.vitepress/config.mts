@@ -26,7 +26,7 @@ export default defineConfig({
           {
             text: 'JavaScript',
             link: "/views/02_高级语言/02_JavaScript/00_JavaScript.md",
-            activeMatch: "^/02_高级语言/02_JavaScript/",
+            activeMatch: "^/views/02_高级语言/02_JavaScript/",
           },
           {
             text: 'TypeScript',
@@ -202,26 +202,26 @@ export default defineConfig({
       {
         text: "业务场景",
         link: "/views/06_业务/01_可视化/01_canvas.md",
-        activeMatch: "^/06_业务/"
+        activeMatch: "^/views/06_业务/"
       },
       {
         text: "数据结构和算法",
         link: "/views/09_常见算法/01_数据结构与算法/index.md",
-        activeMatch: "^/09_常见算法/"
+        activeMatch: "^/views/09_常见算法/"
       },
       {
         text: "运维部署",
         link: "/views/08_运维/环境/mac.md",
-        activeMatch: "^/08_运维/"
+        activeMatch: "^/views/08_运维/"
       },
       {
         text: "人工智能",
         link: "/views/07_AI/01_大语言模型.md",
-        activeMatch: "^/07_AI/"
+        activeMatch: "^/views/07_AI/"
       }
     ],
     sidebar: {
-      "/02_高级语言/04_标记语言/HTML/": [
+      "/views/02_高级语言/04_标记语言/HTML/": [
         {
           text: 'HTML',
           link: "/views/02_高级语言/04_标记语言/HTML/00_HTML.md",
@@ -269,7 +269,7 @@ export default defineConfig({
 
 
       ],
-      "/02_高级语言/02_JavaScript/": [
+      "/views/02_高级语言/02_JavaScript/": [
         {
           text: '核心概念',
           link: "/views/02_高级语言/02_JavaScript/00_JavaScript.md"
@@ -297,7 +297,7 @@ export default defineConfig({
           ]
         }
       ],
-      "/02_高级语言/03_TypeScript/": [
+      "/views/02_高级语言/03_TypeScript/": [
         {
           text: '\<a href="https://cn.vuejs.org/" \/\>TypeScript\<a\>',
           items: [
@@ -308,7 +308,7 @@ export default defineConfig({
           ]
         },
       ],
-      "/03_工程搭建/03_包管理/01_包": [
+      "/views/03_工程搭建/03_包管理/01_包": [
         {
           text: '包',
           items: [
@@ -356,7 +356,7 @@ export default defineConfig({
           ]
         }
       ],
-      "/02_JavaScript/": [
+      "/views/02_JavaScript/": [
         {
           text: "Nodejs",
           items: [
@@ -494,7 +494,7 @@ export default defineConfig({
           ]
         }
       ],
-      "/01_数据库/": [
+      "/views/01_数据库/": [
         {
           text: 'mysql',
           items: [
@@ -526,7 +526,7 @@ export default defineConfig({
         },
 
       ],
-      "/05_高级框架/01_Koa/": [
+      "/views/05_高级框架/01_Koa/": [
         {
           text: '\<a href="https://koajs.com/" \/\>Koajs\<a\>',
           items: [
@@ -549,7 +549,7 @@ export default defineConfig({
           ]
         }
       ],
-      "/05_高级框架/00_Vue/": [
+      "/views/05_高级框架/00_Vue/": [
         {
           text: '\<a href="https://cn.vuejs.org/" \/\>Vuejs\<a\>',
           items: [
@@ -676,7 +676,7 @@ export default defineConfig({
           ]
         },
       ],
-      "/03_工程搭建/03_包管理/00_模块": [
+      "/views/03_工程搭建/03_包管理/00_模块": [
         {
           text: '\<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Modules" \/\>ESM\<a\>',
           items: [
@@ -696,8 +696,8 @@ export default defineConfig({
           ]
         }
       ],
-      "/05_高级框架/05_Nestjs/": [],
-      "/05_高级框架/04_Electron/": [
+      "/views/05_高级框架/05_Nestjs/": [],
+      "/views/05_高级框架/04_Electron/": [
         {
           text: '\<a href="https://www.electronjs.org/zh/docs/latest/" \/\>Electronjs\<a\>',
           items: [
@@ -708,7 +708,7 @@ export default defineConfig({
           ]
         }
       ],
-      "/03_工程搭建/04_构建器/01_Webpack/": [
+      "/views/03_工程搭建/04_构建器/01_Webpack/": [
         {
           text: '\<a href="https://webpack.docschina.org/concepts/" \/\>Webpack\<a\>',
           items: [
@@ -777,7 +777,7 @@ export default defineConfig({
         },
       ],
 
-      "/06_业务/": [
+      "/views/06_业务/": [
         {
           text: "业务sense",
           items: [
@@ -889,7 +889,7 @@ export default defineConfig({
           ]
         }
       ],
-      "/09_常见算法/": [
+      "/views/09_常见算法/": [
         {
           text: "数据结构与算法",
           items: [
@@ -909,7 +909,7 @@ export default defineConfig({
           ]
         }
       ],
-      "/08_运维/": [
+      "/views/08_运维/": [
         {
           text: "环境",
           items: [
@@ -961,7 +961,7 @@ export default defineConfig({
           link: "/views/08_运维/github/修改hosts.md"
         },
       ],
-      "/07_AI/": [
+      "/views/07_AI/": [
         {
           text: "基础概念",
           items: [

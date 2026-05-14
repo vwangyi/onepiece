@@ -1,4 +1,15 @@
 # diff算法
+## 27. diff算法 vue
+> 代码肯定不会写 一定可以描述
+>
+> 干啥用的：对比新旧节点是否一样的
+>
+> 1. 怎么对比的，先看key，如果key不一样就重新render，如果key一样就判断别的
+> 2. 为啥不用index，或者为什么不写key不行，isSameNode的第一轮判断（a.key === b.key）直接被跳过了
+> 3. 为啥不用随机数，无论数组项变没变 都会被重新render
+>
+
+
 
 ```mermaid
 graph LR

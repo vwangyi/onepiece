@@ -1,6 +1,22 @@
 # 垃圾回收机制
 
 
+## 32. js的垃圾回收机制
+> 定期回收内存
+>
+> 什么时候不回收？全局变量，闭包（input组件防抖的时候，记了一个timer，组件销毁前要干掉包装过后的函数， 内存泄漏）
+>
+
+## 33. HTML5的新特性
+> 标签：video，audio，header，footer，nav，sider，section
+>
+> 标签属性：draggable   todo
+>
+> 新事件：drag dragstart dragend dragover drop ...
+>
+> sessionStorage等
+>
+
 
 ## 脑图
 

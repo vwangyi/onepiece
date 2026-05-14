@@ -1,6 +1,8 @@
-微信小程序：[https://developers.weixin.qq.com/miniprogram/dev/framework/quickstart/](https://developers.weixin.qq.com/miniprogram/dev/framework/quickstart/) 
+微信小程序：[https://developers.weixin.qq.com/miniprogram/dev/framework/quickstart/]
+(https://developers.weixin.qq.com/miniprogram/dev/framework/quickstart/) 
 
-抖音小程序：[https://developer.open-douyin.com/](https://developer.open-douyin.com/) 
+抖音小程序：[https://developer.open-douyin.com/]
+(https://developer.open-douyin.com/) 
 
 
 
@@ -152,21 +154,23 @@ bindtap  简写。冒号可以省略
 <!-- 这是一张图片，ocr 内容为：阻止事件冒泡 HANDLEPARENT() CONSOLE.LOG("父亲被点了") 子, HANDLECHILDREN() CONSOLE.LOG("孩子被点了") ##JS ##  WXM CVIEW STYLE:"HEIGHT: 4OORPX:WIDTH: 750RPX; BACKGROUND-COLOR: PINK: DISPLAY: FLEX: CENTER;"BIND:TAP-"HANDLEPARENT"> JUSTIFY-CONTENT:CENTER;ALIGN-ITEMS: <BUTTON TYPE-"PRIMARY"PLAIN B PLAIN BIND:TAP-"HANDLECHILDREN">按钮1</BUTTON> <BUTTON TYPE-"PRIMARY"PLAIN CATCH:TAP:"HANDLECHILDREN">阻止事件冒泡</BUTTON> </VIEW> PYTHON -->
 ![](https://cdn.nlark.com/yuque/0/2025/png/34696752/1759430559417-7a1e477c-130e-4b04-877f-f088beddbb33.png)
 
+<!-- 
 事件传参数 通过 dataset 数据集传递 或通过 mark 方案 
 
 <view data-id="123"> 
 
 e.target.dataset.xxx 拿到数据
 
-<!-- 这是一张图片，ocr 内容为：MARK:NAME'XXX'>点我</VIEW> JUSTIN <VIEW BIND:TAP"HANDLECLICK01"DA K01"DATA-ID''1001'DATA-NAME -->
+ 这是一张图片，ocr 内容为：MARK:NAME'XXX'>点我</VIEW> JUSTIN <VIEW BIND:TAP"HANDLECLICK01"DA K01"DATA-ID''1001'DATA-NAME  
 ![](https://cdn.nlark.com/yuque/0/2025/png/34696752/1759432018031-f2b79516-f171-45c4-8158-b9d5f2c07389.png) 
 
-<!-- 这是一张图片，ocr 内容为：HANDLECLICK01(EVENT) 1/如果有事件冒泡--他们里面的值是不一样的 /CURRENTTARGET:事件绑定者--->VIEW //TARGET:事件触发者--VIEW CONSOLE.LOG(EVENT) CONSOLE.LOG(EVENT.TARGET.DATASET) CONSOLE.LOG(EVENT.TARGET.DATASET.NAME) .LOG(EVENT.MARK.NAME) CONSOLE.1 -->
+ 这是一张图片，ocr 内容为：HANDLECLICK01(EVENT) 1/如果有事件冒泡--他们里面的值是不一样的 /CURRENTTARGET:事件绑定者 VIEW //TARGET:事件触发者--VIEW CONSOLE.LOG(EVENT) CONSOLE.LOG(EVENT.TARGET.DATASET) CONSOLE.LOG(EVENT.TARGET.DATASET.NAME) .LOG(EVENT.MARK.NAME) CONSOLE.1  
 ![](https://cdn.nlark.com/yuque/0/2025/png/34696752/1759432041153-727e3448-70aa-4d1a-817b-885a0c5923f8.png)
 
 data-xx="xx"
 
-mark:xx="xx"
+mark:xx="xx" -->
+
 
 ### e.currentTarget 和 e.target 区别
 e.currentTarget 是 事件绑定的 DOM
@@ -179,13 +183,7 @@ e.target 是事件触发的 DOM
 
 ### 页面跳转
 一般有两种：js 跳转 和 navigator组件跳转 ，常用 js 跳转
-
-
-
 js 跳转
-
-
-
 navigator组件跳转
 
 <!-- 这是一张图片，ocr 内容为：<VIEW>-MM-页面跳转-页面跳转 17 <NAVIGATOR URLE"/PAGES/LOGIN/LOGIN">>>BUTTON TYPE三"PRIMARY" PLAIN)去登录</BUTTON></HAVIGATOR) 18 -->

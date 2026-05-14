@@ -3,7 +3,7 @@
 
 组件名 name
 应用场景一 
-● <keep-alive> 的 include 和 exclude 属性根据组件的 name 进行匹配，如果想要条件性地被 keep-alive 缓存，就必须显式声明一个 name 属性。
+● <keep-alive /> 的 include 和 exclude 属性根据组件的 name 进行匹配，如果想要条件性地被 keep-alive 缓存，就必须显式声明一个 name 属性。
 应用场景二：
 ● 组件递归引用自己，在 Vue 组件中只需要引用的组件名称与当前组件 name 属性保持一直，组件是可以自己引用自己的，这点在编写类似于 Tree 树形组件时十分有用。需要注意的一点是，为避免死循环递归，请带上条件语句。
 
