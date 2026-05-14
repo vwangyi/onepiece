@@ -1,5 +1,0 @@
-# 核心概念
-
-- `打包入口 entry` 
-- `打包出口 output` 
-- `源码映射 SourceMap` `开发服务器 devServer`  `HMR 热模替换` `代码分割`  `TreeShaking 树摇` `loader 加载器` `plugins 插件`
