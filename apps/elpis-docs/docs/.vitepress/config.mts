@@ -1,10 +1,10 @@
-import { defineConfig } from "vitepress"; 
+import { defineConfig } from "vitepress";
 
 export default defineConfig({
   lang: "zh-CN",
-  title: "WANGYI", 
+  title: "WANGYI",
   head: [
-    ['link', { rel: 'icon', href: '/favicon.ico' }]   
+    ['link', { rel: 'icon', href: '/favicon.ico' }]
   ],
   vite: {
     server: {
@@ -12,8 +12,8 @@ export default defineConfig({
     }
   },
   description: "A VitePress Site",
-  themeConfig: { 
-    nav: [ 
+  themeConfig: {
+    nav: [
       {
         text: "数据库",
         link: "/views/01_数据库/01_mysql/04_查.md",
@@ -88,21 +88,21 @@ export default defineConfig({
             text: '构建器',
             items: [
               {
-                text: 'webpack',
+                text: 'Webpack',
                 link: "/views/03_工程搭建/04_构建器/01_Webpack/00_webpack.md",
                 activeMatch: "^/03_工程搭建/04_构建器/01_Webpack/",
               },
               {
-                text: 'vite',
-                link: 'vite',
+                text: 'Rollup',
+                link: '/views/03_工程搭建/04_构建器/03_Rollup/00_Rollup.md',
               },
               {
-                text: 'rollup',
-                link: 'rollup',
-              },
-              {
-                text: 'esbuild',
+                text: 'ESbuild',
                 link: 'esbuild',
+              },
+              {
+                text: 'Vite',
+                link: 'vite',
               },
               {
                 text: '自定义构建器',
@@ -982,12 +982,13 @@ export default defineConfig({
         }
       ]
     },
-    socialLinks: [ 
+    socialLinks: [
       { icon: "vitejs", link: "https://vitejs.cn/vitepress/" },
       { icon: "github", link: "https://github.com/vwangyi/elpis/" },
 
       {
-        icon: {  svg:  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 410 404" fill="none">
+        icon: {
+          svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 410 404" fill="none">
   <path d="M399.641 59.5246L215.643 388.545C211.844 395.338 202.084 395.378 198.228 388.618L10.5817 59.5563C6.38087 52.1896 12.6802 43.2665 21.0281 44.7586L205.223 77.6824C206.398 77.8924 207.601 77.8904 208.776 77.6763L389.119 44.8058C397.439 43.2894 403.768 52.1434 399.641 59.5246Z" fill="url(#vite_logo_gradient)"/>
   <path d="M292.965 1.5744L156.801 28.2552C154.563 28.6937 152.906 30.5903 152.771 32.8664L144.395 174.33C144.198 177.662 147.258 180.248 150.51 179.498L188.42 170.749C191.592 170.016 194.443 172.983 193.762 176.168L184.012 222.17C183.323 225.397 186.24 228.335 189.466 227.669L210.736 223.346C213.966 222.679 216.884 225.626 216.187 228.853L205.27 273.673C204.468 277.248 207.729 280.304 211.224 279.23L227.216 274.527C230.717 273.451 233.977 276.521 233.164 280.099L220.931 338.81C219.74 344.11 226.675 347.526 229.569 343.261L238.883 329.245C240.502 326.963 243.875 326.753 245.77 328.809L310.956 400.756C316.082 406.345 325.1 401.743 323.237 394.668L334.758 246.135C336.179 234.904 323.451 226.977 314.816 233.76L255.718 280.179C252.467 282.725 247.823 280.552 247.456 276.373L244.011 232.542C243.675 228.766 247.339 225.776 250.887 226.889L348.79 259.914C357.519 262.881 364.784 252.441 362.014 244.159L391.369 133.043C398.419 110.861 375.145 92.6286 355.634 104.212L279.226 149.156C275.766 151.248 271.306 148.491 271.4 144.512L270.846 82.0037C270.882 78.3337 274.323 75.7113 277.735 76.7573L299.491 83.6183C307.476 86.1579 315.21 73.645 307.591 67.4877L282.435 47.6132C278.765 44.6106 279.652 38.7563 284.121 37.0228L292.965 1.5744Z" fill="url(#vite_logo_gradient_2)"/>
   <defs>

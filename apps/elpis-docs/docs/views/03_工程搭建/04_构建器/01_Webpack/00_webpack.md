@@ -3,7 +3,9 @@
 <script setup>
 import { ref } from 'vue'
 
-const count = ref(0)
+const count = ref(0);
+
+// pnpm add -D webpack webpack-cli 
  
 </script>
 

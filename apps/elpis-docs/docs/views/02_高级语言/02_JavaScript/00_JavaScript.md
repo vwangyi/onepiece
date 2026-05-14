@@ -13,7 +13,9 @@ const directory = ref([
 # JavaScript核心概念 
 <span v-for="dir in directory">{{dir}}</span>
 
-
+`esm es module`
+`cjs commonjs`
+`IIFE立即执行函数`
  `this指向`,
  `原型 原型链`, 
  `作用域 作用域链`,  
