@@ -1,21 +1,14 @@
 
 <script setup>
-import { ref } from 'vue';
-
-const directory = ref([ 
- `this指向`,
- `原型 原型链`, 
- `作用域 作用域链`,  
- `闭包`,
-])
+import { ref } from 'vue'; 
 </script>
 
-# JavaScript核心概念 
-<span v-for="dir in directory">{{dir}}</span>
+# JavaScript核心概念  
 
-`esm es module`
-`cjs commonjs`
-`IIFE立即执行函数`
+
+ `esm es module`
+ `cjs commonjs`
+ `IIFE立即执行函数`
  `this指向`,
  `原型 原型链`, 
  `作用域 作用域链`,  
@@ -36,7 +29,7 @@ const directory = ref([
  `ES Module`  
  `普通函数 箭头函数`  
  `class`  
- `生成器 迭代器 迭代协议`  
+ `生成器函数 迭代器对象 迭代协议`  
  `符号`  
  `集合类型`  
  `类型化数组`  
@@ -46,14 +39,7 @@ const directory = ref([
  `BOM浏览器对象模型`   
  `资源提示符 async defer prefetch preload `  
  `深浅拷贝`
- `值传递 引用传递` 
-
-MDN官网：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript
-ES官网：https://ecma-international.org/technical-committees/tc39/
-w3c官网：https://www.w3.org/standards/
-chromium 官网：https://chromium.googlesource.com/chromium/src/
-v8引擎源码：https://github.com/v8/v8
-
+ `值传递 引用传递`  
 `帧率`
 `BFC`
 `XSS和CSRF`
@@ -73,10 +59,46 @@ window.load = () => {} // img css js 等资源加载完毕 触发
 window.beforeunload = () => {} 用户离开页面前触发
 window.unload = () => {} 用户离开页面后触发
 
+## `原型 原型链`
+```txt
+是什么
+原型就是 每个实例对象都有 `__proto__` 每个构造函数都有 `prototype`
+原型链是 实例对象的`__proto__` 指向 其构造函数的`prototype`
+         __proto__ 和 prototype的关系就是原型链的关系。
+
+优缺点
+原型链的好处是 节约内存。因为所有实例对象的方法都统一放在 其构造函数的prototype上 共享
+    不管创建多少实例对象都不会浪费内存
+缺点是访问不存在的成员时，仍然会遍历整个原型链，性能差。
+
+讲应用
+应用场景 实现继承 扩展类库、共享方法
+当访问对象某个成员时，先看自身有没有，在通过 __proto__ 看 其构造函数的prototype上有没有，
+    一直向上找 直到 Object.prototype.__proto__ ===  null 就返回undefined
+比如，可以在 Vue的原型上 挂载 字典方法，请求方法。每个页面可以共享这个方法 
+Vue.prototype.$t = function () {} 
+Vue.prototype.axios = function() {}
+```
+## `作用域 作用域链`
+## `new操作符`
+## `this指向`
+## `XSS和CSRF`
+## `强缓存协商缓存`
+## `资源提示符`
+
+## `跨域`
+## `重排重绘`
+## `深浅拷贝`
+## `ES Module`  
+## `普通函数 箭头函数`  
+## `class`  
+## `生成器函数 迭代器对象 迭代协议`  
+## `Promise`
+- 引导all race 方法
+## `Promise.all()`
 
 
-
-## 方案1
+### 方案1
 - `js放在所有dom之后 也就是body结束标签（</body>）之前`
 ```html
 <!DOCTYPE html>
@@ -96,7 +118,7 @@ window.unload = () => {} 用户离开页面后触发
 </html>
 ```
 
-## 方案2 
+### 方案2 
 - defer async 
  
 
@@ -105,6 +127,16 @@ window.unload = () => {} 用户离开页面后触发
 
 
 
+
+
+
+
+
+MDN官网：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript
+ES官网：https://ecma-international.org/technical-committees/tc39/
+w3c官网：https://www.w3.org/standards/
+chromium 官网：https://chromium.googlesource.com/chromium/src/
+v8引擎源码：https://github.com/v8/v8
 
 
 
@@ -135,7 +167,7 @@ W3C（world wide web Consoruim）万维网联盟 制定DOM标准
 BOM 没有标准， 由浏览器自行实现。
 
 
-## es
+### es#
 es是一个规范文档
 
 浏览器环境

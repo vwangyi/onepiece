@@ -9,4 +9,5 @@ const app = createApp(App);
 app.use(createPinia());
 app.use(router);
 
+console.log('app.config.globalProperties.msg = ', app.config.globalProperties);
 app.mount('#app');

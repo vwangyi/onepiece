@@ -1,5 +1,8 @@
 <script setup>
-
+const props = defineProps({
+    text: String,
+    default: ''
+})
 </script> 
 <script>
 export default { name: 'ElpisTag' };
@@ -7,6 +10,6 @@ export default { name: 'ElpisTag' };
 
 <template>
     <span>
-        <slot></slot>
+        {{ `${props.text}` }}
     </span>
 </template>
