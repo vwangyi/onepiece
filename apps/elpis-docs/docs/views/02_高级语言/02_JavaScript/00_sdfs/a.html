@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="box" style="width: 100px;height: 100px;background-color: red;"></div>
+
+    <script>
+        const dom = document.querySelector('#box')
+
+        // 当事件循环决定进入渲染阶段时（通常是 DOM 发生了改变，且距离上一次渲染的时间已达到帧间隔），
+        // 判断是否渲染（比如 dom是否变化 且距离上一次渲染是否达到帧间隔）若不满足当前就不会执行渲染
+        // 1. requetAnimationFfam9
+        function handleClick() {
+            dom.style.backgroundColor = 'blue' // 如果dom没改 则不会执行 requestAnimationFrame
+            console.log('click ============================= click ')
+
+            requestIdleCallback(() => {
+                console.log('主线程开始空闲 requestIdleCallback')
+            })
+            setTimeout(() => {
+                console.log('宏任务')
+            })
+            requestAnimationFrame(() => {
+                console.log('开始渲染 requestAnimationFrame', dom.style.backgroundColor)
+            })
+            Promise.resolve().then(() => console.log('清空微任务'))
+            Promise.resolve().then(() => console.log('清空微任务'))
+
+            delay(3000)
+        }
+        dom.addEventListener('click', handleClick)
+        function delay(t) {
+            const start = Date.now();
+            while (Date.now() - start < t) { console.log('卡死阶段') }
+        }
+
+        setTimeout(() => {
+            console.log('宏任务')
+        })
+        requestAnimationFrame(() => {
+            console.log('开始渲染', dom.style.backgroundColor)
+        })
+        console.log('初始化 同步任务')
+    </script>
+</body>
+
+</html>

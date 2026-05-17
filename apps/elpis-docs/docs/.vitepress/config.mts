@@ -88,20 +88,20 @@ export default defineConfig({
             text: '构建器',
             items: [
               {
-                text: 'Webpack',
+                text: 'webpack',
                 link: "/views/03_工程搭建/04_构建器/01_Webpack/00_webpack.md",
                 activeMatch: "^/03_工程搭建/04_构建器/01_Webpack/",
               },
               {
-                text: 'Rollup',
+                text: 'rollup',
                 link: '/views/03_工程搭建/04_构建器/03_Rollup/00_Rollup.md',
               },
               {
-                text: 'ESbuild',
+                text: 'esbuild',
                 link: 'esbuild',
               },
               {
-                text: 'Vite',
+                text: 'vite',
                 link: 'vite',
               },
               {
@@ -147,8 +147,8 @@ export default defineConfig({
               },
               {
                 text: 'babel',
-                link: '/03_工程搭建/04_工具链/01_babel.md',
-                activeMatch: '^/03_工程搭建/04_工具链/',
+                link: '/views/03_工程搭建/04_工具链/01_babel.md',
+                activeMatch: '^/views/03_工程搭建/04_工具链/',
               },
               {
                 text: '代码规范',

@@ -26,3 +26,8 @@ npm add -D -w typescript @types/node
 
 npx tsc xxxx.ts 
 ```
+
+
+
+tsconfig.json 
+

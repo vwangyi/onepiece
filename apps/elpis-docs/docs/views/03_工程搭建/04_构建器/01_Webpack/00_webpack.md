@@ -6,7 +6,7 @@ import { ref } from 'vue'
 const count = ref(0);
 
 // pnpm add -D webpack webpack-cli 
- 
+
 </script>
 
 
@@ -23,6 +23,12 @@ const count = ref(0);
 `plugins 插件`
 
 {{ count }}
+
+webpack的缺点 配置繁琐
+
+esbuild是 go语言
+rollup webpack 都是nodejs语言
+vite 开发用 esbuild 生产用rollup 
 
 <style module>
 .button {

@@ -1,0 +1,24 @@
+<body>
+    <div id="d">0</div>
+    <script>
+        const d = document.getElementById('d');
+        let start = ''
+        let count = 0;
+        setInterval(() => {
+            d.textContent = ++count;   // 每 10ms 修改一次 DOM
+            console.log('time', +new Date() - start);
+            requestAnimationFrame(() => console.log('requestAnimationFrame'));
+            start = +new Date();
+        }, 10);
+
+
+        // function ani() {
+        //     d.textContent = ++count;   // 每 10ms 修改一次 DOM
+        //     console.log('time', +new Date() - start)
+        //     start = +new Date();
+        //     requestAnimationFrame(ani);
+
+        // }
+        // requestAnimationFrame(ani)
+    </script>
+</body>
