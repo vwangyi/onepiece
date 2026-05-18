@@ -12,42 +12,51 @@
     <div id="box" style="width: 100px;height: 100px;background-color: red;"></div>
 
     <script>
-        const dom = document.querySelector('#box')
-
+        const dom = document.querySelector('#box')  
         // 当事件循环决定进入渲染阶段时（通常是 DOM 发生了改变，且距离上一次渲染的时间已达到帧间隔），
         // 判断是否渲染（比如 dom是否变化 且距离上一次渲染是否达到帧间隔）若不满足当前就不会执行渲染
-        // 1. requetAnimationFfam9
+        function runjs(t) {
+            const start = performance.now();
+            while (performance.now() - start < t) { 
+                // console.log(1); // console.log会导致计时不准
+            }
+        }
         function handleClick() {
-            dom.style.backgroundColor = 'blue' // 如果dom没改 则不会执行 requestAnimationFrame
-            console.log('click ============================= click ')
-
-            requestIdleCallback(() => {
-                console.log('主线程开始空闲 requestIdleCallback')
-            })
-            setTimeout(() => {
-                console.log('宏任务')
-            })
+            dom.style.backgroundColor = 'blue' 
             requestAnimationFrame(() => {
-                console.log('开始渲染 requestAnimationFrame', dom.style.backgroundColor)
+                console.log('开始渲染')
+            }) 
+            requestIdleCallback(() =>  console.log('主线程空闲')) // 追加到空闲队列
+            Promise.resolve().then(() => console.log('清空微任务'))
+            setTimeout(() => {
+                console.log('宏任务1');
+                dom.style.backgroundColor = 'yellow' 
+                requestAnimationFrame(() => {
+                    console.log('开始渲染')
+                })
+                requestIdleCallback(() =>  console.log('主线程空闲')) // 追加到空闲队列
+                Promise.resolve().then(() => console.log('清空微任务'))
+                setTimeout(() => console.log('宏任务2'))
+                runjs(3000); // js会阻塞渲染 
+
             })
-            Promise.resolve().then(() => console.log('清空微任务'))
-            Promise.resolve().then(() => console.log('清空微任务'))
+            runjs(3000);
 
-            delay(3000)
         }
-        dom.addEventListener('click', handleClick)
-        function delay(t) {
-            const start = Date.now();
-            while (Date.now() - start < t) { console.log('卡死阶段') }
-        }
-
+        dom.addEventListener('click', handleClick) 
         setTimeout(() => {
             console.log('宏任务')
         })
+        Promise.resolve().then(() => console.log('清空微任务'))
         requestAnimationFrame(() => {
-            console.log('开始渲染', dom.style.backgroundColor)
+            console.log('开始渲染')
         })
-        console.log('初始化 同步任务')
+        console.log('初始化 同步任务');
+
+        // 打印顺序为 '初始化 同步任务' -> '清空微任务'  ->  '开始渲染' -> '宏任务'   （70%-90%是正常顺序）
+        // 打印顺序为 '初始化 同步任务' -> '清空微任务'  ->  '开始渲染'(可能跳过不执行) -> '宏任务' -> '开始渲染'  （30%-10%是渲染被跳过）  
+        // 这不是 bug，而是浏览器为了性能优化采取的灵活调度策略。如果对执行顺序有严格要求，建议显式嵌套调用而不是依赖不确定的调度顺序。 
+        // 想要始终保持正常顺序 就把 宏任务放在 rAF中  
     </script>
 </body>
 

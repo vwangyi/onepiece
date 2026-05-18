@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router';
+// import { RouterView } from 'vue-router';
+// import { ref, nextTick } from 'vue';
 
 console.log('环境APP ', import.meta.env);
 // import { a, b, c, default as all1 } from './a.js'; // 拿了所有的具名导出和默认导出
@@ -21,10 +22,15 @@ console.log('环境APP ', import.meta.env);
 // console.log(all);
 
 // const vk;
+
+requestAnimationFrame(() => {
+  console.log('requestAnimationFrame');
+});
 </script>
 
 <template>
-  <RouterView />
+  <!-- <RouterView /> -->
+  <PriorityRender />
 </template>
 
 <style scoped></style>
