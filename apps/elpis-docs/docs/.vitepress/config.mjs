@@ -147,8 +147,8 @@ export default defineConfig({
               },
               {
                 text: 'babel',
-                link: '/views/03_工程搭建/04_工具链/01_babel.md',
-                activeMatch: '^/views/03_工程搭建/04_工具链/',
+                link: '/views/03_工程搭建/04_工具链/01_babel/01_babel.md',
+                activeMatch: '^/views/03_工程搭建/04_工具链/01_babel/',
               },
               {
                 text: '代码规范',
@@ -221,6 +221,16 @@ export default defineConfig({
       }
     ],
     sidebar: {
+      "/views/03_工程搭建/04_工具链/01_babel/": [
+          {
+            text: 'babel',
+            link: '/views/03_工程搭建/04_工具链/01_babel/01_babel.md', 
+          }, 
+          {
+            text: 'babel配置文件',
+            link: '/views/03_工程搭建/04_工具链/01_babel/01_babel配置文件.md', 
+          }
+      ],
       "/views/02_高级语言/04_标记语言/HTML/": [
         {
           text: 'HTML',

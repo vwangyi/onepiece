@@ -8,11 +8,18 @@ babel.config.js
 ## babel是什么
 - babel是一个JavaScript编译器,把新语法转为旧语法。比如 箭头函数转普通函数 让开发者立即使用新语法，而不需要等待浏览器支持。 
 
-## babel插件是什么
+
+## babel的配置文件
 - 
+
+## babel插件是什么
+- 概念
+- 如何使用  
 
 ## babel预设是什么
 - 预设就是多个插件的集合 形成一个预设
+- 如何配置
+
 
 ## polyfill垫片是什么
 polyfill 垫片 ，有一些新增的语法 旧语法不存在，就用polyfill功能
@@ -24,7 +31,17 @@ polyfill就是一段旧代码 来实现 新语法
 if(!Array.prototype.includes) {
     Array.prototype.includes = function(){}
 } 
+## @babel/core
 
+
+
+- @babel/core: 这个是 Babel 的核心包，提供了核心 API
+## @babel/cli
+
+- @babel/cli：该依赖提供 CLI 命令行工具
+## @babel/preset-env
+
+- @babel/preset-env：预设环境，Babel 在做代码转换的时候，是需要依赖插件的，但是会有一种情况，就需要的插件很多。所谓预设，指的就是内置了一组插件，这样我们只需要引入一个预设即可，不需要再挨着挨着引入众多的插件
 
 
 ## 新建一个项目
@@ -66,8 +83,6 @@ pnpm add —D @babel/core @babel/cli @babel/preset-env
 }
 ```
 
-https://babel.dev/docs/config-files#project-wide-configuration 
-https://babel.dev/docs/config-files#file-relative-configuration
  
 
 ## 
