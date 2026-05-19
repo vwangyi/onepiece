@@ -30,13 +30,23 @@ export default defineConfig({
           },
           {
             text: 'TypeScript',
-            link: '/02_高级语言/03_TypeScript/index.md',
+            link: '/views/02_高级语言/03_TypeScript/index.md',
             activeMatch: "^/02_高级语言/03_TypeScript/",
           },
           {
             text: 'Nodejs',
-            link: '/02_高级语言/00_Nodejs/01_globalThis全局对象.md',
+            link: '/views/02_高级语言/00_Nodejs/01_globalThis全局对象.md',
             activeMatch: "^/02_高级语言/00_Nodejs/",
+          },
+          {
+            text: 'Cpp',
+            link: '/views/02_高级语言/05_Cpp/Cpp.md',
+            activeMatch: "^/02_高级语言/00_Nodejs/05_Cpp/",
+          },
+          {
+            text: 'Java',
+            link: '/views/02_高级语言/06_Java/00_Java.md',
+            activeMatch: "^/02_高级语言/00_Nodejs/06_Java/",
           },
           {
             text: '标记语言',
@@ -222,14 +232,14 @@ export default defineConfig({
     ],
     sidebar: {
       "/views/03_工程搭建/04_工具链/01_babel/": [
-          {
-            text: 'babel',
-            link: '/views/03_工程搭建/04_工具链/01_babel/01_babel.md', 
-          }, 
-          {
-            text: 'babel配置文件',
-            link: '/views/03_工程搭建/04_工具链/01_babel/01_babel配置文件.md', 
-          }
+        {
+          text: 'babel',
+          link: '/views/03_工程搭建/04_工具链/01_babel/01_babel.md',
+        },
+        {
+          text: 'babel配置文件',
+          link: '/views/03_工程搭建/04_工具链/01_babel/01_babel配置文件.md',
+        }
       ],
       "/views/02_高级语言/04_标记语言/HTML/": [
         {
