@@ -3,9 +3,7 @@
     "module": "esnext",
     "target": "esnext",
     "types": [],
-    "lib": [
-      "esnext"
-    ],
+    "lib": ["esnext"],
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
@@ -19,11 +17,8 @@
     "moduleDetection": "force",
     "skipLibCheck": true
   },
-  "exclude": [
-    "node_modules",
-    "dist"
-  ],
+  "exclude": ["node_modules", "dist"],
   "include": [
-    "packages/elpis-design-vue", // 目前只有这一个项目是ts
+    "packages/elpis-design-vue" // 目前只有这一个项目是ts
   ]
 }
