@@ -420,6 +420,12 @@ importers:
         specifier: ^1.6.4
         version: 1.6.4(@algolia/client-search@5.49.2)(@types/node@25.5.0)(async-validator@4.2.5)(axios@1.13.6)(less@4.6.4)(lightningcss@1.32.0)(nprogress@0.2.0)(postcss@8.5.10)(sass@1.98.0)(search-insights@2.17.3)(sortablejs@1.8.4)(terser@5.46.1)(typescript@6.0.3)
 
+  apps/elpis-electron:
+    devDependencies:
+      electron:
+        specifier: ^42.2.0
+        version: 42.2.0
+
   apps/elpis-koa:
     dependencies:
       '@koa/router':
@@ -2264,6 +2270,10 @@ packages:
         optional: true
       search-insights:
         optional: true
+
+  '@electron/get@5.0.0':
+    resolution: {integrity: sha512-pjoBpru1KdEtcExBnuHAP1cAc/5faoedw0hzJkL3o4/IJp7HNF1+fbrdxT3gMYRX2oJfvnA/WXeCTVQpYYxyJA==}
+    engines: {node: '>=22.12.0'}
 
   '@emnapi/core@1.10.0':
     resolution: {integrity: sha512-yq6OkJ4p82CAfPl0u9mQebQHKPJkY7WrIuk205cTYnYe+k2Z8YBh11FrbRG/H6ihirqcacOgl2BIO8oyMQLeXw==}
@@ -4298,6 +4308,9 @@ packages:
 
   '@types/yargs@17.0.35':
     resolution: {integrity: sha512-qUHkeCyQFxMXg79wQfTtfndEC+N9ZZg76HJftDJp+qH2tV7Gj4OJi7l+PiWwJ+pWtW8GwSmqsDj/oymhrTWXjg==}
+
+  '@types/yauzl@2.10.3':
+    resolution: {integrity: sha512-oJoftv0LSuaDZE3Le4DbKX+KS9G36NzOeSap90UIK0yMA/NhKJhqlSGtNDORNRaIbQfzjXDrQa0ytJ6mNRGz/Q==}
 
   '@typescript-eslint/eslint-plugin@8.57.1':
     resolution: {integrity: sha512-Gn3aqnvNl4NGc6x3/Bqk1AOn0thyTU9bqDRhiRnUWezgvr2OnhYCWCgC8zXXRVqBsIL1pSDt7T9nJUe0oM0kDQ==}
@@ -7777,6 +7790,11 @@ packages:
   electron-to-chromium@1.5.321:
     resolution: {integrity: sha512-L2C7Q279W2D/J4PLZLk7sebOILDSWos7bMsMNN06rK482umHUrh/3lM8G7IlHFOYip2oAg5nha1rCMxr/rs6ZQ==}
 
+  electron@42.2.0:
+    resolution: {integrity: sha512-b2Tc7sIKiZEl0tBVwFM5GJ+FT5KYhmy9QJHjx8BGVZPVW2SctXWEvrE959ElB56qw7H05dBkhlikDA1DmpaAMw==}
+    engines: {node: '>= 22.12.0'}
+    hasBin: true
+
   elegant-spinner@1.0.1:
     resolution: {integrity: sha512-B+ZM+RXvRqQaAmkMlO/oSe5nMUOaUnyfGYCEHoR8wrXsZR2mA0XVibsxV1bvTwxdRWah1PkQqso2EzhILGHtEQ==}
     engines: {node: '>=0.10.0'}
@@ -7867,6 +7885,10 @@ packages:
   env-paths@2.2.1:
     resolution: {integrity: sha512-+h1lkLKhZMTYjog1VEpJNG7NZJWcuc2DDk/qsqSTRRCOXiLjeQ1d1/udrUGhqMxUgAlwKNZ0cf2uqan5GLuS2A==}
     engines: {node: '>=6'}
+
+  env-paths@3.0.0:
+    resolution: {integrity: sha512-dtJUTepzMW3Lm/NPxRf3wP4642UWhjL2sQxc+ym2YMj1m/H2zDNQOlezafzkHwn6sMstjHTwG6iQQsctDW/b1A==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
   env-paths@4.0.0:
     resolution: {integrity: sha512-pxP8eL2SwwaTRi/KHYwLYXinDs7gL3jxFcBYmEdYfZmZXbaVDvdppd0XBU8qVz03rDfKZMXg1omHCbsJjZrMsw==}
@@ -8371,6 +8393,11 @@ packages:
   extract-from-css@0.4.4:
     resolution: {integrity: sha512-41qWGBdtKp9U7sgBxAQ7vonYqSXzgW/SiAYzq4tdWSVhAShvpVCH1nyvPQgjse6EdgbW7Y7ERdT3674/lKr65A==}
     engines: {node: '>=0.10.0', npm: '>=2.0.0'}
+
+  extract-zip@2.0.1:
+    resolution: {integrity: sha512-GDhU9ntwuKyGXdZBUgTIe+vXnWj0fppUEtMDL0+idd5Sta8TGpHssn/eusA9mrPr9qNDym6SxAYZjNvCn/9RBg==}
+    engines: {node: '>= 10.17.0'}
+    hasBin: true
 
   extsprintf@1.3.0:
     resolution: {integrity: sha512-11Ndz7Nv+mvAC1j0ktTa7fAb0vLyGGX+rMHNBYQviQDGU0Hw7lhctJANqbPhu9nV9/izT/IntTgZ7Im/9LJs9g==}
@@ -14575,6 +14602,10 @@ packages:
   stylis@4.3.6:
     resolution: {integrity: sha512-yQ3rwFWRfwNUY7H5vpU0wfdkNSnvnJinhF9830Swlaxl03zsOjCfmX0ugac+3LtK0lYSgwL/KXc8oYL3mG4YFQ==}
 
+  sumchecker@3.0.1:
+    resolution: {integrity: sha512-MvjXzkz/BOfyVDkG0oFOtBxHX2u3gKbMHIF/dXblZsgD3BWOFLmHovIpZY7BykJdAjcqRCBi1WYBNdEC9yI7vg==}
+    engines: {node: '>= 8.0'}
+
   superagent@10.3.0:
     resolution: {integrity: sha512-B+4Ik7ROgVKrQsXTV0Jwp2u+PXYLSlqtDAhYnkkD+zn3yg8s/zjA2MeGayPoY/KICrbitwneDHrjSotxKL+0XQ==}
     engines: {node: '>=14.18.0'}
@@ -17944,6 +17975,19 @@ snapshots:
     transitivePeerDependencies:
       - '@algolia/client-search'
 
+  '@electron/get@5.0.0':
+    dependencies:
+      debug: 4.4.3(supports-color@8.1.1)
+      env-paths: 3.0.0
+      graceful-fs: 4.2.11
+      progress: 2.0.3
+      semver: 7.7.4
+      sumchecker: 3.0.1
+    optionalDependencies:
+      undici: 7.25.0
+    transitivePeerDependencies:
+      - supports-color
+
   '@emnapi/core@1.10.0':
     dependencies:
       '@emnapi/wasi-threads': 1.2.1
@@ -18712,9 +18756,7 @@ snapshots:
       jest-runner: 24.9.0
       jest-runtime: 24.9.0
     transitivePeerDependencies:
-      - bufferutil
       - supports-color
-      - utf-8-validate
 
   '@jest/test-sequencer@30.3.0':
     dependencies:
@@ -19973,6 +20015,11 @@ snapshots:
   '@types/yargs@17.0.35':
     dependencies:
       '@types/yargs-parser': 21.0.3
+
+  '@types/yauzl@2.10.3':
+    dependencies:
+      '@types/node': 25.5.0
+    optional: true
 
   '@typescript-eslint/eslint-plugin@8.57.1(@typescript-eslint/parser@8.57.1(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3)':
     dependencies:
@@ -24515,6 +24562,14 @@ snapshots:
 
   electron-to-chromium@1.5.321: {}
 
+  electron@42.2.0:
+    dependencies:
+      '@electron/get': 5.0.0
+      '@types/node': 24.12.2
+      extract-zip: 2.0.1
+    transitivePeerDependencies:
+      - supports-color
+
   elegant-spinner@1.0.1: {}
 
   element-ui@2.13.2(vue@2.7.16):
@@ -24592,6 +24647,8 @@ snapshots:
   entities@8.0.0: {}
 
   env-paths@2.2.1: {}
+
+  env-paths@3.0.0: {}
 
   env-paths@4.0.0:
     dependencies:
@@ -25539,6 +25596,16 @@ snapshots:
   extract-from-css@0.4.4:
     dependencies:
       css: 2.2.4
+
+  extract-zip@2.0.1:
+    dependencies:
+      debug: 4.4.3(supports-color@8.1.1)
+      get-stream: 5.2.0
+      yauzl: 2.10.0
+    optionalDependencies:
+      '@types/yauzl': 2.10.3
+    transitivePeerDependencies:
+      - supports-color
 
   extsprintf@1.3.0: {}
 
@@ -27715,7 +27782,9 @@ snapshots:
       pretty-format: 24.9.0
       throat: 4.1.0
     transitivePeerDependencies:
+      - bufferutil
       - supports-color
+      - utf-8-validate
 
   jest-leak-detector@24.9.0:
     dependencies:
@@ -32953,6 +33022,12 @@ snapshots:
       postcss-selector-parser: 7.1.1
 
   stylis@4.3.6: {}
+
+  sumchecker@3.0.1:
+    dependencies:
+      debug: 4.4.3(supports-color@8.1.1)
+    transitivePeerDependencies:
+      - supports-color
 
   superagent@10.3.0:
     dependencies:

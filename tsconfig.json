@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "module": "esnext",
     "target": "esnext",
     "types": [],
@@ -19,5 +18,7 @@
     "skipLibCheck": true
   },
   "exclude": ["node_modules", "dist"],
-  "include": ["apps/*", "packages/*"]
+  "include": [
+    "packages/elpis-design-vue" // 目前只有这一个项目是ts
+  ]
 }
