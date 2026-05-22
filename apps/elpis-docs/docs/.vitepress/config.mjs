@@ -161,6 +161,11 @@ export default defineConfig({
                 activeMatch: '^/views/03_工程搭建/04_工具链/01_babel/',
               },
               {
+                text: 'TypeScript',
+                link: '/views/02_高级语言/03_TypeScript/index.md',
+                activeMatch: "^/02_高级语言/03_TypeScript/",
+              },
+              {
                 text: '代码规范',
                 link: '/03_工程搭建/04_工具链/02_代码规范.md',
                 activeMatch: '^/03_工程搭建/04_工具链/',
