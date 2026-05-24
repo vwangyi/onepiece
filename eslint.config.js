@@ -12,7 +12,7 @@ const ignores = [
   '**/dist',
   '**/node_modules/**',
   '.*',
-  'apps/elpis-docs',
+  'docs/elpis-docs',
   'apps/elpis-admin',
   'apps/elpis-demo',
   'apps/elpis-nest',

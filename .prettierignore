@@ -5,6 +5,6 @@ public
 .local
 node_modules
 pnpm-lock.yaml
-apps/elpis-docs
+docs/elpis-docs
 apps/elpis-demo
 apps/demo 
