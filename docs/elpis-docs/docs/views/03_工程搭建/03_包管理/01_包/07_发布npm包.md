@@ -63,6 +63,7 @@ npm config set registry https://my-private-registry.com/
 ```sh
 # 注册npm账号  绑定邮箱  得到 账号 邮箱 密码 
 npm login # 登录 
+npm adduser # 输入账号密码 不存在就注册 存在就登录 adduser有2个功能
 npm whoami # 查看登录账号
 npm logout # 登出
  
