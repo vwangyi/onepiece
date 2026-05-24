@@ -11,6 +11,249 @@
 1.4 配置简单
 1.5 生态完善 vue react 都是rollup打包
 
+
+## rollup.config.js
+```js
+// rollup.config.js
+import { defineConfig } from 'rollup';
+
+export default defineConfig({
+	/* 你的配置 */
+});
+
+// "dev": "rollup -c ./rollup.config.js" 
+// pnpm dev
+```
+
+## 多产物输出
+- 应用场景：我们的库 需要支持两种 模块化规范 esm 和 cjs 
+```js
+import { defineConfig } from 'rollup';
+
+export default defineConfig({
+    input: 'src/index.js', // 指定入口
+    output: [
+        {
+            file: 'dist/bundle-iife.js',
+            format: 'iife'
+        },
+        {
+            file: 'dist/bundle-esm.js',
+            format: 'esm'
+        },
+        {
+            file: 'dist/bundle-cjs.js',
+            format: 'cjs'
+        }
+    ]
+})
+```
+
+## 多入口
+```js
+import { defineConfig } from 'rollup';
+
+export default defineConfig({
+    input: ['src/index.js', 'src/main.js'],
+    output: {
+        dir: 'dist', // 多入口时 通过output.dir 指定一个目录就行 不需要file来指定文件名
+        format: 'esm',
+        name: 'bundle'
+    }
+})
+```
+- 多入口的情况下 我们希望每个入口都可以多产物输出
+
+```js
+import { defineConfig } from 'rollup';
+
+export default defineConfig({
+    input: ['src/index.js', 'src/main.js'],
+    output: [
+        {
+            dir: 'dist/cjs',  
+            format: 'cjs',
+        },
+        {
+            dir: 'dist/esm',
+            format: 'esm'
+        }
+    ]
+})
+```
+- 多入口的情况下 我们希望第一个入口输出格式是 cjs 第二个入口的输出格式是 mjs  
+```js
+import { defineConfig } from 'rollup';
+
+export default defineConfig([
+    {
+        input: 'src/index.js',
+        output: {
+            dir: 'dist/cjs',  
+            format: 'cjs',
+            entryFileNames: '[name].[hash].js', // 指定输出的文件名
+            chunkFileNames: '[name].[hash].js', // 为 import() 分割的文件命名 类似webpack的魔法注释
+        }
+    }, 
+    {
+        input: 'src/main.js',
+        output: {
+            dir: 'dist/esm',  
+            format: 'esm',
+        }
+    },
+])
+```
+
+## 代码分割
+```js
+function run() {
+    // 动态导入的文件 会自动分割为一个单独的文件
+    import('./utils.js').then(chunk => console.log(chunk))
+} 
+```
+- 把第三方库单独打包
+```js
+// rollup.config.js
+export default {
+    input: '',
+    output: { 
+        manualChunks: { 
+            // key是lodash-es是取的文件名  value是['lodash-es'] 匹配 import  _ from 'lodash-es';
+            "lodash-es": ['lodash-es'],  
+        },
+        // 支持函数写法
+        manualChunks(id) {
+            if(id.includes('lodash-es')) {
+                return 'lodash-es';
+            }
+        },
+        entryFileNames: '[name].[hash].js', // 指定输出的文件名
+        chunkFileNames: '[name].[hash].js', // 为 import() 分割的文件命名 类似webpack的魔法注释 
+
+    },
+
+}
+```
+
+## 压缩
+```js
+// pnpm add rollup 
+
+import { defineConfig } from 'rollup';
+
+export default defineConfig([
+    {
+        input: 'src/index.js',
+        output: {
+            dir: 'dist/cjs',  
+            format: 'cjs',
+            entryFileNames: '[name].[hash].js', // 指定输出的文件名
+            chunkFileNames: '[name].[hash].js', // 为 import() 分割的文件命名 类似webpack的魔法注释
+        }
+    }, 
+    {
+        input: 'src/main.js',
+        output: {
+            dir: 'dist/esm',  
+            format: 'esm',
+        }
+    },
+])
+```
+ 
+## 处理绝对路径 
+- 处理绝对路径 默认只能处理相对路径
+- https://cn.rollupjs.org/troubleshooting/#warning-treating-module-as-external-dependency
+- 应用场景：当我们的库使用第三方库时，一定是 import _ form 'lodash';
+
+> 方案1：排除第三方库 由宿主环境提供  （不使用@rollup/plugin-node-resolve）
+```js
+// rollup.config.js
+export default {  
+	// external: ['lodash-es'], // 默认就是 只需要消除警告即可
+};
+```
+> 方案2: 把lodash打包到自己的库中（使用@rollup/plugin-node-resolve）
+```js
+// pnpm add lodash-es -D  # esmodule 
+// pnpm add @rollup/plugin-node-resolve -D 
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+// rollup.config.js
+export default {   
+    plugins: [nodeResolve()], // 使用nodeResolve() 让rollup可以处理 import from 'xx' 默认只能处理相对路径
+};
+```
+
+
+## 处理commonjs规范的包
+```js 
+// pnpm add lodash -D   # commonjs
+import _ from 'lodash'; // lodash是 commonjs规范 但用import from 的 esm引入就会报错
+```
+```js
+// pnpm add @rollup/plugin-commonjs -D
+// rollup.config.js
+import commonjs from '@rollup/plugin-commonjs';
+export default {
+    plugins: [commonjs()], // 让node环境的 esm中 可以处理 commonjs规范的包
+}
+```
+
+## 使用babel处理兼容性
+```js
+// pnpm add -D @rollup/plguin-babel 
+// pnpm add -D @babel/core @babel/preset-env
+// pnpm add -D @babel/plugin-transform-runtime @babel/runtime @babel/runtime-corejs3 
+
+/**
+ * @babel/core是 babel核心库
+ * @babel/preset-env 是babel的预设，预设是一组插件多个插件
+ * @babel/plugin-transform-runtime @babel/runtime @babel/runtime-corejs3 是使用babel的垫片 而垫片是corejs实现的
+ * runtime就是处理时 产生的额外代码 和 webpack的runtime一致
+ */
+import babel from '@rollup/plugin-babel';
+export default {
+    plugins: [
+        babel({
+            babelHelpers: 'runtime',
+            include: 'src/**',
+            exclude: 'mode_modules/**',
+            extensions: ['js', '.ts']
+        })
+    ]
+}
+```
+- babel.config.json
+```json
+{
+    "presets": [
+        [
+            "@babel/preset-env",
+            {
+                "target": "> 0.25%, not dead",
+                "useBuiltIns": "usage",
+                "corejs": 3
+            }
+        ]
+    ],
+    "plugins": [
+        [
+            "@babel/plugin-transform-runtime",
+            {
+                "corejs": 3
+            }
+        ]
+    ]
+}
+```
+
+## rollup处理ts
+```js
+// pnpm add typescript tslib @rollup/plugin-typescript -D 
+
+// npx rollup -c ./rollup.config.ts --configPlugin typescript
+```
 ## rollup
 
 

@@ -10,18 +10,22 @@ import postcss from 'rollup-plugin-postcss';
 const __filename = URL.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// 定义子包 /packages/**
 const packages = ['utils', 'components'];
 
+// 获取所有子包的绝对路径
 function getPackageRoots() {
   return packages.map(pkg => path.resolve(__dirname, '../packages', pkg));
 }
 
+// 异步读取子包的 package.json
 async function packageJson(root) {
   const jsonPath = path.resolve(root, 'package.json');
   const content = await fs.promises.readFile(jsonPath, 'utf-8');
   return JSON.parse(content);
 }
 
+// getRollupConfig 为每个子包 生成 rollup配置
 async function getRollupConfig(root) {
   const config = await packageJson(root);
   const tsconfig = path.resolve(root, 'tsconfig.json');
@@ -31,7 +35,7 @@ async function getRollupConfig(root) {
   const rollupOptions = {
     input: entry,
     sourcemap: true,
-    external: ['vue'],
+    external: ['vue'], // 排除vue 由宿主提供
     plugins: [
       nodeResolve(),
       commonjs(),
@@ -100,6 +104,7 @@ export async function getRollupConfigs() {
   return result;
 }
 
+// 清空dist目录
 export function clearDist(name) {
   const dist = path.resolve(__dirname, '../packages', name, 'dist');
   if (fs.existsSync(dist)) {
