@@ -89,8 +89,8 @@ export default defineConfig({
               },
               {
                 text: '多包管理方案',
-                link: "/views/03_工程搭建/03_包管理/04_多包管理方案/02_monorepo.md",
-                activeMatch: "^/03_工程搭建/03_包管理/03_monorepo",
+                link: "/views/03_工程搭建/03_包管理/04_多包管理方案/01_多包管理方案.md",
+                activeMatch: "^/views/03_工程搭建/03_包管理/04_多包管理方案/",
               },
             ]
           },
@@ -104,15 +104,15 @@ export default defineConfig({
               },
               {
                 text: 'rollup',
-                link: '/views/03_工程搭建/04_构建器/03_Rollup/00_Rollup.md',
+                link: '/views/03_工程搭建/04_构建器/02_Rollup/00_Rollup.md',
               },
               {
                 text: 'esbuild',
-                link: 'esbuild',
+                link: '/views/03_工程搭建/04_构建器/03_Esbuild/00_esbuild.md',
               },
               {
                 text: 'vite',
-                link: 'vite',
+                link: '/views/03_工程搭建/04_构建器/04_Vite/00_vite.md',
               },
               {
                 text: '自定义构建器',
@@ -348,35 +348,35 @@ export default defineConfig({
             },
             {
               text: '包依赖',
-              link: "/views/03_工程搭建/03_包管理/01_包/96_包依赖.md"
+              link: "/views/03_工程搭建/03_包管理/01_包/02_包依赖.md"
             },
             {
               text: '包入口',
-              link: "/views/03_工程搭建/03_包管理/01_包/96_包入口.md"
+              link: "/views/03_工程搭建/03_包管理/01_包/03_包入口.md"
             },
             {
-              text: '包执行脚本',
-              link: "/views/03_工程搭建/03_包管理/01_包/94_包执行脚本.md"
+              text: '包模块化规范',
+              link: "/views/03_工程搭建/03_包管理/01_包/04_包模块化规范.md"
             },
             {
               text: '包环境',
-              link: "/views/03_工程搭建/03_包管理/01_包/95_包环境.md"
+              link: "/views/03_工程搭建/03_包管理/01_包/05_包执行脚本.md"
             },
-
-
-
-
             {
-              text: '指定包的模块化规范',
-              link: "/views/03_工程搭建/03_包管理/01_包/93_包模块化规范.md"
+              text: '包环境版本',
+              link: "/views/03_工程搭建/03_包管理/01_包/06_包环境版本.md"
             },
             {
               text: '发布npm包',
-              link: "/views/03_工程搭建/03_包管理/01_包/98_发布npm包.md"
+              link: "/views/03_工程搭建/03_包管理/01_包/07_发布npm包.md"
             },
             {
               text: '搭建npm私服',
-              link: "/views/03_工程搭建/03_包管理/01_包/99_搭建npm私服.md"
+              link: "/views/03_工程搭建/03_包管理/01_包/08_搭建npm私服.md"
+            },
+            {
+              text: '包其他信息',
+              link: "/views/03_工程搭建/03_包管理/01_包/99_包其他信息.md"
             },
           ]
         }

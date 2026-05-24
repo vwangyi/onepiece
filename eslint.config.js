@@ -202,7 +202,8 @@ export default defineConfig([
       'apps/elpis-vue/**/*.{ts,js,tsx,jsx,vue}',
       'apps/elpis-babel/**/*.{ts,js,tsx,jsx,vue}',
       'apps/elpis-rollup/**/*.{ts,js,tsx,jsx,vue}',
-      'packages/elpis-design/**/*.{ts,js,tsx,jsx,vue}'
+      'packages/elpis-design/**/*.{ts,js,tsx,jsx,vue}',
+      'packages/elpis-api/**/*.{ts,js,tsx,jsx,vue}'
     ],
     extends: [
       ...eslintPluginVue.configs['flat/recommended'],

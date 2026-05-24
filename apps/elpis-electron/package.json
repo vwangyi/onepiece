@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "dev": "electron ./index.js"
+    "dev": "electron ./main.js"
   },
   "keywords": [],
   "author": "",

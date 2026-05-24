@@ -1,4 +1,4 @@
-import { message } from 'ant-design-vue';
+import envConfig from './config/config.default.js';
 import md5 from 'md5';
 import axios from 'axios'; // https://www.axios-http.cn/docs/intro
 
@@ -16,6 +16,7 @@ async function request(url, config = {}) {
   const { query, ...axiosConfig } = config;
   const st = Date.now();
   const ajax = {
+    baseURL: envConfig.name,
     url,
     responseType: 'json',
     ...axiosConfig,
@@ -45,12 +46,9 @@ async function request(url, config = {}) {
     const res = await axios.request(ajax);
     // 业务失败
     if (res.data.success !== true) {
-      message.error(res.data.message || '业务失败');
+      // message.error(res.data.message || '业务失败');
     }
-    // if (res.data.success === true) {
-    //   message.success(res.data.message || '业务成功');
-    // }
-    // res.data才是后端给的数据 res其他数据均为axios附加数据
+    // 业务成功 res.data才是后端给的数据 res其他数据均为axios附加数据
     return Promise.resolve(res.data);
   } catch (err) {
     /**
@@ -59,30 +57,14 @@ async function request(url, config = {}) {
      */
     const msg = err instanceof Error ? err.message : String(err);
     if (msg.match(/timeout/)) {
-      message.error('请求超时(后端没收到请求)', 5);
+      // message.error('请求超时(后端没收到请求)', 5);
     }
     return Promise.resolve(err); // 返回成功的promise
   }
 }
 
-request.get = (url, config) =>
-  request(url, {
-    method: 'GET',
-    ...config
-  });
-request.post = (url, config) =>
-  request(url, {
-    method: 'POST',
-    ...config
-  });
-request.put = (url, config) =>
-  request(url, {
-    method: 'PUT',
-    ...config
-  });
-request.delete = (url, config) =>
-  request(url, {
-    method: 'DELETE',
-    ...config
-  });
+request.get = (url, config) => request(url, { ...config, method: 'GET' });
+request.post = (url, config) => request(url, { ...config, method: 'POST' });
+request.put = (url, config) => request(url, { ...config, method: 'PUT' });
+request.delete = (url, config) => request(url, { ...config, method: 'DELETE' });
 export default request;

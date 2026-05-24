@@ -23,6 +23,9 @@ importers:
 
   .:
     dependencies:
+      elpis-api:
+        specifier: ^1.0.1
+        version: 1.0.1
       pinia:
         specifier: ^3.0.4
         version: 3.0.4(typescript@6.0.3)(vue@3.6.0-beta.10(typescript@6.0.3))
@@ -1241,6 +1244,9 @@ packages:
 
   electron-to-chromium@1.5.344:
     resolution: {integrity: sha512-4MxfbmNDm+KPh066EZy+eUnkcDPcZ35wNmOWzFuh/ijvHsve6kbLTLURy88uCNK5FbpN+yk2nQY6BYh1GEt+wg==}
+
+  elpis-api@1.0.1:
+    resolution: {integrity: sha512-zHuw7pw+fMTe+EH7ngznNxotyfO/TNmHYzxJrRLNi6X/g9h+nkqdpmAjP2IYN1oM8NyOLvRAIVBV+8xjWLwDeA==}
 
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -3418,6 +3424,8 @@ snapshots:
       semver: 7.7.4
 
   electron-to-chromium@1.5.344: {}
+
+  elpis-api@1.0.1: {}
 
   emoji-regex@8.0.0: {}
 

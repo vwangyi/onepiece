@@ -1,5 +1,15 @@
 # Rollup核心概念
+- https://github.com/rollup/rollup
+- https://cn.rollupjs.org/
 
+
+## 为什么使用rollup？
+1好处：
+1.1 产物干净
+1.2 tree shaking
+1.3 格式分发
+1.4 配置简单
+1.5 生态完善 vue react 都是rollup打包
 
 ## rollup
 

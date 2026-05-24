@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import { sub, sum } from 'elpis-api';
+
 // import { RouterView } from 'vue-router';
 // import { ref, nextTick } from 'vue';
 
-console.log('环境APP ', import.meta.env);
+console.log('环境APP ', import.meta.env, sub, sum);
 // import { a, b, c, default as all1 } from './a.js'; // 拿了所有的具名导出和默认导出
 // import { a as aa, default as all2 } from './a.js'; // 只拿了一个具名导出 和 默认导出
 

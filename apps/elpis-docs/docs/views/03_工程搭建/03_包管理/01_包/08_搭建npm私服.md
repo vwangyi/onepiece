@@ -1,5 +1,4 @@
-# 
-## 如何搭建npm 私服
+# 如何搭建npm 私服 
 - 因为npm官方 不允许发私有包 或 发私有包要钱 
 ```shell
 # https://verdaccio.org/zh-CN/

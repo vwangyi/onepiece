@@ -100,7 +100,7 @@ module.exports = {
       cacheGroups: {
         // 第三方依赖库
         vendor: {
-          // 把node_modules中的文件 比如 vue loadsh  打包为单独的一个chunk 取名为vendor
+          // 把node_modules中的文件 比如 vue lodash  打包为单独的一个chunk 取名为vendor
           test: /[\\/]node_modules[\\/]/,
           name: "vendor",
           priority: 20, // 优先级 数字越大 优先级越高
