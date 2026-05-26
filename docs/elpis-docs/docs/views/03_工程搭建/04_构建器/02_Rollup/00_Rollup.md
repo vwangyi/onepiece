@@ -10,7 +10,21 @@
 1.3 格式分发
 1.4 配置简单
 1.5 生态完善 vue react 都是rollup打包
+## rollup配置文件  
+- 文件名 `rollup.config.js` 或 `rollup.config.mjs`
 
+运行配置文件
+```js
+npx rollup -c
+```
+或在 package.json中配置 然后 pnpm dev 
+```json
+{
+    "scripts": {
+        "dev": "rollup -c"
+    }
+}
+``` 
 
 ## rollup.config.js
 ```js
@@ -121,6 +135,7 @@ export default {
         manualChunks: { 
             // key是lodash-es是取的文件名  value是['lodash-es'] 匹配 import  _ from 'lodash-es';
             "lodash-es": ['lodash-es'],  
+            react: ["react", "react-dom"], // 把react相关 打包到 react里面
         },
         // 支持函数写法
         manualChunks(id) {
@@ -140,34 +155,26 @@ export default {
 ```js
 // pnpm add rollup 
 
+import { terser } from 'rollup-plugin-terser';
 import { defineConfig } from 'rollup';
 
-export default defineConfig([
-    {
-        input: 'src/index.js',
-        output: {
-            dir: 'dist/cjs',  
-            format: 'cjs',
-            entryFileNames: '[name].[hash].js', // 指定输出的文件名
-            chunkFileNames: '[name].[hash].js', // 为 import() 分割的文件命名 类似webpack的魔法注释
-        }
-    }, 
-    {
-        input: 'src/main.js',
-        output: {
-            dir: 'dist/esm',  
-            format: 'esm',
-        }
-    },
-])
+export default defineConfig({
+    output: { 
+        plugins: [terser()], // 注意压缩在output.plugins里面调用
+    }
+})
 ```
  
 ## 处理绝对路径 
-- 处理绝对路径 默认只能处理相对路径
+- 处理绝对路径 rollup默认只能处理相对路径
 - https://cn.rollupjs.org/troubleshooting/#warning-treating-module-as-external-dependency
 - 应用场景：当我们的库使用第三方库时，一定是 import _ form 'lodash';
+```js
+import _ from 'lodash'; // 绝对路径
+```
 
 > 方案1：排除第三方库 由宿主环境提供  （不使用@rollup/plugin-node-resolve）
+- 如果我们构建的是基建项目 那就不应该在我们的库中 而是由宿主环境提供
 ```js
 // rollup.config.js
 export default {  
@@ -175,6 +182,7 @@ export default {
 };
 ```
 > 方案2: 把lodash打包到自己的库中（使用@rollup/plugin-node-resolve）
+- 如果我们构建业务项目 那么vue或react就应该在我们的库中
 ```js
 // pnpm add lodash-es -D  # esmodule 
 // pnpm add @rollup/plugin-node-resolve -D 
@@ -200,7 +208,7 @@ export default {
 }
 ```
 
-## 使用babel处理兼容性
+## 使用babel处理兼容性 jsx tsx
 ```js
 // pnpm add -D @rollup/plguin-babel 
 // pnpm add -D @babel/core @babel/preset-env
@@ -254,25 +262,161 @@ export default {
 
 // npx rollup -c ./rollup.config.ts --configPlugin typescript
 ```
-## rollup
+## rollup处理html
 
 
-webpack 是 大而全
+```js 
+// pnpm add rollup-plugin-generate-html-template -D
+import htmlTemplate from 'rollup-plugin-generate-html-template';
+export default {
+    plugins: [  
+        htmlTemplate({
+            template: "public/index.html",
+            target: "dist/index.html",
+            attrs: ['type="module"'],
+        }),
+    ]
+}
+```
 
-rollup 是小而美  输入只支持处理esm  输出格式有很多  长处是专处理js（web） 应用场景 依赖库
+## 字符串替换
+- 项目中使用了 process.env.NODE_ENV 但这个变量在node环境有 浏览器环境没有 所以处理一下
+```js  
+import replace from '@rollup/plugin-replace';
+export default {
+    plugins: [  
+         replace({
+            preventAssignment: true,
+            "process.env.NODE_ENV": JSON.stringify("production"), // 否则会报：process is not defined的错
+        }),
+    ]
+}
+``` 
+## rollup使用开发服务器
+
+
+```js  
+// pnpm add rollup-plugin-serve rollup-plugin-livereload -D
+// pnpm add rollup-plugin-clear -D
+import serve from 'rollup-plugin-serve';
+import livereload from 'rollup-plugin-livereload';
+import clear from 'rollup-plugin-clear'; 
+export default {
+    plugins: [   
+        serve("dist"), // 对dist文件夹进行启动服务
+        livereload("src"), // 对src文件夹进行监控
+        // 每次启动服务 都清空上一次的
+        clear({
+        targets: ["dist"],
+        }),
+    ]
+}
+
+// 修改 加上 -w  
+// npx rollup -c ./rollup.config.ts --configPlugin typescript -w
+``` 
+
+## 处理style 
+```js   
+// pnpm add rollup-plugin-scss sass -D  
+// pnpm add postcss rollup-plugin-postcss -D
+import postcss from "rollup-plugin-postcss"; 
+export default {
+    plugins: [    
+        postcss({
+            extensions: [".css"], // 将scss解析成css
+            extract: true,
+            modules: true,
+        }),
+    ]
+}
+// 注意clear插件顺序
+```
+
+## 处理图片
+```js   
+// pnpm add @rollup/plugin-image -D
+import image from "@rollup/plugin-image"; 
+export default {
+    plugins: [    
+        image(),
+    ]
+}
+// 注意clear插件顺序
+```
+
+## 别名映射
+```js    
+// pnpm add @rollup/plugin-alias -D 
+// pnpm add @types/node -D // 解决node:url 的ts问题
+
+import alias from "@rollup/plugin-alias"; 
+import { fileURLToPath } from "node:url";
+export default {
+    plugins: [     
+        alias({
+        entries: [
+            {
+            find: "@",
+            replacement: fileURLToPath(new URL("src", import.meta.url)), // rollup使用绝对路径 和 node的 path.resolve(__dirname) 类似
+            },
+        ],
+        }),
+    ]
+} 
+```    
+## sourcemap
+
+```js    
+export default {
+    output: {
+        sourcemap: true, 
+    }
+} 
+```
+      
+
+## 分析打包结果大小
+```js
+// pnpm i -D rollup-plugin-visualizer
+import { visualizer } from "rollup-plugin-visualizer";
+export default {
+    plugins: [      
+        visualizer()
+    ], 
+    // 如果分析出 react 库非常大   那么 就 用 cdn引入 打包结果就没有react了
+
+    external: ['react', 'react-dom'],  // 不打包这些依赖  // 排除 external只是排除不打包而已 有可能是cdn提供 有可能是宿主提供
+    output: {  
+        format: 'umd',  // 或 'iife' globals和paths 表达意思都一样 当format是umd ｜ iife 时 globals生效
+        format: 'esm',   // globals和paths 表达意思都一样 当format是esm时 paths生效 
+        manualChunks: {  
+            // react: ["react", "react-dom"],   // 打包结果没有react 分包自然也不需要了
+        }, 
+        globals: {
+            "react": "React", // 当遇到 import React from 'react' 时，应该使用全局的 window.React 变量
+            "react-dom": "ReactDOM", // 遇到 import ReactDOM from 'react-dom' 时，应该使用全局的 window.ReactDOM
+        },
+        paths: {
+            // 源码中 import React from 'react'; 解析为：import React from 'https://cdn.jsdelivr.net/npm/react@18.2.0/+esm';
+            "react": "https://cdn.jsdelivr.net/npm/react@18.2.0/+esm",  
+            "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm", // 找 react-dom 通过 这个cdn去找
+
+            // 关于 cdn  
+            // 1. 有可能是 库的官方 提供（缺点 不稳定）
+            // 2. 库的官方没提供 社区提供的 （缺点 不稳定）
+            // 3. 自己公司创建的react的cdn （好处稳定 一般都是用自己公司的 稳定性占第一， 如果自己公司不提供cdn 那还是不用cdn了吧）
+        }
+    },
+} 
+
+```
+
+## 树摇
+- 树摇是什么
+- 原理 基于 esm
+- 如何使用
  
-
-pnpm add rollup -D
-
-rollup是一个打包工具 需要安装 rollup 
-
-
-## tree shaking 树摇
-
-esm才可以实现 树摇
-
-
-
 `tree shaking 树摇`: 树摇是基于esm规范的。原理就是
 
 是什么
@@ -319,20 +463,3 @@ const r = getRandomNum(1, 10)
 console.log(r)
 ```
 
-## rollup配置文件  
-- 文件名 `rollup.config.js` 或 `rollup.config.mjs`
-
-运行配置文件
-```js
-npx rollup -c
-```
-或在 package.json中配置 然后 pnpm dev 
-```json
-{
-    "scripts": {
-        "dev": "rollup -c"
-    }
-}
-```
-
-## 
