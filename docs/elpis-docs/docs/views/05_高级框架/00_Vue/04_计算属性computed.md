@@ -7,6 +7,27 @@
 // vue3.2
 import { computed } from 'vue'
 const 变量名 = computed(() => xx ) 
+const 变量名1 = computed({
+    set(value) { },
+    get() {return 1}
+}) 
+
+
+// 只读
+function computed<T>(
+  getter: (oldValue: T | undefined) => T,
+  // 查看下方的 "计算属性调试" 链接
+  debuggerOptions?: DebuggerOptions
+): Readonly<Ref<Readonly<T>>>
+
+// 可写的
+function computed<T>(
+  options: {
+    get: (oldValue: T | undefined) => T
+    set: (value: T) => void
+  },
+  debuggerOptions?: DebuggerOptions
+): Ref<T>
 
 </script>
  <!-- commuted 可以根据响应式数据的变化而变化 -->

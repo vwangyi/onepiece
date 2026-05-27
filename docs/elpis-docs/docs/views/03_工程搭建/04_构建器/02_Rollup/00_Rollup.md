@@ -187,6 +187,7 @@ export default {
 // pnpm add lodash-es -D  # esmodule 
 // pnpm add @rollup/plugin-node-resolve -D 
 import { nodeResolve } from '@rollup/plugin-node-resolve';
+// import resolve from "@rollup/plugin-node-resolve";  resolve() 第二种用法
 // rollup.config.js
 export default {   
     plugins: [nodeResolve()], // 使用nodeResolve() 让rollup可以处理 import from 'xx' 默认只能处理相对路径
@@ -210,7 +211,7 @@ export default {
 
 ## 使用babel处理兼容性 jsx tsx
 ```js
-// pnpm add -D @rollup/plguin-babel 
+// pnpm add -D @rollup/plugin-babel 
 // pnpm add -D @babel/core @babel/preset-env
 // pnpm add -D @babel/plugin-transform-runtime @babel/runtime @babel/runtime-corejs3 
 
@@ -374,6 +375,11 @@ export default {
     }
 } 
 ```
+
+## 处理json 
+
+npm i @rollup/plugin-json -D   
+json()
       
 
 ## 分析打包结果大小
