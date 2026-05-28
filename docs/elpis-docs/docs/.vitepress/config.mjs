@@ -15,6 +15,11 @@ export default defineConfig({
   themeConfig: {
     nav: [
       {
+        text: '团队规范文档',
+        link: '/views/00_团队规范文档/00_前端开发文档.md',
+        activeMatch: "^/views/00_团队规范文档/"
+      },
+      {
         text: "数据库",
         link: "/views/01_数据库/01_mysql/04_查.md",
         activeMatch: "^/01_数据库/"
@@ -236,6 +241,12 @@ export default defineConfig({
       }
     ],
     sidebar: {
+      "/views/00_团队规范文档/": [
+        {
+          text: '前端开发规范',
+          link: '/views/00_团队规范文档/00_前端开发文档.md',
+        }
+      ],
       "/views/03_工程搭建/04_工具链/01_babel/": [
         {
           text: 'babel',
