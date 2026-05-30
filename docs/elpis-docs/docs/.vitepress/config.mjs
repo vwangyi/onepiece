@@ -245,6 +245,10 @@ export default defineConfig({
         {
           text: '前端开发规范',
           link: '/views/00_团队规范文档/00_前端开发文档.md',
+        },
+        {
+          text: 'books',
+          link: '/views/00_团队规范文档/books.md',
         }
       ],
       "/views/03_工程搭建/04_工具链/01_babel/": [
