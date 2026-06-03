@@ -13,10 +13,11 @@ const ignores = [
   '**/node_modules/**',
   '.*',
   'docs',
-  'apps/elpis-admin',
+  'apps/elpis-vue2-webpack',
+  'apps/elpis-vue',
   'apps/elpis-demo',
   'apps/elpis-nest',
-  'apps/elpis-vue',
+  'apps/elpis-vue3-vite',
   'scripts',
   'apps/demo',
   'docs'
