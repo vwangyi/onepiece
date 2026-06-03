@@ -12,13 +12,14 @@ const ignores = [
   '**/dist',
   '**/node_modules/**',
   '.*',
-  'docs/elpis-docs',
+  'docs',
   'apps/elpis-admin',
   'apps/elpis-demo',
   'apps/elpis-nest',
   'apps/elpis-vue',
   'scripts',
-  'apps/demo'
+  'apps/demo',
+  'docs'
 ];
 const rules = {
   '@typescript-eslint/no-require-imports': 'off', // 使用require函数
