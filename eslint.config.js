@@ -14,10 +14,12 @@ const ignores = [
   '.*',
   'docs',
   'apps/elpis-vue2-webpack',
+  'apps/elpis-vue3-webpack',
+  'apps/elpis-vue3-vite',
+  'apps/elpis-vue3-electron',
   'apps/elpis-vue',
   'apps/elpis-demo',
   'apps/elpis-nest',
-  'apps/elpis-vue3-vite',
   'scripts',
   'apps/demo',
   'docs'
