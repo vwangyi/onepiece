@@ -42,6 +42,8 @@
     font-weight: 800; /* Extra Bold */
     font-weight: 900; /* Black */
 
+
+
     user-select: none; /* 用户无法选中文字 */ 
         /* 字体大小 */
         font-size: 100px;
@@ -58,6 +60,15 @@
         text-decoration: underline;
         /* 文字缩进: 2个字 */
         text-indent: 2em;
+
+
+        /* 文字阴影 弹幕 */
+        text-shadow: 0px 0px 2px black;
+        text-shadow:
+          -1px -1px 1px black,
+          1px 1px 1px black,
+          1px -1px 1px black,
+          -1px 1px 1px black; 
 
 
         text-align: start; /* 居左 */

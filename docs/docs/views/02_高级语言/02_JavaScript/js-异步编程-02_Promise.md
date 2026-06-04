@@ -1,5 +1,12 @@
 # Promise
 
+迭代器
+生成器函数
+装饰器
+async函数：返回promise 
+
+
+
 ## Promise是什么
 
 - 是什么
