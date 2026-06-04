@@ -1,4 +1,4 @@
-import { getRollupConfigs } from './buildBase.js';
+import { getRollupConfigs } from './base.js';
 import { watch } from 'rollup';
 
 async function dev() {
