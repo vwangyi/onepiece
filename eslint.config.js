@@ -19,7 +19,8 @@ const ignores = [
   'apps/elpis-vue3-electron',
   'apps/elpis-vue',
   'apps/elpis-demo',
-  'apps/elpis-nest',
+  'apps/elpis-bff-nest',
+  'apps/elpis-bff-koa',
   'scripts',
   'apps/demo',
   'docs'
