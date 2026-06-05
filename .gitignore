@@ -34,7 +34,7 @@ coverage/
 *.local
 *.cache
 *.tmp 
-docs/elpis-docs/docs/.vitepress/cache 
+**/.vitepress/cache 
 
 # Git
 .git/ 
