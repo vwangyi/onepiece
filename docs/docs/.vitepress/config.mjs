@@ -15,18 +15,8 @@ export default defineConfig({
   themeConfig: {
     nav: [
       {
-        text: '团队规范文档',
-        link: '/views/00_团队规范文档/00_前端开发文档.md',
-        activeMatch: "^/views/00_团队规范文档/"
-      },
-      {
-        text: "数据库",
-        link: "/views/01_数据库/01_mysql/04_查.md",
-        activeMatch: "^/01_数据库/"
-      },
-      {
-        text: "高级语言",
-        activeMatch: "^/02_高级语言/",
+        text: "JavaScript",
+        activeMatch: "^/views/02_高级语言/",
         items: [
           {
             text: 'JavaScript',
@@ -59,43 +49,50 @@ export default defineConfig({
               {
                 text: 'HTML',
                 link: "/views/02_高级语言/04_标记语言/HTML/00_HTML.md",
-                // activeMatch: "^/02_高级语言/04_标记语言/HTML/"
               },
               {
                 text: 'Markdown',
                 link: "/views/02_高级语言/04_标记语言/MD/MD语法.md",
-                // activeMatch: "^/02_高级语言/04_标记语言/Markdown/" 
+              },
+            ]
+          },
+          {
+            text: '前端规范',
+            items: [
+              {
+                text: '前端规范文档',
+                link: "/views/02_高级语言/99_前端规范/00_前端开发文档.md",
               },
             ]
           }
         ],
       },
       {
-        text: "工程搭建",
-        activeMatch: "^/03_工程搭建/",
+        text: "前端工程",
+        activeMatch: "^/views/03_前端工程/",
         items: [
           {
             text: '包管理',
             items: [
               {
                 text: '模块module',
-                link: "/views/03_工程搭建/03_包管理/00_模块/00_ESM.md",
-                activeMatch: "^/03_工程搭建/03_包管理/00_模块",
+                link: "/views/03_前端工程/03_包管理/00_模块/00_ESM.md",
+                activeMatch: "^/views/03_前端工程/03_包管理/00_模块",
               },
               {
                 text: '包package',
-                link: "/views/03_工程搭建/03_包管理/01_包/00_package.md",
-                activeMatch: "^/03_工程搭建/03_包管理/01_包",
+                link: "/views/03_前端工程/03_包管理/01_包/00_package.md",
+                activeMatch: "^/views/03_前端工程/03_包管理/01_包",
               },
               {
                 text: '包管理器',
-                link: "/views/03_工程搭建/03_包管理/02_npm-yarn-pnpm.md",
-                activeMatch: "^/03_工程搭建/03_包管理/02_npm-yarn-pnpm",
+                link: "/views/03_前端工程/03_包管理/02_npm-yarn-pnpm.md",
+                activeMatch: "^/views/03_前端工程/03_包管理/02_npm-yarn-pnpm",
               },
               {
                 text: '多包管理方案',
-                link: "/views/03_工程搭建/03_包管理/04_多包管理方案/01_多包管理方案.md",
-                activeMatch: "^/views/03_工程搭建/03_包管理/04_多包管理方案/",
+                link: "/views/03_前端工程/03_包管理/04_多包管理方案/01_多包管理方案.md",
+                activeMatch: "^/views/03_前端工程/03_包管理/04_多包管理方案/",
               },
             ]
           },
@@ -104,20 +101,20 @@ export default defineConfig({
             items: [
               {
                 text: 'webpack',
-                link: "/views/03_工程搭建/04_构建器/01_Webpack/00_webpack.md",
-                activeMatch: "^/03_工程搭建/04_构建器/01_Webpack/",
+                link: "/views/03_前端工程/04_构建器/01_Webpack/00_webpack.md",
+                activeMatch: "^/views/03_前端工程/04_构建器/01_Webpack/",
               },
               {
                 text: 'rollup',
-                link: '/views/03_工程搭建/04_构建器/02_Rollup/00_Rollup.md',
+                link: '/views/03_前端工程/04_构建器/02_Rollup/00_Rollup.md',
               },
               {
                 text: 'esbuild',
-                link: '/views/03_工程搭建/04_构建器/03_Esbuild/00_esbuild.md',
+                link: '/views/03_前端工程/04_构建器/03_Esbuild/00_esbuild.md',
               },
               {
                 text: 'vite',
-                link: '/views/03_工程搭建/04_构建器/04_Vite/00_vite.md',
+                link: '/views/03_前端工程/04_构建器/04_Vite/00_vite.md',
               },
               {
                 text: '自定义构建器',
@@ -157,88 +154,87 @@ export default defineConfig({
             items: [
               {
                 text: '自定义工具链',
-                link: '/03_工程搭建/04_工具链/00_自定义工具链.md',
-                activeMatch: '^/03_工程搭建/04_工具链/',
+                link: '/03_前端工程/04_工具链/00_自定义工具链.md',
               },
               {
                 text: 'babel',
-                link: '/views/03_工程搭建/04_工具链/01_babel/01_babel.md',
-                activeMatch: '^/views/03_工程搭建/04_工具链/01_babel/',
+                link: '/views/03_前端工程/04_工具链/01_babel/01_babel.md',
               },
-              {
-                text: 'TypeScript',
-                link: '/views/02_高级语言/03_TypeScript/index.md',
-                activeMatch: "^/02_高级语言/03_TypeScript/",
-              },
+              // {
+              //   text: 'TypeScript',
+              //   link: '/views/02_高级语言/03_TypeScript/index.md',
+              // },
               {
                 text: '代码规范',
-                link: '/03_工程搭建/04_工具链/02_代码规范.md',
-                activeMatch: '^/03_工程搭建/04_工具链/',
+                link: '/03_前端工程/04_工具链/02_代码规范.md',
               },
               {
                 text: '前端测试框架',
-                link: '/03_工程搭建/04_工具链/03_前端测试框架.md',
-                activeMatch: '^/03_工程搭建/04_工具链/',
+                link: '/03_前端工程/04_工具链/03_前端测试框架.md',
               },
               {
                 text: 'css预编译器',
-                link: '/03_工程搭建/04_工具链/04_css预编译器.md',
-                activeMatch: '^/03_工程搭建/04_工具链/',
+                link: '/03_前端工程/04_工具链/04_css预编译器.md',
               },
             ]
           },
         ],
       },
       {
-        text: '高级框架',
+        text: '前端框架',
         items: [
           {
             text: 'web',
             items: [
-              { text: 'Vue', link: "/views/05_高级框架/00_Vue/00_Vue.md", activeMatch: "^/05_高级框架/00_Vue/" }
+              { text: 'Vue', link: "/views/05_前端框架/00_Vue/00_Vue.md", activeMatch: "^/05_前端框架/00_Vue/" }
             ]
           },
           {
             text: 'desktop',
             items: [
-              { text: 'Electron', link: "/views/05_高级框架/04_Electron/electron.md", activeMatch: "^/05_高级框架/04_Electron/" }
+              { text: 'Electron', link: "/views/05_前端框架/04_Electron/electron.md", activeMatch: "^/05_前端框架/04_Electron/" }
             ]
           },
           {
             text: 'BFF',
             items: [
-              { text: 'Koajs', link: "/views/05_高级框架/01_Koa/index.md", },
-              { text: 'Eggjs', link: "/views/05_高级框架/01_Koa/index.md", },
-              { text: 'Nestjs', link: '/05_高级框架/02_Nest/index.md' }
+              { text: 'Koajs', link: "/views/05_前端框架/01_Koa/index.md", },
+              { text: 'Eggjs', link: "/views/05_前端框架/01_Koa/index.md", },
+              { text: 'Nestjs', link: '/05_前端框架/02_Nest/index.md' }
             ]
           },
         ]
       },
-      // {
-      //   text: "前端框架",
-      //   link: "/views/05_高级框架/00_Vue/00_Vue.md",
-      //   activeMatch: "^/05_高级框架/"
-      // },
       {
-        text: "业务场景",
+        text: "Java",
+        link: "/views/05_前端框架/00_Vue/00_Vue.md",
+        activeMatch: "^/05_前端框架/"
+      },
+      {
+        text: "数据库",
+        link: "/views/01_数据库/01_mysql/04_查.md",
+        activeMatch: "^/views/01_数据库/"
+      },
+      {
+        text: "项目实战",
         link: "/views/06_业务/01_可视化/01_canvas.md",
         activeMatch: "^/views/06_业务/"
       },
       {
-        text: "数据结构和算法",
+        text: "计算机基础",
         link: "/views/09_常见算法/01_数据结构与算法/index.md",
         activeMatch: "^/views/09_常见算法/"
       },
-      {
-        text: "运维部署",
-        link: "/views/08_运维/环境/mac.md",
-        activeMatch: "^/views/08_运维/"
-      },
-      {
-        text: "人工智能",
-        link: "/views/07_AI/01_大语言模型.md",
-        activeMatch: "^/views/07_AI/"
-      }
+      // {
+      //   text: "运维部署",
+      //   link: "/views/08_运维/环境/mac.md",
+      //   activeMatch: "^/views/08_运维/"
+      // },
+      // {
+      //   text: "人工智能",
+      //   link: "/views/07_AI/01_大语言模型.md",
+      //   activeMatch: "^/views/07_AI/"
+      // }
     ],
     sidebar: {
       "/views/00_团队规范文档/": [
@@ -251,14 +247,14 @@ export default defineConfig({
           link: '/views/00_团队规范文档/books.md',
         }
       ],
-      "/views/03_工程搭建/04_工具链/01_babel/": [
+      "/views/03_前端工程/04_工具链/01_babel/": [
         {
           text: 'babel',
-          link: '/views/03_工程搭建/04_工具链/01_babel/01_babel.md',
+          link: '/views/03_前端工程/04_工具链/01_babel/01_babel.md',
         },
         {
           text: 'babel配置文件',
-          link: '/views/03_工程搭建/04_工具链/01_babel/01_babel配置文件.md',
+          link: '/views/03_前端工程/04_工具链/01_babel/01_babel配置文件.md',
         }
       ],
       "/views/02_高级语言/04_标记语言/HTML/": [
@@ -348,50 +344,50 @@ export default defineConfig({
           ]
         },
       ],
-      "/views/03_工程搭建/03_包管理/01_包": [
+      "/views/03_前端工程/03_包管理/01_包": [
         {
           text: '包',
           items: [
 
             {
               text: 'package',
-              link: "/views/03_工程搭建/03_包管理/01_包/00_package.md"
+              link: "/views/03_前端工程/03_包管理/01_包/00_package.md"
             },
             {
               text: '包版本',
-              link: "/views/03_工程搭建/03_包管理/01_包/01_包版本.md"
+              link: "/views/03_前端工程/03_包管理/01_包/01_包版本.md"
             },
             {
               text: '包依赖',
-              link: "/views/03_工程搭建/03_包管理/01_包/02_包依赖.md"
+              link: "/views/03_前端工程/03_包管理/01_包/02_包依赖.md"
             },
             {
               text: '包入口',
-              link: "/views/03_工程搭建/03_包管理/01_包/03_包入口.md"
+              link: "/views/03_前端工程/03_包管理/01_包/03_包入口.md"
             },
             {
               text: '包模块化规范',
-              link: "/views/03_工程搭建/03_包管理/01_包/04_包模块化规范.md"
+              link: "/views/03_前端工程/03_包管理/01_包/04_包模块化规范.md"
             },
             {
               text: '包环境',
-              link: "/views/03_工程搭建/03_包管理/01_包/05_包执行脚本.md"
+              link: "/views/03_前端工程/03_包管理/01_包/05_包执行脚本.md"
             },
             {
               text: '包环境版本',
-              link: "/views/03_工程搭建/03_包管理/01_包/06_包环境版本.md"
+              link: "/views/03_前端工程/03_包管理/01_包/06_包环境版本.md"
             },
             {
               text: '发布npm包',
-              link: "/views/03_工程搭建/03_包管理/01_包/07_发布npm包.md"
+              link: "/views/03_前端工程/03_包管理/01_包/07_发布npm包.md"
             },
             {
               text: '搭建npm私服',
-              link: "/views/03_工程搭建/03_包管理/01_包/08_搭建npm私服.md"
+              link: "/views/03_前端工程/03_包管理/01_包/08_搭建npm私服.md"
             },
             {
               text: '包其他信息',
-              link: "/views/03_工程搭建/03_包管理/01_包/99_包其他信息.md"
+              link: "/views/03_前端工程/03_包管理/01_包/99_包其他信息.md"
             },
           ]
         }
@@ -566,163 +562,163 @@ export default defineConfig({
         },
 
       ],
-      "/views/05_高级框架/01_Koa/": [
+      "/views/05_前端框架/01_Koa/": [
         {
           text: '\<a href="https://koajs.com/" \/\>Koajs\<a\>',
           items: [
             {
               text: "Koa",
-              link: "/views/05_高级框架/01_Koa/index.md",
+              link: "/views/05_前端框架/01_Koa/index.md",
             },
             {
               text: "洋葱圈模型",
-              link: "/views/05_高级框架/01_Koa/02_洋葱圈模型.md",
+              link: "/views/05_前端框架/01_Koa/02_洋葱圈模型.md",
             },
             {
               text: "服务端路由KoaRouter",
-              link: "/views/05_高级框架/01_Koa/03_服务端路由KoaRouter.md",
+              link: "/views/05_前端框架/01_Koa/03_服务端路由KoaRouter.md",
             },
             {
               text: "SpringMVC架构",
-              link: "/views/05_高级框架/01_Koa/04_SpringMVC架构.md",
+              link: "/views/05_前端框架/01_Koa/04_SpringMVC架构.md",
             },
           ]
         }
       ],
-      "/views/05_高级框架/00_Vue/": [
+      "/views/05_前端框架/00_Vue/": [
         {
           text: '\<a href="https://cn.vuejs.org/" \/\>Vuejs\<a\>',
           items: [
             {
               text: "简介",
-              link: "/views/05_高级框架/00_Vue/00_Vue.md"
+              link: "/views/05_前端框架/00_Vue/00_Vue.md"
             },
             {
               text: "响应式数据",
-              link: "/views/05_高级框架/00_Vue/01_响应式数据.md"
+              link: "/views/05_前端框架/00_Vue/01_响应式数据.md"
             },
             {
               text: "模版语法",
-              link: "/views/05_高级框架/00_Vue/02_模版语法.md"
+              link: "/views/05_前端框架/00_Vue/02_模版语法.md"
             },
             {
               text: "依赖注入 provide/inject",
-              link: "/views/05_高级框架/00_Vue/03_依赖注入.md"
+              link: "/views/05_前端框架/00_Vue/03_依赖注入.md"
             },
             {
               text: "计算属性computed",
-              link: "/views/05_高级框架/00_Vue/04_计算属性computed.md"
+              link: "/views/05_前端框架/00_Vue/04_计算属性computed.md"
             },
             {
               text: "监听",
-              link: "/views/05_高级框架/00_Vue/05_监听.md"
+              link: "/views/05_前端框架/00_Vue/05_监听.md"
             },
             {
               text: "异步组件",
-              link: "/views/05_高级框架/00_Vue/06_异步组件.md"
+              link: "/views/05_前端框架/00_Vue/06_异步组件.md"
             },
             {
               text: "07_状态管理1store",
-              link: "/views/05_高级框架/00_Vue/07_状态管理1store.md"
+              link: "/views/05_前端框架/00_Vue/07_状态管理1store.md"
             },
             {
               text: "07_状态管理pinia",
-              link: "/views/05_高级框架/00_Vue/07_状态管理pinia.md"
+              link: "/views/05_前端框架/00_Vue/07_状态管理pinia.md"
             },
             {
               text: "07_状态管理vuex",
-              link: "/views/05_高级框架/00_Vue/07_状态管理vuex.md"
+              link: "/views/05_前端框架/00_Vue/07_状态管理vuex.md"
             },
             {
               text: "前端路由VueRouter",
-              link: "/views/05_高级框架/00_Vue/08_前端路由VueRouter.md"
+              link: "/views/05_前端框架/00_Vue/08_前端路由VueRouter.md"
             },
             {
               text: "09_测试",
-              link: "/views/05_高级框架/00_Vue/09_测试.md"
+              link: "/views/05_前端框架/00_Vue/09_测试.md"
             },
             {
               text: "11_模版引用",
-              link: "/views/05_高级框架/00_Vue/11_模版引用.md"
+              link: "/views/05_前端框架/00_Vue/11_模版引用.md"
             },
             {
               text: "12_生命周期",
-              link: "/views/05_高级框架/00_Vue/12_生命周期.md"
+              link: "/views/05_前端框架/00_Vue/12_生命周期.md"
             },
             {
               text: "性能优化",
-              link: "/views/05_高级框架/00_Vue/13_性能优化.md"
+              link: "/views/05_前端框架/00_Vue/13_性能优化.md"
             },
             {
               text: "14_组合式API",
-              link: "/views/05_高级框架/00_Vue/14_组合式API.md"
+              link: "/views/05_前端框架/00_Vue/14_组合式API.md"
             },
             {
               text: "响应式系统",
-              link: "/views/05_高级框架/00_Vue/15_响应式系统.md"
+              link: "/views/05_前端框架/00_Vue/15_响应式系统.md"
             },
             {
               text: "模版渲染机制",
-              link: "/views/05_高级框架/00_Vue/16_模版渲染机制.md"
+              link: "/views/05_前端框架/00_Vue/16_模版渲染机制.md"
             },
             {
               text: "渲染函数",
-              link: "/views/05_高级框架/00_Vue/17_渲染函数.md"
+              link: "/views/05_前端框架/00_Vue/17_渲染函数.md"
             },
             {
               text: "web-components和vue-components",
-              link: "/views/05_高级框架/00_Vue/18_web-components和vue-components.md"
+              link: "/views/05_前端框架/00_Vue/18_web-components和vue-components.md"
             },
             {
               text: "组合式函数hooks",
-              link: "/views/05_高级框架/00_Vue/19_组合式函数hooks.md"
+              link: "/views/05_前端框架/00_Vue/19_组合式函数hooks.md"
             },
 
             {
               text: "组件",
-              link: "/views/05_高级框架/00_Vue/20_组件.md"
+              link: "/views/05_前端框架/00_Vue/20_组件.md"
             },
             {
               text: "自定义指令",
-              link: "/views/05_高级框架/00_Vue/21_自定义指令.md"
+              link: "/views/05_前端框架/00_Vue/21_自定义指令.md"
             },
             {
               text: "插件",
-              link: "/views/05_高级框架/00_Vue/22_插件.md"
+              link: "/views/05_前端框架/00_Vue/22_插件.md"
             },
 
 
             {
               text: "v-bind和props",
-              link: "/views/05_高级框架/00_Vue/23_v-bind和props.md"
+              link: "/views/05_前端框架/00_Vue/23_v-bind和props.md"
             },
             {
               text: "v-on和emit",
-              link: "/views/05_高级框架/00_Vue/24_v-on和emit.md"
+              link: "/views/05_前端框架/00_Vue/24_v-on和emit.md"
             },
             {
               text: "v-for列表渲染",
-              link: "/views/05_高级框架/00_Vue/25_v-for列表渲染.md"
+              link: "/views/05_前端框架/00_Vue/25_v-for列表渲染.md"
             },
             {
               text: "25_v-model",
-              link: "/views/05_高级框架/00_Vue/25_v-model.md"
+              link: "/views/05_前端框架/00_Vue/25_v-model.md"
             },
             {
               text: "样式穿透",
-              link: "/views/05_高级框架/00_Vue/27_样式穿透.md"
+              link: "/views/05_前端框架/00_Vue/27_样式穿透.md"
             },
 
           ]
         },
       ],
-      "/views/03_工程搭建/03_包管理/00_模块": [
+      "/views/03_前端工程/03_包管理/00_模块": [
         {
           text: '\<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Modules" \/\>ESM\<a\>',
           items: [
             {
               text: 'es module',
-              link: "/views/03_工程搭建/03_包管理/00_模块/00_ESM.md"
+              link: "/views/03_前端工程/03_包管理/00_模块/00_ESM.md"
             },
           ]
         },
@@ -731,87 +727,87 @@ export default defineConfig({
           items: [
             {
               text: 'Commonjs',
-              link: "/views/03_工程搭建/03_包管理/00_模块/01_Commonjs.md"
+              link: "/views/03_前端工程/03_包管理/00_模块/01_Commonjs.md"
             }
           ]
         }
       ],
-      "/views/05_高级框架/05_Nestjs/": [],
-      "/views/05_高级框架/04_Electron/": [
+      "/views/05_前端框架/05_Nestjs/": [],
+      "/views/05_前端框架/04_Electron/": [
         {
           text: '\<a href="https://www.electronjs.org/zh/docs/latest/" \/\>Electronjs\<a\>',
           items: [
             {
               text: "electron",
-              link: "/views/05_高级框架/04_Electron/electron.md"
+              link: "/views/05_前端框架/04_Electron/electron.md"
             },
           ]
         }
       ],
-      "/views/03_工程搭建/04_构建器/01_Webpack/": [
+      "/views/03_前端工程/04_构建器/01_Webpack/": [
         {
           text: '\<a href="https://webpack.docschina.org/concepts/" \/\>Webpack\<a\>',
           items: [
             {
               text: "webpack",
-              link: "/views/03_工程搭建/04_构建器/01_Webpack/00_webpack.md"
+              link: "/views/03_前端工程/04_构建器/01_Webpack/00_webpack.md"
             },
             {
               text: "打包入口",
-              link: "/views/03_工程搭建/04_构建器/01_Webpack/01_打包入口.md"
+              link: "/views/03_前端工程/04_构建器/01_Webpack/01_打包入口.md"
             },
             {
               text: "简介",
-              link: "/views/03_工程搭建/04_构建器/01_Webpack/01_简介.md"
+              link: "/views/03_前端工程/04_构建器/01_Webpack/01_简介.md"
             },
             {
               text: "入口出口",
-              link: "/views/03_工程搭建/04_构建器/01_Webpack/01_入口出口.md"
+              link: "/views/03_前端工程/04_构建器/01_Webpack/01_入口出口.md"
             },
             {
               text: "处理vue文件",
-              link: "/views/03_工程搭建/04_构建器/01_Webpack/02_处理vue文件.md"
+              link: "/views/03_前端工程/04_构建器/01_Webpack/02_处理vue文件.md"
             },
             {
               text: "处理js文件",
-              link: "/views/03_工程搭建/04_构建器/01_Webpack/03_处理js文件.md"
+              link: "/views/03_前端工程/04_构建器/01_Webpack/03_处理js文件.md"
             },
             {
               text: "处理样式文件",
-              link: "/views/03_工程搭建/04_构建器/01_Webpack/04_处理样式文件.md"
+              link: "/views/03_前端工程/04_构建器/01_Webpack/04_处理样式文件.md"
             },
             {
               text: "处理图片资源",
-              link: "/views/03_工程搭建/04_构建器/01_Webpack/05_处理图片资源.md"
+              link: "/views/03_前端工程/04_构建器/01_Webpack/05_处理图片资源.md"
             },
             {
               text: "处理html资源",
-              link: "/views/03_工程搭建/04_构建器/01_Webpack/06_处理html资源.md"
+              link: "/views/03_前端工程/04_构建器/01_Webpack/06_处理html资源.md"
             },
             {
               text: "devServer",
-              link: "/views/03_工程搭建/04_构建器/01_Webpack/07_devServer.md"
+              link: "/views/03_前端工程/04_构建器/01_Webpack/07_devServer.md"
             },
 
             {
               text: "SourceMap",
-              link: "/views/03_工程搭建/04_构建器/01_Webpack/10_SourceMap.md"
+              link: "/views/03_前端工程/04_构建器/01_Webpack/10_SourceMap.md"
             },
             {
               text: "TreeShaking",
-              link: "/views/03_工程搭建/04_构建器/01_Webpack/04_TreeShaking.md"
+              link: "/views/03_前端工程/04_构建器/01_Webpack/04_TreeShaking.md"
             },
             {
               text: "Loader",
-              link: "/views/03_工程搭建/04_构建器/01_Webpack/06_Loader加载器.md"
+              link: "/views/03_前端工程/04_构建器/01_Webpack/06_Loader加载器.md"
             },
             {
               text: "军哥webpack",
-              link: "/views/03_工程搭建/04_构建器/01_Webpack/军哥webpack.md"
+              link: "/views/03_前端工程/04_构建器/01_Webpack/军哥webpack.md"
             },
             {
               text: "Babel",
-              link: "/views/03_工程搭建/04_构建器/01_Webpack/05_Babel.md"
+              link: "/views/03_前端工程/04_构建器/01_Webpack/05_Babel.md"
             }
           ]
         },

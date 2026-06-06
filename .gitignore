@@ -34,7 +34,7 @@ coverage/
 *.local
 *.cache
 *.tmp 
-**/.vitepress/cache 
+**/.vitepress/cache/
 
 # Git
 .git/ 
