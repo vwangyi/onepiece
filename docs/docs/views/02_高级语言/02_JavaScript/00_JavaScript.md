@@ -1,6 +1,7 @@
 
 <script setup>
 import { ref } from 'vue'; 
+
 </script>
 
 # JavaScript核心概念  
@@ -58,6 +59,51 @@ document.DOMContentLoaded = () => {} 加载完整个DOM树后触发
 window.load = () => {} // img css js 等资源加载完毕 触发
 window.beforeunload = () => {} 用户离开页面前触发
 window.unload = () => {} 用户离开页面后触发
+
+
+核心概念
+this指向
+面向对象：封装 继承 多态
+原型 原型链
+作用域 作用域链
+预编译 执行上下文 执行上下文栈
+闭包 Closure
+垃圾回收
+高阶函数
+运算符规则 表达式 类型转换
+属性描述符
+代理和反射
+promies手写
+剩余参数 扩展运算符
+解构
+es module
+箭头函数
+类 
+生成器 迭代器 迭代协议
+符号 
+集合类型
+类型化数组
+
+作用域和作用域链
+
+ 
+
+作用域（Scope）是变量可以在哪个范围内使用
+全局作用域：是在函数外声明的变量
+函数作用域：是函数内声明的变量
+块级作用域：是花括号内声明的变量 比如 if for 对象的花括号不算  （es6新增
+
+for (let i = 0; i < 3; i++) {
+    setTimeout(() => console.log(i), 100);  // 打印 3, 3, 3
+}
+
+作用域链（Scope Chain）是使用变量时 先找当前作用域 在找向外层作用域查找 直到全局作用域，最终找不到就报错未定义。
+词法作用域（Lexical Scope）是函数定义时就确定了  词法作用域为什么叫词法作用域
+函数的this是 函数调用时才确定 
+let const 是块级作用域  
+var是函数作用域
+
+
 
 ## `原型 原型链`
 ```txt

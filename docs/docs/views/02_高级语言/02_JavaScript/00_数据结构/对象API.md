@@ -1,5 +1,4 @@
-# Object
-- js对象是一个无序的键值对集合，键只能是string或symbol，值可以是任意类型。
+
 
 
 
@@ -13,12 +12,10 @@
 
 ## 创建对象
 ```js
-const obj = {}; // 底层也是 new Object()
+
+const obj = {}; // 字面量创建 底层也是 new Object()
 const obj = new Object();
-const obj = Object.create({a:1}); // 指定原型对象 obj.__proto__ >>> {a:1}    Object.create 用来实现继承
-// Object.create方法 内部做了  实例对象的__proto__ 指向 其构造函数的prototype 
-
-
+const obj = Object.create({a:1});  
 
 ```
 
