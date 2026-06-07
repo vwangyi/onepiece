@@ -1,36 +1,4 @@
 
-## js数据类型
-```cpp
-// string number boolean null undefined Bigint Symbol
-
-js中只有8种数据类型：7个基础类型 一个引用类型
-
-7个基础类型: string number boolean null undefined Bigint Symbol
-1个引用类型: Object 
-
- 
-
-类型
-Number                  =>  typeof 0 // 'number'
-String                  =>  typeof 'hello' // 'string'
-Boolean                 =>  typeof true // 'boolean'
-Symbol                  =>  typeof Symbol() // 'symbol'
-BigInt                  =>  typeof 1n // 'bigint'
-Undefined               =>  typeof undefined // 'undefined'
-Null                    =>  typeof null // 'object'
-
-Object                  =>  typeof {} // 'object'    
-Object                  =>  typeof function(){} // 'function'
-
-
-用typeof判断数据类型  大部分和类名是一样的 
-但 null的数据类型是 'object' 这是作者自己承认一个设计缺陷
-函数的typeof 是 'function' 其他对象的typeof 都是 'object'
-
-
-
-
-
 文本数据类型 比如 String Number Boolean Null Undefined Symbol BigInt
 图片数据类型 比如 ImageData Image
 音频数据类型 比如 AudioContext AudioBufferSourceNode
