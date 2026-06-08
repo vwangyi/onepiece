@@ -6,6 +6,19 @@
 
 - 创建数字
 
+// number类型的字面量 
+const number = [
+  1, // number
+  1.0, // number
+  0, // number
+  -1.0, // number
+  -2, // number
+  NaN, // number
+  -Infinity, // number
+  +Infinity, // number
+  010, // number
+  0x10, // number 
+];
 
 ## 创建数字
 ```js 

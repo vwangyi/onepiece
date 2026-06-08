@@ -1,6 +1,25 @@
 # 字符串 String 
 
 
+// string类型的字面量
+const string = [
+  '', // string
+  'hello', // string
+  '我', // string
+  '1', // string
+  '0', // string
+  'true', // string
+  'false', // string
+  'null', // string
+  'undefined', // string
+  'NaN', // string
+  '-Infinity', // string
+  '+Infinity', // string
+  'hello \' world', // string
+  '\'', // string
+];
+
+
 
 ## 创建字符串 
 ```js  

@@ -237,6 +237,7 @@ export default defineConfig({
       // }
     ],
     sidebar: {
+ 
       "/views/00_团队规范文档/": [
         {
           text: '前端开发规范',
@@ -306,32 +307,46 @@ export default defineConfig({
 
       ],
       "/views/02_高级语言/02_JavaScript/": [
+        // {
+        //   text: '核心概念',
+        //   link: "/views/02_高级语言/02_JavaScript/00_JavaScript.md"
+        // },
         {
-          text: '核心概念',
-          link: "/views/02_高级语言/02_JavaScript/00_JavaScript.md"
-        },
-        {
-          text: '\<a href="https://cn.vuejs.org/" \/\>变量\<a\>',
+          text: '\<a href="https://cn.vuejs.org/" \/\>核心概念\<a\>',
           items: [
             {
-              text: '变量声明',
-              link: "/views/02_高级语言/02_JavaScript/01_变量声明.md"
+              text: '变量/数据',
+              link: "/views/02_高级语言/02_JavaScript/02_变量.md"
+            },  
+            {
+              text: '函数/方法',
+              link: "/views/02_高级语言/02_JavaScript/03_函数.md"
+            }, 
+            {
+              text: '面向对象',
+              link: "/views/02_高级语言/02_JavaScript/04_面向对象.md"
             },
             {
-              text: '数据类型',
-              link: "/views/02_高级语言/02_JavaScript/02_数据类型.md"
+              text: '异步编程',
+              link: "/views/02_高级语言/02_JavaScript/05_异步编程.md"
+            },
+            {
+              text: '浏览器环境',
+              link: "/views/02_高级语言/02_JavaScript/06_浏览器环境.md"
             },
           ]
-        },
+        },    
+
         {
-          text: '\<a href="https://cn.vuejs.org/" \/\>函数\<a\>',
+          text: '\<a href="https://cn.vuejs.org/" \/\>API\<a\>',
           items: [
             {
-              text: '函数声明',
-              link: "/views/02_高级语言/02_JavaScript/01_函数声明.md"
-            },
+              text: 'array',
+              link: "/views/02_高级语言/02_JavaScript/00_API/array.md"
+            },   
           ]
-        }
+        },  
+
       ],
       "/views/02_高级语言/03_TypeScript/": [
         {
