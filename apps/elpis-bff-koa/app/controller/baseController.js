@@ -3,7 +3,22 @@ class BaseController {
    * controller 基类
    * 统一书写 controller 相关的公共方法
    */
-  constructor() {}
+  constructor() {
+    this.bindAllMethodsThis();
+  }
+  /**
+   * 统一处理所有子类方法的 this 指向
+   */
+  bindAllMethodsThis() {
+    // 获取当前实例的实际类（子类）
+    const currentClass = this.constructor;
+    const methods = Object.getOwnPropertyNames(currentClass.prototype);
+    methods.forEach(v => {
+      if (typeof this[v] === 'function' && v !== 'constructor') {
+        this[v] = this[v].bind(this);
+      }
+    });
+  }
 
   /**
    * 处理接口成功情况  响应给前端的数据结构

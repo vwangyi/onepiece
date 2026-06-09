@@ -105,26 +105,6 @@ var是函数作用域
 
 
 
-## `原型 原型链`
-```txt
-是什么
-原型就是 每个实例对象都有 `__proto__` 每个构造函数都有 `prototype`
-原型链是 实例对象的`__proto__` 指向 其构造函数的`prototype`
-         __proto__ 和 prototype的关系就是原型链的关系。
-
-优缺点
-原型链的好处是 节约内存。因为所有实例对象的方法都统一放在 其构造函数的prototype上 共享
-    不管创建多少实例对象都不会浪费内存
-缺点是访问不存在的成员时，仍然会遍历整个原型链，性能差。
-
-讲应用
-应用场景 实现继承 扩展类库、共享方法
-当访问对象某个成员时，先看自身有没有，在通过 __proto__ 看 其构造函数的prototype上有没有，
-    一直向上找 直到 Object.prototype.__proto__ ===  null 就返回undefined
-比如，可以在 Vue的原型上 挂载 字典方法，请求方法。每个页面可以共享这个方法 
-Vue.prototype.$t = function () {} 
-Vue.prototype.axios = function() {}
-```
 ## `作用域 作用域链`
 ## `new操作符`
 ## `this指向`

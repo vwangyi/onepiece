@@ -316,23 +316,23 @@ export default defineConfig({
           items: [
             {
               text: '变量/数据',
-              link: "/views/02_高级语言/02_JavaScript/02_变量.md"
+              link: "/views/02_高级语言/02_JavaScript/00_核心概念/02_变量.md"
             },  
             {
               text: '函数/方法',
-              link: "/views/02_高级语言/02_JavaScript/03_函数.md"
+              link: "/views/02_高级语言/02_JavaScript/00_核心概念/03_函数.md"
             }, 
             {
               text: '面向对象',
-              link: "/views/02_高级语言/02_JavaScript/04_面向对象.md"
+              link: "/views/02_高级语言/02_JavaScript/00_核心概念/04_面向对象.md"
             },
             {
               text: '异步编程',
-              link: "/views/02_高级语言/02_JavaScript/05_异步编程.md"
+              link: "/views/02_高级语言/02_JavaScript/00_核心概念/05_异步编程.md"
             },
             {
               text: '浏览器环境',
-              link: "/views/02_高级语言/02_JavaScript/06_浏览器环境.md"
+              link: "/views/02_高级语言/02_JavaScript/00_核心概念/06_浏览器环境.md"
             },
           ]
         },    

@@ -1,6 +1,10 @@
 import userService from '../service/userService.js';
+import BaseController from './baseController.js';
 
-class UserController {
+class UserController extends BaseController {
+  constructor() {
+    super();
+  }
   /**
    * 获取用户列表接口
    * GET /api/users?page=1&limit=10
