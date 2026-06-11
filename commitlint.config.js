@@ -72,11 +72,11 @@ export default {
     ],
     scopes: [
       'root',
-      'vue',
       'koa',
-      'docs',
       'nest',
-      'admin',
+      'docs',
+      'vue',
+      'vue2-webpack',
       'cli',
       'disign',
       'utils'
