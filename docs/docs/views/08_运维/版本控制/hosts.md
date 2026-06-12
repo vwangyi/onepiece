@@ -10,8 +10,8 @@
 ```bash 
 sudo vim /etc/hosts  # 1. 进入编辑: 按 `i`进入编辑   2. 保存: 按 `Esc`，输入 `:wq`，回车。
 
-sudo dscacheutil -flushcache # 刷新DNS缓存
-sudo killall -HUP mDNSResponder # 刷新DNS缓存
+sudo killall -HUP mDNSResponder # 刷新DNS缓存  用这个就行
+sudo dscacheutil -flushcache # 刷新DNS缓存 
 ```
 ## 访问github 验证是否生效 
 - 打开浏览器访问 `https://github.com`。
