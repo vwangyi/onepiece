@@ -6,6 +6,25 @@
     <title>Document</title>
   </head>
   <body>
+    <div id="app" style="width: 100px; height: 100px"></div>
     <script src="./demo1.js"></script>
+    <script>
+      const app = document.getElementById('app');
+      app.style.backgroundColor = 'red';
+      Promise.resolve().then(() => {
+        console.log('then');
+        let now = +new Date();
+        while (+new Date() - now <= 2000) {}
+      });
+      requestAnimationFrame(() => {
+        console.log('requestAnimationFrame');
+        requestIdleCallback(() => {
+          console.log('requestIdleCallback');
+        });
+        setTimeout(() => {
+          console.log('setTimeout');
+        });
+      });
+    </script>
   </body>
 </html>
