@@ -1,4 +1,4 @@
-@import url("./assets/css/font-face.css");
+@import url('./assets/css/font-face.css');
 *,
 *::before,
 *::after {
@@ -17,7 +17,7 @@
   --gray2: #585656;
   --black: #252525;
   --fontColor: #f1c8cf;
-  --fontName: "Poppins", sans-serif;
+  --fontName: 'Poppins', sans-serif;
 }
 
 html {
@@ -61,4 +61,3 @@ img {
 .slide-back-enter-to {
   transform: translateX(0);
 }
-
