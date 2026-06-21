@@ -1,17 +1,22 @@
 {
-  "name": "elpis-electron",
-  "version": "1.0.0",
-  "description": "",
+  "name": "elpis-vue3-electron",
+  "private": true,
+  "version": "0.0.0",
   "type": "module",
-  "main": "main.js",
   "scripts": {
-    "dev": "electron ./main.js"
+    "dev": "nodemon --exec vite --watch ./src/ --ext .js",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "packageManager": "pnpm@10.17.1",
+  "dependencies": {
+    "amplitudejs": "^5.3.2",
+    "vue": "^3.5.34"
+  },
   "devDependencies": {
-    "electron": "^42.2.0"
+    "@vitejs/plugin-vue": "^6.0.6",
+    "electron": "^42.2.0",
+    "esbuild": "^0.28.1",
+    "vite": "^8.0.12",
+    "vite-plugin-optimizer": "^1.4.3"
   }
 }
