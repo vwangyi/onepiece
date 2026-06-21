@@ -23,7 +23,8 @@ const ignores = [
   'apps/elpis-bff-koa',
   'scripts',
   'apps/demo',
-  'docs'
+  'docs',
+  'demo/*'
 ];
 const rules = {
   '@typescript-eslint/no-require-imports': 'off', // 使用require函数
