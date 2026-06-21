@@ -3,5 +3,5 @@ packages:
   - 'docs'
   - 'packages/*'
   # 排除 apps/demo 这个包
-  - '!apps/demo'
+  - '!**/demo/**'
   - '!apps/elpis-babel'
