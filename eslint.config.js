@@ -14,17 +14,14 @@ const ignores = [
   '.*',
   '.vscode',
   'docs',
-  'apps/elpis-vue3-webpack',
-  'apps/elpis-vue3-vite',
-  'apps/elpis-vue3-electron',
-  'apps/elpis-vue',
-  'apps/elpis-demo',
-  'apps/elpis-bff-nest',
-  'apps/elpis-bff-koa',
   'scripts',
-  'apps/demo',
   'docs',
-  'demo/*'
+  'demo/*',
+
+  'apps/elpis-bff-koa',
+  'apps/elpis-vue3-electron',
+  'apps/elpis-vue3-vite',
+  'apps/elpis-vue3-webpack'
 ];
 const rules = {
   '@typescript-eslint/no-require-imports': 'off', // 使用require函数
