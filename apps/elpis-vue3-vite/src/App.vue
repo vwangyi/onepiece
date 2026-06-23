@@ -1,33 +1,91 @@
-<script setup lang="ts">
-import { provide, ref } from 'vue';
-import { useCounterStore } from '@/stores/counter.ts';
-
-const counterStore = useCounterStore();
-const list = ref(1);
-
-provide('list', list);
-
-// 1. 重载签名（多个）
-function greet(name: string): string;
-function greet(age: number): string;
-
-// 2. 实现签名（一个）
-function greet(value: string | number): string {
-  if (typeof value === 'string') {
-    return `Hello, ${value}`;
-  } else {
-    return `Age: ${value}`;
-  }
-}
-
-// 使用
-greet('Alice'); // 正确
-greet(25); // 正确
-// greet(true); // 错误：参数类型不匹配
+<script setup>
+import { RouterLink, RouterView } from 'vue-router';
+import HelloWorld from './components/HelloWorld.vue';
 </script>
 
 <template>
-  <CompoA :list="[counterStore.count]" />
+  <header>
+    <img
+      alt="Vue logo"
+      class="logo"
+      src="@/assets/logo.svg"
+      width="125"
+      height="125"
+    />
+
+    <div class="wrapper">
+      <HelloWorld msg="You did it!" />
+
+      <nav>
+        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/about">About</RouterLink>
+      </nav>
+    </div>
+  </header>
+
+  <RouterView />
 </template>
 
-<style scoped></style>
+<style scoped>
+header {
+  line-height: 1.5;
+  max-height: 100vh;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto 2rem;
+}
+
+nav {
+  width: 100%;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+nav a.router-link-exact-active {
+  color: var(--color-text);
+}
+
+nav a.router-link-exact-active:hover {
+  background-color: transparent;
+}
+
+nav a {
+  display: inline-block;
+  padding: 0 1rem;
+  border-left: 1px solid var(--color-border);
+}
+
+nav a:first-of-type {
+  border: 0;
+}
+
+@media (min-width: 1024px) {
+  header {
+    display: flex;
+    place-items: center;
+    padding-right: calc(var(--section-gap) / 2);
+  }
+
+  .logo {
+    margin: 0 2rem 0 0;
+  }
+
+  header .wrapper {
+    display: flex;
+    place-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  nav {
+    text-align: left;
+    margin-left: -1rem;
+    font-size: 1rem;
+
+    padding: 1rem 0;
+    margin-top: 1rem;
+  }
+}
+</style>

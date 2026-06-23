@@ -1,7 +1,11 @@
 {
-  "import": ["@cspell/dict-lorem-ipsum/cspell-ext.json"],
+  "import": [
+    "@cspell/dict-lorem-ipsum/cspell-ext.json"
+  ],
   "caseSensitive": false,
-  "dictionaries": ["custom-dictionary"],
+  "dictionaries": [
+    "custom-dictionary"
+  ],
   "dictionaryDefinitions": [
     {
       "name": "custom-dictionary",
@@ -30,7 +34,8 @@
     "cspell.json",
     "commitlint.config.js",
     ".cspell",
-    "apps",
-    "demo/*"
+    ".vscode",
+    "demo/*",
+    "apps"
   ]
 }
