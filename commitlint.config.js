@@ -35,49 +35,42 @@ export default {
     types: [
       {
         value: 'feat',
-        name: '✨ 新功能: 新增功能'
+        name: '✨ 1. 新增功能: feat'
       },
-      {
-        value: 'fix',
-        name: '🐛 修复: 修复缺陷'
-      },
-      {
-        value: 'docs',
-        name: '📚 文档: 更新文档'
-      },
+      { value: 'fix', name: '🐛 2. 修复缺陷: fix' },
+      { value: 'docs', name: '📚 3. 更新文档: docs' },
       {
         value: 'refactor',
-        name: '📦 重构: 代码重构(不新增功能也不修复bug)'
+        name: '📦 3. 代码重构(不新增功能也不修复bug): refactor'
       },
       {
         value: 'perf',
-        name: '🚀 性能: 提升性能'
+        name: '🚀 4. 提升性能: perf'
       },
       {
         value: 'test',
-        name: '🧪 测试: 添加测试'
+        name: '🧪 5. 添加测试: test'
       },
       {
         value: 'chore',
-        name: '🔧 工具: 更改构建流程或辅助工具'
+        name: '🔧 6. 杂活(更改构建流程或辅助工具): chore'
       },
       {
         value: 'revert',
-        name: '⏪ 回滚: 代码回滚'
+        name: '⏪ 7. 代码回滚: revert'
       },
       {
         value: 'style',
-        name: '🎨 样式: 格式调整（不影响代码运行）'
+        name: '🎨 8. 样式调整(不影响代码运行): style'
       }
     ],
     scopes: [
       'root',
       'koa',
-      'nest',
       'docs',
-      'vue',
-      'vue2-webpack',
-      'cli',
+      'vue3-vite',
+      'vue3-webpack',
+      'demo',
       'disign',
       'utils'
     ],

@@ -12,13 +12,13 @@ yarn-error.log*
 pnpm-debug.log*
 
 # IDE
-# .vscode/
 .idea/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+# .vscode/
 
 # OS
 .DS_Store

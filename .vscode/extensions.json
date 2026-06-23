@@ -1,3 +1,17 @@
 {
-  "recommendations": ["Vue.volar"]
+  "recommendations": [
+    // Vue 相关
+    "Vue.volar",
+    "Vue.vscode-typescript-vue-plugin",
+    // AI 编程助手
+    "GitHub.copilot",
+    "GitHub.copilot-chat",
+    // 其他常用工具
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "bradlc.vscode-tailwindcss",
+    "tabnine.tabnine-vscode", // Tabnine
+    "ms-vscode.vscode-ai-assistant", // 微软 AI
+    "amazonwebservices.aws-toolkit-vscode" // AWS CodeWhisperer
+  ]
 }
