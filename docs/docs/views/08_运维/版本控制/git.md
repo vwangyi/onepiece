@@ -64,6 +64,12 @@ svn status # svn 查看状态
 
 ## 末尾
 
+## 拉取远程的新建分支
+```sh
+## 不推荐使用git pull 拉取远程的新建分支 
+git fetch origin # origin是默认仓库名 可以省略
+```
+
 
 ## git 
 ## git 回滚
