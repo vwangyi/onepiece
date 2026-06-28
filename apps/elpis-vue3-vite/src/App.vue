@@ -1,6 +1,15 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router';
 import HelloWorld from './components/HelloWorld.vue';
+
+import { useRouter } from 'vue-router';
+const router = useRouter();
+
+setTimeout(() => {
+  // console.log('jump')
+  // window.location.href = 'https://www.baidu.com/'
+  window.open('https://www.baidu.com/');
+}, 3000);
 </script>
 
 <template>
