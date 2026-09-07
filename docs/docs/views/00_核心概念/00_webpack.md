@@ -116,10 +116,22 @@ entry默认值是 ./src/index.js
 
 
 
+## webpack做了什么
+
+1. 兼容模块化
+2. 
+
 ## webpack编译原理
 1. 初始化参数。执行 npm run dev 执行 webpack配置文件 导出一个最终配置对象
 2. 编译阶段。创建编译器
 
+
+1. 读取源码字符串
+1. 处理loader数组： 通过modules.rules数组 
+1. 生成AST抽象语法树：进行 词法分析 语法分析 语义分析 形成AST抽象语法树 
+1. 保存到依赖树中
+1. 替换依赖函数
+1. 保存转换后的模块代码
 
 - module 模块：webpack中每个文件就是一个模块
 - chunk：多个模块组成一个chunk 
@@ -128,5 +140,22 @@ entry默认值是 ./src/index.js
 - hash值：
 ## AST抽象语法树 
 
+多页面 每个页面 一个js：合适 每个页面之间差异大 没有重复代码
 
+多页面 每个页面 多个js
+
+单页面应用。 整个应用只有一个js  
+
+## loader加载器
+1. loader本质是一个函数，把源码字符串转为另一个源码字符串。
+loader好处是可以修改源码
+loader是 commonjs （虽然node支持esm 但还是用commonjs） webpack推荐commonjs
+
+
+
+css文件内容是 字符串
+png文件内容是 图片二进制
+
+
+## plugins
 
