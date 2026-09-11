@@ -1,37 +1,4 @@
-
-
-## 临时
-```js
-const webpack = require('webpack');
-const webpackConfig = {
-    entry: '',
-    output: {},
-    module: {}, // loader 加载器
-
-    resolve: {}, // 
-    plugins: [], // 配置插件 
-    optimization: {}, // 代码分割 输出优化 模块合并 缓存 treeshaking 代码压缩
-}
-
-webpack(webpackConfig, (err, stats) => {
-    if (err) throw err;
-
-    const result = stats.toString({ 
-        colors: true, // 控制台输出色彩信息
-        modules: false, // 不显示每个模块的打包信息
-        children: false, // 不显示子编译任务的信息
-        chunks: false, // 不显示每个代码块的信息
-        chunkModules: true, // 显示代码块中模块的信息  
-    }); 
-
-    process.stdout.write(`${result}`)
-})
-
-```
  
-
- 
-
 ## 把vue挂载window上
 ```js 
 const webpack = require("webpack"); 

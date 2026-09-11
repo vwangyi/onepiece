@@ -4,35 +4,44 @@
 路径别名是 通过resolve.alias 设置配置对象。key是@ value是src路径，表示 @映射为src路径
  比如 @: path.resolve(__dirname, 'src')
 
-resolve.extensions: ['.js'] 可以省略后缀 
+resolve.extensions: ['.vue', '.js'] 可以省略后缀 
 
-## 开发服务器
-开发服务器就是 开发环境下本地启动服务，  需要下载webpack-dev-server webpack-cli webpack库 
+```js
+module.exports = {
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname, 'src'),
+        },
+        extensions: ['.vue']
+    }
+}
+```
+## 搭建开发服务器
+开发服务器就是 开发环境下本地启动服务，需要下载webpack-dev-server webpack-cli webpack库 
 通过 npx webpack serve 启动 
 通过 devServer 有默认值 是可选配置
 
 
-## history路由 
-开发环境中 webpack5配置devServer.historyApiFallback为true
-生产环境  nginx中配置 xxx 
-
+通过 devServer.proxy 设置代理服务器 解决跨域问题
+通过 devServer.historyApiFallback为true 设置history路由
+通过 devServer.hot 为true开启 hmr热膜替换 
 
 ## HMR原理 热膜替换
-
 hmr是什么
+- devServer 监控能力 用webpack-dev-middleware 中间件实现 监控业务文件是否修改
+- devServer 通知能力 用webpack-hot-middleware 中间件实现 通知页面重新请求最新的资源
+- 内存：不会物理输出到磁盘 而是在内存中（更新内存 比 更新磁盘更快）
 
-webpack5配置devServer.hot为true
 
 
 ## 跨域问题
 
 1. webpack5配置 devServer.proxy 数组 ,比如包含 /api开头的请求都走代理
 
-## 源码映射
+## SourceMap 源码映射
 通过devtool配置，devtool: 'eval-cheap-module-source-map',
-
-开发环境使用 生产环境少用 容易泄漏源码 
-
+缺点是对构建速度有一定影响 生产环境注意安全泄漏一般上传异常监控服务器 
+好处是 快速定位源码错误的行列信息。
 
 ## 代码分割
 
@@ -79,9 +88,12 @@ webpack5配置devServer.hot为true
 - CDN 
 
 
+ 
+## treeShaking是什么
+treeShaking是树摇优化，通过移除没有使用的代码 来减少代码体积。
+webpack5中 通过设置optimization.usedExports 为true 来开启树摇优化，true也是默认值。
 
-## 树摇 tree shaking
-默认开启
+通过esm来判断有没有使用。
 
 
 
@@ -91,7 +103,7 @@ babel-loader
 
 
 
-## webpack
+## webpack是什么
 webpack时基于Nodejs的构建工具 像一个编译器，把开发时态的业务代码 编译为 运行时态的产物代码，最终可以让浏览器直接运行。
 
 
@@ -108,11 +120,64 @@ webpack处理了 比如 模块化兼容性 ，比如 commonjs 导出 用 esm导�
 因为 webpack会处理兼容性，但是建议业务项目中统一用一种esm
 
 
+ webpack是一个静态资源打包工具，
+
+## webpack原理
+
+## webpack构建流程
+大概有3个阶段：初始阶段、编译阶段、输出阶段。
+    ■ 初始阶段
+      ● 通过启动命令 执行 webpack配置文件 创建一个编译器对象
+    ■ 编译阶段
+      ● 从入口文件开始，递归分析所有依赖模块。把项目中的业务文件 通过 loader 编译为 浏览器可识别的文件。
+    ■ 输出阶段
+      ● 把编译后模块 组合成 chunk 把chunk 转化为 bundle ，输出到文件系统中。
+
+
+1. 初始化参数：从配置⽂件和 Shell 语句中读取与合并参数，得出最终的参数；
+2. 开始编译：⽤上⼀步得到的参数初始化 Compiler 对象，加载所有配置的插件，执⾏对象的 run ⽅法开始执⾏编译；
+3. 确定⼊⼝：根据配置中的 entry 找出所有的⼊⼝⽂件；
+4. 编译模块：从⼊⼝⽂件出发，调⽤所有配置的 Loader 对模块进⾏翻译，再找出该模块依赖的模块，再递归本步骤直到所有⼊⼝依赖的⽂件都经过了本步骤的处理；
+5. 完成模块编译：在经过第4步使⽤ Loader 翻译完所有模块后，得到了每个模块被翻译后的最终内容以及它们之间的依赖关系；
+6. 输出资源：根据⼊⼝和模块之间的依赖关系，组装成⼀个个包含多个模块的 Chunk，再把每个 Chunk 转换成⼀个单独的⽂件加⼊到输出列表，这步是可以修改输出内容的最后机会；
+7. 输出完成：在确定好输出内容后，根据配置确定输出的路径和⽂件名，把⽂件内容写⼊到⽂件系统。 
+在以上过程中，Webpack 会在特定的时间点⼴播出特定的事件，插件在监听到感兴趣的事件后会执⾏特定的逻辑，并且插件可以调⽤ Webpack 提供的 API 改变 Webpack 的运⾏结果。
+
+
+## bundle、chunk、module是什么
+- webpack输出的产物文件就是bundle。
+- 静态资源就是 html css js 图片 视频 字体 等等资源文件 
+
+## loader是什么
+
+## plugin是什么
+
+
+
 ## entry
 
 entry默认值是 ./src/index.js
 默认出口是 ./dist/main.js
+ 
 
+- 入口就是从哪个文件开始。
+- 如果是一个入口 entry 就传 string格式的相对路径 
+- 如果是多个入口 entry 就传 
+相对于启动目录 npm run xxx 
+
+-   output.filename： 'bundle.js'
+- output.path: __dirname + '/dist'
+- output.publicPath:'https://cdn.example.com/assets/[fullhash]/',
+- output.publicPath:'' // __webpack_public_path__ = myRuntimePublicPath;
+
+- 
+
+## 问：打包需要足够的硬盘空间
+打包需要充足的硬盘空间 如果没有充足的硬盘空间 会导致打出的包缺少东西 报 Object(...) not a function 
+
+体现是 直接启动源码是可以的 打包出来就少东西 因为直接启动源码不需要硬盘只需要内存
+
+打包出出来是 在内存中 写入到硬盘上
 
 
 
@@ -157,6 +222,19 @@ css文件内容是 字符串
 png文件内容是 图片二进制
 
 
+调用loader函数是 通过配置 module.rules 配置一个对象数组 object[]
+
+test字段为 匹配的正则表达式
+use.loader loader名称
+use.options 参数
+多个loader use就传一个对象数组
+
+loader内部通过this.getOptions()获取参数
+
+应用场景是：解析非js资源时 需要用loader来转换 比如 css png ts vue 等需要对应的loader
+
+按照正常逻辑 用esm 导入一个 非js模块时 模块内部没有esm导出 应该报错 没有报错就是因为loader处理为js了
+
 ## plugins
 
 
@@ -168,5 +246,12 @@ png文件内容是 图片二进制
 水合（Hydration）：把JavaScript逻辑“注入”到已有的静态HTML上，让它“活”过来。
 水合失败：注入js失败就是水合失败
 
+水合就是把js逻辑注入到静态html上，让html活过来。
 
-## 
+
+## 入口文件
+入口文件就是通过 entry字段 配置一个相对路径 比如 './src/index.js' 作为项目的入口进行依赖分析。
+出口文件通过配置 output.path 配置一个绝对路径 比如 path.resolve(__dirname, 'dist') 
+
+## bundle是什么
+

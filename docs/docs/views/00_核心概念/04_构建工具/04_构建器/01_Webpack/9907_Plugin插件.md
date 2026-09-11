@@ -21,31 +21,4 @@ callback()
 ```
 
 
-
-
-
-### 8. 有哪些常见的**Plugin**？
-
-
-+ define-plugin：定义环境变量
-+ html-webpack-plugin：简化html⽂件创建
-+ uglifyjs-webpack-plugin：通过 UglifyES 压缩 ES6 代码
-+ webpack-parallel-uglify-plugin: 多核压缩，提⾼压缩速度
-+ webpack-bundle-analyzer: 可视化webpack输出⽂件的体积
-+ mini-css-extract-plugin: CSS提取到单独的⽂件中，⽀持按需加载
-
-
-
-### 9. **Loader**和**Plugin**的不同？
-**不同的作用：**
-
-+ **Loader**直译为"加载器"。Webpack将⼀切⽂件视为模块，但是webpack原⽣是只能解析js⽂件，如果想将其他⽂件也打包的话，就会⽤到 loader 。 所以Loader的作⽤是让webpack拥有了加载和解析⾮JavaScript⽂件的能⼒。
-+ **Plugin**直译为"插件"。Plugin可以扩展webpack的功能，让webpack具有更多的灵活性。 在 Webpack 运⾏的⽣命周期中会⼴播出许多事件，Plugin 可以监听这些事件，在合适的时机通过 Webpack 提供的 API 改变输出结果。
-
-
-
-**不同的用法：**
-
-+ **Loader**在 module.rules 中配置，也就是说他作为模块的解析规则⽽存在。 类型为数组，每⼀项都是⼀个 Object ，⾥⾯描述了对于什么类型的⽂件（ test ），使⽤什么加载( loader )和使⽤的参数（ options ）
-+ **Plugin**在 plugins 中单独配置。 类型为数组，每⼀项是⼀个 plugin 的实例，参数都通过构造函数传⼊。
-
+ 

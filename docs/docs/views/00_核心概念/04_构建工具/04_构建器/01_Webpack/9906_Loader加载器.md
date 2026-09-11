@@ -124,71 +124,7 @@ module.exports = function(source) {
   }
 }
 ```
-
-使用这个 loader 需要在 webpack 配置中添加：
-
-```javascript
-// webpack.config.js
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.vue$/,
-        use: [
-          'vue-loader',
-          {
-            loader: path.resolve(__dirname, 'auto-import-vue-api-loader.js'),
-            options: {}
-          }
-        ]
-      }
-    ]
-  }
-}
-```
-
-如果你想使用更简单的方法，也可以使用现有的插件：
-
-方案二：使用 unplugin-auto-import
-
-推荐使用社区成熟的方案，更稳定且功能更强大：
-
-```bash
-npm install -D unplugin-auto-import
-```
-
-然后在 webpack 配置中添加：
-
-```javascript
-// webpack.config.js
-const AutoImport = require('unplugin-auto-import/webpack')
-
-module.exports = {
-  plugins: [
-    AutoImport({
-      imports: ['vue'],  // 自动导入 Vue 的 API
-      dts: true,         // 生成 TypeScript 声明文件
-      eslintrc: {
-        enabled: true,   // 生成 .eslintrc-auto-import.json
-      }
-    })
-  ]
-}
-```
-
-这个插件不仅支持 Vue，还支持 React、Vue Router、Pinia 等，并且会自动添加 ESLint 配置，避免报 no-undef 错误。
-
-
-## 手写loader
-
-```js
-// 字符串类型的文件内容
-function bugLoader(content) {
-  console.log(content)
-  return content;
-}
-```
-
+ 
 
 
 业务场景： 3个项目 都要做埋点  一个点一个点埋 要花3个月 我写一个loader 只需要2周 
