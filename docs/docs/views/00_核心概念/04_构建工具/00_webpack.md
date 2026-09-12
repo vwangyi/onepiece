@@ -58,6 +58,8 @@ hmr是什么
 - 按需加载，当用户点击后才加载 通过 调用import()函数
 - 缓存第三方库基建代码 比如 vue antd组件库，业务代码会变动，基建代码不会变动。
 
+- 减少重复代码
+- 利用浏览器缓存
 
 - 多入口 entry: {}
 - 单入口 splitChunks
@@ -74,18 +76,49 @@ hmr是什么
 总结：
     Webpack 代码分割就是把代码拆成多个文件，实现按需加载。主要通过三种方式：多入口配置、SplitChunksPlugin 抽取公共代码、动态 import() 语法。它的核心目的是优化首屏性能、提高缓存利用率。实际项目中，我通常会用动态 import 做路由懒加载，再用 splitChunks 把 node_modules 里的第三方库拆成 vendor 包。
 
+分割策略是什么
 
+
+
+
+代码分割的核心目的是优化首屏加载速度和利用浏览器缓存，避免把所有代码打成一个巨大的 bundle。Webpack5 主要通过以下几种方式实现：
+
+1多入口 entry：手动拆分多个入口文件。
+2动态导入 import()：按需加载，Webpack 自动分割成独立 chunk。
+3SplitChunksPlugin：提取公共依赖，避免重复打包。
+4runtimeChunk：分离 Webpack runtime，利于长期缓存。
+5预获取/预加载：通过魔法注释控制加载优先级。
+6输出文件名使用 contenthash：配合缓存。
+
+文件名使用 contenthash，合理使用浏览器缓存，当文件名改变才重新请求文件，
+
+chunks: 'async'默认异步 和 import 那么设置同步 还可以用import吗
+
+Webpack5 代码分割通过多入口、动态 import()、SplitChunksPlugin、runtimeChunk 和魔法注释等手段，将代码拆分成多个 chunk，按需加载或并行加载，配合 contenthash 和缓存策略，达到优化首屏速度和利用缓存的目的。核心是 optimization.splitChunks 的 cacheGroups 配置。
+
+
+
+## 代码压缩
+
+压缩js：  用terser-webpack-plugin插件   '...'表示默认的terser-webpack-plugin
+压缩css： 用css-minimizer-webpack-plugin插件
+压缩图片：image-minimizer-webpack-plugin 
+
+压缩js和css和图片 在optimization.minimizer数组 里面调用插件
+用MiniCssExtractPlugin.loader 来提取单独css文件
+
+代码压缩通过optimization.minimize 来控制是否打开压缩
+
+Webpack5 通过 optimization.minimize 和 optimization.minimizer 统一管理压缩：生产模式默认用 TerserPlugin 压缩 JS，CSS 需额外加 CssMinimizerPlugin，HTML 用 HtmlWebpackPlugin 的 minify，其他资源用对应插件。压缩在 processAssets 阶段对最终产物进行，支持并行和缓存，开发环境一般关闭。
+
+gzip压缩 好处是传输效率提升 缺点是 服务器和浏览器 压缩和解压都需要时间，webpack预压缩可以减少服务器压缩时间 浏览器仍然需要解压时间
+
+## hash chunkhash contenthash  有什么区别
 文件哈希 
 
-当文件内容一变，文件名的哈希就跟着变，浏览器就需要重新请求整个文件，而 对于 第三方库 不会经常升级修改，用户浏览器不会频繁请求第三方库的代码
+当文件内容一变，文件名的哈希就跟着变，浏览器就需要重新请求整个文件，
+而 对于 第三方库 不会经常升级修改，用户浏览器不会频繁请求第三方库的代码
 
-
-
-## 减少打包体积 
-
-- 按需引入 而不是 全量引入
-
-- CDN 
 
 
  
@@ -148,10 +181,6 @@ webpack处理了 比如 模块化兼容性 ，比如 commonjs 导出 用 esm导�
 - webpack输出的产物文件就是bundle。
 - 静态资源就是 html css js 图片 视频 字体 等等资源文件 
 
-## loader是什么
-
-## plugin是什么
-
 
 
 ## entry
@@ -211,7 +240,9 @@ entry默认值是 ./src/index.js
 
 单页面应用。 整个应用只有一个js  
 
-## loader加载器
+
+
+## loader是什么 
 1. loader本质是一个函数，把源码字符串转为另一个源码字符串。
 loader好处是可以修改源码
 loader是 commonjs （虽然node支持esm 但还是用commonjs） webpack推荐commonjs
@@ -234,11 +265,40 @@ loader内部通过this.getOptions()获取参数
 应用场景是：解析非js资源时 需要用loader来转换 比如 css png ts vue 等需要对应的loader
 
 按照正常逻辑 用esm 导入一个 非js模块时 模块内部没有esm导出 应该报错 没有报错就是因为loader处理为js了
+ 
+## plugin是什么
+plugin本质是带有apply方法的class  ，apply方法可以接收到compiler对象
 
-## plugins
+
+```js
+module.exports = class MyPlugin {
+    apply(compiler) {
+        compiler.hooks.done.tap(name, function(compilation) {
+
+        })
+        compiler.hooks.done.tapPromise(name, async function(compilation) {
+            
+        })
+    }
+}
+```
+
+## webpack性能优化
+1. 打包构建时间性能 （开发阶段需要频繁构建 生产环境只构建一次） 【打包时间】
+    1.1 限制loader匹配范围 include或exclude
+    1.2 loader开启多线程 thread-loader
+    1.3 缓存loader结果 cache-loader
+    1.4 hmr 热替换
+
+2. 网络传输时间性能：（从服务器到浏览器的传输时间。请求次数越少越好 代码体积越少越好、缓存越多越好）【传输时间】
+代码分割、代码压缩、treeShaking、gzip压缩算法、懒加载、缓存后减少请求次数
+- 按需引入 而不是 全量引入。 import() 
+- CDN 
 
 
 
+3. 代码运行时间性能 【渲染时间】 （和写代码有关）
+ 
 
 
 ## 水合
