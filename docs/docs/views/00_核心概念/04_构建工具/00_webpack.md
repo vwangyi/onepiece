@@ -98,6 +98,8 @@ Webpack5 代码分割通过多入口、动态 import()、SplitChunksPlugin、run
 
 
 
+把 node_modules 单独分 是因为 第三方库 很少升级很少改动 每次发布大量是业务代码 node_modules可以缓存
+
 ## 代码压缩
 
 压缩js：  用terser-webpack-plugin插件   '...'表示默认的terser-webpack-plugin
