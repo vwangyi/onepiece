@@ -1,82 +1,26 @@
-# Commonjs
-```js 
+# Commonjs规范
 
-exports.a = 1
-exports.b = function() {};
-
-// 一定不要对 exports 进行赋值 因为exports指向 module.exports   exports = module.exports 
-// 一旦赋值 就切断了引用 export就失去导出的作用了 
-
-
-const a = require('./a.js'); 
+commonjs模块化 本质就是一个函数包裹 函数可以接收 5个参数  exports, require, module, __filename, __dirname
 
 
 
 
-// math.js - 定义模块
-function add(a, b) {
-  return a + b;
-}
+1. 不能对exports赋值 因为exports 指向 module.exports， 对exports赋值就是切断了引用。
 
-function multiply(a, b) {
-  return a * b;
-}
-
-// 导出模块
-module.exports = {
-  add,
-  multiply
-};
-
+导出 
+1. 通过 module.exports = {} 导出，
 // 或者
 exports.add = add;
 exports.multiply = multiply;
-
-// main.js - 使用模块
-const math = require('./math.js');
-console.log(math.add(2, 3)); // 5
-
-// 特性：
-// 1. 同步加载（服务端适用）
-// 2. 模块是对象
-// 3. 每个文件都是一个模块
-// 4. 有缓存机制
-
-```
-
-## commonjs
-```js
-function (exports, require, module, __filename, __dirname) {
-
-}
-Nodejs原生支持 commonjs 和 es module 
-默认采用commonjs ，当使用 esmodule（ import xx from xx ）时， 
-commonjs的module.exports等变量自动失效
-
-
-
-require('path') // 引入模块
-
-exports.xxx = {}; // 导出 xxx 对象  exports指向module.exports 所以不能对exports重新赋值
-exports = {}; // 错误写法 会切断引用 导致 不能指向module.exports 
-module.exports = {}; // 默认导出一个空对象
-
-```
-
  
-## commonjs模块加载机制
-```js
 
-● 模块加载机制
-  ○ 优先从缓存中加载
-    ■ 这也意味着多次调用 require0 不会导致模块的代码被执行多次。模块在第一次加载后会被缓存。注意:不论是内置模块、用户自定义模块、还是第三方模块，它们都会优先从缓存中加载，从而提高模块的加载效率
-  ○ 内置模块的加载机制
-    ■ 内置模块是由 Node.js 官方提供的模块，内置模块的加载优先级最高,例如，require("fs)始终返回内置的fs模块，即使在 node modules 目录下有名字相同的包也叫做 fs.
-  ○ 自定义模块的加载机制
-    ■ 使用 require() 加载自定义模块时，必须指定以./或../ 开头的路径标识符。在加载自定义模块时，如果没有指定/或. ./这样的路径标识符，则 node会把它当作内置模块或第三方模块进行加载
-    ■ 同时，在使用 require0 导入自定义模块时，如果省略了文件的扩展名，则 Node.js 会按顺序分别尝试加载以下的文件:① 按照确切的文件名进行加载② 补全 js 扩展名进行加载③ 补全 .json 扩展名进行加载4)补全 .node 扩展名进行加载⑤ 加载失败，终端报错
-  ○ 第三方模块的加载机制
-    ■ 如果传递给 require0 的模块标识符不是一个内置模块，也没有以'"’或 …" 开头，则 Node.js 会从当前模块的父目录开始，尝试从 /node modules 文件夹中加载第三方模块。如果没有找到对应的第三方模块，则移动到再上一层父目录中，进行加载，直到文件系统的根目录例如，假设在’C:\Users\itheima\project\foojs' 文件里调用了 require("tools”)，则 Node.js 会按以下顺序查找:.C:\Users\itheima\project\node modules\toolsC:\Users\itheima\node modules\toolsC:\Users\node modules\toolsC:node modules\tools4)
-  ○ 目录作为模块
-    ■ 当把目录作为模块标识符，传递给require0)进行加载的时候，有三种加载方式:① 在被加载的目录下查找一个叫做 packagejson 的文件，并寻找 main 属性，作为 require0) 加载的入口② 如果目录里没有 package.json 文件，或者 main 入口不存在或无法解析，则 Node.js 将会试图加载目录下的 index.js 文件.③ 如果以上两步都失败了，则 Node.js 会在终端打印错误消息，报告模块的缺失:Error: Cannot find module 'xxx'
-```
+通过module.exports = {} 导出，导出的是值拷贝。
+通过require()函数 同步导入
+
+commonjs 实现异步 也可以用 import()函数 
+
+
+CommonJS 是 Node 的模块规范，用 require 同步加载、module.exports 导出。每个文件被包裹成函数，有独立作用域，模块有缓存只执行一次。导出的是值拷贝，不是实时绑定，所以循环依赖和后续变量更新容易出问题。它和 ESM 最大的区别是运行时同步 vs 编译时静态、值拷贝 vs 实时绑定，这也导致 CJS 不支持 tree-shaking。
+
+
+

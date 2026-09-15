@@ -8,11 +8,13 @@ CSS 模块化也有 CSS Modules、CSS-in-JS、Scoped CSS、Shadow DOM 等方案�
 
 
 ## es module
-esmodule是 通过 export 导出 import from 导入 。
+esmodule是 通过 export 导出 import xx from 导入 。
 
 
 ## commonjs 
 commonjs是 通过 module.exports 导出 ，require导入 。
+
+
 
 
 ## node包是什么

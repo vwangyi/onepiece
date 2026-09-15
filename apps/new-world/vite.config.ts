@@ -11,11 +11,6 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
   const env = loadEnv(mode, process.cwd(), '');
   console.log('VITE_BASE_URL', env.VITE_BASE_URL);
   return {
-    plugins: [
-      vue(),
-      vueJsx()
-      // vueDevTools()
-    ],
     resolve: {
       extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
       alias: {
@@ -23,6 +18,11 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
         '~': fileURLToPath(new URL('./src/views/DemoView', import.meta.url))
       }
     },
+    plugins: [
+      vue(),
+      vueJsx()
+      // vueDevTools()
+    ],
     server: {
       proxy: {
         '/api': {
