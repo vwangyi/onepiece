@@ -71,5 +71,10 @@ pnpm add -D @types/node  // ts中找到node的类型
 .env 
 .env.dev 
 
+配置文件中拿环境变量
+业务代码中 拿环境变量 
+
+
+
 
 
