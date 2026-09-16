@@ -1,7 +1,8 @@
 
 ```ts
-/* ========================== */
-/* ===== 兼容移动端宽度 ======= */ 避免使用构造函数作为类型 
+
+
+// 避免使用构造函数作为类型 
 
 string // 能接收 '1' `1` "1" `dddd${a}`   不能赋值 new String(1)
 String // 不仅可以赋值字符串 还可以 赋值 字符串对象 new String(1)
@@ -19,8 +20,6 @@ Boolean // true false new Boolean(1) 注意 new Boolean(1)返回 布尔实例对
 var n: number;
 var n1: number = 1;
 var n2 = 1; // 类型推导
- 
-
 ```
 
 ## string类型

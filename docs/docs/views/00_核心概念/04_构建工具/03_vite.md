@@ -74,6 +74,9 @@ pnpm add -D @types/node  // ts中找到node的类型
 配置文件中拿环境变量
 业务代码中 拿环境变量 
 
+import函数对象 由宿主环境（浏览器或nodejs）提供（es规范规定）
+但vite会重写import 使用vite就可以使用 import.meta.env.VITE_
+不使用构建工具 就只有import 
 
 
 

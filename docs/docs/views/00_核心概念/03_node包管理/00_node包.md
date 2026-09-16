@@ -30,3 +30,14 @@ commonjs是 通过 module.exports 导出 ，require导入 。
 ## 版本号
 
 
+## 强制使用pnpm 
+pageage.json中 
+devEngines.packageManager
+
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^11.20.0",
+      "onFail": "download"
+    }
+  },
