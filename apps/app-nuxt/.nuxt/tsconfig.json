@@ -44,7 +44,7 @@
         "../../../node_modules/.pnpm/ofetch@1.5.1/node_modules/ofetch"
       ],
       "crossws": [
-        "../../../node_modules/.pnpm/crossws@0.4.12_srvx@0.11.22/node_modules/crossws"
+        "../../../node_modules/.pnpm/crossws@0.3.5/node_modules/crossws"
       ],
       "~": [
         "../app"
@@ -101,7 +101,7 @@
         "./imports"
       ],
       "#app-manifest": [
-        "./manifest/meta/246bcfd1-c4d3-49f6-87f7-2a40df4b70d7.json"
+        "./manifest/meta/e17e284e-4833-43f1-b382-7dc7e8c5be9b.json"
       ],
       "#components": [
         "./components"
