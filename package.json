@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev:vue": "pnpm --filter new-world dev",
+    "dev:vue": "pnpm --filter app-vue dev",
     "preinstall": "npx only-allow pnpm",
     "prettier": "prettier --write \"**/*.{js,ts,mjs,cjs,json,tsx,css,less,scss,vue,html,md}\"",
     "eslint": "eslint",
