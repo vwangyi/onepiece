@@ -176,3 +176,38 @@ svg 始终会处理成单文件 不会转base64
 ## vite 冷启动 热更新 
 
 - xx
+
+
+## hmr
+hmr是 
+vite的热更新是基于esm模块化实现的，文件改变实现局部更新
+
+import.meta是浏览器提供的 
+
+局部模块更新 而不是全量模块更新
+
+```js
+// 生产环境没有import.meta.hot 所以会树摇优化掉
+if (import.meta.hot) {
+    import.meta.hot.accept((newModule) => {
+        newModule.render()
+    })
+}
+```
+```js
+// 指定某个子模块的hmr 
+if (import.meta.hot) {
+    import.meta.hot.accept('./render.ts',(newModule) => {
+        newModule.render()
+    })
+}
+```
+ 
+```js
+// 指定多个子模块的hmr 
+if (import.meta.hot) {
+    import.meta.hot.accept(['./render.ts', './state.ts'],(modules) => {
+        modules
+    })
+}
+```
