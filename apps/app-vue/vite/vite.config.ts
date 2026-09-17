@@ -16,13 +16,18 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
    
 
   return {
-    root: path.resolve(cwd, './vite/index.html'),
+    root: path.resolve(cwd, './vite'),
+    // public 目录实际在项目根(app-vue/public)，不在 root(vite/) 下，需显式指定
+    publicDir: path.resolve(cwd, './public'),
     resolve: {
       extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
-      alias: {
-        '@': fileURLToPath(new URL('../src', import.meta.url)),
-        '~': fileURLToPath(new URL('../src/views/DemoView', import.meta.url))
-      }
+      alias: [
+        // index.html 里 <script src="/src/main.ts"> 是相对 root(vite/) 的路径，
+        // 而 src 实际在上一级目录，这里把 /src/ 映射到真实的 src 目录
+        { find: /^\/src\//, replacement: fileURLToPath(new URL('../src/', import.meta.url)) },
+        { find: '@', replacement: fileURLToPath(new URL('../src', import.meta.url)) },
+        { find: '~', replacement: fileURLToPath(new URL('../src/views/DemoView', import.meta.url)) }
+      ]
     },
     plugins: [
       vue(),
@@ -45,6 +50,28 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
           ws: true // 关键：支持 WebSocket 升级
         }
       }
-    }
+    },  
+    build: {
+      rolldownOptions: {
+        output: {
+          minify: {
+            compress: {
+              // 移除所有 console.* 调用（如 console.log, console.warn 等）
+              dropConsole: true,
+              // 移除所有 debugger 语句（此项默认就是 true）
+              dropDebugger: true,
+            },
+          },
+        },
+      },
+    },
+    // oxc: {
+    //   pure: Boolean(env.VITE_DROP_CONSOLE) ? ['console.log','debugger'] : []
+    //   // dropConsole: true,
+    //   // dropDebugger: true,
+    // },
+    // esbuild: {
+    //   pure: Boolean(env.VITE_DROP_CONSOLE) ? ['console.log','debugger'] : []
+    // }
   };
 });
