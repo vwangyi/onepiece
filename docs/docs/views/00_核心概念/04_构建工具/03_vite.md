@@ -170,3 +170,9 @@ public存放的是
 通过 build.assetsInlineLimit: 1024 * 10  可以转base64 
 
 svg 始终会处理成单文件 不会转base64 
+
+
+
+## vite 冷启动 热更新 
+
+- xx

@@ -1,3 +1,7 @@
+// 绑定交互事件 统一采用useEventListener
+// 提供 事件类型 keydown keyup
+// keycode
+
 import { unref, watch } from 'vue';
 
 /**
@@ -39,7 +43,10 @@ export function useEventListener(...args) {
       // 解构时进行类型断言
       const [event, handler, options] = args;
 
-      if (!event || !handler) return;
+      if (!event || !handler) {
+        
+        return;
+      }
 
       element.addEventListener(event, handler, options);
       /**
