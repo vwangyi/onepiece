@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite --config vite/vite.config.ts --mode dev",
-    "build:dev": "vite build --mode dev",
+    "dev": "vite --config vite/vite.config.ts --mode development",
+    "build:dev": "vite build --mode production",
     "serve:prod": "vite --mode prod",
     "build:prod": "vite build --mode prod"
   }
