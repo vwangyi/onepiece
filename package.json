@@ -1,11 +1,11 @@
 {
-  "name": "onepiece-core",
+  "name": "onepiece",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev:blue": "pnpm --filter all-blue start:dev",
+    "dev:vue": "pnpm --filter app-vue dev",
     "preinstall": "npx only-allow pnpm",
     "prettier": "prettier --write \"**/*.{js,ts,mjs,cjs,json,tsx,css,less,scss,vue,html,md}\"",
     "eslint": "eslint",
@@ -85,8 +85,7 @@
     "vite-plugin-electron-renderer": "^0.14.7",
     "vite-plugin-vue-devtools": "^8.1.5",
     "vitest": "^4.1.0",
-    "vitest-browser-vue": "^2.1.0",
-    "vue": "^3.5.30"
+    "vitest-browser-vue": "^2.1.0"
   },
   "dependencies": {
     "@nestjs/common": "^11.1.28",
@@ -125,10 +124,10 @@
     "koa-router": "^14.0.0",
     "koa-static": "^5.0.0",
     "lodash": "^4.18.1",
+    "lodash-es": "file:node_module/lodash-es-4.18.1.tgz",
     "log4js": "^6.9.1",
     "marked": "^17.0.1",
     "md5": "^2.3.0",
-    "moment": "^2.30.1",
     "mysql2": "^3.23.3",
     "nodemailer": "^7.0.12",
     "passport": "^0.7.0",
@@ -145,7 +144,7 @@
     "spark-md5": "^3.0.2",
     "typeorm": "^1.1.0",
     "vditor": "^3.11.2",
-    "vue": "^3.5.40",
+    "vue": "file:node_module/vue-3.5.42.tgz",
     "vue-echarts": "^8.0.1",
     "vue-router": "^5.2.0",
     "vue-virtual-scroller": "^3.0.4",
