@@ -13,3 +13,7 @@ cd node_modules/vue
 npm-pack-all
 
 在 node_modules/vue/vue-3.5.40.tgz 包
+
+##
+
+自己开发的库没有发布npm 可以使用 npm pack 生成 tgz包
