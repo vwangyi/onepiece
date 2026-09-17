@@ -7,19 +7,21 @@ import vueDevTools from 'vite-plugin-vue-devtools';
 import path from 'node:path'
 
 const cwd = process.cwd();
+
 // https://cn.vite.dev/config/
 export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
   // 加载.env文件 不会使用node原生提供的process.env 而是用vite提供的import.meta.env
-  const env = loadEnv(mode, cwd, '');
-  console.log('VITE_BASE_URL', env );
+  const env = loadEnv(mode, cwd, ''); 
+  
+   
 
   return {
     root: path.resolve(cwd, './vite/index.html'),
     resolve: {
       extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
       alias: {
-        '@': fileURLToPath(new URL('./src', import.meta.url)),
-        '~': fileURLToPath(new URL('./src/views/DemoView', import.meta.url))
+        '@': fileURLToPath(new URL('../src', import.meta.url)),
+        '~': fileURLToPath(new URL('../src/views/DemoView', import.meta.url))
       }
     },
     plugins: [
@@ -28,6 +30,8 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       false ? vueDevTools() : false,
     ].filter(Boolean),
     server: {
+      port: Number(env.VITE_PORT),
+      open: Boolean(env.VITE_OPEN),
       proxy: {
         '/api': {
           target: env.VITE_BASE_URL || 'http://localhost:1234', // 后端 NestJS 默认端口

@@ -1,10 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '@/views/HomeView/HomeView.vue';
 
+
 export const routes = [
   {
     path: '/',
-    redirect: '/demo',
+    redirect: '/video',
     component: HomeView
   },
   {
@@ -109,6 +110,11 @@ export const routes = [
         component: () => import('~/views/BubbleSort/BubbleSort.vue')
       }
     ]
+  },
+  {
+    path: '/video',
+    name: 'Video',
+    component: () => import(`@/views/VideoView/VideoView.vue`)
   },
   {
     path: '/dynamic-segmented-demo',
