@@ -1,12 +1,14 @@
 import { fileURLToPath, URL } from 'node:url';
 import { defineConfig, loadEnv } from 'vite';
-import type { UserConfig, ConfigEnv } from 'vite';
+import type { UserConfig, ConfigEnv, Plugin } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import vueDevTools from 'vite-plugin-vue-devtools';
 import path from 'node:path'
+import { versionCheckPlugin } from './plugins/versionCheckPlugin';
 
 const cwd = process.cwd();
+
 
 // https://cn.vite.dev/config/
 export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
@@ -16,7 +18,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
    
 
   return {
-    root: path.resolve(cwd, './vite'),
+    root: path.resolve(cwd, './vite7'),
     // public 目录实际在项目根(app-vue/public)，不在 root(vite/) 下，需显式指定
     publicDir: path.resolve(cwd, './public'),
     resolve: {
@@ -30,6 +32,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       ]
     },
     plugins: [
+      versionCheckPlugin(),
       vue(),
       vueJsx(),
       false ? vueDevTools() : false,
@@ -50,28 +53,15 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
           ws: true // 关键：支持 WebSocket 升级
         }
       }
-    },  
-    build: {
-      rolldownOptions: {
-        output: {
-          minify: {
-            compress: {
-              // 移除所有 console.* 调用（如 console.log, console.warn 等）
-              dropConsole: true,
-              // 移除所有 debugger 语句（此项默认就是 true）
-              dropDebugger: true,
-            },
-          },
-        },
-      },
     },
-    // oxc: {
-    //   pure: Boolean(env.VITE_DROP_CONSOLE) ? ['console.log','debugger'] : []
-    //   // dropConsole: true,
-    //   // dropDebugger: true,
-    // },
     // esbuild: {
     //   pure: Boolean(env.VITE_DROP_CONSOLE) ? ['console.log','debugger'] : []
-    // }
+    // },
+     esbuild: {
+      // 用于移除函数调用，如 console.log
+pure: Boolean(env.VITE_DROP_CONSOLE) ? ['console.log']:[], 
+// 用于移除语句，如 debugger
+drop: Boolean(env.VITE_DROP_CONSOLE) ? ['debugger'] : []
+    }
   };
 });
