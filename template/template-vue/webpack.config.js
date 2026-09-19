@@ -3,6 +3,9 @@ const webpack = require('webpack');
 const env = require('dotenv');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
+const pkg = require('./package.json');
+
+console.log('version', pkg.version);
 
 // 1. 先加载 .env（低优先级，作为默认值）
 env.config({ path: path.resolve(__dirname, '.env') });
@@ -47,7 +50,8 @@ module.exports = (_, { mode }) => {
       new VueLoaderPlugin(),
       // 3. 把变量注入前端业务代码，src 中可用 process.env.NODE_ENV
       new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+        '__APP_VERSION__': JSON.stringify(pkg.version)
       })
     ]
   };
