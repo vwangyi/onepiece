@@ -1,0 +1,26 @@
+{
+  "name": "template-vue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx webpack serve --env NODE_ENV=development",
+    "build": "webpack --env mode=prodction"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.17.1",
+  "devDependencies": {
+    "@types/node": "^25.9.5",
+    "babel-loader": "^10.1.1",
+    "html-webpack-plugin": "^5.6.8",
+    "vue-loader": "^17.4.2",
+    "webpack": "^5.111.1",
+    "webpack-cli": "^7.2.3",
+    "webpack-dev-server": "^6.0.0"
+  },
+  "dependencies": {
+    "vue": "^3.5.43"
+  }
+}
