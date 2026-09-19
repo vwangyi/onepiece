@@ -5,7 +5,7 @@ import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import vueDevTools from 'vite-plugin-vue-devtools';
 import path from 'node:path'
-import { versionCheckPlugin } from './plugins/versionCheckPlugin';
+import { versionCheckPlugin } from './vite7/plugins/versionCheckPlugin';
 
 const cwd = process.cwd();
 
@@ -16,20 +16,19 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
   const env = loadEnv(mode, cwd, ''); 
   
    
-
-  return {
-    root: path.resolve(cwd, './vite7'),
-    // public 目录实际在项目根(app-vue/public)，不在 root(vite/) 下，需显式指定
-    publicDir: path.resolve(cwd, './public'),
+  return { 
+     esbuild: {
+      // 用于移除函数调用，如 console.log
+pure: Boolean(env.VITE_DROP_CONSOLE) ? ['console.log']:[], 
+// 用于移除语句，如 debugger
+drop: Boolean(env.VITE_DROP_CONSOLE) ? ['debugger'] : []
+    },  
     resolve: {
       extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
-      alias: [
-        // index.html 里 <script src="/src/main.ts"> 是相对 root(vite/) 的路径，
-        // 而 src 实际在上一级目录，这里把 /src/ 映射到真实的 src 目录
-        { find: /^\/src\//, replacement: fileURLToPath(new URL('../src/', import.meta.url)) },
-        { find: '@', replacement: fileURLToPath(new URL('../src', import.meta.url)) },
-        { find: '~', replacement: fileURLToPath(new URL('../src/views/DemoView', import.meta.url)) }
-      ]
+      alias: {
+        '@': fileURLToPath(new URL('./src', import.meta.url)),
+        '~': fileURLToPath(new URL('./src/views/DemoView', import.meta.url)),
+      }, 
     },
     plugins: [
       versionCheckPlugin(),
@@ -54,14 +53,5 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
         }
       }
     },
-    // esbuild: {
-    //   pure: Boolean(env.VITE_DROP_CONSOLE) ? ['console.log','debugger'] : []
-    // },
-     esbuild: {
-      // 用于移除函数调用，如 console.log
-pure: Boolean(env.VITE_DROP_CONSOLE) ? ['console.log']:[], 
-// 用于移除语句，如 debugger
-drop: Boolean(env.VITE_DROP_CONSOLE) ? ['debugger'] : []
-    }
   };
 });
