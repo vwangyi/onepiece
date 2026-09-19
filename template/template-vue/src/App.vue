@@ -1,5 +1,5 @@
 <script setup>
-console.log('hello');
+console.log('hello', process.env.NODE_ENV);
 </script>
 
 <template>

@@ -1,20 +1,28 @@
 const path = require('node:path');
+const webpack = require('webpack');
+const env = require('dotenv');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 
-const cwd = process.cwd();
-console.log('process.env.WEBPACK_NODE_ENV =', process.env);
-module.exports = (env, argv) => {
-  console.log('env: ', env, argv); // 'local'
-  console.log('WEBPACK_NODE_ENV: ', process.env.WEBPACK_NODE_ENV); // 'local'
-  console.log('Production: ', env.production); // true
+// 1. 先加载 .env（低优先级，作为默认值）
+env.config({ path: path.resolve(__dirname, '.env') });
+
+module.exports = (_, { mode }) => {
+  // 2. 再加载 .env.[mode]，override 让环境文件覆盖 .env 中的同名变量
+  env.config({
+    path: path.resolve(__dirname, `.env.${mode}`),
+    override: true
+  });
+
+  // 此处即可访问 env 文件中的变量
+  console.log('[webpack] mode =', mode);
+  console.log('[webpack] process.env.WEBPACK_ENV =', process.env.NODE_ENV);
+
   return {
-    dotenv: true, // 启用内置的 dotenv 插件
-    mode: 'development',
+    mode,
     entry: './src/main.js',
     output: {
-      path: path.resolve(cwd, './dist')
-      // filename: '[name].bundle.js'
+      path: path.resolve(__dirname, './dist')
     },
     module: {
       rules: [
@@ -34,9 +42,13 @@ module.exports = (env, argv) => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: path.resolve(cwd, './public/index.html')
+        template: path.resolve(__dirname, './public/index.html')
       }),
-      new VueLoaderPlugin()
+      new VueLoaderPlugin(),
+      // 3. 把变量注入前端业务代码，src 中可用 process.env.NODE_ENV
+      new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+      })
     ]
   };
 };
