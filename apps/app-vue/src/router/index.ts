@@ -20,7 +20,12 @@ export const routes = [
         meta: { title: '编码能力' },
         component: () => import('~/views/CodingView/CodingView.vue')
       },
-
+      {
+        path: 'setting-view',
+        name: 'SettingView',
+        meta: { title: '设置' },
+        component: () => import('~/views/SettingView/SettingView.vue')
+      },
       {
         path: 'files-upload',
         name: 'FilesUpload',
