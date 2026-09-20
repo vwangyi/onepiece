@@ -6,8 +6,8 @@
   "scripts": {
     "dev:webpack": "webpack serve --mode development",
     "build:webpack": "webpack --mode production",
-    "dev:vite": "",
-    "build:vite": ""
+    "dev:vite": "vite",
+    "build:vite": "vite build"
   },
   "keywords": [],
   "author": "",
