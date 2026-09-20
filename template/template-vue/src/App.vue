@@ -1,12 +1,16 @@
 <script setup>
 import { ref } from 'vue';
-console.log('hello', process.env.NODE_ENV, __APP_VERSION__);
+import config from './config/index';
 
-const version = ref(__APP_VERSION__);
-const env = ref(process.env.NODE_ENV);
+console.log(config);
+
+const version = ref(config.APP_VERSION);
+const env = ref(config.NODE_ENV);
+const port = ref(config.PORT);
 </script>
 
 <template>
   <div>hello :{{ env }}</div>
   <div>hello :{{ version }}</div>
+  <div>hello :{{ port }}</div>
 </template>

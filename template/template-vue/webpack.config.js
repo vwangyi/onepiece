@@ -51,6 +51,7 @@ module.exports = (_, { mode }) => {
       // 3. 把变量注入前端业务代码，src 中可用 process.env.NODE_ENV
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+        'process.env.PORT': JSON.stringify(process.env.PORT),
         '__APP_VERSION__': JSON.stringify(pkg.version)
       })
     ]
