@@ -4,7 +4,7 @@
  */
 import defaultConfig from './config.default.js';
 
-const env = process.env.NODE_ENV || 'development';
+const env = __APP_NODE_ENV__ || 'development';
 let envConfig = {};
 
 try {

@@ -17,9 +17,8 @@ module.exports = (_, { mode }) => {
     override: true
   });
 
-  // 此处即可访问 env 文件中的变量
-  console.log('[webpack] mode =', mode);
-  console.log('[webpack] process.env.WEBPACK_ENV =', process.env.NODE_ENV);
+  // 3. 此处即可访问 env 文件中的变量
+  // console.log('[webpack] process.env =', process.env);
 
   return {
     mode,
@@ -48,11 +47,14 @@ module.exports = (_, { mode }) => {
         template: path.resolve(__dirname, './public/index.html')
       }),
       new VueLoaderPlugin(),
-      // 3. 把变量注入前端业务代码，src 中可用 process.env.NODE_ENV
+      // 4. 把变量注入前端业务代码，src 中可用 __APP_NODE_ENV__ 访问 process.env.NODE_ENV
       new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-        'process.env.PORT': JSON.stringify(process.env.PORT),
-        '__APP_VERSION__': JSON.stringify(pkg.version)
+        __APP_NODE_ENV__: JSON.stringify(process.env.NODE_ENV),
+        __APP_PORT__: JSON.stringify(process.env.PORT),
+        __APP_VERSION__: JSON.stringify(pkg.version),
+        __VUE_OPTIONS_API__: true,
+        __VUE_PROD_DEVTOOLS__: false,
+        __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false
       })
     ]
   };

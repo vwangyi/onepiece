@@ -19,7 +19,7 @@ output.path 绝对路径
 output.filename
 插件 html-webpack-plugin 参数 template 绝对路径
 开发环境：npx webpack serve
-生产环境：
+生产环境：npx webpack
 
 ## vue
 
