@@ -8,7 +8,7 @@ const { VueLoaderPlugin } = require('vue-loader');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin'); // 压缩css
 // const TerserWebpackPlugin = require('terser-webpack-plugin');
-// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 // const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 dotenv.config({ path: path.resolve(__dirname, '.env') });
@@ -18,9 +18,12 @@ module.exports = (_, { mode }) => {
     path: path.resolve(__dirname, `.env.${mode}`),
     override: true
   });
+  const isDev = mode === 'development';
+
+  console.log('BundleAnalyzerPlugin', typeof process.env.BundleAnalyzerPlugin);
   return {
     mode,
-    devtool: mode === 'development' ? 'source-map' : false,
+    devtool: isDev ? 'source-map' : false,
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.vue', '.jsx', '.scss', '.css'],
       alias: { '@': path.resolve(__dirname, './src') }
@@ -145,17 +148,16 @@ module.exports = (_, { mode }) => {
       ]
     },
     plugins: [
-      new webpack.HotModuleReplacementPlugin(),
-      mode === ''
-        ? new BundleAnalyzerPlugin({
+      isDev
+        ? null
+        : new BundleAnalyzerPlugin({
             // 生成一个静态的 HTML 报告文件，而不是启动一个服务器
             analyzerMode: 'static',
             // 报告文件的名称
             reportFilename: 'bundle-report.html',
             // 生成报告后是否自动在浏览器中打开
             openAnalyzer: true
-          })
-        : null,
+          }),
       // new ForkTsCheckerWebpackPlugin({
       //   typescript: {
       //     configFile: path.resolve(rootPath, 'tsconfig.json')
@@ -196,7 +198,7 @@ module.exports = (_, { mode }) => {
         __VUE_PROD_DEVTOOLS__: false, // Vue3生产环境是否启用 DevTools Vue 调试工具
         __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false // 生产环境水合失败时 是否显示详细信息
       })
-    ],
+    ].filter(Boolean),
     devServer: {
       port: Number(process.env.PORT),
       open: true,

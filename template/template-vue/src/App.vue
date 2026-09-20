@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import config from './config/index';
+import config from '@/config/index';
 
 console.log(config);
 
