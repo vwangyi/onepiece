@@ -30,3 +30,10 @@ pnpm i -D vue-loader babel-loader
 
 loader：vue-loader babel-loader
 plugin: vue-loader.VueLoaderPlugin
+
+## 插件调用
+
+从module.rules 数组里面匹配 test 正则 ，匹配成功就 从use数组里面 从右向左依次调用loader
+
+use.loader是loader名称
+use.option是loader参数

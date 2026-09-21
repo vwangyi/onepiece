@@ -1,4 +1,5 @@
 const path = require('node:path');
+const os = require('node:os');
 const webpack = require('webpack');
 const dotenv = require('dotenv');
 const package = require('./package.json');
@@ -20,7 +21,6 @@ module.exports = (_, { mode }) => {
   });
   const isDev = mode === 'development';
 
-  console.log('BundleAnalyzerPlugin', typeof process.env.BundleAnalyzerPlugin);
   return {
     mode,
     devtool: isDev ? 'source-map' : false,
@@ -40,9 +40,7 @@ module.exports = (_, { mode }) => {
       rules: [
         {
           test: /\.vue$/,
-          use: {
-            loader: 'vue-loader'
-          }
+          use: ['vue-loader']
         },
         // {
         //   test: /\.(ts|tsx)$/,
@@ -64,80 +62,44 @@ module.exports = (_, { mode }) => {
         //       }
         //     }
         //   ],
-        //   exclude: /node_modules/
         // },
-        // {
-        //   test: /\.jsx?$/, // 匹配js 或 jsx 文件
-        //   exclude: /node_modules/, // 排除 node_modules 目录下的文件
-        //   use: [
-        //     {
-        //       loader: 'thread-loader', // 开启多线程处理babel-loader
-        //       options: {
-        //         workers: 2 // 设置线程数，默认为 require("os").cpus().length - 1
-        //       }
-        //     },
-        //     {
-        //       loader: 'babel-loader', // 使用babel-loader处理js文件
-        //       options: {
-        //         // presets: ['@babel/preset-env'], // 预设在babel.config.js中使用了 这里就不用了
-        //         cacheDirectory: true, // 启用babel-loader缓存，提高构建速度
-        //         cacheCompression: false, // 关闭缓存文件压缩，提升性能，因为压缩需要额外的CPU资源
-        //         plugins: ['@babel/plugin-transform-runtime'] // 使用transform-runtime插件，减少冗余代码，提高性能
-        //       }
-        //     }
-        //   ]
-        // },
+        {
+          test: /\.jsx?$/, // 匹配js 或 jsx 文件
+          exclude: /node_modules/, // 排除 node_modules 目录下的文件
+          use: [
+            {
+              loader: 'thread-loader',
+              options: { workers: os.cpus().length - 1 }
+            },
+            {
+              loader: 'babel-loader', // 使用babel-loader处理js文件
+              options: {
+                // presets: ['@babel/preset-env'], // 预设在babel.config.js中使用了 这里就不用了
+                cacheDirectory: true, // 启用babel-loader缓存，提高构建速度
+                cacheCompression: false, // 关闭缓存文件压缩，提升性能，因为压缩需要额外的CPU资源
+                plugins: ['@babel/plugin-transform-runtime'] // 使用transform-runtime插件，减少冗余代码，提高性能
+              }
+            }
+          ]
+        },
         {
           test: /\.css$/,
           use: [MiniCssExtractPlugin.loader, 'css-loader']
         },
         {
           test: /\.s[ac]ss$/i,
-          use: [
-            MiniCssExtractPlugin.loader, // style-loader 改为 MiniCssExtractPlugin.loader
-            // "css-loader", // 将 CSS 转化成 CommonJS 模块
-            {
-              loader: 'css-loader',
-              options: {
-                // ✅ 显式开启 icss 模式，确保 :export 能被识别为 JS 导出
-                modules: {
-                  mode: 'icss'
-                }
-              }
-            },
-            // "sass-loader", // 将 Sass 编译成 CSS
-            {
-              loader: 'sass-loader',
-              options: {
-                //   // ✅ 核心配置：全局注入 SCSS 变量
-                //   // 路径需要根据你实际 variables.scss 的位置调整
-                //   data: `@import "@/styles/variables.scss";` // 可以在 vue的script中 import xxx from 'xxx.scss'
-
-                // ✅ 添加 sassOptions 配置
-                sassOptions: {
-                  quietDeps: true, // 沉默依赖包 (node_modules) 中的警告
-                  // 或者完全沉默所有警告 (不推荐，会漏掉你自己的代码警告)
-                  logger: {
-                    warn: () => {}
-                  }
-                }
-              }
-            }
-          ]
+          use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
         },
         {
           test: /\.(png|jpg|jpeg|gif|svg|webp)$/i,
           type: 'asset', // 用内置asset 处理图片
-          generator: { filename: 'img/[hash:8][ext][query]' },
-          parser: {
-            dataUrlCondition: {
-              maxSize: 10 * 1024 // 10kb  单位是b  字节byte  乘1024 转 kb了
-            }
-          }
+          // 10kb  单位是b  字节byte  乘1024 转 kb了
+          parser: { dataUrlCondition: { maxSize: 10 * 1024 } },
+          generator: { filename: 'img/[hash:8][ext][query]' }
         },
         {
           test: /\.(woff2?|eot|ttf|otf)(\?.+)?$/, // 匹配字体文件
-          type: 'asset/resource', // // 用内置asset/resource 处理字体
+          type: 'asset/resource', // 用内置asset/resource 处理字体
           generator: { filename: 'font/[hash][ext][query]' }
         },
         {
@@ -203,14 +165,8 @@ module.exports = (_, { mode }) => {
       port: Number(process.env.PORT),
       open: true,
       hot: true,
-      historyApiFallback: true
-      //   proxy: [
-      //     {
-      //       context: ['/api'], // 注意：属性名从 key 改为 context 数组
-      //       target: 'http://localhost:3002',
-      //       changeOrigin: true
-      //     }
-      //   ]
+      historyApiFallback: true,
+      proxy: {}
     },
     /**
      * 配置打包输出优化 （配置代码分割 模块合并 缓存 TreeShaking 代码压缩等优化策略）
