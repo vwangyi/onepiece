@@ -41,22 +41,22 @@ module.exports = (_, { mode }) => {
           test: /\.vue$/,
           use: ['vue-loader']
         },
-        // {
-        //   test: /\.tsx?$/,
-        //   use: [
-        //     'babel-loader',
-        //     {
-        //       loader: 'ts-loader',
-        //       options: {
-        //         configFile: path.resolve(__dirname, 'tsconfig.json'),
-        //         transpileOnly: true, // ts-loader只做编译，不做类型检查
-        //         appendTsSuffixTo: [/\.vue$/],
-        //         appendTsxSuffixTo: [/\.vue$/]
-        //       }
-        //     }
-        //   ],
-        //   exclude: /node_modules/
-        // },
+        {
+          test: /\.tsx?$/,
+          use: [
+            'babel-loader',
+            {
+              loader: 'ts-loader',
+              options: {
+                configFile: path.resolve(__dirname, 'tsconfig.json'),
+                transpileOnly: true, // ts-loader只做编译，不做类型检查
+                appendTsSuffixTo: [/\.vue$/],
+                appendTsxSuffixTo: [/\.vue$/]
+              }
+            }
+          ],
+          exclude: /node_modules/
+        },
         {
           test: /\.jsx?$/, // 匹配js 或 jsx 文件
           use: [
@@ -89,7 +89,7 @@ module.exports = (_, { mode }) => {
           type: 'asset', // 用内置asset 处理图片
           // 10kb  单位是b  字节byte  乘1024 转 kb了
           parser: { dataUrlCondition: { maxSize: 10 * 1024 } },
-          generator: { filename: 'img/[hash:8][ext][query]' }
+          generator: { filename: 'img/[name]_[hash:8][ext][query]' }
         },
         {
           test: /\.(woff2?|eot|ttf|otf)(\?.+)?$/, // 匹配字体文件
@@ -112,39 +112,15 @@ module.exports = (_, { mode }) => {
             openAnalyzer: true
           }),
       // ForkTsCheckerWebpackPlugin 只做类型检查,不做编译
-      // new ForkTsCheckerWebpackPlugin({
-      //   async: process.env.NODE_ENV === 'development',
-      //   typescript: { configFile: path.resolve(__dirname, 'tsconfig.json') }
-      // }),
+      new ForkTsCheckerWebpackPlugin({
+        async: process.env.NODE_ENV === 'development',
+        typescript: { configFile: path.resolve(__dirname, 'tsconfig.json') }
+      }),
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, './public/index.html'),
         title: process?.env?.APP_TITLE,
-        // favicon: path.resolve(__dirname, './public/favicon.ico'),
-        templateParameters: {
-          faviconVersion: Date.now() // 或 package.json 的 version
-        }
-
-        //      favicon: path.resolve(rootPath, './public/favicon.ico'), // 指定 favicon 路径
-        // title: 'WANGYI',
-        // // 产物 最终模版 输出路径
-        // // filename: path.resolve(rootPath, './dist/', `index.html`),
-        // filename: 'index.html', // ✅ 改为相对路径，不要用绝对路径
-        // inject: false, // inject: false + <%= htmlWebpackPlugin.tags.headTags.join('\n    ') %>
-        // minify: true ? {
-        //   removeComments: true, // 移除注释
-        //   collapseBooleanAttributes: true, // 让 defer="defer" 变成 defer
-        //   collapseWhitespace: true, // 折叠空白
-        //   collapseInlineTagWhitespace: true,
-        //   removeRedundantAttributes: true, // 移除冗余属性
-        //   removeScriptTypeAttributes: true, // 移除 script 的 type 属性
-        //   removeStyleLinkTypeAttributes: true, // 移除 style/link 的 type 属性
-        //   conservativeCollapse: true,
-        //   minifyCSS: true, // 压缩 CSS
-        //   minifyJS: true, // 压缩 JS
-        //   minifyURLs: true, // 压缩 URL
-        //   removeEmptyAttributes: true, // 移除空属性
-        //   keepClosingSlash: true // 保留自闭合标签的斜杠
-        // } : false,
+        favicon: path.resolve(__dirname, './public/favicon.ico'),
+        templateParameters: { faviconVersion: package.version }
       }),
       new VueLoaderPlugin(),
       // 4. 把变量注入前端业务代码，src 中可用 __APP_NODE_ENV__ 访问 process.env.NODE_ENV
@@ -280,7 +256,7 @@ module.exports = (_, { mode }) => {
       },
       minimize: true,
       minimizer: [
-        // new CssMinimizerWebpackPlugin(), // 压缩css
+        // new CssMinimizerWebpackPlugin() // 压缩css
         // 压缩js
         // new TerserWebpackPlugin({
         //   test: /\.js(\?.*)?$/i, // 匹配需要压缩的文件
