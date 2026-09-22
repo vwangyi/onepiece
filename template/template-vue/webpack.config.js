@@ -1,25 +1,24 @@
-const path = require('node:path');
 const os = require('node:os');
+const path = require('node:path');
 const webpack = require('webpack');
 const dotenv = require('dotenv');
 const package = require('./package.json');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
-//  MiniCssExtractPlugin 将 CSS 从 JavaScript 中提取出来，生成独立的 .css 文件
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin'); // 压缩css
-// const TerserWebpackPlugin = require('terser-webpack-plugin');
+const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
+const TerserWebpackPlugin = require('terser-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-// const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 module.exports = (_, { mode }) => {
   dotenv.config({
-    path: path.resolve(__dirname, `.env.${mode}`),
-    override: true
+    override: true,
+    path: path.resolve(__dirname, `.env.${mode}`)
   });
-  const isDev = mode === 'development';
+  const isDev = process.env.NODE_ENV === 'development';
 
   return {
     mode,
@@ -43,29 +42,23 @@ module.exports = (_, { mode }) => {
           use: ['vue-loader']
         },
         // {
-        //   test: /\.(ts|tsx)$/,
+        //   test: /\.tsx?$/,
         //   use: [
-        //     {
-        //       loader: 'babel-loader'
-        //     },
+        //     'babel-loader',
         //     {
         //       loader: 'ts-loader',
         //       options: {
-        //         // transpileOnly: true 表示 让 ts-loader 只处理编译，不进行类型检查 提高编译速度
-        //         // 类型检查交给 ForkTsCheckerWebpackPlugin
-        //         transpileOnly: true,
-        //         // 支持 .vue 文件中的 TypeScript/TSX
+        //         configFile: path.resolve(__dirname, 'tsconfig.json'),
+        //         transpileOnly: true, // ts-loader只做编译，不做类型检查
         //         appendTsSuffixTo: [/\.vue$/],
-        //         appendTsxSuffixTo: [/\.vue$/],
-        //         // 配置项
-        //         configFile: path.resolve(rootPath, 'tsconfig.json')
+        //         appendTsxSuffixTo: [/\.vue$/]
         //       }
         //     }
         //   ],
+        //   exclude: /node_modules/
         // },
         {
           test: /\.jsx?$/, // 匹配js 或 jsx 文件
-          exclude: /node_modules/, // 排除 node_modules 目录下的文件
           use: [
             {
               loader: 'thread-loader',
@@ -80,7 +73,8 @@ module.exports = (_, { mode }) => {
                 plugins: ['@babel/plugin-transform-runtime'] // 使用transform-runtime插件，减少冗余代码，提高性能
               }
             }
-          ]
+          ],
+          exclude: /node_modules/
         },
         {
           test: /\.css$/,
@@ -113,21 +107,23 @@ module.exports = (_, { mode }) => {
       isDev
         ? null
         : new BundleAnalyzerPlugin({
-            // 生成一个静态的 HTML 报告文件，而不是启动一个服务器
             analyzerMode: 'static',
-            // 报告文件的名称
             reportFilename: 'bundle-report.html',
-            // 生成报告后是否自动在浏览器中打开
             openAnalyzer: true
           }),
+      // ForkTsCheckerWebpackPlugin 只做类型检查,不做编译
       // new ForkTsCheckerWebpackPlugin({
-      //   typescript: {
-      //     configFile: path.resolve(rootPath, 'tsconfig.json')
-      //   },
-      //   async: process.env.NODE_ENV === 'development'
+      //   async: process.env.NODE_ENV === 'development',
+      //   typescript: { configFile: path.resolve(__dirname, 'tsconfig.json') }
       // }),
       new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, './public/index.html')
+        template: path.resolve(__dirname, './public/index.html'),
+        title: process?.env?.APP_TITLE,
+        // favicon: path.resolve(__dirname, './public/favicon.ico'),
+        templateParameters: {
+          faviconVersion: Date.now() // 或 package.json 的 version
+        }
+
         //      favicon: path.resolve(rootPath, './public/favicon.ico'), // 指定 favicon 路径
         // title: 'WANGYI',
         // // 产物 最终模版 输出路径
@@ -159,14 +155,18 @@ module.exports = (_, { mode }) => {
         __VUE_OPTIONS_API__: true, // Vue3是否支持 Options API
         __VUE_PROD_DEVTOOLS__: false, // Vue3生产环境是否启用 DevTools Vue 调试工具
         __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false // 生产环境水合失败时 是否显示详细信息
+      }),
+      new MiniCssExtractPlugin({
+        filename: 'css/[name]_[contenthash:6].css',
+        chunkFilename: 'common_[hash:5].css'
       })
     ].filter(Boolean),
     devServer: {
       port: Number(process.env.PORT),
       open: true,
       hot: true,
-      historyApiFallback: true,
-      proxy: {}
+      historyApiFallback: true
+      // proxy: {}
     },
     /**
      * 配置打包输出优化 （配置代码分割 模块合并 缓存 TreeShaking 代码压缩等优化策略）

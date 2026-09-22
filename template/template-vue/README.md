@@ -19,6 +19,7 @@ output.path 绝对路径
 插件 html-webpack-plugin 参数 template 绝对路径
 插件 webpack.DefinePlugin 把环境变量文件注入到业务代码
 通过 dotenv 读取 .env 环境变量
+
 开发环境：npx webpack serve
 生产环境：npx webpack
 

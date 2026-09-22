@@ -1,5 +1,5 @@
 /**
- * 通常我们不会在业务代码中直接使用 webpack向业务代码注入的变量
+ * 通常我们不会在业务代码中直接使用 构建工具 向 业务代码 注入的变量
  * 而是集中在一个 config 模块中读取并导出结构化对象。
  */
 import defaultConfig from './config.default.js';

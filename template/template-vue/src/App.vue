@@ -10,7 +10,13 @@ const port = ref(config.PORT);
 </script>
 
 <template>
-  <div>hello :{{ env }}</div>
+  <div class="box">hello :{{ env }}</div>
   <div>hello :{{ version }}</div>
   <div>hello :{{ port }}</div>
 </template>
+
+<style lang="scss" scoped>
+.box {
+  color: red;
+}
+</style>
