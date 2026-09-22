@@ -1,19 +1,47 @@
 {
   "compilerOptions": {
-    "module": "nodenext",
+    /* 项目环境：浏览器 + 打包器（webpack/babel 负责转译，TS 只做类型检查） */
     "target": "esnext",
-    "types": [],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "lib": ["esnext", "dom", "dom.iterable"],
+    "moduleDetection": "force",
+
+    /* 由 webpack/vue-tsc 做类型检查，tsc 不产出文件 */
+    "noEmit": true,
     "sourceMap": true,
-    "declaration": true,
-    "declarationMap": true,
+
+    /* 路径别名，与 webpack.config 中 resolve.alias['@'] 保持一致 */
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+
+    /* 严格性 */
+    "strict": true,
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
-    "strict": true,
-    "jsx": "react-jsx",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+
+    /* 模块语义 */
     "verbatimModuleSyntax": true,
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
-    "moduleDetection": "force",
+    "allowImportingTsExtensions": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Vue JSX 由 @vue/babel-plugin-jsx 编译，TS 侧只保留不做转译 */
+    "jsx": "preserve",
+
+    /* 只加载 src 内声明的类型，避免误引入 node 等环境类型 */
+    "types": [],
+
     "skipLibCheck": true
-  }
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "exclude": ["node_modules", "dist"]
 }

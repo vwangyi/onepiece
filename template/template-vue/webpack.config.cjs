@@ -2,7 +2,7 @@ const os = require('node:os');
 const path = require('node:path');
 const webpack = require('webpack');
 const dotenv = require('dotenv');
-const package = require('./package.json');
+const pkg = require('./package.json');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -27,7 +27,7 @@ module.exports = (_, { mode }) => {
       extensions: ['.ts', '.tsx', '.js', '.vue', '.jsx', '.scss', '.css'],
       alias: { '@': path.resolve(__dirname, './src') }
     },
-    entry: './src/main.js',
+    entry: './src/main.ts',
     output: {
       path: path.resolve(__dirname, './dist'),
       clean: true,
@@ -120,14 +120,14 @@ module.exports = (_, { mode }) => {
         template: path.resolve(__dirname, './public/index.html'),
         title: process?.env?.APP_TITLE,
         favicon: path.resolve(__dirname, './public/favicon.ico'),
-        templateParameters: { faviconVersion: package.version }
+        templateParameters: { faviconVersion: pkg.version }
       }),
       new VueLoaderPlugin(),
       // 4. 把变量注入前端业务代码，src 中可用 __APP_NODE_ENV__ 访问 process.env.NODE_ENV
       new webpack.DefinePlugin({
         __APP_NODE_ENV__: JSON.stringify(process.env.NODE_ENV),
         __APP_PORT__: JSON.stringify(process.env.PORT),
-        __APP_VERSION__: JSON.stringify(package.version),
+        __APP_VERSION__: JSON.stringify(pkg.version),
         __VUE_OPTIONS_API__: true, // Vue3是否支持 Options API
         __VUE_PROD_DEVTOOLS__: false, // Vue3生产环境是否启用 DevTools Vue 调试工具
         __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false // 生产环境水合失败时 是否显示详细信息

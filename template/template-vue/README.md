@@ -6,11 +6,13 @@
 
 name
 version
-main
 scripts
 packageManager
 
-## webpack.config.js
+注意：配置了 `"type": "module"` 后，CommonJS 语法的配置文件必须改成 `.cjs` 后缀
+（webpack.config.cjs / babel.config.cjs），否则 Node 会按 ESM 解析导致 `require` / `module.exports` 报错
+
+## webpack.config.cjs
 
 环境：pnpm i -D webpack webpack-cli webpack-dev-server html-webpack-plugin dotenv
 
@@ -38,3 +40,13 @@ plugin: vue-loader.VueLoaderPlugin
 
 use.loader是loader名称
 use.option是loader参数
+
+## TypeScript
+
+环境：pnpm i -D typescript ts-loader fork-ts-checker-webpack-plugin vue-tsc
+
+- tsconfig.json：`moduleResolution: "bundler"` 适配打包器场景；`noEmit: true` 只做类型检查（转译交给 babel/ts-loader）；`paths` 配置 `@/*` 与 webpack 的 resolve.alias 保持一致；`allowImportingTsExtensions` 允许 import 时显式写 `.ts` 扩展名
+- loader 分工：ts-loader `transpileOnly: true` 只编译不做类型检查（快）；fork-ts-checker-webpack-plugin 在独立进程做类型检查（不阻塞构建）
+- .vue 文件类型检查：vue-tsc，`pnpm type-check`
+- env.d.ts：声明 `*.vue` 模块、webpack DefinePlugin 注入的 `__APP_*__` 全局常量、`__VUE_*__` 特性开关、静态资源模块
+- 动态 import `./config.${env}.js` 时用 webpack `resolve.extensionAlias` 把 `.js` 映射回 `.ts` 源文件
