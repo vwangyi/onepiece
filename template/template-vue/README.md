@@ -50,8 +50,6 @@ use.option是loader参数
 - env.d.ts：声明 `*.vue` 模块、webpack DefinePlugin 注入的 `__APP_*__` 全局常量、`__VUE_*__` 特性开关、静态资源模块
 - 动态 import `./config.${env}.js` 时用 webpack `resolve.extensionAlias` 把 `.js` 映射回 `.ts` 源文件
 
-## treeshaking
-
 ## hmr
 
 devServer.hot: true
@@ -68,3 +66,9 @@ optimization.splitChunks
 
 optimization.minimize: true,
 optimization.minimizer
+
+## treeshaking
+
+optimization.usedExports 为true
+
+应该具名导入 而不是 整体导入
