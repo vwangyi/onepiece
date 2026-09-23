@@ -5,21 +5,19 @@ import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import vueDevTools from 'vite-plugin-vue-devtools';
 import path from 'node:path'
-import { versionCheckPlugin } from './vite7/plugins/versionCheckPlugin';
-import { wrapperEnv } from './vite7/utils/index'
 
 const cwd = process.cwd();
 
 
 // https://cn.vite.dev/config/
 export default defineConfig(({ mode }: ConfigEnv): UserConfig => { 
-  const env = wrapperEnv(loadEnv(mode, cwd, '')); 
+  const env = loadEnv(mode, cwd, '')
   return { 
      esbuild: {
       // 用于移除函数调用，如 console.log
-      pure: env.VITE_DROP_CONSOLE ? ['console.log']:[], 
+      pure: env.VITE_DROP_CONSOLE === 'true' ? ['console.log']:[], 
       // 用于移除语句，如 debugger
-      drop: env.VITE_DROP_CONSOLE ? ['debugger'] : []
+      drop: env.VITE_DROP_CONSOLE  === 'true' ? ['debugger'] : []
     },  
     resolve: {
       extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
@@ -29,23 +27,22 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       }, 
     },
     plugins: [
-      versionCheckPlugin(),
       vue(),
       vueJsx(),
       false ? vueDevTools() : false,
     ].filter(Boolean),
     server: {
-      port: env.VITE_PORT,
-      open: env.VITE_OPEN,
+      port: Number(env.VITE_PORT),
+      open: env.VITE_OPEN === 'true',
       proxy: {
         '/api': {
-          target: env.VITE_BASE_URL, // 后端 NestJS 默认端口
+          target: String(env.VITE_BASE_URL), // 后端 NestJS 默认端口
           changeOrigin: true,
           rewrite: path => path.replace(/^\/api/, '')
         },
         // /socket.io这个key值是socket.io这个库决定的
         '/socket.io': {
-          target: env.VITE_BASE_URL,
+          target: String(env.VITE_BASE_URL),
           changeOrigin: true,
           ws: true // 关键：支持 WebSocket 升级
         }
