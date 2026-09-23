@@ -7,10 +7,9 @@
 name
 version
 scripts
-packageManager
-
-注意：配置了 `"type": "module"` 后，CommonJS 语法的配置文件必须改成 `.cjs` 后缀
-（webpack.config.cjs / babel.config.cjs），否则 Node 会按 ESM 解析导致 `require` / `module.exports` 报错
+main 包入口文件
+packageManager 包管理器
+type: module // 包模块化规范 一个前端业务代码应该是module 但其他遵循commonjs配置文件 如 webpack.config.cjs babel.config.cjs 应该以 cjs结尾 不然受package.json的type影响
 
 ## webpack.config.cjs
 
@@ -50,3 +49,22 @@ use.option是loader参数
 - .vue 文件类型检查：vue-tsc，`pnpm type-check`
 - env.d.ts：声明 `*.vue` 模块、webpack DefinePlugin 注入的 `__APP_*__` 全局常量、`__VUE_*__` 特性开关、静态资源模块
 - 动态 import `./config.${env}.js` 时用 webpack `resolve.extensionAlias` 把 `.js` 映射回 `.ts` 源文件
+
+## treeshaking
+
+## hmr
+
+devServer.hot: true
+
+## history路由
+
+devServer.historyApiFallback: true
+
+## 优化 - 代码分割
+
+optimization.splitChunks
+
+## 优化 - 代码压缩
+
+optimization.minimize: true,
+optimization.minimizer
