@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '@/views/HomeView/HomeView.vue';
 
+
 export const routes = [
   {
     path: '/',
@@ -19,7 +20,12 @@ export const routes = [
         meta: { title: '编码能力' },
         component: () => import('~/views/CodingView/CodingView.vue')
       },
-
+      {
+        path: 'setting-view',
+        name: 'SettingView',
+        meta: { title: '设置' },
+        component: () => import('~/views/SettingView/SettingView.vue')
+      },
       {
         path: 'files-upload',
         name: 'FilesUpload',
@@ -109,6 +115,11 @@ export const routes = [
         component: () => import('~/views/BubbleSort/BubbleSort.vue')
       }
     ]
+  },
+  {
+    path: '/video',
+    name: 'Video',
+    component: () => import(`@/views/VideoView/VideoView.vue`)
   },
   {
     path: '/dynamic-segmented-demo',

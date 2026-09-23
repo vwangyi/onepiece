@@ -1,0 +1,13 @@
+/* 默认亮色主题 */
+:root {
+    --text-color: #333; 
+    --bg1: #c7ffdd;
+    --bg2: #fbd988;
+}
+
+/* 暗色主题 */
+html[data-theme='dark'] {
+    --text-color: #fff; 
+    --bg1: #102128;
+    --bg2: #2d5567;
+}

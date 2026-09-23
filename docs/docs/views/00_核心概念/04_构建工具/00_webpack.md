@@ -1,4 +1,21 @@
 
+## 1. 入口文件 出口文件 输入输出 
+
+entry默认值是 ./src/index.js
+默认出口是 ./dist/main.js
+ 
+
+- 入口就是从哪个文件开始。
+- 如果是一个入口 entry 就传 string格式的相对路径 
+- 如果是多个入口 entry 就传 
+相对于启动目录 npm run xxx 
+
+-   output.filename： 'bundle.js'
+- output.path: __dirname + '/dist'
+- output.publicPath:'https://cdn.example.com/assets/[fullhash]/',
+- output.publicPath:'' // __webpack_public_path__ = myRuntimePublicPath;
+
+- 
 
 ## 路径别名
 路径别名是 通过resolve.alias 设置配置对象。key是@ value是src路径，表示 @映射为src路径
@@ -185,23 +202,6 @@ webpack处理了 比如 模块化兼容性 ，比如 commonjs 导出 用 esm导�
 
 
 
-## entry
-
-entry默认值是 ./src/index.js
-默认出口是 ./dist/main.js
- 
-
-- 入口就是从哪个文件开始。
-- 如果是一个入口 entry 就传 string格式的相对路径 
-- 如果是多个入口 entry 就传 
-相对于启动目录 npm run xxx 
-
--   output.filename： 'bundle.js'
-- output.path: __dirname + '/dist'
-- output.publicPath:'https://cdn.example.com/assets/[fullhash]/',
-- output.publicPath:'' // __webpack_public_path__ = myRuntimePublicPath;
-
-- 
 
 ## 问：打包需要足够的硬盘空间
 打包需要充足的硬盘空间 如果没有充足的硬盘空间 会导致打出的包缺少东西 报 Object(...) not a function 
