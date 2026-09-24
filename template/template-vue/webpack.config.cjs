@@ -127,6 +127,7 @@ module.exports = (_, { mode }) => {
       new webpack.DefinePlugin({
         __APP_NODE_ENV__: JSON.stringify(process.env.NODE_ENV),
         __APP_PORT__: JSON.stringify(process.env.PORT),
+        __ENV_VERSION__: JSON.stringify(process.env.ENV_VERSION),
         __APP_VERSION__: JSON.stringify(pkg.version),
         __VUE_OPTIONS_API__: true, // Vue3是否支持 Options API
         __VUE_PROD_DEVTOOLS__: false, // Vue3生产环境是否启用 DevTools Vue 调试工具
