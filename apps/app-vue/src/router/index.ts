@@ -2,6 +2,19 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '@/views/HomeView/HomeView.vue';
 
 
+// 微前端项目 Micro Frontend
+// 低代码平台 Low code
+// 后台管理项目 admin 
+// 前端性能瓶颈 
+// 移动端的项目
+// 可视化项目
+// 前端工程化
+// 前端基建
+// 前端监控平台
+// 前端复杂表单的难点介绍
+// webRTC的项目难点
+
+
 export const routes = [
   {
     path: '/',
