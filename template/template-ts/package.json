@@ -1,5 +1,5 @@
 {
-  "name": "template-react",
+  "name": "template-ts",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,10 +9,5 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.17.1",
-  "dependencies": {
-    "@tanstack/react-query": "^5.103.2",
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0"
-  }
+  "packageManager": "pnpm@10.17.1"
 }

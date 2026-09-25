@@ -2,19 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '@/views/HomeView/HomeView.vue';
 
 
-// 微前端项目 Micro Frontend
-// 低代码平台 Low code
-// 后台管理项目 admin 
-// 前端性能瓶颈 
-// 移动端的项目
-// 可视化项目
-// 前端工程化
-// 前端基建
-// 前端监控平台
-// 前端复杂表单的难点介绍
-// webRTC的项目难点
-
-
 export const routes = [
   {
     path: '/',
@@ -25,8 +12,56 @@ export const routes = [
     path: '/demo',
     name: 'DemoView',
     component: () => import('~/DemoView.vue'),
-    redirect: '/demo/coding-view',
+    redirect: '/demo/admin',
     children: [
+      {
+        path: 'admin',
+        name: 'Admin',
+        meta: { title: '后台管理项目' },
+        component: () => import('~/views/admin/index.vue')
+      },
+      {
+        path: 'form',
+        name: 'Form',
+        meta: { title: '复杂表单项目' },
+        component: () => import('~/views/form/index.vue')
+      },
+      {
+        path: 'datav',
+        name: 'Datav',
+        meta: { title: '数据可视化项目' },
+        component: () => import('~/views/datav/index.vue')
+      },
+      {
+        path: 'mobile',
+        name: 'Mobile',
+        meta: { title: '移动端项目' },
+        component: () => import('~/views/mobile/index.vue')
+      },
+      {
+        path: 'monitoring',
+        name: 'Monitoring',
+        meta: { title: '服务监控平台' },
+        component: () => import('~/views/monitoring/index.vue')
+      },
+      {
+        path: 'low-code',
+        name: 'LowCode',
+        meta: { title: '低代码平台' },
+        component: () => import('~/views/low-code/index.vue')
+      },
+      {
+        path: 'av',
+        name: 'AV',
+        meta: { title: '音视频项目' },
+        component: () => import('~/views/av/index.vue')
+      },
+      {
+        path: 'micro-frontend',
+        name: 'MicroFrontend',
+        meta: { title: '微前端项目' },
+        component: () => import('~/views/CodingView/CodingView.vue')
+      },
       {
         path: 'coding-view',
         name: 'CodingView',
@@ -42,7 +77,7 @@ export const routes = [
       {
         path: 'files-upload',
         name: 'FilesUpload',
-        meta: { title: '文件上传' },
+        meta: { title: '文件上传页面' },
         component: () => import('~/views/FilesUpload/FilesUpload.vue')
       },
       {
