@@ -3,14 +3,30 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "dev": "tsc"
+    "webpack:dev": "webpack serve --mode development",
+    "webpack:build": "webpack --mode production",
+    "ts:dev": "tsc",
+    "vite:dev": "vite",
+    "vite:build": "vite"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.17.1",
   "devDependencies": {
-    "typescript": "^5.9.3"
+    "@types/jquery": "^4.0.1",
+    "@types/node": "^25.9.5",
+    "fork-ts-checker-webpack-plugin": "^9.1.0",
+    "html-webpack-plugin": "^5.6.8",
+    "ts-loader": "^9.6.2",
+    "typescript": "^5.9.3",
+    "webpack": "^5.111.1",
+    "webpack-cli": "^7.2.3",
+    "webpack-dev-server": "^6.0.0"
+  },
+  "dependencies": {
+    "jquery": "^4.0.0"
   }
 }

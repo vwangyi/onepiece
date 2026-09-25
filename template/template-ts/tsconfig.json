@@ -1,4 +1,19 @@
 {
-  "include": ["./src"],
-  "compilerOptions": {}
+  "include": ["src/**/*"],
+  "exclude": ["webpack.config.cjs"],
+  "compilerOptions": {
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2016", "DOM"],
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    "sourceMap": true,
+    "strict": true,
+    "removeComments": true,
+    "esModuleInterop": true,
+    "moduleResolution": "bundler",
+    "isolatedModules": true,
+    "allowImportingTsExtensions": false
+  }
 }
