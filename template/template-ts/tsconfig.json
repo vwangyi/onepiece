@@ -7,7 +7,6 @@
     "lib": ["es2016", "DOM"],
     "rootDir": "./src",
     "outDir": "./dist",
-
     "sourceMap": true,
     "strict": true,
     "removeComments": true,
