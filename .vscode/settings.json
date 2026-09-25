@@ -170,6 +170,8 @@
   },
   "github.copilot.editor.enableAutoCompletions": true,
   "[json]": {
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
     "editor.defaultFormatter": "vscode.json-language-features"
   },
   "smarty.highlight": true,

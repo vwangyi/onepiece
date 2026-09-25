@@ -11,6 +11,11 @@ main 包入口文件
 packageManager 包管理器
 type: module // 包模块化规范 一个前端业务代码应该是module 但其他遵循commonjs配置文件 如 webpack.config.cjs babel.config.cjs 应该以 cjs结尾 不然受package.json的type影响
 
+## tsconfig.json
+
+pnpm i -w -D typescript
+tsc --init
+
 ## webpack.config.cjs
 
 环境：pnpm i -D webpack webpack-cli webpack-dev-server html-webpack-plugin dotenv
