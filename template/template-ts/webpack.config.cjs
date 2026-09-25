@@ -1,9 +1,10 @@
-const webpack = require('webpack');
 const path = require('node:path');
+const webpack = require('webpack');
+const { defineConfig } = webpack;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
-module.exports = (_, { mode }) => {
+module.exports = defineConfig((_, { mode }) => {
   return {
     resolve: {
       extensions: ['.ts', '.js']
@@ -31,4 +32,4 @@ module.exports = (_, { mode }) => {
       open: true
     }
   };
-};
+});
