@@ -10,14 +10,8 @@ const input = {
 
 // 期待输出
 const output = [
-    {
-        label: '生煎',
-        value: 'shengjian',
-    },
-    {
-        label: '灌汤包',
-        value: 'baozi',
-    },
+    { label: '生煎', value: 'shengjian' },
+    {   label: '灌汤包',  value: 'baozi',   },
     {
         label: '水饺',
         value: 'jiaozi',
