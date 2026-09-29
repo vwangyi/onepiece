@@ -13,8 +13,7 @@ const mapping = {
 // };
 
 const input = [
-    {
-        label: '生煎',
+    { label: '生煎',
         value: '生煎',
     },
     {
