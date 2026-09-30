@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
         // 1. 将以下数据渲染为六个按钮
@@ -42,7 +44,7 @@
         // 计数器
         const counter = {};
 
-      	// 生成所有按钮
+        // 生成所有按钮
         for (const item of data) {
             // item: { name: '葡萄', id: 5 }
             counter[item.name] = 0;
@@ -55,7 +57,7 @@
                 const result = Object
                     .keys(counter)
                     .sort((a, b) => counter[b] - counter[a])
-                    .map(item => `${ item }: ${ counter[item] }`)
+                    .map(item => `${item}: ${counter[item]}`)
                     .slice(0, 3)
                 console.log(result);
             });
@@ -64,4 +66,5 @@
 
     </script>
 </body>
+
 </html>

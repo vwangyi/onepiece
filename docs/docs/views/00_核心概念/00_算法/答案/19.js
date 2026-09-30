@@ -7,18 +7,9 @@ const input = [
 ];
 
 const output = [
-    {
-        name: 'zhangsan',
-        email: 'zhangsan@163.com',
-    },
-    {
-        name: 'lisi',
-        email: 'ls@qq.com',
-    },
-    {
-        name: 'wangwu',
-        email: 'wang5@outlook.com',
-    },
+    {  name: 'zhangsan', email: 'zhangsan@163.com' },
+    { name: 'lisi',  email: 'ls@qq.com' },
+    {   name: 'wangwu',   email: 'wang5@outlook.com' },
     {
         name: 'liuliu',
         email: 'liu6@gmail.com',
