@@ -42,7 +42,8 @@ try {
 
 const config: AppConfig = {
   ...defaultConfig,
-  ...envConfig.default
+  ...envConfig.default,
+  APP_VERSION: env === 'production' ? __APP_VERSION__ : __ENV_VERSION__
 };
 
 export default config;

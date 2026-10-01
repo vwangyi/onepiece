@@ -2,7 +2,7 @@
   "name": "elpis-docs",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": { 
+  "scripts": {
     "dev": "vitepress dev docs",
     "build": "vitepress build docs",
     "preview": "vitepress preview docs"
@@ -12,8 +12,5 @@
   "description": "",
   "devDependencies": {
     "vitepress": "^1.6.4"
-  },
-  "dependencies": {
-    "glob": "^13.0.0"
   }
 }

@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite --mode development",
-    "build": "vite build --mode production"
+    "build": "vite build --mode production",
+    "webpack:dev": "webpack serve --mode development",
+    "webpack:build": "webpack --mode production"
   }
 }

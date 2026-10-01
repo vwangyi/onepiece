@@ -4,6 +4,7 @@ dist/
 build/
 .env
 .env.* 
+!.env.dev
 !.env.example
 !.env.production
 !.env.development
