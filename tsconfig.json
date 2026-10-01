@@ -5,7 +5,7 @@
     "emitDeclarationOnly": false,
     "rewriteRelativeImportExtensions": false,
     // true 表示导入 需要写 ts后缀
-    "allowImportingTsExtensions": true,
+    "allowImportingTsExtensions": false,
 
     "jsxImportSource": "vue", // 如果使用 Vue 3，添加这行
     // 把ts编译为js时 使用什么es版本 默认是es3
