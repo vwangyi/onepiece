@@ -22,7 +22,7 @@ module.exports = (_, { mode }) => {
 
   return {
     mode,
-    devtool: isDev ? 'source-map' : false,
+    devtool: isDev ? false : 'source-map',
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.vue', '.jsx', '.scss', '.css'],
       alias: { '@': path.resolve(__dirname, './src') }
@@ -125,6 +125,7 @@ module.exports = (_, { mode }) => {
       new VueLoaderPlugin(),
       // 4. 把变量注入前端业务代码，src 中可用 __APP_NODE_ENV__ 访问 process.env.NODE_ENV
       new webpack.DefinePlugin({
+        __BUILD_TOOLS__: JSON.stringify('webpack'),
         __APP_NODE_ENV__: JSON.stringify(process.env.NODE_ENV),
         __APP_PORT__: JSON.stringify(process.env.PORT),
         __ENV_VERSION__: JSON.stringify(process.env.ENV_VERSION),
@@ -143,7 +144,6 @@ module.exports = (_, { mode }) => {
       open: true,
       hot: true,
       historyApiFallback: true
-      // proxy: {}
     },
     /**
      * 配置打包输出优化 （配置代码分割 模块合并 缓存 TreeShaking 代码压缩等优化策略）

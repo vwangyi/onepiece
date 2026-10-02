@@ -2,7 +2,7 @@
  * 通常我们不会在业务代码中直接使用 构建工具 向 业务代码 注入的变量
  * 而是集中在一个 config 模块中读取并导出结构化对象。
  */
-import defaultConfig from './config.default.ts';
+import defaultConfig from './config.default';
 
 /** 应用配置的形状：各环境配置文件与默认配置都应满足（可部分覆盖） */
 export interface AppConfig {
@@ -14,6 +14,8 @@ export interface AppConfig {
   NODE_ENV: string;
   /** 应用版本号 */
   APP_VERSION: string;
+  /** 构建工具 */
+  BUILD_TOOLS: string;
 }
 
 /**

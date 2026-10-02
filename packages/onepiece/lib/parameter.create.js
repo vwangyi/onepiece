@@ -71,13 +71,13 @@ export function create(program) {
           logSymbols.warning,
           `已经存在项目文件夹${chalk.yellowBright(name)}`
         );
-        //询问是否删除文件夹
+        // 询问是否删除文件夹
         const answer = await inquirerConfirm(
           `是否删除文件夹${chalk.yellowBright(name)}?`
         );
         console.log(answer);
         if (answer.confirm) {
-          //删除
+          // 删除
           await removeDir(name);
         } else {
           console.log(
@@ -93,7 +93,7 @@ export function create(program) {
           logSymbols.warning,
           `已经存在项目文件夹${chalk.yellowBright(name)},强制删除`
         );
-        //删除
+        // 删除
         await removeDir(name);
       }
 
@@ -109,14 +109,14 @@ export function create(program) {
       }
 
       // 是否修改 package.json 中的字段 比如 name, description, author等等
-      //判断命令行是否输入了-i --ignore选项，快速创建项目选项
+      // 判断命令行是否输入了-i --ignore选项，快速创建项目选项
       if (!option.ignore) {
-        //输入提问
+        // 输入提问
         const answers = await inquirerInputs(messages);
         console.log(answers);
         await changePackageJson(name, answers);
       }
-      //安装依赖
+      // 安装依赖
       npmInstall(name);
     });
 }

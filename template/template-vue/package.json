@@ -6,7 +6,6 @@
   "scripts": {
     "webpack:dev": "webpack serve --mode development",
     "webpack:build": "webpack --mode production",
-    "type-check": "vue-tsc --noEmit",
     "vite:dev": "vite",
     "vite:build": "vite build"
   },

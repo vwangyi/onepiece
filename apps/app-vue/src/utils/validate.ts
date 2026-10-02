@@ -57,10 +57,14 @@ export function validAlphabets(str: string) {
 /**
  * @param {string} email
  * @returns {Boolean}
- */
-export function validEmail(email: string) {
+ */ 
+export function validEmail(email: string): boolean {
+  if (email.length > 254) return false;
+  const [local] = email.split('@');
+  if (!local || local.length > 64) return false;
+
   const reg =
-    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
   return reg.test(email);
 }
 
