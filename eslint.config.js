@@ -34,16 +34,17 @@ const ignores = [
   '.vscode',
   'docs',
   'demo',
-  'scripts',
-  'packages/*',
-  '**/.nuxt/**',
-  'apps/new-world/*',
-  'app/s/all-blue/*',
-  'apps/*' // 注意: 不能全局忽略 'apps/*'，否则下方 all-blue / new-world 的规则块永远不会生效
+  '**/.nuxt/**'
+  // 'apps/new-world/*',
+  // 'app/s/all-blue/*',
+  // 'scripts',
+  // 'packages/*',
+  // 'apps/*' // 注意: 不能全局忽略 'apps/*'，否则下方 all-blue / new-world 的规则块永远不会生效
 ];
 
 // ============ 基础规则 ============
 const baseRules = {
+  'no-constant-condition': 'off',
   '@typescript-eslint/no-require-imports': 'off', // 使用require函数
   '@typescript-eslint/no-unused-vars': 'off', // 未使用的变量
   '@typescript-eslint/no-explicit-any': 'off', // 是否允许any
