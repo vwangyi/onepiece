@@ -1,17 +1,18 @@
 import { fileURLToPath, URL } from 'node:url';
+import path from 'node:path'
 import { defineConfig, loadEnv } from 'vite';
 import type { UserConfig, ConfigEnv, Plugin } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import vueDevTools from 'vite-plugin-vue-devtools';
-import path from 'node:path'
 
 const cwd = process.cwd();
 
 
 // https://cn.vite.dev/config/
 export default defineConfig(({ mode }: ConfigEnv): UserConfig => { 
-  const env = loadEnv(mode, cwd, '')
+  const env = loadEnv(mode, cwd, '');
+  
   return { 
      esbuild: {
       // 用于移除函数调用，如 console.log

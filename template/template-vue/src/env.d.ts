@@ -23,6 +23,7 @@ declare const __APP_PORT__: string;
 /** 应用版本号（取自 package.json 的 version） */
 declare const __APP_VERSION__: string;
 declare const __ENV_VERSION__: string;
+declare const __BUILD_TOOLS__: string; // 构建工具：webpack | vite
 
 /* ---------------- 3. Vue3 编译期特性开关 ---------------- */
 /** 是否包含 Options API 支持 */
