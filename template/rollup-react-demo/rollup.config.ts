@@ -37,6 +37,7 @@ const config: RollupOptions = {
       'react-dom': 'https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm'
     }
   },
+
   external: ['react', 'react-dom'],
   plugins: [
     nodeResolve(),
@@ -48,6 +49,7 @@ const config: RollupOptions = {
       exclude: 'node_modules/**',
       extensions: ['.js', '.jsx', '.ts', '.tsx']
     }),
+
     replace({
       'preventAssignment': true,
       'process.env.NODE_ENV': JSON.stringify('production')
