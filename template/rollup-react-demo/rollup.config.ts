@@ -22,8 +22,8 @@ const config: RollupOptions = {
     format: 'esm',
     name: 'rollupDemo',
     sourcemap: true,
-    entryFileNames: '[name]-[hash].js',
-    chunkFileNames: 'chunk/chunk-[name].[hash].js',
+    entryFileNames: 'js/xx-[name]-[hash].js',
+    chunkFileNames: 'js/chunk-[name].[hash].js',
     // manualChunks: {
     //   react: ["react", "react-dom"],
     // },
@@ -63,9 +63,7 @@ const config: RollupOptions = {
 
     serve('dist'),
     livereload('src'),
-    clear({
-      targets: ['dist']
-    }),
+    clear({ targets: ['dist'] }),
     postcss({
       extensions: ['.css'], // 将scss 解析成css
       extract: true, // 将css 提取到dist目录下
