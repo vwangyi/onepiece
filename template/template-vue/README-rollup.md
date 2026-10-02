@@ -24,10 +24,6 @@ output.path 绝对路径
 开发环境：npx webpack serve
 生产环境：npx webpack
 
-## babel.config.cjs 如果需要兼容性就用babel
-
-polyfill：pnpm i -D core-js regenerator-runtime
-
 ## vue
 
 环境：

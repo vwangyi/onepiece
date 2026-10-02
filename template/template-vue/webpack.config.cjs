@@ -22,7 +22,7 @@ module.exports = (_, { mode }) => {
 
   return {
     mode,
-    devtool: isDev ? 'source-map' : false,
+    devtool: isDev ? false : 'source-map',
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.vue', '.jsx', '.scss', '.css'],
       alias: { '@': path.resolve(__dirname, './src') }
