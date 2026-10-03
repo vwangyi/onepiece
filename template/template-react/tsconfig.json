@@ -8,7 +8,7 @@
     "types": ["node"],
     "moduleResolution": "Bundler",
     "noEmit": true,
-    "allowImportingTsExtensions": true,
+    "allowImportingTsExtensions": false,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
@@ -16,5 +16,5 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*", "rollup.config.ts", "src/global.d.ts"]
+  "include": ["src/**/*", "rollup.config.mjs", "src/global.d.ts"]
 }

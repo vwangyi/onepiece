@@ -1,5 +1,4 @@
 import { defineConfig, loadEnv } from 'vite';
-import type { UserConfig, ConfigEnv, Plugin } from 'vite';
 import { fileURLToPath, URL } from 'node:url';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
@@ -8,7 +7,7 @@ import pkg from './package.json' with { type: 'json' };
 
 const cwd = process.cwd();
 
-export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
+export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, cwd, '');
 
   console.log('env', typeof env.PORT, env.PORT);
