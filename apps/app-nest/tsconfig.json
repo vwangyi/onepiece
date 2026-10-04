@@ -7,6 +7,7 @@
     // NestJS 需要由 tsc 实际产出 .js 文件，必须关闭
     "noEmit": false,
 
+    "removeComments": true,
     // 表示当前源码在 ./src里面
     "rootDir": "./src",
     // 根配置的 "./dist" 继承后会解析为项目根目录的 dist/
@@ -22,21 +23,17 @@
     // "moduleResolution": "node",
     "module": "nodenext",
     "moduleResolution": "nodenext",
+    "sourceMap": true,
+    "experimentalDecorators": true, // 装饰器
+    "emitDecoratorMetadata": true, // 装饰器元数据
 
     // 根配置为 "esnext"，NestJS 官方推荐 es2021 即可
     "target": "es2021",
     // 根配置 lib 只有 ["esnext"]，补充 es2021 即可（NestJS 不需要 DOM）
     "lib": ["es2021"],
 
-    // 根配置 allowImportingTsExtensions: true 要求 noEmit 或 emitDeclarationOnly
-    // 这里已关闭 noEmit，同时需要写 .js 输出，所以必须关闭此项
     "allowImportingTsExtensions": false,
-
-    // 根配置为 true，但该选项仅在 moduleResolution 为 node16/nodenext/bundler 时有效
-    // 使用 node 模式时必须关闭，否则报 TS5098
     "resolvePackageJsonExports": false,
-
-    // 同上，根配置为 true，仅在 node16/nodenext/bundler 模式下有效，node 模式下关闭
     "noUncheckedSideEffectImports": false
   },
 
