@@ -13,58 +13,60 @@ interface DataItem {
   address: string;
 }
 
-
 const expand = ref(false);
 const formRef = ref<FormInstance>();
-const formState = reactive<Record<string, unknown> >({});
+const formState = reactive<Record<string, unknown>>({});
 const onFinish = (values: any) => {
   console.log('Received values of form: ', values);
   console.log('formState: ', formState);
 };
 
-
-
 const columns = [
   {
     title: 'name',
     dataIndex: 'name',
-    width: '30%',
+    width: '30%'
   },
   {
     title: 'age',
-    dataIndex: 'age',
+    dataIndex: 'age'
   },
   {
     title: 'address',
-    dataIndex: 'address',
+    dataIndex: 'address'
   },
   {
     title: 'operation',
-    dataIndex: 'operation',
-  },
+    dataIndex: 'operation'
+  }
 ];
 const dataSource: Ref<DataItem[]> = ref([
   {
     key: '0',
     name: 'Edward King 0',
     age: 32,
-    address: 'London, Park Lane no. 0',
+    address: 'London, Park Lane no. 0'
   },
   {
     key: '1',
     name: 'Edward King 1',
     age: 32,
-    address: 'London, Park Lane no. 1',
-  },
+    address: 'London, Park Lane no. 1'
+  }
 ]);
 const count = computed(() => dataSource.value.length + 1);
 const editableData: UnwrapRef<Record<string, DataItem>> = reactive({});
 
 const edit = (key: string) => {
-  editableData[key] = cloneDeep(dataSource.value.filter(item => key === item.key)[0])!;
+  editableData[key] = cloneDeep(
+    dataSource.value.filter(item => key === item.key)[0]
+  )!;
 };
 const save = (key: string) => {
-  Object.assign(dataSource.value.filter(item => key === item.key)[0]!, editableData[key]);
+  Object.assign(
+    dataSource.value.filter(item => key === item.key)[0]!,
+    editableData[key]
+  );
   delete editableData[key];
 };
 
@@ -76,12 +78,12 @@ const handleAdd = () => {
     key: `${count.value}`,
     name: `Edward King ${count.value}`,
     age: 32,
-    address: `London, Park Lane no. ${count.value}`,
+    address: `London, Park Lane no. ${count.value}`
   };
   dataSource.value.push(newData);
 };
 </script>
-<template> 
+<template>
   <div>
     <a-form
       ref="formRef"
@@ -91,23 +93,46 @@ const handleAdd = () => {
       @finish="onFinish"
     >
       <a-row :gutter="24">
-        <template v-for="i in 10" :key="i">
-          <a-col v-show="expand || i <= 6" :span="8">
+        <template
+          v-for="i in 10"
+          :key="i"
+        >
+          <a-col
+            v-show="expand || i <= 6"
+            :span="8"
+          >
             <a-form-item
               :name="`field-${i}`"
               :label="`field-${i}`"
               :rules="[{ required: true, message: 'input something' }]"
             >
-              <a-input v-model:value="formState[`field-${i}`]" placeholder="placeholder"></a-input>
+              <a-input
+                v-model:value="formState[`field-${i}`]"
+                placeholder="placeholder"
+              ></a-input>
             </a-form-item>
           </a-col>
         </template>
       </a-row>
       <a-row>
-        <a-col :span="24" style="text-align: right">
-          <a-button type="primary" html-type="submit">Search</a-button>
-          <a-button style="margin: 0 8px" @click="() => formRef!.resetFields()">Clear</a-button>
-          <a style="font-size: 12px" @click="expand = !expand">
+        <a-col
+          :span="24"
+          style="text-align: right"
+        >
+          <a-button
+            type="primary"
+            html-type="submit"
+            >Search</a-button
+          >
+          <a-button
+            style="margin: 0 8px"
+            @click="() => formRef!.resetFields()"
+            >Clear</a-button
+          >
+          <a
+            style="font-size: 12px"
+            @click="expand = !expand"
+          >
             <template v-if="expand">
               <UpOutlined />
             </template>
@@ -118,44 +143,78 @@ const handleAdd = () => {
           </a>
         </a-col>
       </a-row>
-    </a-form> 
-  <div class="operate">
-  <a-button class="editable-add-btn" @click="handleAdd">添加</a-button>
-  <a-button class="editable-add-btn" @click="handleAdd">添加</a-button>
-  <a-button class="editable-add-btn" @click="handleAdd">添加</a-button>
-  <a-button class="editable-add-btn" @click="handleAdd">添加</a-button>
-  </div>
-  <a-table bordered :data-source="dataSource" :columns="columns">
-    <template #bodyCell="{ column, text, record }">
-      <template v-if="column.dataIndex === 'name'">
-        <div class="editable-cell">
-          <div v-if="editableData[record.key]" class="editable-cell-input-wrapper">
-            <a-input v-model:value="editableData[record.key]!.name" @pressEnter="save(record.key)" />
-            <check-outlined class="editable-cell-icon-check" @click="save(record.key)" />
+    </a-form>
+    <div class="operate">
+      <a-button
+        class="editable-add-btn"
+        @click="handleAdd"
+        >添加</a-button
+      >
+      <a-button
+        class="editable-add-btn"
+        @click="handleAdd"
+        >添加</a-button
+      >
+      <a-button
+        class="editable-add-btn"
+        @click="handleAdd"
+        >添加</a-button
+      >
+      <a-button
+        class="editable-add-btn"
+        @click="handleAdd"
+        >添加</a-button
+      >
+    </div>
+    <a-table
+      bordered
+      :data-source="dataSource"
+      :columns="columns"
+    >
+      <template #bodyCell="{ column, text, record }">
+        <template v-if="column.dataIndex === 'name'">
+          <div class="editable-cell">
+            <div
+              v-if="editableData[record.key]"
+              class="editable-cell-input-wrapper"
+            >
+              <a-input
+                v-model:value="editableData[record.key]!.name"
+                @pressEnter="save(record.key)"
+              />
+              <check-outlined
+                class="editable-cell-icon-check"
+                @click="save(record.key)"
+              />
+            </div>
+            <div
+              v-else
+              class="editable-cell-text-wrapper"
+            >
+              {{ text || ' ' }}
+              <edit-outlined
+                class="editable-cell-icon"
+                @click="edit(record.key)"
+              />
+            </div>
           </div>
-          <div v-else class="editable-cell-text-wrapper">
-            {{ text || ' ' }}
-            <edit-outlined class="editable-cell-icon" @click="edit(record.key)" />
-          </div>
-        </div>
+        </template>
+        <template v-else-if="column.dataIndex === 'operation'">
+          <a-popconfirm
+            v-if="dataSource.length"
+            title="Sure to delete?"
+            @confirm="onDelete(record.key)"
+          >
+            <a>Delete</a>
+          </a-popconfirm>
+        </template>
       </template>
-      <template v-else-if="column.dataIndex === 'operation'">
-        <a-popconfirm
-          v-if="dataSource.length"
-          title="Sure to delete?"
-          @confirm="onDelete(record.key)"
-        >
-          <a>Delete</a>
-        </a-popconfirm>
-      </template>
-    </template>
-  </a-table>
+    </a-table>
   </div>
-
 </template>
 
 <style lang="scss" scoped>
-#components-form-demo-advanced-search .ant-form   {
+#components-form-demo-advanced-search .ant-form {
   max-width: none;
 }
 #components-form-demo-advanced-search .search-result-list {
@@ -177,7 +236,6 @@ const handleAdd = () => {
   border: 1px dashed #434343;
   background: rgba(255, 255, 255, 0.04);
 }
-
 
 .editable-cell {
   position: relative;
@@ -219,15 +277,4 @@ const handleAdd = () => {
 .editable-cell:hover .editable-cell-icon {
   display: inline-block;
 }
-
-
 </style>
-
-
-
-
-
-
-
-
- 

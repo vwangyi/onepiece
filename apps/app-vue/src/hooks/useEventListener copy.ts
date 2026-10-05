@@ -1,12 +1,8 @@
-
 import { unref, watch, type WatchStopHandle } from 'vue';
 import type { Ref } from 'vue';
 
 type MaybeRefTarget =
-  | EventTarget
-  | Ref<EventTarget | null | undefined>
-  | null
-  | undefined;
+  EventTarget | Ref<EventTarget | null | undefined> | null | undefined;
 
 type EventHandler = (event: Event) => void;
 type ListenerOptions = boolean | AddEventListenerOptions | undefined;
@@ -71,9 +67,9 @@ export function useEventListener(
 
   const event = eventOrHandler as string;
   const handler = handlerOrOptions as EventHandler;
-  const options = (typeof targetOrEvent === 'string'
-    ? handlerOrOptions
-    : maybeOptions) as ListenerOptions;
+  const options = (
+    typeof targetOrEvent === 'string' ? handlerOrOptions : maybeOptions
+  ) as ListenerOptions;
 
   return watch(
     // unref 后这里能推出 EventTarget | null | undefined

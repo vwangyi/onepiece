@@ -3,10 +3,7 @@ import type { Ref } from 'vue';
 
 /** 可绑定事件的目标（可能是 ref 包裹的） */
 type MaybeRefTarget =
-  | EventTarget
-  | Ref<EventTarget | null | undefined>
-  | null
-  | undefined;
+  EventTarget | Ref<EventTarget | null | undefined> | null | undefined;
 
 type EventHandler = (event: Event) => void;
 type ListenerOptions = boolean | AddEventListenerOptions | undefined;

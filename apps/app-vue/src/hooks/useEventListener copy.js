@@ -44,7 +44,6 @@ export function useEventListener(...args) {
       const [event, handler, options] = args;
 
       if (!event || !handler) {
-        
         return;
       }
 

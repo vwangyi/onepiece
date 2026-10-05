@@ -1,14 +1,15 @@
 ## 业务名词
+
 ```js
 const a = {
-    viewPoint: '一句话看点',
-    AIMode: 'ai模式',
-    classicMode: '经典模式',
-    childMode: '少儿模式',
-    elderMode: '长辈模式',
-    waterfall: '无导航瀑布流'
-}
-``` 
+  viewPoint: '一句话看点',
+  AIMode: 'ai模式',
+  classicMode: '经典模式',
+  childMode: '少儿模式',
+  elderMode: '长辈模式',
+  waterfall: '无导航瀑布流'
+};
+```
 
 单点登录
 国际化
@@ -29,9 +30,9 @@ webGL
 
 音视频 播放器 实时通信
 
-Video audio 标签 所有属性方法事件 
+Video audio 标签 所有属性方法事件
 
-视频文件格式 MP4 webm hls dash 
+视频文件格式 MP4 webm hls dash
 关键帧
 库 video.js  
 Media Source Extensions (MSE)
@@ -54,30 +55,20 @@ Media Source Extensions (MSE)
 
 ##
 
-
-
-表单  表格 
-
+表单 表格
 
 编辑器
 gis
-低代码 
+低代码
 
-服务监控 
- 
-
+服务监控
 
 权限（会员）审批流程
 
 大文件上传
 
-
-虚拟列表 
-
+虚拟列表
 
 单元测试是站在开发人员的角度测试某个模块功能
 端到端测试是站在用户角度测试某个模块功能
 集成测试是 A模块调用B模块 数据结构是否正确
-
-
-
