@@ -68,8 +68,8 @@ import { HttpExceptionFilter } from './logger/http-exception.filter';
     },
     {
       provide: 'random',
-      useFactory: () => Math.random(),
-      inject: ['text_xxx', AppService]
+      useFactory: (a, b) => Math.random(),
+      inject: ['test_xxx', AppService]
     }
   ]
 })
