@@ -7,7 +7,7 @@ import {
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Observable } from 'rxjs';
-import { Request } from 'express';
+import type { Request } from 'express';
 
 @Injectable()
 export class LoginGuard implements CanActivate {
@@ -32,7 +32,7 @@ export class LoginGuard implements CanActivate {
 
     try {
       const info = this.jwtService.verify(token);
-      (request as any).user = info.user;
+      request.user = info.user;
       return true;
     } catch (e) {
       console.log(e);

@@ -50,12 +50,8 @@ export class UserModule implements NestModule {
     configure(consumer: MiddlewareConsumer) {
         // 为所有路由都加了 中间件
         // consumer.apply(UserMiddleware).forRoutes(UserController);
-
         // 给 指定路由加中间件
-        consumer.apply(UserMiddleware).forRoutes({
-            path: '/user',
-            method: RequestMethod.GET,
-        });
+        consumer.apply(UserMiddleware).forRoutes({ path: '/user', method: RequestMethod.GET });
     }
 }
 
@@ -87,3 +83,15 @@ async function bootstrap() {
     await app.listen(3000);
 }
 ```
+
+
+
+
+
+
+
+
+
+
+
+

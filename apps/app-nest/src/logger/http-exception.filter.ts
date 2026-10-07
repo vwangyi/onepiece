@@ -1,5 +1,5 @@
 import { ArgumentsHost, Catch, ExceptionFilter, Inject } from '@nestjs/common';
-import { Request, Response } from 'express';
+import type { Request, Response } from 'express';
 import { MyLogger } from './my-logger';
 
 /**
