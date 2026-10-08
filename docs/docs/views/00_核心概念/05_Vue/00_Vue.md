@@ -8,6 +8,7 @@ model层负责管理数据和业务逻辑。和UI完全解耦。vue中的store
 view层负责渲染数据和用户交互。vue中的template
 viewmodel负责管理UI相关的数据和业务逻辑，是vue中的setup 
 
+一个业务功能就是一个函数
 ## MVC架构
 
 
