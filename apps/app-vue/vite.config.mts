@@ -32,6 +32,12 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       vueJsx(),
       false ? vueDevTools() : false,
     ].filter(Boolean),
+    worker: {
+      // 必须用 ES module 格式的 Worker。
+      // 原因：图像处理 Worker 里通过 `?url` 动态引入 OpenCV（12MB 的 UMD 文件），
+      // 这会让 Worker 入口产生代码分割，而 Vite 默认的 iife 格式不支持分割。
+      format: 'es'
+    },
     server: {
       port: Number(env.VITE_PORT),
       open: env.VITE_OPEN === 'true',

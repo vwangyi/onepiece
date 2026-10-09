@@ -169,6 +169,13 @@ export const routes = [
     component: () => import(`@/views/VideoView/VideoView.vue`)
   },
   {
+    // 一级页面：图像处理性能优化（WebAssembly + Web Worker + OffscreenCanvas）
+    path: '/image-process',
+    name: 'ImageProcess',
+    meta: { title: '图像处理优化' },
+    component: () => import('@/views/ImageProcessView/ImageProcessView.vue')
+  },
+  {
     path: '/dynamic-segmented-demo',
     name: 'DynamicSegmentedDemo',
     component: () => import('~/views/VirtualList/DynamicSegmentedDemo.vue')
