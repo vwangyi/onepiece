@@ -125,6 +125,22 @@ export interface Cv {
     threshold1: number,
     threshold2: number
   ): void;
+  /**
+   * 创建形态学结构元。
+   * 注意：OpenCV 5.0 的第二参要求 cv.Size 对象（传数字会报
+   * "Cannot use 'in' operator to search for 'width'"）。
+   */
+  getStructuringElement(shape: number, ksize: unknown): CvMat;
+  morphologyEx(
+    src: CvMat,
+    dst: CvMat,
+    op: number,
+    kernel: CvMat,
+    anchor?: unknown,
+    iterations?: number,
+    borderType?: number,
+    borderValue?: unknown
+  ): void;
   findContours(
     image: CvMat,
     contours: unknown,
@@ -182,7 +198,10 @@ export interface Cv {
   COLOR_GRAY2RGBA: number;
   BORDER_CONSTANT: number;
   BORDER_REPLICATE: number;
+  MORPH_RECT: number;
+  MORPH_CLOSE: number;
   THRESH_BINARY: number;
+  THRESH_BINARY_INV: number;
   THRESH_OTSU: number;
   ADAPTIVE_THRESH_MEAN_C: number;
   ADAPTIVE_THRESH_GAUSSIAN_C: number;
@@ -219,7 +238,8 @@ async function resolveOpenCvUrl(): Promise<string> {
 /**
  * 加载 OpenCV。
  *
- * 关键点：opencv.js 是一个 12.7MB 的 **UMD** 包（wasm 已 base64 内嵌），
+ * 关键点：opencv.js 是一个 12.7MB 的 **UMD** 包，
+ * 里面用 latin1 字符串内嵌了 11.4MB 的 wasm 二进制（Emscripten 的 SINGLE_FILE=1 产物），
  * 不能被 Vite 当作 ESM 静态分析 —— 强行 parse 会报 Rollup 语法错误。
  * 所以用 `?url` 让 Vite 原样产出资源文件，再在运行时加载：
  *   - 主线程：<script> 标签，UMD 挂到 window.cv
@@ -356,180 +376,429 @@ export interface OpenCvDetectResult {
   isQuad: boolean;
   /** 置信度 0~100 */
   confidence: number;
+  /** 检出矩形的宽高比，调试用 */
+  aspectRatio: number;
+  /** 卡片占画面面积的比例，调试用 */
+  areaRatio: number;
 }
 
 /**
- * 自动巡边：定位画面中的矩形文档。
- *
- * 流程（OpenCV 经典方案）：
- *   1. 灰度化
- *   2. 高斯模糊降噪
- *   3. 自适应二值化（均值法），让纸张与背景分离
- *   4. findContours 找全部轮廓
- *   5. approxPolyDP 多边形逼近，取面积最大的近似四边形
- *   6. 若四边形接近矩形则直接用；否则退化为其外接矩形
- *
- * 相比投影法，轮廓法能处理倾斜拍摄的文档（可进一步做透视校正）。
+ * 巡边配置。默认值针对「拍摄身份证」场景调优。
  */
-export function detectRectWithOpenCV(imageData: ImageData): OpenCvDetectResult {
+export interface DetectConfig {
+  /**
+   * 期望宽高比（宽 / 高）。
+   * 二代身份证 85.6mm × 54mm ≈ 1.585，这是最强的先验：
+   * 画面里往往还有其他矩形（证件照、卡片），用比例可以排除掉。
+   * 设为 0 表示不启用比例先验。
+   */
+  expectedAspectRatio: number;
+  /** 比例容差。0.25 表示 1.585 ± 25% 都算合理 */
+  aspectTolerance: number;
+  /** 轮廓面积下限（占画面比例），低于此值视为噪点 */
+  minAreaRatio: number;
+  /** 是否允许卡片贴边/出血（面积占比可以接近 1） */
+  allowFillFrame: boolean;
+}
+
+/** 身份证场景的默认配置 */
+export const ID_CARD_DETECT_CONFIG: DetectConfig = {
+  expectedAspectRatio: 85.6 / 54, // ≈ 1.585
+  aspectTolerance: 0.25,
+  minAreaRatio: 0.02,
+  allowFillFrame: true
+};
+
+/** 通用文档场景（不启用比例先验） */
+export const GENERIC_DETECT_CONFIG: DetectConfig = {
+  expectedAspectRatio: 0,
+  aspectTolerance: 0.35,
+  minAreaRatio: 0.02,
+  allowFillFrame: false
+};
+
+/** 候选轮廓的评分结果 */
+interface Candidate {
+  quad: number[] | null;
+  rect: Rect | null;
+  area: number;
+  score: number;
+}
+
+/**
+ * 自动巡边：定位画面中的证件卡片。
+ *
+ * 针对「拍身份证」的优化点：
+ *
+ * 1. **多路候选**：不只取面积最大的轮廓，而是对每个轮廓打分后选最优。
+ *    身份证场景下画面里常有多张卡（身份证+银行卡+证件照），
+ *    单纯按面积会选错。
+ *
+ * 2. **比例先验**：二代身份证 85.6:54 ≈ 1.585，这个比例非常独特。
+ *    把「宽高比接近 1.585」作为加分项，能有效排除干扰物。
+ *
+ * 3. **多档 approxPolyDP**：圆角会让逼近结果在 4~8 个顶点间跳变。
+ *    遍历多个 eps 取第一个恰好 4 顶点的结果，比固定 eps 稳。
+ *
+ * 4. **评分而非硬阈值**：占满画面在证件拍摄中是正常情况，
+ *    不再因为 areaRatio 过大而判为误检。
+ *
+ * 5. **边缘兜底**：当二值化因低对比度失败时，
+ *    退到 Canny 边缘 + 膨胀再找轮廓。
+ *
+ * 基础流程：灰度 → 高斯降噪 → 自适应二值化 → findContours
+ *          → approxPolyDP 取四边形 → 按「面积 × 比例 × 正对度」打分。
+ */
+export function detectRectWithOpenCV(
+  imageData: ImageData,
+  config: DetectConfig = ID_CARD_DETECT_CONFIG
+): OpenCvDetectResult {
   const cv = cvInstance!;
   const pool = new MatPool();
+  const empty: OpenCvDetectResult = {
+    rect: null,
+    corners: null,
+    isQuad: false,
+    confidence: 0,
+    aspectRatio: 0,
+    areaRatio: 0
+  };
 
   try {
     const src = pool.track(cv.matFromImageData(imageData));
+    const W = imageData.width;
+    const H = imageData.height;
+    const imageArea = W * H;
 
-    // 1. 灰度
     const gray = pool.create();
     cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY);
 
-    // 2. 高斯模糊降噪（ksize 取奇数）
     const blurred = pool.create();
     cv.GaussianBlur(gray, blurred, new cv.Size(5, 5), 0);
 
-    // 3. 自适应二值化：局部均值法，对光照不均更鲁棒
-    const binary = pool.create();
+    // 两条检测路线：阈值分割（快，抗光照不均）+ 边缘（低对比度兜底）
+    const routes: CvMat[] = [];
+
+    // 路线 1：自适应二值化
+    const byThreshold = pool.create();
     cv.adaptiveThreshold(
       blurred,
-      binary,
+      byThreshold,
       255,
       cv.ADAPTIVE_THRESH_MEAN_C,
       cv.THRESH_BINARY,
       15,
       -2
     );
+    routes.push(byThreshold);
 
-    // 4. 轮廓提取
-    const contours = new cv.MatVector();
-    const hierarchy = pool.create();
-    cv.findContours(
-      binary,
-      contours,
-      hierarchy,
-      cv.RETR_LIST,
-      cv.CHAIN_APPROX_SIMPLE
+    // 路线 2：Canny 边缘 + 闭运算，把断边连起来
+    // 卡片与背景对比度低时（比如白卡放白桌），阈值分割会失效，这条路能救回来
+    const edges = pool.create();
+    cv.Canny(blurred, edges, 40, 120);
+    // 注意：OpenCV 5.0 的 getStructuringElement 第二参是 cv.Size 对象
+    const kernel = pool.track(
+      cv.getStructuringElement(cv.MORPH_RECT, new cv.Size(3, 3))
     );
+    const closed = pool.create();
+    cv.morphologyEx(edges, closed, cv.MORPH_CLOSE, kernel);
+    routes.push(closed);
 
-    const total = contours.size();
-    const imageArea = imageData.width * imageData.height;
+    // 路线 3：低阈值 Canny，专门捞弱边界。
+    // 证件拍摄有时会碰到「白卡放在浅色桌面」这种低对比度情况，
+    // 卡片外轮廓的梯度只有 30 左右，用路线 2 的阈值(40) 会整条丢失。
+    // 这里把阈值降到 12，同时靠评分里的「面积 + 比例 + 正对度」过滤噪点。
+    const weakEdges = pool.create();
+    cv.Canny(blurred, weakEdges, 12, 40);
+    const weakClosed = pool.create();
+    cv.morphologyEx(weakEdges, weakClosed, cv.MORPH_CLOSE, kernel);
+    routes.push(weakClosed);
 
-    let bestArea = 0;
-    let bestQuad: number[] | null = null;
-    let bestRect: Rect | null = null;
-    let secondBestArea = 0;
+    let best: Candidate | null = null;
 
-    for (let i = 0; i < total; i++) {
-      const contour = contours.get(i);
-      const area = cv.contourArea(contour);
-      // 过小的轮廓是噪点，直接跳过（取画面面积的 2% 作为下限）
-      if (area < imageArea * 0.02) {
-        contour.delete();
-        continue;
-      }
+    for (const route of routes) {
+      const contours = new cv.MatVector();
+      const hierarchy = pool.create();
+      cv.findContours(
+        route,
+        contours,
+        hierarchy,
+        cv.RETR_LIST,
+        cv.CHAIN_APPROX_SIMPLE
+      );
 
-      const peri = cv.arcLength(contour, true);
-      const approx = pool.create();
-      cv.approxPolyDP(contour, approx, 0.02 * peri, true);
-
-      if (area > bestArea) {
-        secondBestArea = bestArea;
-        bestArea = area;
-
-        if (approx.rows === 4) {
-          // 近似四边形 -> 记录角点
-          bestQuad = Array.from(approx.data32S);
-          bestRect = null;
-        } else {
-          // 非四边形 -> 用外接矩形
-          const bb = cv.boundingRect(contour);
-          bestQuad = null;
-          bestRect = {
-            x: bb.x,
-            y: bb.y,
-            width: bb.width,
-            height: bb.height
-          };
+      for (let i = 0; i < contours.size(); i++) {
+        const contour = contours.get(i);
+        const area = cv.contourArea(contour);
+        if (area < imageArea * config.minAreaRatio) {
+          contour.delete();
+          continue;
         }
-      } else if (area > secondBestArea) {
-        secondBestArea = area;
+
+        const peri = cv.arcLength(contour, true);
+        if (peri <= 0) {
+          contour.delete();
+          continue;
+        }
+
+        // 多档 eps：圆角会让固定 eps 的逼近结果在 4~8 顶点间跳变
+        for (const epsRatio of [0.02, 0.03, 0.04, 0.05, 0.08]) {
+          const approx = pool.create();
+          cv.approxPolyDP(contour, approx, epsRatio * peri, true);
+
+          let quad: number[] | null = null;
+          let rect: Rect | null = null;
+
+          if (approx.rows === 4) {
+            quad = Array.from(approx.data32S);
+          } else if (approx.rows < 4) {
+            // 逼近成三角形等，说明 epsilon 过大，跳过这一档
+            approx.delete();
+            continue;
+          } else {
+            // 顶点过多（圆角/毛边），退回外接矩形
+            const bb = cv.boundingRect(contour);
+            rect = { x: bb.x, y: bb.y, width: bb.width, height: bb.height };
+          }
+          approx.delete();
+
+          const cand = quad
+            ? scoreQuad(quad, area, imageArea, W, H, config)
+            : scoreRect(rect!, area, imageArea, W, H, config);
+
+          if (cand && (!best || cand.score > best.score)) {
+            best = cand;
+          }
+          // 已经拿到 4 顶点，再换更大的 eps 只会更糙，没必要继续
+          if (quad) break;
+        }
+        contour.delete();
       }
-
-      contour.delete();
+      contours.delete();
     }
 
-    contours.delete();
+    if (!best || best.area <= 0) return empty;
 
-    if (!bestArea || bestArea <= 0) {
-      return { rect: null, corners: null, isQuad: false, confidence: 0 };
-    }
-
-    // 5. 计算外接矩形与角点
-    const W = imageData.width;
-    const H = imageData.height;
-
-    if (bestQuad && bestQuad.length >= 8) {
-      // 四角点顺序：findContours 不保证顺序，需要自己排成 左上/右上/右下/左下
+    // ---- 输出 ----
+    if (best.quad) {
       const pts: Array<{ x: number; y: number }> = [];
-      for (let i = 0; i < bestQuad.length; i += 2) {
-        pts.push({ x: bestQuad[i]!, y: bestQuad[i + 1]! });
+      for (let i = 0; i < best.quad.length; i += 2) {
+        pts.push({ x: best.quad[i]!, y: best.quad[i + 1]! });
       }
       const ordered = orderCorners(pts);
       const xs = ordered.map(p => p.x);
       const ys = ordered.map(p => p.y);
       const rect: Rect = {
-        x: Math.max(0, Math.min(...xs)),
-        y: Math.max(0, Math.min(...ys)),
+        x: Math.min(...xs),
+        y: Math.min(...ys),
         width: Math.max(...xs) - Math.min(...xs),
         height: Math.max(...ys) - Math.min(...ys)
       };
-
-      // 倾斜度：外接矩形面积 / 四边形实际面积。
-      // 越接近 1 说明越"正"，越接近 0 说明是斜着拍的。
-      let quadArea = 0;
-      for (let i = 0; i < 4; i++) {
-        const a = ordered[i]!;
-        const b = ordered[(i + 1) % 4]!;
-        quadArea += a.x * b.y - b.x * a.y;
-      }
-      quadArea = Math.abs(quadArea / 2);
-      const skewRatio =
-        quadArea > 0 ? (rect.width * rect.height) / quadArea : 1;
-
+      const skew = skewRatioOf(ordered);
       return {
         rect: clampRect(rect, W, H),
         corners: ordered,
         isQuad: true,
-        confidence: scoreConfidence(bestArea, imageArea, skewRatio)
+        confidence: best.score,
+        aspectRatio: ratioOf(rect.width, rect.height),
+        areaRatio: best.area / imageArea
       };
     }
 
-    if (bestRect) {
-      const clamped = clampRect(bestRect, W, H);
+    if (best.rect) {
+      const clamped = clampRect(best.rect, W, H);
       return {
         rect: clamped,
         corners: null,
         isQuad: false,
-        confidence: scoreConfidence(bestArea, imageArea, 1)
+        confidence: best.score,
+        aspectRatio: ratioOf(clamped.width, clamped.height),
+        areaRatio: best.area / imageArea
       };
     }
 
-    return { rect: null, corners: null, isQuad: false, confidence: 0 };
+    return empty;
   } finally {
     pool.releaseAll();
   }
 }
 
-/** 把四个角点排成 左上 -> 右上 -> 右下 -> 左下 */
+/** 计算宽高比，避免除零 */
+function ratioOf(w: number, h: number): number {
+  return h > 0 ? w / h : 0;
+}
+
+/**
+ * 比例得分：越接近期望比例越高。
+ * 关闭先验（expectedAspectRatio = 0）时返回中性分 1。
+ */
+function aspectScore(ratio: number, config: DetectConfig): number {
+  if (config.expectedAspectRatio <= 0 || ratio <= 0) return 1;
+  const expected = config.expectedAspectRatio;
+  const rel = Math.abs(ratio - expected) / expected;
+  if (rel > config.aspectTolerance) return 0;
+  // 在容差范围内线性衰减：完全吻合 1.0，刚好到边缘 0.35
+  return 1 - (rel / config.aspectTolerance) * 0.65;
+}
+
+/** 面积得分：证件场景下大而完整的卡片最可信 */
+function areaScore(areaRatio: number, config: DetectConfig): number {
+  if (areaRatio < 0.02 || areaRatio > 1.2) return 0;
+  // 占画面 30%~92% 是最理想的取景
+  if (areaRatio >= 0.3 && areaRatio <= 0.92) return 1;
+  // 贴边（出血）时轻微扣分，但不失信 —— 证件拍摄很常见
+  if (areaRatio > 0.92) return config.allowFillFrame ? 0.75 : 0.3;
+  return 0.5;
+}
+
+/**
+ * 给一个近似四边形打分。
+ *
+ * 权重设计的考量（针对身份证场景）：
+ *   面积权重最高（0.5）。证件拍摄时目标就是"手里那一张"，
+ *   它在画面中占比最大；银行卡、证件照等干扰物面积都明显更小。
+ *   如果面积权重不够，画面里有多张卡时会选错 —— 实测把权重从 0.4 提到 0.5
+ *   才能稳定压过同比例的小卡片。
+ *   比例次之（0.3）：1.585 的身份证比例很独特，能排除掉名片、证件照等竖着的东西。
+ *   正对度再次（0.2）：倾斜拍摄的惩罚。
+ */
+function scoreQuad(
+  quad: number[],
+  area: number,
+  imageArea: number,
+  W: number,
+  H: number,
+  config: DetectConfig
+): Candidate | null {
+  const pts: Array<{ x: number; y: number }> = [];
+  for (let i = 0; i < quad.length; i += 2) {
+    pts.push({ x: quad[i]!, y: quad[i + 1]! });
+  }
+  const ordered = orderCorners(pts);
+  const xs = ordered.map(p => p.x);
+  const ys = ordered.map(p => p.y);
+  const rect: Rect = {
+    x: Math.min(...xs),
+    y: Math.min(...ys),
+    width: Math.max(...xs) - Math.min(...xs),
+    height: Math.max(...ys) - Math.min(...ys)
+  };
+  if (rect.width < 4 || rect.height < 4) return null;
+
+  const ar = aspectScore(ratioOf(rect.width, rect.height), config);
+  const as = areaScore(area / imageArea, config);
+  // 正对度：外接矩形面积 / 实际四边形面积，1 表示完全正对
+  const skew = skewRatioOf(ordered);
+  const skewScore = Math.max(0, Math.min(1, 2 - skew));
+
+  const score = Math.round((as * 0.5 + ar * 0.3 + skewScore * 0.2) * 100);
+  return { quad, rect: null, area, score };
+}
+
+/** 给一个外接矩形打分（非四边形退化情况） */
+function scoreRect(
+  rect: Rect,
+  area: number,
+  imageArea: number,
+  W: number,
+  H: number,
+  config: DetectConfig
+): Candidate | null {
+  if (rect.width < 4 || rect.height < 4) return null;
+  // 外接矩形完全在画面外也没意义
+  if (rect.x >= W || rect.y >= H) return null;
+
+  const ar = aspectScore(ratioOf(rect.width, rect.height), config);
+  const as = areaScore(area / imageArea, config);
+  // 非四边形说明形状不理想（可能是圆角没逼近好），给一个折扣
+  const score = Math.round((as * 0.5 + ar * 0.3) * 100 * 0.85);
+  return { quad: null, rect, area, score };
+}
+
+/**
+ * 正对度：外接矩形面积 / 四边形面积。
+ * = 1 表示正对；越大表示越倾斜。
+ */
+function skewRatioOf(ordered: Array<{ x: number; y: number }>): number {
+  let quadArea = 0;
+  for (let i = 0; i < 4; i++) {
+    const a = ordered[i]!;
+    const b = ordered[(i + 1) % 4]!;
+    quadArea += a.x * b.y - b.x * a.y;
+  }
+  quadArea = Math.abs(quadArea / 2);
+  if (quadArea <= 0) return 1;
+  const xs = ordered.map(p => p.x);
+  const ys = ordered.map(p => p.y);
+  const bboxArea =
+    (Math.max(...xs) - Math.min(...xs)) * (Math.max(...ys) - Math.min(...ys));
+  return bboxArea / quadArea;
+}
+
+/**
+ * 把四个角点排成 左上 -> 右上 -> 右下 -> 左下。
+ *
+ * 不能用「按 x+y 排序」：卡片倾斜后 x+y 最小的不再是左上角，
+ * 透视校正用错角点会拉出旋转 90° 的结果（实测 10° 倾斜就会排错）。
+ *
+ * 采用两步法：
+ *   1. 以质心为原点算极角并排序 —— 保证「相邻点一定是相邻的角」，不会交叉；
+ *   2. 找到四边形中最长的那条边。身份证是长方形（85.6:54），
+ *      最长边必定是「上边」或「下边」，其两端就是左上和右上的候选；
+ *      再用中点相对质心的位置判断它是上边还是下边，最后按 x 排左右。
+ *
+ * 适用前提：卡片旋转不超过 ±90°。证件拍摄不会出现 90° 以上的情况
+ * （那样用户自己就能看出来），此时「哪条边是上边」在几何上本质歧义。
+ */
 function orderCorners(
   pts: Array<{ x: number; y: number }>
 ): Array<{ x: number; y: number }> {
-  // 按 x+y 排序：最小的是左上，最大的是右下
-  const sorted = [...pts].sort((a, b) => a.x + a.y - (b.x + b.y));
-  const leftTop = sorted[0]!;
-  const rightBottom = sorted[sorted.length - 1]!;
-  // 剩下两个：x 小的是左上，x 大的是右上
-  const rest = sorted.slice(1, -1);
-  rest.sort((a, b) => a.x - b.x);
-  return [leftTop!, rest[0]!, rightBottom!, rest[1]!];
+  if (pts.length !== 4) return pts;
+
+  const cx = (pts[0]!.x + pts[1]!.x + pts[2]!.x + pts[3]!.x) / 4;
+  const cy = (pts[0]!.y + pts[1]!.y + pts[2]!.y + pts[3]!.y) / 4;
+
+  // 1. 环形排序
+  const ring = pts
+    .map(p => ({ x: p.x, y: p.y, angle: Math.atan2(p.y - cy, p.x - cx) }))
+    .sort((a, b) => a.angle - b.angle);
+
+  // 2. 找最长边
+  let bestIdx = 0;
+  let bestLen = 0;
+  for (let i = 0; i < 4; i++) {
+    const a = ring[i]!;
+    const b = ring[(i + 1) % 4]!;
+    const len = Math.hypot(b.x - a.x, b.y - a.y);
+    if (len > bestLen) {
+      bestLen = len;
+      bestIdx = i;
+    }
+  }
+
+  const a = ring[bestIdx]!;
+  const b = ring[(bestIdx + 1) % 4]!;
+  const c = ring[(bestIdx + 2) % 4]!;
+  const d = ring[(bestIdx + 3) % 4]!;
+
+  // 最长边中点相对质心更靠上 -> 它是上边
+  const isTop = (a.y + b.y) / 2 < cy;
+  let top: Array<{ x: number; y: number }>;
+  let bottom: Array<{ x: number; y: number }>;
+  if (isTop) {
+    top = [a, b];
+    bottom = [d, c];
+  } else {
+    bottom = [a, b];
+    top = [d, c];
+  }
+
+  // 每条边按 x 排左右
+  if (top[0]!.x > top[1]!.x) top = [top[1]!, top[0]!];
+  if (bottom[0]!.x > bottom[1]!.x) bottom = [bottom[1]!, bottom[0]!];
+
+  // 左上、右上、右下、左下
+  return [top[0]!, top[1]!, bottom[1]!, bottom[0]!];
 }
 
 function clampRect(r: Rect, W: number, H: number): Rect {

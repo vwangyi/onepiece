@@ -93,6 +93,10 @@ export function useImageScanner() {
   const corners = ref<Array<{ x: number; y: number }> | null>(null);
   const isQuad = ref(false);
   const confidence = ref(0);
+  /** 检出矩形的宽高比，用于判断是否接近身份证标准 1.585 */
+  const aspectRatio = ref(0);
+  /** 卡片占画面面积的比例 */
+  const areaRatio = ref(0);
   const detectStatus = ref<DetectStatus>('idle');
   const processing = ref(false);
   const showEdgePreview = ref(false);
@@ -180,6 +184,8 @@ export function useImageScanner() {
           stats.value = { ...stats.value, detectMs: msg.elapsed };
           confidence.value = msg.confidence;
           isQuad.value = msg.isQuad;
+          aspectRatio.value = msg.aspectRatio;
+          areaRatio.value = msg.areaRatio;
           if (msg.rect) {
             rect.value = msg.rect;
             corners.value = msg.corners;
@@ -637,6 +643,8 @@ export function useImageScanner() {
     corners,
     isQuad,
     confidence,
+    aspectRatio,
+    areaRatio,
     detectStatus,
     processing,
     resultUrl,

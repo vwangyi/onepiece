@@ -32,6 +32,8 @@ const {
   corners,
   isQuad,
   confidence,
+  aspectRatio,
+  areaRatio,
   detectStatus,
   processing,
   resultUrl,
@@ -103,10 +105,14 @@ const overlayStyle = computed(() => {
 /** 巡边状态的展示文案 */
 const detectText = computed(() => {
   switch (detectStatus.value) {
-    case 'found':
-      return isQuad.value
-        ? `已识别四边形（置信度 ${confidence.value}%），出图时自动透视校正`
-        : `已识别矩形区域（置信度 ${confidence.value}%）`;
+    case 'found': {
+      const shape = isQuad.value ? '四边形' : '矩形区域';
+      const ratio =
+        aspectRatio.value > 0 ? `，宽高比 ${aspectRatio.value.toFixed(2)}` : '';
+      return `已识别${shape}（置信度 ${confidence.value}%${ratio}）${
+        isQuad.value ? '，出图时自动透视校正' : ''
+      }`;
+    }
     case 'lost':
       return '未识别到矩形，请将文档放入取景框';
     case 'detecting':
@@ -121,6 +127,19 @@ const slowestStep = computed(() => {
   const list = stats.value.timings;
   if (!list.length) return null;
   return list.reduce((a, b) => (a.ms >= b.ms ? a : b));
+});
+
+/**
+ * 宽高比是否贴近身份证标准（85.6:54 ≈ 1.585）。
+ * 偏差大说明可能检到了别的卡片（银行卡比例接近，但名片/证件照会差很多），
+ * 用颜色提示，方便现场判断是否需要重新取景。
+ */
+const ratioClass = computed(() => {
+  if (aspectRatio.value <= 0) return '';
+  const dev = Math.abs(aspectRatio.value - 85.6 / 54) / (85.6 / 54);
+  if (dev < 0.12) return 'ratio-good';
+  if (dev < 0.3) return 'ratio-fair';
+  return 'ratio-bad';
 });
 
 /** 一组预设，方便快速对比不同参数下的效果 */
@@ -407,6 +426,19 @@ const hasResult = computed(() => !!resultUrl.value);
         >
           <a-descriptions-item label="巡边单帧">
             {{ stats.detectMs.toFixed(1) }} ms
+          </a-descriptions-item>
+          <a-descriptions-item label="检出宽高比">
+            <span :class="ratioClass">
+              {{ aspectRatio > 0 ? aspectRatio.toFixed(3) : '-' }}
+            </span>
+            <span
+              v-if="aspectRatio > 0"
+              class="muted"
+              >（身份证 1.585）</span
+            >
+          </a-descriptions-item>
+          <a-descriptions-item label="卡片占画面">
+            {{ (areaRatio * 100).toFixed(0) }}%
           </a-descriptions-item>
           <a-descriptions-item label="端到端延迟">
             {{ stats.roundTripMs.toFixed(1) }} ms
@@ -816,6 +848,20 @@ const hasResult = computed(() => !!resultUrl.value);
   color: #8f959e;
   font-weight: 400;
   font-size: 12px;
+}
+
+// 宽高比诊断配色：绿=贴近身份证标准，黄=偏差大，红=明显不是身份证
+.ratio-good {
+  color: #389e0d;
+  font-weight: 600;
+}
+.ratio-fair {
+  color: #d48806;
+  font-weight: 600;
+}
+.ratio-bad {
+  color: #cf1322;
+  font-weight: 600;
 }
 
 .timing-row {

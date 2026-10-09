@@ -88,6 +88,10 @@ export interface DetectResultMessage {
   corners: Array<{ x: number; y: number }> | null;
   isQuad: boolean;
   confidence: number;
+  /** 检出矩形的宽高比（身份证标准约 1.585） */
+  aspectRatio: number;
+  /** 卡片占画面面积的比例 */
+  areaRatio: number;
   elapsed: number;
 }
 
@@ -210,6 +214,8 @@ async function handleDetect(msg: DetectMessage): Promise<void> {
     corners: result.corners,
     isQuad: result.isQuad,
     confidence: result.confidence,
+    aspectRatio: result.aspectRatio,
+    areaRatio: result.areaRatio,
     elapsed: performance.now() - started
   } satisfies DetectResultMessage);
 }

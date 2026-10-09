@@ -47,3 +47,6 @@ ddepth
 dtype
 OTSU
 ddepth
+idcard
+bbox
+cand
