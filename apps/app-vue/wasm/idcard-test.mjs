@@ -102,7 +102,13 @@ export function makeScene(W, H, bg, drawCard, opts = {}) {
  * 画一张带圆角的身份证（可带轻微倾斜）。
  * 直接按卡片本地坐标判断圆角，避免逐像素做坐标变换带来的误差。
  */
-export function drawIdCard(d, W, H, rnd, { x0, y0, w, h, radius = 12, tilt = 0, face = [235, 233, 228] }) {
+export function drawIdCard(
+  d,
+  W,
+  H,
+  rnd,
+  { x0, y0, w, h, radius = 12, tilt = 0, face = [235, 233, 228] }
+) {
   const cx0 = x0 + w / 2;
   const cy0 = y0 + h / 2;
   const cosT = Math.cos(-tilt);
@@ -141,7 +147,10 @@ export function drawIdCard(d, W, H, rnd, { x0, y0, w, h, radius = 12, tilt = 0, 
 
       // 人像区（蓝灰色块）
       const inPhoto =
-        lx >= px0 - x0 && lx < px0 - x0 + pw && ly >= py0 - y0 && ly < py0 - y0 + ph;
+        lx >= px0 - x0 &&
+        lx < px0 - x0 + pw &&
+        ly >= py0 - y0 &&
+        ly < py0 - y0 + ph;
       if (inPhoto) {
         d[o] = 120 + n;
         d[o + 1] = 130 + n;
@@ -179,9 +188,12 @@ export function drawIdCard(d, W, H, rnd, { x0, y0, w, h, radius = 12, tilt = 0, 
 // ---------------------------------------------------------------------------
 console.log('[1] 标准场景：深色桌面上的身份证，占画面约 60%');
 {
-  const W = 640, H = 480;
-  const cw = 400, ch = Math.round(cw / ID_RATIO);
-  const x0 = Math.round((W - cw) / 2), y0 = Math.round((H - ch) / 2);
+  const W = 640,
+    H = 480;
+  const cw = 400,
+    ch = Math.round(cw / ID_RATIO);
+  const x0 = Math.round((W - cw) / 2),
+    y0 = Math.round((H - ch) / 2);
   const img = makeScene(W, H, [42, 44, 48], (d, iw, ih, rnd, o) =>
     drawIdCard(d, iw, ih, rnd, { ...o, x0, y0, w: cw, h: ch })
   );
@@ -213,11 +225,13 @@ console.log('[1] 标准场景：深色桌面上的身份证，占画面约 60%')
 // ---------------------------------------------------------------------------
 console.log('\n[2] 关键场景：卡片占满画面、紧贴边缘（出血）');
 {
-  const W = 640, H = 480;
+  const W = 640,
+    H = 480;
   // 卡片宽 = 画面宽，高按比例 -> 卡片上下也几乎贴边
   const cw = W - 8;
   const ch = Math.round(cw / ID_RATIO);
-  const x0 = 4, y0 = Math.round((H - ch) / 2);
+  const x0 = 4,
+    y0 = Math.round((H - ch) / 2);
   const img = makeScene(W, H, [38, 40, 44], (d, iw, ih, rnd, o) =>
     drawIdCard(d, iw, ih, rnd, { ...o, x0, y0, w: cw, h: ch })
   );
@@ -249,9 +263,12 @@ console.log('\n[2] 关键场景：卡片占满画面、紧贴边缘（出血）'
 // ---------------------------------------------------------------------------
 console.log('\n[3] 关键场景：浅色卡片放在浅色桌面（低对比度 ~30 灰阶）');
 {
-  const W = 640, H = 480;
-  const cw = 380, ch = Math.round(cw / ID_RATIO);
-  const x0 = Math.round((W - cw) / 2), y0 = Math.round((H - ch) / 2);
+  const W = 640,
+    H = 480;
+  const cw = 380,
+    ch = Math.round(cw / ID_RATIO);
+  const x0 = Math.round((W - cw) / 2),
+    y0 = Math.round((H - ch) / 2);
   // 背景 210，卡片 240 —— 30 灰阶差。
   // 这是现实拍摄中"浅色桌面 + 白卡"能达到的量级：
   // 相机自动曝光会把两者都推到接近过曝，边界靠轻微阴影和色偏区分。
@@ -260,7 +277,14 @@ console.log('\n[3] 关键场景：浅色卡片放在浅色桌面（低对比度 
     H,
     [210, 210, 208],
     (d, iw, ih, rnd, o) =>
-      drawIdCard(d, iw, ih, rnd, { ...o, x0, y0, w: cw, h: ch, face: [240, 240, 238] }),
+      drawIdCard(d, iw, ih, rnd, {
+        ...o,
+        x0,
+        y0,
+        w: cw,
+        h: ch,
+        face: [240, 240, 238]
+      }),
     { noise: 4 }
   );
   const r = mod.detectRectWithOpenCV(img);
@@ -288,15 +312,25 @@ console.log('\n[3b] 已知物理极限：对比度低于 ~15 灰阶时外轮廓�
   // 相机传感器在 8 灰阶差下无法分辨边界（信噪比不足），
   // 此时任何算法都只能检出卡片内部的高对比区域（如人像）。
   // 这里固化该认知，避免误以为算法有 bug。
-  const W = 640, H = 480;
-  const cw = 380, ch = Math.round(cw / ID_RATIO);
-  const x0 = Math.round((W - cw) / 2), y0 = Math.round((H - ch) / 2);
+  const W = 640,
+    H = 480;
+  const cw = 380,
+    ch = Math.round(cw / ID_RATIO);
+  const x0 = Math.round((W - cw) / 2),
+    y0 = Math.round((H - ch) / 2);
   const img = makeScene(
     W,
     H,
     [232, 232, 230],
     (d, iw, ih, rnd, o) =>
-      drawIdCard(d, iw, ih, rnd, { ...o, x0, y0, w: cw, h: ch, face: [240, 240, 238] }),
+      drawIdCard(d, iw, ih, rnd, {
+        ...o,
+        x0,
+        y0,
+        w: cw,
+        h: ch,
+        face: [240, 240, 238]
+      }),
     { noise: 2 }
   );
   const r = mod.detectRectWithOpenCV(img);
@@ -314,9 +348,12 @@ console.log('\n[3b] 已知物理极限：对比度低于 ~15 灰阶时外轮廓�
 // ---------------------------------------------------------------------------
 console.log('\n[4] 关键场景：圆角身份证（radius=16）');
 {
-  const W = 640, H = 480;
-  const cw = 380, ch = Math.round(cw / ID_RATIO);
-  const x0 = Math.round((W - cw) / 2), y0 = Math.round((H - ch) / 2);
+  const W = 640,
+    H = 480;
+  const cw = 380,
+    ch = Math.round(cw / ID_RATIO);
+  const x0 = Math.round((W - cw) / 2),
+    y0 = Math.round((H - ch) / 2);
   const img = makeScene(W, H, [45, 45, 50], (d, iw, ih, rnd, o) =>
     drawIdCard(d, iw, ih, rnd, { ...o, x0, y0, w: cw, h: ch, radius: 16 })
   );
@@ -338,9 +375,12 @@ console.log('\n[4] 关键场景：圆角身份证（radius=16）');
 // ---------------------------------------------------------------------------
 console.log('\n[5] 关键场景：轻微倾斜（约 8°）');
 {
-  const W = 640, H = 480;
-  const cw = 360, ch = Math.round(cw / ID_RATIO);
-  const x0 = Math.round((W - cw) / 2), y0 = Math.round((H - ch) / 2);
+  const W = 640,
+    H = 480;
+  const cw = 360,
+    ch = Math.round(cw / ID_RATIO);
+  const x0 = Math.round((W - cw) / 2),
+    y0 = Math.round((H - ch) / 2);
   const tilt = (8 * Math.PI) / 180;
   const img = makeScene(W, H, [40, 42, 46], (d, iw, ih, rnd, o) =>
     drawIdCard(d, iw, ih, rnd, { ...o, x0, y0, w: cw, h: ch, tilt })
@@ -363,18 +403,26 @@ console.log('\n[5] 关键场景：轻微倾斜（约 8°）');
 // ---------------------------------------------------------------------------
 console.log('\n[6] 关键场景：画面里有干扰矩形（银行卡），应选中身份证');
 {
-  const W = 640, H = 480;
+  const W = 640,
+    H = 480;
   // 身份证：比例 1.585
-  const cw = 400, ch = Math.round(cw / ID_RATIO);
-  const x0 = 60, y0 = 60;
+  const cw = 400,
+    ch = Math.round(cw / ID_RATIO);
+  const x0 = 60,
+    y0 = 60;
   // 银行卡：比例 1.586 但面积小得多；另放一个竖着的名片
   const img = makeScene(W, H, [40, 42, 46], (d, iw, ih, rnd, o) => {
     drawIdCard(d, iw, ih, rnd, { ...o, x0, y0, w: cw, h: ch });
     // 干扰 1：右下方一张银行卡（85.6x54 同比例但小）
-    const bw = 170, bh = Math.round(bw / ID_RATIO);
+    const bw = 170,
+      bh = Math.round(bw / ID_RATIO);
     drawIdCard(d, iw, ih, rnd, {
       ...o,
-      x0: 430, y0: 340, w: bw, h: bh, radius: 6,
+      x0: 430,
+      y0: 340,
+      w: bw,
+      h: bh,
+      radius: 6,
       face: [210, 205, 195]
     });
     // 干扰 2：竖着的名片（比例 0.7 明显不符）
@@ -382,7 +430,11 @@ console.log('\n[6] 关键场景：画面里有干扰矩形（银行卡），应�
     // 重叠会破坏身份证轮廓（轮廓被截断成非四边形），那是另一种场景，见用例 6b。
     drawIdCard(d, iw, ih, rnd, {
       ...o,
-      x0: 470, y0: 60, w: 120, h: 170, radius: 4,
+      x0: 470,
+      y0: 60,
+      w: 120,
+      h: 170,
+      radius: 4,
       face: [200, 210, 225]
     });
   });
@@ -405,7 +457,8 @@ console.log('\n[6] 关键场景：画面里有干扰矩形（银行卡），应�
 // ---------------------------------------------------------------------------
 console.log('\n[7] 负样本：画面里没有卡片');
 {
-  const W = 320, H = 240;
+  const W = 320,
+    H = 240;
   const img = makeScene(W, H, [128, 128, 128], () => {});
   const r = mod.detectRectWithOpenCV(img);
   check('纯色图不误检', r.rect === null, `got ${JSON.stringify(r.rect)}`);
@@ -414,10 +467,12 @@ console.log('\n[7] 负样本：画面里没有卡片');
 // ---------------------------------------------------------------------------
 console.log('\n[8] 比例先验开关的行为');
 {
-  const W = 640, H = 480;
+  const W = 640,
+    H = 480;
   // 一个比例明显不对的矩形（正方形）
   const s = 300;
-  const x0 = Math.round((W - s) / 2), y0 = Math.round((H - s) / 2);
+  const x0 = Math.round((W - s) / 2),
+    y0 = Math.round((H - s) / 2);
   const img = makeScene(W, H, [40, 42, 46], (d, iw, ih, rnd, o) =>
     drawIdCard(d, iw, ih, rnd, { ...o, x0, y0, w: s, h: s })
   );
@@ -437,9 +492,12 @@ console.log('\n[8] 比例先验开关的行为');
 // ---------------------------------------------------------------------------
 console.log('\n[9] 透视校正能把倾斜卡片拉正');
 {
-  const W = 480, H = 360;
-  const cw = 300, ch = Math.round(cw / ID_RATIO);
-  const x0 = 90, y0 = 80;
+  const W = 480,
+    H = 360;
+  const cw = 300,
+    ch = Math.round(cw / ID_RATIO);
+  const x0 = 90,
+    y0 = 80;
   const tilt = (10 * Math.PI) / 180;
   const img = makeScene(W, H, [40, 42, 46], (d, iw, ih, rnd, o) =>
     drawIdCard(d, iw, ih, rnd, { ...o, x0, y0, w: cw, h: ch, tilt })
@@ -456,7 +514,11 @@ console.log('\n[9] 透视校正能把倾斜卡片拉正');
       Math.abs(outRatio - ID_RATIO) / ID_RATIO < 0.2,
       `${outRatio.toFixed(3)}`
     );
-    check('校正后尺寸合理', out.width > 150 && out.height > 80, `${out.width}x${out.height}`);
+    check(
+      '校正后尺寸合理',
+      out.width > 150 && out.height > 80,
+      `${out.width}x${out.height}`
+    );
   } else {
     check('检出四边形以便透视校正', false, '未检出角点');
   }
