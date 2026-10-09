@@ -25,3 +25,11 @@
 
 
 
+## 难点：使用 WebAssembly 提升图像处理性能
+
+1. web worker
+2. web Assembly
+
+
+
+
