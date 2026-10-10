@@ -1,0 +1,6 @@
+.no-select {
+  -webkit-user-select: none; /* Safari, iOS, 旧版 Chrome */
+  -moz-user-select: none; /* Firefox 旧版 */
+  -ms-user-select: none; /* IE10+, 旧版 Edge */
+  user-select: none; /* 标准写法，放最后 */
+}

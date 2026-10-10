@@ -4,6 +4,10 @@ import HomeView from '@/views/HomeView/HomeView.vue';
 export const routes = [
   {
     path: '/',
+    component: HomeView
+  },
+  {
+    path: '/',
     redirect: '/demo',
     component: HomeView
   },
