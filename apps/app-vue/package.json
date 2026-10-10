@@ -9,8 +9,5 @@
     "webpack:dev": "webpack serve --mode development",
     "webpack:build": "webpack --mode production",
     "opencv:test": "node wasm/opencv-test.mjs"
-  },
-  "dependencies": {
-    "@techstark/opencv-js": "5.0.0-release.1"
   }
 }
