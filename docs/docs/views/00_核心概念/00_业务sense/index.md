@@ -38,6 +38,8 @@
 1. web worker
 2. web Assembly
 
+web assembly 可以把 C++库放到浏览器中运行，比如 opencv是一个C++库。
+
 
 
 

@@ -7,7 +7,9 @@
     "webpack:dev": "webpack serve --mode development",
     "webpack:build": "webpack --mode production",
     "vite:dev": "vite",
-    "vite:build": "vite build"
+    "vite:build": "vite build",
+    "rollup:dev": "vite",
+    "rollup:build": "vite build"
   },
   "keywords": [],
   "author": "",
