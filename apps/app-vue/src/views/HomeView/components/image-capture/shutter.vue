@@ -2,12 +2,13 @@
 /**
  * 快门按钮 ShutterButton
  */
+const emit = defineEmits(['click']);
 </script>
 
 <template>
   <div
     class="shutter-button"
-    @click="$emit('click')"
+    @click="emit('click')"
   >
     <i class="iconfont icon-zhaoxiangji"></i>
   </div>

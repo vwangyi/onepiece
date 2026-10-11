@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
-import ShutterButton from '@/components/ShutterButton/index.vue';
+import ImageCapture from './components/image-capture/index.vue';
 import { ref } from 'vue';
 const router = useRouter();
 function handleClick(e: Event) {
@@ -23,14 +23,14 @@ const colors = ref([
 
 <template>
   <a-tag
-    v-for="value in 100"
+    v-for="value in 10"
     :key="value"
     class="tag no-select"
     color="purple"
   >
     purple
   </a-tag>
-  <ShutterButton @click="handleClick"></ShutterButton>
+  <ImageCapture></ImageCapture>
 </template>
 
 <style lang="scss" scoped>

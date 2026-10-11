@@ -249,7 +249,14 @@ const vueRules = {
       ignoreProperties: false
     }
   ],
-  'vue/no-v-text-v-html-on-component': 'off'
+  'vue/no-v-text-v-html-on-component': 'off',
+  // 强制块顺序：script -> template -> style
+  'vue/block-order': [
+    'error',
+    {
+      order: ['script', 'template', 'style']
+    }
+  ]
 };
 
 export default defineConfig([
@@ -316,8 +323,8 @@ export default defineConfig([
   {
     ignores,
     files: [
-      'apps/new-world/**/*.{ts,js,tsx,jsx,vue}',
-      'packages/design/**/*.{ts,js,tsx,jsx,vue}'
+      'apps/**/*.{ts,js,tsx,jsx,vue}',
+      'packages/**/*.{ts,js,tsx,jsx,vue}'
     ],
     extends: [
       ...eslintPluginVue.configs['flat/recommended'],
