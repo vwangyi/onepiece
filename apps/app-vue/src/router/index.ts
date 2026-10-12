@@ -4,6 +4,7 @@ import HomeView from '@/views/home/index.vue';
 export const routes = [
   {
     path: '/',
+    name: 'HomeView',
     component: HomeView
   },
   {
@@ -188,6 +189,11 @@ export const routes = [
     path: '/segmented-demo',
     name: 'SegmentedDemo',
     component: () => import('~/views/VirtualList/SegmentedDemo.vue')
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: () => import('@/views/not-found')
   }
 ];
 const router = createRouter({
