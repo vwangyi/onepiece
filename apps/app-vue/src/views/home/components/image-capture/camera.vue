@@ -7,7 +7,8 @@ async function openCamera() {
   const devices = await navigator.mediaDevices.enumerateDevices();
   console.log('devices', devices);
   const cameras = devices.filter(
-    device => device.kind === 'videoinput' && device.label.includes('iPhone')
+    // && device.label.includes('iPhone')
+    device => device.kind === 'videoinput'
   );
   const mediaStream = await navigator.mediaDevices.getUserMedia({
     video: {

@@ -3,6 +3,8 @@
  * 而是集中在一个 config 模块中读取并导出结构化对象。
  */
 import defaultConfig from './config.default';
+import devConfig from './config.development';
+import prodConfig from './config.production';
 
 /** 应用配置的形状：各环境配置文件与默认配置都应满足（可部分覆盖） */
 export interface AppConfig {
@@ -33,18 +35,15 @@ export interface AppConfig {
     T[P]：保留原来的属性类型。
  */
 
+const envConfig: Record<string, Partial<AppConfig>> = {
+  development: devConfig,
+  production: prodConfig
+};
 const env = __APP_NODE_ENV__ || 'development';
-let envConfig: { default: Partial<AppConfig> } = { default: {} };
-
-try {
-  envConfig = await import(`./config.${env}.ts`);
-} catch (error) {
-  console.error(`No config file found for environment: ${env}, using defaults`);
-}
 
 const config: AppConfig = {
   ...defaultConfig,
-  ...envConfig.default,
+  ...envConfig[env],
   APP_VERSION: env === 'production' ? __APP_VERSION__ : __ENV_VERSION__
 };
 

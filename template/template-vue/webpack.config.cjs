@@ -11,9 +11,8 @@ const TerserWebpackPlugin = require('terser-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
-dotenv.config({ path: path.resolve(__dirname, '.env') });
-
 module.exports = (_, { mode }) => {
+  dotenv.config({ path: path.resolve(__dirname, '.env') });
   dotenv.config({
     override: true,
     path: path.resolve(__dirname, `.env.${mode}`)
@@ -25,6 +24,7 @@ module.exports = (_, { mode }) => {
     devtool: isDev ? false : 'source-map',
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.vue', '.jsx', '.scss', '.css'],
+      mainFiles: ['index'],
       alias: { '@': path.resolve(__dirname, './src') }
     },
     entry: './src/main.ts',

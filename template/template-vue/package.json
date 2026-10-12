@@ -8,8 +8,8 @@
     "webpack:build": "webpack --mode production",
     "vite:dev": "vite",
     "vite:build": "vite build",
-    "rollup:dev": "rollup --config rollup.config.mjs -w",
-    "rollup:build": "rollup --config rollup.config.mjs"
+    "rollup:dev": "rollup --config rollup.config.mjs --mode development -w",
+    "rollup:build": "rollup --config rollup.config.mjs --mode production"
   },
   "keywords": [],
   "author": "",
