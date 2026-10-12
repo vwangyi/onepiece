@@ -1,4 +1,12 @@
+import './index.scss';
 function setup() {
-  return () => <h1>Not Found</h1>;
+  return () => (
+    <div
+      class={'big'}
+      style={{ color: 'red' }}
+    >
+      Not Found
+    </div>
+  );
 }
 export default { setup };
