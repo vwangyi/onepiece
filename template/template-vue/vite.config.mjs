@@ -13,7 +13,7 @@ export default defineConfig(({ mode }) => {
   console.log('env', typeof env.PORT, env.PORT);
   return {
     resolve: {
-      extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
+      extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx', '.json', '.vue'],
       alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) }
     },
     define: {
@@ -26,12 +26,7 @@ export default defineConfig(({ mode }) => {
       __VUE_PROD_DEVTOOLS__: false, // Vue3生产环境是否启用 DevTools Vue 调试工具
       __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false // 生产环境水合失败时 是否显示详细信息
     },
-    plugins: [
-      vue(),
-      vueJsx(),
-      env.NODE_ENV === 'development' ? vueDevTools() : false
-    ].filter(Boolean),
-
+    plugins: [vue(), vueJsx(), false ? vueDevTools() : false].filter(Boolean),
     server: {
       port: Number(env.PORT),
       open: env.OPEN === 'true',

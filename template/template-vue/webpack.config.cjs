@@ -104,13 +104,13 @@ module.exports = (_, { mode }) => {
       ]
     },
     plugins: [
-      isDev
-        ? null
-        : new BundleAnalyzerPlugin({
+      false
+        ? new BundleAnalyzerPlugin({
             analyzerMode: 'static',
             reportFilename: 'bundle-report.html',
             openAnalyzer: true
-          }),
+          })
+        : null,
       // ForkTsCheckerWebpackPlugin 只做类型检查,不做编译
       new ForkTsCheckerWebpackPlugin({
         async: process.env.NODE_ENV === 'development',

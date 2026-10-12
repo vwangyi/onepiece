@@ -22,7 +22,7 @@ export default {
     name: 'rollupDemo',
     sourcemap: true,
     entryFileNames: 'js/xx-[name]-[hash].js',
-    chunkFileNames: 'js/chunk-[name].[hash].js',
+    chunkFileNames: 'js/chunk11-[name].[hash].js',
     // manualChunks: {
     //   react: ["react", "react-dom"],
     // },
