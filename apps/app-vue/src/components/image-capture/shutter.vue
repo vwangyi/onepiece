@@ -2,6 +2,7 @@
 /**
  * 快门按钮 ShutterButton
  */
+
 const emit = defineEmits(['click']);
 </script>
 

@@ -1,36 +1,28 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
-import ImageCapture from './components/image-capture/index.vue';
+import ImageCapture from '@/components/image-capture/index.vue';
 import { ref } from 'vue';
 const router = useRouter();
-function handleClick(e: Event) {
-  // router.push('/demo');
-  console.log(11111111, e);
-}
 
-const colors = ref([
-  'pink',
-  'red',
-  'orange',
-  'green',
-  'cyan',
-  'blue',
-  'purple',
-  'pink',
-  'pink'
-]);
+const open = ref(false);
+const directoryTree = ref([]);
+function handleClickShutter() {}
 </script>
 
 <template>
-  <a-tag
-    v-for="value in 10"
-    :key="value"
-    class="tag no-select"
-    color="purple"
+  <ImageCapture
+    v-model:open="open"
+    :directory-tree="directoryTree"
+    @click-shutter="handleClickShutter"
   >
-    purple
-  </a-tag>
-  <ImageCapture></ImageCapture>
+    <!-- <a-tag
+      class="tag no-select"
+      color="purple"
+      @click="open = true"
+    >
+      影像采集1
+    </a-tag> -->
+  </ImageCapture>
 </template>
 
 <style lang="scss" scoped>

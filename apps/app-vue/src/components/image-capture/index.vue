@@ -3,15 +3,23 @@ import { ref } from 'vue';
 import Directory from './directory.vue';
 import Camera from './camera.vue';
 import Thumbnail from './thumbnail.vue';
-const open = ref<boolean>(false);
+
+const props = defineProps({
+  open: {
+    type: Boolean,
+    default: false
+  }
+});
+const emit = defineEmits(['update:open']);
+// const open = ref<boolean>(false);
 
 const showModal = () => {
-  open.value = true;
+  // open.value = true;
 };
 
 const handleOk = (e: MouseEvent) => {
   console.log(e);
-  open.value = false;
+  // open.value = false;
 };
 </script>
 
@@ -27,11 +35,12 @@ const handleOk = (e: MouseEvent) => {
   </slot>
   <div>
     <a-modal
-      v-model:open="open"
+      :open="props.open"
       title="影像采集"
       :footer="null"
       width="1000px"
       style="top: 50px"
+      @update:open="(flag: boolean) => $emit('update:open', flag)"
       @ok="handleOk"
     >
       <div class="container">

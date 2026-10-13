@@ -11,7 +11,7 @@ export interface AppConfig {
   /** 环境名称描述 */
   NAME: string;
   /** 服务端口 */
-  PORT: string;
+  PORT: number;
   /** 构建环境 */
   NODE_ENV: string;
   /** 应用版本号 */
