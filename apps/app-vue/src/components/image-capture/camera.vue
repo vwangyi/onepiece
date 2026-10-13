@@ -65,9 +65,8 @@ onMounted(() => {
       playsinline
       muted
     />
-    <canvas></canvas>
     <div class="shutter">
-      <Shutter @click="clickShutter"></Shutter>
+      <Shutter v-bind="$attrs"></Shutter>
     </div>
   </div>
 </template>

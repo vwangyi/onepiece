@@ -3,7 +3,10 @@ import { ref } from 'vue';
 import Directory from './directory.vue';
 import Camera from './camera.vue';
 import Thumbnail from './thumbnail.vue';
+import { useAttrs } from 'vue';
 
+defineOptions({ inheritAttrs: false });
+const attrs = useAttrs();
 const props = defineProps({
   open: {
     type: Boolean,
@@ -13,13 +16,11 @@ const props = defineProps({
 const emit = defineEmits(['update:open']);
 // const open = ref<boolean>(false);
 
-const showModal = () => {
-  // open.value = true;
-};
+console.log('$attrs', attrs);
+const showModal = () => {};
 
 const handleOk = (e: MouseEvent) => {
   console.log(e);
-  // open.value = false;
 };
 </script>
 
@@ -28,7 +29,7 @@ const handleOk = (e: MouseEvent) => {
     <a-tag
       class="tag no-select"
       color="purple"
-      @click="showModal"
+      @click="$emit('update:open', true)"
     >
       影像采集
     </a-tag>
@@ -45,11 +46,14 @@ const handleOk = (e: MouseEvent) => {
     >
       <div class="container">
         <div class="dir">
-          <Directory></Directory>
+          <Directory v-bind="$attrs"></Directory>
         </div>
         <div class="video">
-          <Camera></Camera>
-          <Thumbnail class="thumbnail"></Thumbnail>
+          <Camera v-bind="$attrs"></Camera>
+          <Thumbnail
+            class="thumbnail"
+            v-bind="$attrs"
+          ></Thumbnail>
         </div>
       </div>
     </a-modal>
@@ -66,16 +70,19 @@ const handleOk = (e: MouseEvent) => {
 .dir {
   width: 230px;
   height: 540px;
+  overflow: auto;
   // outline: 1px solid red;
 }
 .video {
   width: 770px;
   height: 400px;
+  overflow: hidden;
   // outline: 1px solid red;
 }
 .thumbnail {
   width: 770px;
   height: 140px;
-  outline: 1px solid red;
+  overflow: hidden;
+  // outline: 1px solid red;
 }
 </style>
