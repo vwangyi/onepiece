@@ -7,7 +7,6 @@
     "vite:dev": "vite --mode development",
     "vite:build": "vite build --mode production",
     "webpack:dev": "webpack serve --mode development",
-    "webpack:build": "webpack --mode production",
-    "opencv:test": "node wasm/opencv-test.mjs"
+    "webpack:build": "webpack --mode production"
   }
 }
