@@ -393,6 +393,8 @@ importers:
 
   apps/app-vue: {}
 
+  apps/app-vue-electron: {}
+
   packages/onepiece:
     dependencies:
       chalk:

@@ -18,7 +18,6 @@
     "**/vendor/**",
     "**/public/**",
     "**/static/**",
-    "**/out/**",
     "**/tmp/**",
     "**/*.d.ts",
     "**/package.json",
