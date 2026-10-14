@@ -36,7 +36,7 @@ const thumbnailList = computed(() => {
   width: 100%;
   width: 770px;
   height: 100%;
-  margin: 16px 0;
+  margin: 20px 0;
   overflow-x: scroll;
 }
 
