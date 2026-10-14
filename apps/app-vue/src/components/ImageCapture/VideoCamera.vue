@@ -59,8 +59,7 @@ defineExpose({
     <div class="shutter">
       <ShutterButton
         v-bind="$attrs"
-        :video-width="2"
-        :video-height="3"
+        :video="videoRef!"
       ></ShutterButton>
     </div>
   </div>

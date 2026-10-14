@@ -2,18 +2,18 @@
 /**
  * 快门按钮 ShutterButton
  */
-interface Props {
-  videoWidth: number;
-  videoHeight: number;
-}
-const props = defineProps<Props>();
+
+import type { ShutterButtonProps } from './ShutterButton.type';
+const props = defineProps<ShutterButtonProps>();
 const emit = defineEmits(['click-shutter']);
+
+console.log('video kk', props.video.videoHeight, props.video.videoWidth);
 </script>
 
 <template>
   <div
     class="shutter-button"
-    @click="emit('click-shutter', { videoWidth, videoHeight })"
+    @click="emit('click-shutter', { video })"
   >
     <i class="iconfont icon-zhaoxiangji"></i>
   </div>
