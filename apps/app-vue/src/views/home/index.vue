@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { TreeProps } from 'ant-design-vue';
-import ImageCapture from '@/components/ImageCapture/index.vue';
+import ImageCapture from '@/components/ImageCapture';
 import { ref } from 'vue';
 
 const open = ref<boolean>(false);
