@@ -1,15 +1,9 @@
 <script setup lang="ts">
 import type { TreeProps } from 'ant-design-vue';
-import { useRouter } from 'vue-router';
-import ImageCapture from '@/components/image-capture/index.vue';
+import ImageCapture from '@/components/ImageCapture/index.vue';
 import { ref } from 'vue';
-import { P } from 'vue-router/dist/index-BN0B0y8a.js';
-import { ManOutlined } from '@ant-design/icons-vue';
-const router = useRouter();
 
-const open = ref(false);
-const directoryTree = ref([]);
-
+const open = ref<boolean>(false);
 const selectedKeys = ref<string[]>(['0-0']);
 const expandedKeys = ref<string[]>(['0-0']);
 const treeData = ref<TreeProps['treeData']>([
@@ -29,22 +23,6 @@ const treeData = ref<TreeProps['treeData']>([
     children: []
   }
 ]);
-function handleClickShutter() {
-  const newItem = {
-    title: `image${Math.floor(Math.random() * 10)}.png`,
-    key: `0--12-3${Math.random()}`,
-    isLeaf: true,
-    selectable: false
-  };
-
-  treeData.value = treeData.value?.map(item => {
-    if (selectedKeys.value.includes(String(item.key))) {
-      item.children?.unshift(newItem);
-      return { ...item };
-    }
-    return { ...item };
-  });
-}
 </script>
 
 <template>
@@ -52,8 +30,7 @@ function handleClickShutter() {
     v-model:open="open"
     v-model:selected-keys="selectedKeys"
     v-model:expanded-keys="expandedKeys"
-    :tree-data="treeData"
-    @click-shutter="handleClickShutter"
+    v-model:tree-data="treeData"
   >
   </ImageCapture>
 </template>

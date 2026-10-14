@@ -1,27 +1,47 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
-import Directory from './directory.vue';
+import type { TreeProps } from 'ant-design-vue';
+import DirectoryTree from './DirectoryTree.vue';
 import Camera from './camera.vue';
 import Thumbnail from './thumbnail.vue';
 import { useAttrs } from 'vue';
 
 defineOptions({ inheritAttrs: false });
-const attrs = useAttrs();
-const props = defineProps({
-  open: {
-    type: Boolean,
-    default: false
-  }
-});
-const emit = defineEmits(['update:open']);
-// const open = ref<boolean>(false);
 
-console.log('$attrs', attrs);
-const showModal = () => {};
+interface Props {
+  open: boolean;
+  selectedKeys: string[];
+  expandedKeys: string[];
+  treeData: TreeProps['treeData'];
+}
+const props = defineProps<Props>();
+const emit = defineEmits([
+  'update:open',
+  'update:selectedKeys',
+  'update:expandedKeys',
+  'update:treeData'
+]);
 
 const handleOk = (e: MouseEvent) => {
   console.log(e);
 };
+function handleClickShutter() {
+  const newItem = {
+    title: `image${Math.floor(Math.random() * 10)}.png`,
+    key: `0--12-3${Math.random()}`,
+    isLeaf: true,
+    selectable: false
+  };
+
+  const newTreeData = props.treeData?.map(item => {
+    if (props.selectedKeys.includes(String(item.key))) {
+      item.children?.unshift(newItem);
+      return { ...item };
+    }
+    return { ...item };
+  });
+  emit('update:treeData', newTreeData);
+}
 </script>
 
 <template>
@@ -46,10 +66,14 @@ const handleOk = (e: MouseEvent) => {
     >
       <div class="container">
         <div class="dir">
-          <Directory v-bind="$attrs"></Directory>
+          <DirectoryTree
+            :selected-keys="selectedKeys"
+            :expanded-keys="expandedKeys"
+            :tree-data="treeData"
+          ></DirectoryTree>
         </div>
         <div class="video">
-          <Camera v-bind="$attrs"></Camera>
+          <Camera @click-shutter="handleClickShutter"></Camera>
           <Thumbnail
             class="thumbnail"
             v-bind="$attrs"
