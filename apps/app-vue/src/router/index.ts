@@ -1,8 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '@/views/HomeView/HomeView.vue';
-
+import HomeView from '@/views/home/index.vue';
 
 export const routes = [
+  {
+    path: '/',
+    name: 'HomeView',
+    component: HomeView
+  },
   {
     path: '/',
     redirect: '/demo',
@@ -170,6 +174,13 @@ export const routes = [
     component: () => import(`@/views/VideoView/VideoView.vue`)
   },
   {
+    // 一级页面：图像处理性能优化（WebAssembly + Web Worker + OffscreenCanvas）
+    path: '/image-process',
+    name: 'ImageProcess',
+    meta: { title: '图像处理优化' },
+    component: () => import('@/views/ImageProcessView/ImageProcessView.vue')
+  },
+  {
     path: '/dynamic-segmented-demo',
     name: 'DynamicSegmentedDemo',
     component: () => import('~/views/VirtualList/DynamicSegmentedDemo.vue')
@@ -178,6 +189,11 @@ export const routes = [
     path: '/segmented-demo',
     name: 'SegmentedDemo',
     component: () => import('~/views/VirtualList/SegmentedDemo.vue')
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: () => import('@/views/not-found')
   }
 ];
 const router = createRouter({

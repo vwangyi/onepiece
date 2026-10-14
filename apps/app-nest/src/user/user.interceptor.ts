@@ -9,7 +9,7 @@ import type { Request } from 'express';
 
 @Injectable()
 export class UserInterceptor implements NestInterceptor {
-  intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
+  intercept(context: ExecutionContext, next: CallHandler): Observable<unknown> {
     const request: Request = context.switchToHttp().getRequest();
     console.log('进入拦截器', request.url);
     return next.handle();

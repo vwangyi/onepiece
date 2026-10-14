@@ -1,5 +1,3 @@
-
- 
 /**
  * @param {string} path
  * @returns {Boolean}
@@ -12,7 +10,7 @@ export function isExternal(path: string) {
  * @param {string} str
  * @returns {Boolean}
  */
-export function validUsername(str: string) : boolean{
+export function validUsername(str: string): boolean {
   const valid_map = ['admin', 'editor'];
   return valid_map.indexOf(str.trim()) >= 0;
 }
@@ -57,7 +55,7 @@ export function validAlphabets(str: string) {
 /**
  * @param {string} email
  * @returns {Boolean}
- */ 
+ */
 export function validEmail(email: string): boolean {
   if (email.length > 254) return false;
   const [local] = email.split('@');

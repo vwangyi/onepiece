@@ -1,14 +1,4 @@
-
-
-## .mjs .cjs 
-
-mjs是 esm模块化的js   等同于 pageage.json中配置 type:module
-cjs是 commojs模块化的js 
-
-rollup.config.ts
-rollup.config.js
-
-
+ 
 
 
 ## 

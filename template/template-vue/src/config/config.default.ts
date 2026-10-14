@@ -1,7 +1,7 @@
 export default {
   NAME: '默认',
-  PORT: __APP_PORT__,
-  NODE_ENV: __APP_NODE_ENV__,
-  APP_VERSION: __APP_VERSION__,
-  BUILD_TOOLS: __BUILD_TOOLS__
+  PORT: 1111,
+  NODE_ENV: 'development',
+  APP_VERSION: '1.1.1',
+  BUILD_TOOLS: 'xxx'
 };

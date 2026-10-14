@@ -1,3 +1,5 @@
 @import './reset.scss';
+@import './global.scss';
+@import '../assets/iconfont/iconfont.css';
 /* @import './base.css'; */
 @import 'ant-design-vue/dist/reset.css';

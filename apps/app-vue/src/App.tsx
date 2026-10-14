@@ -4,8 +4,8 @@ function setup() {
   return () => (
     <div>
       {/* <DebugInfo /> */}
-      <RouterView /> 
+      <RouterView />
     </div>
-  )
+  );
 }
 export default { setup };

@@ -1,3 +1,7 @@
+单体项目 30个左右接口数量
+
+![alt text](image.png)
+
 # 山治的梦想 ------ 传说之海 AllBlue
 
 - `npm i -g @nestjs/cli`: `用npm全局下载nest命令 得到nest命令`

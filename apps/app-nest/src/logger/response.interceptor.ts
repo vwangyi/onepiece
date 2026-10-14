@@ -6,7 +6,7 @@ import {
   NestInterceptor
 } from '@nestjs/common';
 import { map, Observable } from 'rxjs';
-import { Request } from 'express';
+import type { Request } from 'express';
 import { MyLogger } from './my-logger';
 
 /**

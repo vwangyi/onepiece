@@ -23,3 +23,10 @@ export function isString(str: string): boolean {
   }
   return false;
 }
+
+/**
+ *
+ */
+export async function getUserMedia() {
+  return await navigator.mediaDevices.getUserMedia();
+}

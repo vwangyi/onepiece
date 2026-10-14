@@ -21,15 +21,12 @@ import { AuthService } from '../auth/auth.service';
 
 @Controller('user')
 export class UserController {
-  // 当前controller 需要调用 其他service
   @Inject()
   private jwtService: JwtService;
 
-  // 当前controller 需要调用 其他service
   @Inject()
   private authService: AuthService;
 
-  // 当前controller 需要调用 自己的service
   constructor(private readonly userService: UserService) {}
 
   // 登录

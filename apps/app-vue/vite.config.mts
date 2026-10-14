@@ -1,5 +1,5 @@
 import { fileURLToPath, URL } from 'node:url';
-import path from 'node:path'
+import path from 'node:path';
 import { defineConfig, loadEnv } from 'vite';
 import type { UserConfig, ConfigEnv, Plugin } from 'vite';
 import vue from '@vitejs/plugin-vue';
@@ -8,30 +8,30 @@ import vueDevTools from 'vite-plugin-vue-devtools';
 
 const cwd = process.cwd();
 
-
-// https://cn.vite.dev/config/
-export default defineConfig(({ mode }: ConfigEnv): UserConfig => { 
+export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
   const env = loadEnv(mode, cwd, '');
-  
-  return { 
-     esbuild: {
+
+  return {
+    esbuild: {
       // 用于移除函数调用，如 console.log
-      pure: env.VITE_DROP_CONSOLE === 'true' ? ['console.log']:[], 
+      pure: env.VITE_DROP_CONSOLE === 'true' ? ['console.log'] : [],
       // 用于移除语句，如 debugger
-      drop: env.VITE_DROP_CONSOLE  === 'true' ? ['debugger'] : []
-    },  
+      drop: env.VITE_DROP_CONSOLE === 'true' ? ['debugger'] : []
+    },
     resolve: {
-      extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
+      extensions: ['.vue', '.ts', '.jsx', '.tsx', '.js', '.mjs', '.json'],
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
-        '~': fileURLToPath(new URL('./src/views/DemoView', import.meta.url)),
-      }, 
+        '~': fileURLToPath(new URL('./src/views/DemoView', import.meta.url))
+      }
     },
-    plugins: [
-      vue(),
-      vueJsx(),
-      false ? vueDevTools() : false,
-    ].filter(Boolean),
+    plugins: [vue(), vueJsx(), false ? vueDevTools() : false].filter(Boolean),
+    worker: {
+      // 必须用 ES module 格式的 Worker。
+      // 原因：图像处理 Worker 里通过 `?url` 动态引入 OpenCV（12MB 的 UMD 文件），
+      // 这会让 Worker 入口产生代码分割，而 Vite 默认的 iife 格式不支持分割。
+      format: 'es'
+    },
     server: {
       port: Number(env.VITE_PORT),
       open: env.VITE_OPEN === 'true',
@@ -48,6 +48,6 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
           ws: true // 关键：支持 WebSocket 升级
         }
       }
-    },
+    }
   };
 });

@@ -1,7 +1,5 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
-    <div>123123</div>
+  <div>123123</div>
 </template>
