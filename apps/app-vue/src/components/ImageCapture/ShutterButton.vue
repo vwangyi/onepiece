@@ -3,17 +3,23 @@
  * 快门按钮 ShutterButton
  */
 
-import type { ShutterButtonProps } from './ShutterButton.type';
-const props = defineProps<ShutterButtonProps>();
-const emit = defineEmits(['click-shutter']);
+import type {
+  ShutterButtonEmits,
+  ShutterButtonProps
+} from './ShutterButton.type';
 
-console.log('video kk', props.video.videoHeight, props.video.videoWidth);
+const props = defineProps<ShutterButtonProps>();
+const emit = defineEmits<ShutterButtonEmits>();
+
+function handleShutter() {
+  emit('click-shutter', { video: props.video });
+}
 </script>
 
 <template>
   <div
     class="shutter-button"
-    @click="emit('click-shutter', { video })"
+    @click="handleShutter"
   >
     <i class="iconfont icon-zhaoxiangji"></i>
   </div>
