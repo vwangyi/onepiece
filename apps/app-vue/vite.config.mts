@@ -19,7 +19,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       drop: env.VITE_DROP_CONSOLE === 'true' ? ['debugger'] : []
     },
     resolve: {
-      extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
+      extensions: ['.vue', '.ts', '.jsx', '.tsx', '.js', '.mjs', '.json'],
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
         '~': fileURLToPath(new URL('./src/views/DemoView', import.meta.url))
