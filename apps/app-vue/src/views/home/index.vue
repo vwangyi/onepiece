@@ -1,40 +1,35 @@
 <script setup lang="ts">
 import type { TreeProps } from 'ant-design-vue';
 import ImageCapture from '@/components/ImageCapture';
-import { ref, computed } from 'vue';
+import { computed } from 'vue';
 
 import { useImageCaptureStore } from '@/stores/image-capture';
 
 const imageCaptureStore = useImageCaptureStore();
 
 const open = computed({
-  get: () => imageCaptureStore.open,
+  get: () => imageCaptureStore.state.open,
   set: v => imageCaptureStore.updateOpen(v)
 });
 
 const selectedKeys = computed({
-  get: () => imageCaptureStore.selectedKeys,
+  get: () => imageCaptureStore.state.selectedKeys as string[],
   set: (v: string[]) => imageCaptureStore.updateSelectedKeys(v)
 });
 
 const expandedKeys = computed({
-  get: () => imageCaptureStore.expandedKeys,
+  get: () => imageCaptureStore.state.expandedKeys as string[],
   set: (v: string[]) => imageCaptureStore.updateExpandedKeys(v)
 });
 
 const treeData = computed({
-  get: () => imageCaptureStore.treeData,
+  get: () => imageCaptureStore.state.treeData as TreeProps['treeData'],
   set: (v: TreeProps['treeData']) => imageCaptureStore.updateTreeData(v)
 });
-
-setInterval(() => {
-  imageCaptureStore.test = imageCaptureStore.test + 1;
-}, 2000);
 </script>
 
 <template>
   <div class="home">
-    {{ imageCaptureStore.test }}
     <ImageCapture
       v-model:open="open"
       v-model:selected-keys="selectedKeys"
