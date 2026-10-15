@@ -3,7 +3,7 @@ import type { TreeProps } from 'ant-design-vue';
 import DirectoryTree from './DirectoryTree.vue';
 import VideoCamera from './VideoCamera.vue';
 import ThumbnailList from './ThumbnailList.vue';
-import type { ClickShutterPayload } from './ShutterButton.type';
+import type { ClickShutterPayload } from './ShutterButton';
 
 // attrs 手动透传给 Thumbnail，而不是落在根节点上
 defineOptions({ inheritAttrs: false });
@@ -80,7 +80,7 @@ function handleClickShutter({ video }: ClickShutterPayload) {
       width="1000px"
       style="top: 50px"
       destroy-on-close
-      @update:open="(flag: boolean) => emit('update:open', flag)"
+      @update:open="(v: boolean) => emit('update:open', v)"
     >
       <div class="container">
         <div class="dir">
