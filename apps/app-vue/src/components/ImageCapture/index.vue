@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { TreeProps } from 'ant-design-vue';
 import DirectoryTree from './components/DirectoryTree.vue';
-import VideoCamera from './VideoCamera.vue';
+import VideoCamera from './components/VideoCamera.vue';
 import ThumbnailList from './components/ThumbnailList.vue';
 import type { ClickShutterPayload } from './types/ShutterButton';
 
