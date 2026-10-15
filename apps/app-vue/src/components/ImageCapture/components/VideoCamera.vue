@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, useTemplateRef } from 'vue';
-import type { ShutterButtonEmits } from './ShutterButton';
-import ShutterButton from './ShutterButton';
+import type { ShutterButtonEmits } from '../types/ShutterButton';
+import ShutterButton from './ShutterButton.vue';
 
 const videoRef = useTemplateRef<HTMLVideoElement>('videoRef');
 const emit = defineEmits<ShutterButtonEmits>();

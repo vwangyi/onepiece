@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import type { TreeProps } from 'ant-design-vue';
-import DirectoryTree from './DirectoryTree.vue';
+import DirectoryTree from './components/DirectoryTree.vue';
 import VideoCamera from './VideoCamera.vue';
-import ThumbnailList from './ThumbnailList.vue';
-import type { ClickShutterPayload } from './ShutterButton';
+import ThumbnailList from './components/ThumbnailList.vue';
+import type { ClickShutterPayload } from './types/ShutterButton';
 
 // attrs 手动透传给 Thumbnail，而不是落在根节点上
 defineOptions({ inheritAttrs: false });

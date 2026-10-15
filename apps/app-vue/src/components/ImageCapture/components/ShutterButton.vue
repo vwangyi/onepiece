@@ -3,7 +3,10 @@
  * 快门按钮 ShutterButton
  */
 
-import type { ShutterButtonEmits, ShutterButtonProps } from './ShutterButton';
+import type {
+  ShutterButtonEmits,
+  ShutterButtonProps
+} from '../types/ShutterButton';
 
 const props = defineProps<ShutterButtonProps>();
 const emit = defineEmits<ShutterButtonEmits>();
