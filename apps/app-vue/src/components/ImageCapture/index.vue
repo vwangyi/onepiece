@@ -5,16 +5,6 @@ import VideoCamera from './components/VideoCamera.vue';
 import ThumbnailList from './components/ThumbnailList.vue';
 import type { ClickShutterPayload } from './types/ShutterButton';
 
-// attrs 手动透传给 Thumbnail，而不是落在根节点上
-defineOptions({ inheritAttrs: false });
-
-interface Props {
-  open: boolean;
-  selectedKeys: string[];
-  expandedKeys: string[];
-  treeData: TreeProps['treeData'];
-}
-
 const props = defineProps<{
   open: boolean;
   selectedKeys: string[];
@@ -53,7 +43,7 @@ function handleClickShutter({ video }: ClickShutterPayload) {
 
   const newTreeData = props.treeData?.map(item => {
     if (props.selectedKeys.includes(String(item.key))) {
-      return { ...item, children: [...(item.children ?? []), newItem] };
+      return { ...item, children: [newItem, ...(item.children ?? [])] };
     }
     return { ...item };
   });

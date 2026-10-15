@@ -46,6 +46,6 @@ const treeData = computed({
   height: 100vh;
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  background-image: url('../../assets/coffee2.jpeg');
+  background-image: url('../../assets/coffee.png');
 }
 </style>
