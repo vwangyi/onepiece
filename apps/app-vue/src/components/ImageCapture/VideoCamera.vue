@@ -3,18 +3,10 @@ import { onBeforeUnmount, onMounted, useTemplateRef } from 'vue';
 import type { ShutterButtonEmits } from './ShutterButton.type';
 import ShutterButton from './ShutterButton.vue';
 
-/**
- * 摄像头预览。
- * 负责「打开 / 关闭摄像头」这件资源型的事，并把快门事件透传给上层。
- */
 const videoRef = useTemplateRef<HTMLVideoElement>('videoRef');
-
-/** 显式声明透传的事件，父组件的 handler 参数才能被 vue-tsc 推导出来 */
 const emit = defineEmits<ShutterButtonEmits>();
-
 let mediaStream: MediaStream | null = null;
 
-/** 打开摄像头；重复调用会先释放上一次的流，避免摄像头被独占 */
 async function openCamera() {
   stopCamera();
 
@@ -45,7 +37,6 @@ async function openCamera() {
   }
 }
 
-/** 释放摄像头，否则组件销毁后设备指示灯会一直亮 */
 function stopCamera() {
   mediaStream?.getTracks().forEach(track => track.stop());
   mediaStream = null;
@@ -57,9 +48,8 @@ function stopCamera() {
 }
 
 onMounted(openCamera);
+// model弹窗设置了 destroy-on-close 销毁时清理摄像头
 onBeforeUnmount(stopCamera);
-
-defineExpose({ openCamera, stopCamera });
 </script>
 
 <template>

@@ -15,7 +15,12 @@ interface Props {
   treeData: TreeProps['treeData'];
 }
 
-const props = defineProps<Props>();
+const props = defineProps<{
+  open: boolean;
+  selectedKeys: string[];
+  expandedKeys: string[];
+  treeData: TreeProps['treeData'];
+}>();
 
 const emit = defineEmits<{
   'update:open': [value: boolean];
@@ -25,20 +30,12 @@ const emit = defineEmits<{
 }>();
 
 function handleClickShutter({ video }: ClickShutterPayload) {
-  // canvas 的默认尺寸是 300x150，不同步 video 尺寸会把画面压扁
   const canvas = document.createElement('canvas');
   canvas.width = video.videoWidth;
   canvas.height = video.videoHeight;
-
   const ctx = canvas.getContext('2d');
-  if (!ctx) {
-    console.error('[ImageCapture] 获取 canvas 2d 上下文失败');
-    return;
-  }
-
-  ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+  ctx!.drawImage(video, 0, 0, canvas.width, canvas.height);
   const imageBase64 = canvas.toDataURL('image/png');
-
   // toDataURL() → Base64 字符串（方便但有 37% 体积膨胀）
   // toBlob() → 二进制 Blob（下载/上传首选，推荐替换掉 toDataURL）
   // convertToBlob() → Promise<Blob>（OffscreenCanvas / Worker 用）
@@ -48,7 +45,7 @@ function handleClickShutter({ video }: ClickShutterPayload) {
 
   const newItem = {
     title: `image${Math.floor(Math.random() * 10)}.png`,
-    key: `0--12-3${Math.random()}`,
+    key: crypto.randomUUID(),
     isLeaf: true,
     // selectable: false,
     img: imageBase64
@@ -56,7 +53,7 @@ function handleClickShutter({ video }: ClickShutterPayload) {
 
   const newTreeData = props.treeData?.map(item => {
     if (props.selectedKeys.includes(String(item.key))) {
-      return { ...item, children: [newItem, ...(item.children ?? [])] };
+      return { ...item, children: [...(item.children ?? []), newItem] };
     }
     return { ...item };
   });
@@ -82,6 +79,7 @@ function handleClickShutter({ video }: ClickShutterPayload) {
       :footer="null"
       width="1000px"
       style="top: 50px"
+      destroy-on-close
       @update:open="(flag: boolean) => emit('update:open', flag)"
     >
       <div class="container">
@@ -118,6 +116,7 @@ function handleClickShutter({ video }: ClickShutterPayload) {
 
 <style lang="scss" scoped>
 .tag {
+  margin: 8px;
   cursor: pointer;
 }
 .container {
