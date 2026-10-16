@@ -1,6 +1,6 @@
 {
   "name": "onepiece-utils",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "module": "./dist/index.esm.js",

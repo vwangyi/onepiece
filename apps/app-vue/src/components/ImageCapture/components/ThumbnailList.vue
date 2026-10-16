@@ -13,6 +13,10 @@ const thumbnailList = computed(() => {
     props.selectedKeys.includes(String(item.key))
   )?.children;
 });
+
+function handleDelete() {
+  console.log('删除了');
+}
 </script>
 
 <template>
@@ -22,7 +26,10 @@ const thumbnailList = computed(() => {
       :key="item.key"
       class="thumbnail-item"
     >
-      <i>删除按钮</i>
+      <i
+        class="iconfont icon-shanchu-1 thumbnail-item-del"
+        @click="handleDelete"
+      />
       <img :src="item.img" />
     </div>
   </div>
@@ -42,12 +49,24 @@ const thumbnailList = computed(() => {
 }
 
 .thumbnail-item {
+  position: relative;
   flex: 0 0 200px;
   height: 100%;
   margin: 0 8px;
+  cursor: pointer;
   > img {
     width: 100%;
     height: 100%;
   }
+}
+
+.thumbnail-item-del {
+  color: rgba(255, 0, 0, 0);
+  position: absolute;
+  right: 8px;
+  top: 0;
+}
+.thumbnail-item:hover .thumbnail-item-del {
+  color: rgba(255, 0, 0, 1);
 }
 </style>

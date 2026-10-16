@@ -3,7 +3,7 @@
 /**
  * 判断是否为数组
  */
-export function isArray(value: unknown): boolean {
+export function isArray(value: unknown): value is unknown[] {
   if (typeof Array?.isArray === 'function') {
     return Array.isArray(value) === true;
   }
@@ -24,6 +24,10 @@ export function isString(str: unknown): boolean {
     return true;
   }
   return false;
+}
+
+export function isNumber(n: unknown): boolean {
+  return typeof n === 'number';
 }
 
 /**

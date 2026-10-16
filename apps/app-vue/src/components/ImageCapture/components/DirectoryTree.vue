@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-// import { isArray } from 'onepiece-utils';
+import { isArray } from 'onepiece-utils';
 
-function childrenLength(children: unknown): number | string {
-  if (Array.isArray(children)) {
+function childrenLength(children: unknown): number | '' {
+  if (isArray(children)) {
     return children.length;
   }
   return '';

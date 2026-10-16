@@ -3,7 +3,7 @@ import URL from 'node:url';
 import fs from 'node:fs';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-import typescript from 'rollup-plugin-typescript2';
+import typescript from '@rollup/plugin-typescript';
 import vue from '@vitejs/plugin-vue';
 import postcss from 'rollup-plugin-postcss';
 
@@ -47,8 +47,16 @@ async function getRollupConfig(root) {
       commonjs(),
       typescript({
         tsconfig,
+        // 官方插件（rollup 4 兼容，持续维护）。这里必须显式关掉 noEmit：
+        // 根 tsconfig 为了给 apps 做纯类型检查设了 noEmit:true，会被继承下来，
+        // 导致插件 emit 不出任何代码，TS 源码被原样交给 rollup 解析报 PARSE_ERROR。
+        noForceEmit: true,
         compilerOptions: {
-          outDir: dist
+          noEmit: false,
+          outDir: dist,
+          declaration: true,
+          declarationDir: dist,
+          sourceMap: true
         }
       }),
       vue(),
@@ -67,7 +75,10 @@ async function getRollupConfig(root) {
       }
     };
     if (format === 'iife') {
-      outputItem.name = name;
+      // 包名里的 `-` 不是合法 JS 标识符，需要转成驼峰
+      outputItem.name = name.replace(/[^a-zA-Z0-9_$]+(.)?/g, (_, c) =>
+        c ? c.toUpperCase() : ''
+      );
     }
     output.push(outputItem);
   }
