@@ -1,7 +1,6 @@
 <script setup lang="ts">
 /**
- * 调试信息 全局组件
- *
+ * 调试信息
  * 好处1: 对于任何不熟悉的页面 都可以知道路由是什么
  */
 import { useRoute } from 'vue-router';

@@ -30,7 +30,7 @@
     "commitlint.config.js",
     ".cspell",
     ".vscode",
-    "demo/*",
+    "zdemo/*",
     "docs",
     ".nuxt"
   ]

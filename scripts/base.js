@@ -3,22 +3,28 @@ import URL from 'node:url';
 import fs from 'node:fs';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-import typescript from 'rollup-plugin-typescript2';
+import typescript from '@rollup/plugin-typescript';
 import vue from '@vitejs/plugin-vue';
 import postcss from 'rollup-plugin-postcss';
 
 const __filename = URL.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// 定义子包 /packages/**
-const packages = ['utils', 'components'];
+export const clearDist = packageName => {
+  const dist = path.resolve(__dirname, '../packages', packageName, 'dist');
+  if (fs.existsSync(dist)) {
+    fs.rmSync(dist, { recursive: true, force: true });
+  }
+};
+
+const packages = ['onepiece-utils'];
 
 // 获取所有子包的绝对路径
 function getPackageRoots() {
   return packages.map(pkg => path.resolve(__dirname, '../packages', pkg));
 }
 
-// 异步读取子包的 package.json
+// 读取子包的 package.json
 async function packageJson(root) {
   const jsonPath = path.resolve(root, 'package.json');
   const content = await fs.promises.readFile(jsonPath, 'utf-8');
@@ -41,30 +47,19 @@ async function getRollupConfig(root) {
       commonjs(),
       typescript({
         tsconfig,
+        // 官方插件（rollup 4 兼容，持续维护）。这里必须显式关掉 noEmit：
+        // 根 tsconfig 为了给 apps 做纯类型检查设了 noEmit:true，会被继承下来，
+        // 导致插件 emit 不出任何代码，TS 源码被原样交给 rollup 解析报 PARSE_ERROR。
+        noForceEmit: true,
         compilerOptions: {
-          outDir: dist
+          noEmit: false,
+          outDir: dist,
+          declaration: true,
+          declarationDir: dist,
+          sourceMap: true
         }
       }),
-      vue({
-        template: {
-          compilerOptions: {
-            // 自定义转换函数，在生成 AST 时移除特定属性
-            nodeTransforms: [
-              node => {
-                if (node.type === 1 /* NodeTypes.ELEMENT */) {
-                  // 过滤掉所有 data-testid 属性
-                  node.props = node.props.filter(prop => {
-                    if (prop.type === 6 /* NodeTypes.ATTRIBUTE */) {
-                      return prop.name !== 'data-testid';
-                    }
-                    return true;
-                  });
-                }
-              }
-            ]
-          }
-        }
-      }),
+      vue(),
       postcss()
     ],
     dir: dist
@@ -80,7 +75,10 @@ async function getRollupConfig(root) {
       }
     };
     if (format === 'iife') {
-      outputItem.name = name;
+      // 包名里的 `-` 不是合法 JS 标识符，需要转成驼峰
+      outputItem.name = name.replace(/[^a-zA-Z0-9_$]+(.)?/g, (_, c) =>
+        c ? c.toUpperCase() : ''
+      );
     }
     output.push(outputItem);
   }
@@ -102,15 +100,4 @@ export async function getRollupConfigs() {
     result[packages[i]] = configs[i];
   }
   return result;
-}
-
-// 清空dist目录
-export function clearDist(name) {
-  const dist = path.resolve(__dirname, '../packages', name, 'dist');
-  if (fs.existsSync(dist)) {
-    fs.rmSync(dist, {
-      recursive: true,
-      force: true
-    });
-  }
 }

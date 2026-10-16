@@ -1,7 +1,7 @@
 import { createApp } from 'vue';
 import type { Plugin, App as AppType } from 'vue';
 import { createPinia } from 'pinia';
-import App from './App.tsx';
+import App from './App';
 import router from './router';
 import Antd from 'ant-design-vue';
 import './styles/main.css';
