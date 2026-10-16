@@ -45,26 +45,7 @@ async function getRollupConfig(root) {
           outDir: dist
         }
       }),
-      vue({
-        template: {
-          compilerOptions: {
-            // 自定义转换函数，在生成 AST 时移除特定属性
-            nodeTransforms: [
-              node => {
-                if (node.type === 1 /* NodeTypes.ELEMENT */) {
-                  // 过滤掉所有 data-testid 属性
-                  node.props = node.props.filter(prop => {
-                    if (prop.type === 6 /* NodeTypes.ATTRIBUTE */) {
-                      return prop.name !== 'data-testid';
-                    }
-                    return true;
-                  });
-                }
-              }
-            ]
-          }
-        }
-      }),
+      vue(),
       postcss()
     ],
     dir: dist
