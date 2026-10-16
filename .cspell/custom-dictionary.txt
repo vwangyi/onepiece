@@ -48,3 +48,5 @@ dtype
 OTSU
 ddepth
 zhaoxiangji
+zdemo
+

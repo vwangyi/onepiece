@@ -5,6 +5,6 @@ public
 .nuxt
 node_modules
 pnpm-lock.yaml
-demo 
+zdemo 
 docs
 docs/**
