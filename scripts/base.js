@@ -10,15 +10,21 @@ import postcss from 'rollup-plugin-postcss';
 const __filename = URL.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// 定义子包 /packages/**
-const packages = ['utils', 'components'];
+export const clearDist = packageName => {
+  const dist = path.resolve(__dirname, '../packages', packageName, 'dist');
+  if (fs.existsSync(dist)) {
+    fs.rmSync(dist, { recursive: true, force: true });
+  }
+};
+
+const packages = ['onepiece-utils'];
 
 // 获取所有子包的绝对路径
 function getPackageRoots() {
   return packages.map(pkg => path.resolve(__dirname, '../packages', pkg));
 }
 
-// 异步读取子包的 package.json
+// 读取子包的 package.json
 async function packageJson(root) {
   const jsonPath = path.resolve(root, 'package.json');
   const content = await fs.promises.readFile(jsonPath, 'utf-8');
@@ -83,15 +89,4 @@ export async function getRollupConfigs() {
     result[packages[i]] = configs[i];
   }
   return result;
-}
-
-// 清空dist目录
-export function clearDist(name) {
-  const dist = path.resolve(__dirname, '../packages', name, 'dist');
-  if (fs.existsSync(dist)) {
-    fs.rmSync(dist, {
-      recursive: true,
-      force: true
-    });
-  }
 }

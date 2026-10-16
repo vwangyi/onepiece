@@ -1,9 +1,17 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["src"],
-  "exclude": ["../../node_modules", "../../dist"],
   "compilerOptions": {
     "types": ["node"],
-    "lib": ["esnext", "DOM"]
-  }
+    "lib": ["esnext", "DOM"],
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "declaration": true,
+    "isolatedModules": true, // 配合 esbuild 建议开
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "outDir": "dist"
+  },
+  "include": ["src"]
 }

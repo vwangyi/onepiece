@@ -10,10 +10,14 @@
     "prettier": "prettier --write \"**/*.{js,ts,mjs,cjs,json,tsx,css,less,scss,vue,html,md}\"",
     "eslint": "eslint",
     "spell": "cspell lint \"(packages|apps)/**/*.{js,ts,mjs,cjs,json,css,less,scss,vue,html,md}\"",
-    "test": "vitest",
     "precommit": "lint-staged",
     "prepare": "husky",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "build": "node ./scripts/build.js",
+    "dev": "node ./scripts/dev.js",
+    "test": "vitest",
+    "publish:utils": "pnpm --filter \"@duyi-monorepo/utils\" publish --no-git-checks",
+    "publish:components": "pnpm --filter \"@duyi-monorepo/components\" publish --no-git-checks"
   },
   "config": {
     "commitizen": {

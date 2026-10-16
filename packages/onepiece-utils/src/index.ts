@@ -19,7 +19,7 @@ export function isArray(value: unknown): boolean {
 /**
  * 判断是否为字符串
  */
-export function isString(str: string): boolean {
+export function isString(str: unknown): boolean {
   if (typeof str === 'string') {
     return true;
   }

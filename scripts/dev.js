@@ -5,6 +5,8 @@ async function dev() {
   const configs = await getRollupConfigs();
   for (const name in configs) {
     const config = configs[name];
+
+    console.log('config', config);
     const watcher = watch(
       config.output.map(o => ({
         input: config.input,
