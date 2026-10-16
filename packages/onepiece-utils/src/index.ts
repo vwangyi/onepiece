@@ -1,3 +1,5 @@
+// export * from './src/modules/index';
+
 /**
  * 判断是否为数组
  */

@@ -22,6 +22,7 @@ const thumbnailList = computed(() => {
       :key="item.key"
       class="thumbnail-item"
     >
+      <i>删除按钮</i>
       <img :src="item.img" />
     </div>
   </div>
