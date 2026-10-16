@@ -2,7 +2,6 @@
 import type { TreeProps } from 'ant-design-vue';
 import ImageCapture from '@/components/ImageCapture';
 import { computed } from 'vue';
-
 import { useImageCaptureStore } from '@/stores/image-capture';
 
 const imageCaptureStore = useImageCaptureStore();

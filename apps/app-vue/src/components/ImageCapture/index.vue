@@ -43,7 +43,8 @@ function handleClickShutter({ video }: ClickShutterPayload) {
 
   const newTreeData = props.treeData?.map(item => {
     if (props.selectedKeys.includes(String(item.key))) {
-      return { ...item, children: [newItem, ...(item.children ?? [])] };
+      const children = [newItem, ...(item.children ?? [])];
+      return { ...item, children };
     }
     return { ...item };
   });
