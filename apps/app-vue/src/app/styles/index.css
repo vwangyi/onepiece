@@ -1,0 +1,4 @@
+@import './reset.scss';
+@import './global.scss';
+/* @import './base.css'; */
+@import 'ant-design-vue/dist/reset.css';
