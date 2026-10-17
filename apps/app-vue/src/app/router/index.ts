@@ -1,12 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '@/pages/home/index.vue';
+import { HomePage } from '@/pages/home';
+import { ImageProcessPage } from '@/pages/image-process';
+import { NotFoundPage } from '@/pages/not-found';
 import type { RouteRecordRaw } from 'vue-router';
 
 export const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'HomeView',
-    component: HomeView
+    component: HomePage
   },
   // {
   //   path: '/',
@@ -174,7 +176,7 @@ export const routes: RouteRecordRaw[] = [
     path: '/image-process',
     name: 'ImageProcess',
     meta: { title: '图像处理优化' },
-    component: () => import('@/pages/ImageProcessView/ImageProcessView.vue')
+    component: ImageProcessPage
   },
   // {
   //   path: '/dynamic-segmented-demo',
@@ -189,7 +191,7 @@ export const routes: RouteRecordRaw[] = [
   {
     path: '/:pathMatch(.*)*',
     name: '404',
-    component: () => import('@/pages/404')
+    component: NotFoundPage
   }
 ];
 const router = createRouter({

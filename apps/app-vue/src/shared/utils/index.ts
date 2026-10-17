@@ -1,6 +1,11 @@
 import _ from 'lodash';
 import type { DebouncedFunc, DebounceSettings, ThrottleSettings } from 'lodash';
 
+// request 是共享基础设施，统一从本segment 的公共 API 导出，
+// 外部不要直接引 ./request 内部文件（会绕过公共 API）。
+export { default as request } from './request';
+export type { ApiResponse } from './request';
+
 export function isArray(arg: unknown) {
   return Array.isArray(arg);
 }

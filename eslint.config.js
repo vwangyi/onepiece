@@ -6,6 +6,8 @@ import tseslint from 'typescript-eslint';
 import eslintPluginPrettier from 'eslint-plugin-prettier';
 import eslintPluginVue from 'eslint-plugin-vue';
 import globals from 'globals';
+// FSD 架构约束的本地插件（零依赖实现，替代已停更的 @feature-sliced/eslint-config）
+import { fsdPlugin } from './scripts/eslint-plugin-fsd.js';
 /**
  * eslint-config-prettier 会帮我们把处理 eslint中格式化规则 和prettier冲突后 按prettier走
  * eslint-config-prettier 内部维护了一个规则列表，包含了所有可能与 Prettier 产生冲突的 ESLint 规则，然后统一将它们设置为 off。
@@ -346,6 +348,29 @@ export default defineConfig([
 
       // 关闭所有和prettier冲突的规则
       ...eslintConfigPrettier.rules
+    }
+  },
+
+  /* app-vue 的 FSD 架构约束
+   * 完整检查跑 `pnpm fsd`（steiger），这里负责编辑器里的实时红波浪线。
+   * 层级倒挂与跨切片引用直接拦error；公共 API 绕行先报 warn，
+   * 因为存量代码里还有不少直接引内部文件的地方，等重构推进再收紧。
+   */
+  {
+    // ESLint 10 的 files glob 不支持 {a,b} 花括号展开，必须逐个列出，
+    // 否则这个配置块匹配不到任何文件、规则会静默失效。
+    files: [
+      'apps/app-vue/src/**/*.ts',
+      'apps/app-vue/src/**/*.tsx',
+      'apps/app-vue/src/**/*.js',
+      'apps/app-vue/src/**/*.jsx',
+      'apps/app-vue/src/**/*.vue'
+    ],
+    plugins: { fsd: fsdPlugin },
+    rules: {
+      'fsd/no-layer-inversion': 'error',
+      'fsd/no-cross-imports': 'error',
+      'fsd/no-public-api-sidestep': 'warn'
     }
   }
   // ...后续新增其他项目
