@@ -2,5 +2,24 @@
 // export { default as UserAvatar } from './ui/UserAvatar.vue';
 
 // 广泛导出 Model，供上层消费
-export { useUserStore } from './model/store';
-export type { User } from './model/types';
+// 类型
+// export type { User } from './model/types';
+
+// // API
+// export { fetchUser, fetchUsers } from './api/user';
+
+// // 组合式函数
+// export { useUser, useUsers } from './model/useUser';
+
+// // UI
+// export { UserCard } from './ui/UserCard';
+// export { UserAvatar } from './ui/UserAvatar';
+
+// entities/user/index.ts
+export type { User, UserDTO, UserRole } from './model/types';
+export { userProfileSchema, type UserProfileFormData } from './model/schema';
+
+export { getCurrentUser, getUserById, updateUser } from './api/user';
+export { useUser } from './api/user';
+
+export { default as UserCard } from './ui/UserCard.vue';

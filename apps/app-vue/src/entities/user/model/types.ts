@@ -1,15 +1,23 @@
-// 标准的用户实体接口
-export interface User {
-  id: string;
-  username: string;
+// entities/user/model/types.ts
+
+export type UserRole = 'admin' | 'user' | 'guest';
+
+/** 后端返回的原始结构（DTO） */
+export interface UserDTO {
+  id: number;
   email: string;
-  avatarUrl: string;
-  roles: ('admin' | 'user' | 'editor')[];
+  name: string;
+  avatar_url: string | null;
+  role: string;
+  created_at: string;
 }
 
-// 补充定义用户相关的状态类型
-export interface UserState {
-  currentUser: User | null;
-  isAuth: boolean; // 是否已登录
-  isLoading: boolean;
+/** 前端领域模型 */
+export interface User {
+  id: string;
+  email: string;
+  name: string;
+  avatar: string | undefined;
+  role: UserRole;
+  createdAt: Date;
 }

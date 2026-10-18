@@ -162,6 +162,7 @@
     "vue-router": "^5.2.0",
     "vue-virtual-scroller": "^3.0.4",
     "winston": "^3.19.0",
-    "winston-daily-rotate-file": "^5.0.0"
+    "winston-daily-rotate-file": "^5.0.0",
+    "zod": "^4.6.7"
   }
 }
