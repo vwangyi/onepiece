@@ -36,6 +36,8 @@ const treeData = computed({
       v-model:tree-data="treeData"
     >
     </ImageCapture>
+
+    <GoToAdmin></GoToAdmin>
   </div>
 </template>
 
@@ -45,6 +47,6 @@ const treeData = computed({
   height: 100vh;
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  background-image: url('../../assets/coffee.png');
+  background-image: url('./coffee.png');
 }
 </style>

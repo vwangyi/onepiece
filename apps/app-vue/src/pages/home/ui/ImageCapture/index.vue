@@ -4,6 +4,7 @@ import DirectoryTree from './components/DirectoryTree.vue';
 import VideoCamera from './components/VideoCamera.vue';
 import ThumbnailList from './components/ThumbnailList.vue';
 import type { ClickShutterPayload } from './types/ShutterButton.js';
+import { computed } from 'vue';
 
 const props = defineProps<{
   open: boolean;
@@ -51,6 +52,16 @@ function handleClickShutter({ video }: ClickShutterPayload) {
 
   emit('update:treeData', newTreeData);
 }
+
+const total = computed(() => {
+  const res = props.treeData?.reduce((prev, curr) => {
+    const itemLength = curr?.children?.length || 0;
+    prev += itemLength;
+    return prev;
+  }, 0);
+  if (res === 0) return '';
+  return res;
+});
 </script>
 
 <template>
@@ -61,7 +72,7 @@ function handleClickShutter({ video }: ClickShutterPayload) {
         color="purple"
         @click="emit('update:open', true)"
       >
-        影像采集
+        影像采集{{ total }}
       </a-tag>
     </slot>
     <a-modal

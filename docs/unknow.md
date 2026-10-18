@@ -69,3 +69,8 @@ FSD 的代码结构由三个核心概念支撑：Layers（层）、Slices（切�
 每个层有6层：app、pages widgets features entities shared
 片是按业务功能划分。在pages widgets features entities 内部。
 每个片由多个段组成。段有 api model ui lib config 等等
+
+
+
+widgets负责组合下层（features、entities、shared）形成一个完整的功能区，带有数据获取和交互功能。
+
