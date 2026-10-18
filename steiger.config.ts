@@ -58,6 +58,19 @@ export default defineConfig([
     }
   },
 
+  /* ============ @x 交叉导入目录 ============
+   * FSD 官方约定：entities/A/@x/B.ts 是切片 A 专门为切片 B 开放的公共 API。
+   * steiger 会把 @x 目录误当成一个「没有 segment 的切片」来报 no-segmentless-slices，
+   * 但它其实是官方语法的一部分，天然不会、也不该有 ui/ model/ 这类 segment。
+   * 见 https://feature-sliced.design/docs/reference/public-api#public-api-for-cross-imports
+   */
+  {
+    files: ['**/entities/*/@x/**'],
+    rules: {
+      'fsd/no-segmentless-slices': 'off'
+    }
+  },
+
   /* ============ insignificant-slice：暂时关闭 ============
    * 报的是「切片只有 0~1 处引用」，但本项目这4 个切片不是垃圾，而是有意的在建骨架：
    *   entities/user         — 有完整 store，只是还没接入页面

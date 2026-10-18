@@ -7,6 +7,7 @@ SLICELESS
 framwork
 happypack
 iconfont
+segmentless
 nuxt
 Nuxt
 onepiece
