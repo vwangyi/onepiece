@@ -24,17 +24,17 @@
 // }
 
 // entities/user/api/userApi.ts
-import { httpClient } from '@/shared/api';
+import { request } from '@/shared/api';
 import { mapUserDTO } from '../model/mapper';
 import type { User, UserDTO } from '../model/types';
 
 export async function getCurrentUser(): Promise<User> {
-  const { data } = await httpClient.get<UserDTO>('/users/me');
+  const { data } = await request.get<UserDTO>('/users/me');
   return mapUserDTO(data);
 }
 
 export async function getUserById(id: string): Promise<User> {
-  const { data } = await httpClient.get<UserDTO>(`/users/${id}`);
+  const { data } = await request.get<UserDTO>(`/users/${id}`);
   return mapUserDTO(data);
 }
 
@@ -42,6 +42,6 @@ export async function updateUser(
   id: string,
   payload: { name: string; email: string }
 ): Promise<User> {
-  const { data } = await httpClient.patch<UserDTO>(`/users/${id}`, payload);
+  const { data } = await request.patch<UserDTO>(`/users/${id}`, payload);
   return mapUserDTO(data);
 }

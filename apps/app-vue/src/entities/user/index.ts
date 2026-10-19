@@ -20,6 +20,6 @@ export type { User, UserDTO, UserRole } from './model/types';
 export { userProfileSchema, type UserProfileFormData } from './model/schema';
 
 export { getCurrentUser, getUserById, updateUser } from './api/user';
-export { useUser } from './api/user';
 
 export { default as UserCard } from './ui/UserCard.vue';
+export { default as UserAvatar } from './ui/UserAvatar.vue';
