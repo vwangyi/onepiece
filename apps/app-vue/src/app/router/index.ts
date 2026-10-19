@@ -10,6 +10,11 @@ export const routes: RouteRecordRaw[] = [
     component: HomePage
   },
   {
+    path: '/todo',
+    name: 'ToDo',
+    component: () => import('@/pages/todo')
+  },
+  {
     path: '/admin',
     name: 'AdminPage',
     component: () => import('@/pages/admin')
@@ -32,7 +37,7 @@ export const routes: RouteRecordRaw[] = [
   {
     path: '/:pathMatch(.*)*',
     name: '404',
-    component: () => import('@/pages/404')
+    component: () => import('@/pages/not-found')
   }
 ];
 const router = createRouter({

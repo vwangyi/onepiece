@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import NavBar from '@/widgets/navbar/index';
+// import NavBar from '@/widgets/navbar/index';
 // import SideBar from './index';
 // import AppMain from './index';
 // import AppFooter from './index';
