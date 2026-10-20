@@ -90,8 +90,4 @@ __screenshots__/
 # VuePress 默认构建生成的静态文件目录
 .vuepress/dist
 
-
-
-## demo
-demo.html
-demo.js
+ 
