@@ -20,7 +20,8 @@
     "build": "node ./scripts/build.js",
     "dev": "node ./scripts/dev.js",
     "test": "vitest",
-    "publish:utils": "pnpm --filter \"onepiece-utils\" publish --no-git-checks"
+    "publish:utils": "pnpm --filter \"onepiece-utils\" publish --no-git-checks",
+    "demo": "node ./demo.js"
   },
   "config": {
     "commitizen": {
