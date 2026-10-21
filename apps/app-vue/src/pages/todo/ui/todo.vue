@@ -1,26 +1,38 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="header">
-    <div class="logo">To Do</div>
+  <div class="todo">
+    <div class="header">
+      <div class="logo">To Do</div>
 
-    <div class="search">
-      <i class="iconfont icon-sousuo"></i>
-      <input
-        type="text"
-        placeholder="搜索"
-      />
-    </div>
-    <div class="header-btn-container">
-      <div class="header-btn iconfont icon-shezhi"></div>
-      <div class="header-btn iconfont icon-wenhao"></div>
-      <div class="header-btn iconfont icon-tongzhi"></div>
-      <div class="header-btn iconfont icon-touxiang"></div>
+      <div class="search">
+        <div class="search-icon-container">
+          <i class="iconfont icon-sousuo"></i>
+        </div>
+        <input
+          type="text"
+          placeholder="搜索"
+        />
+        <div class="search-cancel-container">
+          <i class="iconfont icon-quxiao"></i>
+        </div>
+      </div>
+      <div class="header-btn-container">
+        <div class="header-btn iconfont icon-shezhi"></div>
+        <div class="header-btn iconfont icon-wenhao"></div>
+        <div class="header-btn iconfont icon-tongzhi"></div>
+        <div class="header-btn iconfont icon-touxiang"></div>
+      </div>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+.todo {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(37, 36, 35);
+}
 .header {
   display: flex;
   justify-content: space-between;
@@ -66,12 +78,45 @@
   border-radius: 6px;
   text-align: left;
   color: #fff;
-  padding: 8px;
   font-size: 16px;
   font-weight: 400;
-}
+  display: flex;
 
-.icon-sousuo {
-  font-size: 16px;
+  .search-icon-container {
+    width: 30px;
+    height: 32px;
+    text-align: center;
+    line-height: 32px;
+    margin-right: 6px;
+    .icon-sousuo {
+      width: 30px;
+      height: 32px;
+      text-align: center;
+      line-height: 32px;
+      color: #78bafd;
+      font-size: 20px;
+    }
+  }
+
+  > input {
+    flex: 1;
+    font-weight: 400;
+  }
+
+  .search-cancel-container {
+    width: 30px;
+    height: 32px;
+    text-align: center;
+    line-height: 32px;
+    margin-right: 6px;
+    .icon-quxiao {
+      width: 30px;
+      height: 32px;
+      text-align: center;
+      line-height: 32px;
+      color: #78bafd;
+      font-size: 12px;
+    }
+  }
 }
 </style>
