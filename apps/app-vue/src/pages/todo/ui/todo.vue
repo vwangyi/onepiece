@@ -1,25 +1,19 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import ToDoHeader from './header.vue';
+import ToDoAppMain from './main.vue';
+</script>
 
 <template>
-  <div class="header">
-    <div class="logo">To Do</div>
+  <div class="todo">
+    <ToDoHeader></ToDoHeader>
+    <ToDoAppMain></ToDoAppMain>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.header {
+.todo {
   width: 100vw;
-  height: 48px;
-  background-color: #1b1a19;
-}
-
-.logo {
-  width: 88px;
-  height: 48px;
-  text-align: center;
-  line-height: 48px;
-  color: white;
-  font-weight: 600;
-  font-size: 16px;
+  height: 100vh;
+  background-color: rgb(37, 36, 35);
 }
 </style>

@@ -1,17 +1,271 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <title>登录页小猫动效模板</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+      body {
+        margin: 0;
+        font-family:
+          system-ui,
+          -apple-system,
+          'Segoe UI',
+          Roboto,
+          sans-serif;
+        background: #f0f4ff;
+        display: grid;
+        place-items: center;
+        min-height: 100vh;
+      }
 
-<body>
-    <div></div>
+      .login-wrap {
+        position: relative;
+        width: 920px;
+        max-width: 96vw;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 32px;
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        gap: 24px;
+      }
+
+      .cat-container {
+        position: absolute;
+        left: 32px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 120px;
+        height: 150px;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .cat {
+        width: 2400px;
+        /* 20帧 × 120px */
+        height: 150px;
+        background-image: url();
+        background-repeat: repeat-x;
+        will-change: background-position;
+      }
+
+      .tip {
+        position: absolute;
+        left: 32px;
+        top: calc(50% - 95px);
+        background: #edf2ff;
+        border-radius: 999px;
+        padding: 6px 12px;
+        font-size: 13px;
+        color: #2563eb;
+        opacity: 0;
+        transition: opacity 0.2s;
+        pointer-events: none;
+      }
+
+      .login-card {
+        width: 360px;
+        padding: 28px 24px;
+      }
+
+      .login-card h2 {
+        margin: 0 0 6px;
+        font-size: 20px;
+        color: #111827;
+      }
+
+      .login-card p {
+        margin: 0 0 24px;
+        color: #6b7280;
+        font-size: 13px;
+      }
+
+      .field {
+        margin-bottom: 18px;
+      }
+
+      .field label {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 13px;
+        color: #374151;
+      }
+
+      .field input {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        font-size: 15px;
+        outline: none;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+      }
+
+      .field input:focus {
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+      }
+
+      .submit {
+        width: 100%;
+        padding: 11px;
+        border: none;
+        border-radius: 8px;
+        background: #2563eb;
+        color: #fff;
+        font-size: 15px;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      .submit:hover {
+        background: #1d4ed8;
+      }
+
+      @media (max-width: 768px) {
+        .login-wrap {
+          flex-direction: column;
+          padding: 24px;
+        }
+
+        .cat-container {
+          position: relative;
+          left: auto;
+          top: auto;
+          transform: none;
+          margin-bottom: 12px;
+        }
+
+        .tip {
+          display: none;
+        }
+
+        .login-card {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="login-wrap">
+      <div
+        class="tip"
+        id="tip"
+      >
+        喵～欢迎回来
+      </div>
+      <div class="cat-container">
+        <div
+          class="cat"
+          id="cat"
+        ></div>
+      </div>
+      <div class="login-card">
+        <h2>账号登录</h2>
+        <p>请输入账号密码进入系统</p>
+        <form id="loginForm">
+          <div class="field">
+            <label>账号</label>
+            <input
+              id="account"
+              type="text"
+              placeholder="请输入账号"
+            />
+          </div>
+          <div class="field">
+            <label>密码</label>
+            <input
+              id="pwd"
+              type="password"
+              placeholder="请输入密码"
+            />
+          </div>
+          <button
+            class="submit"
+            type="submit"
+          >
+            登录
+          </button>
+        </form>
+      </div>
+    </div>
     <script>
-
+      const cat = document.getElementById('cat');
+      const tip = document.getElementById('tip');
+      const account = document.getElementById('account');
+      const pwd = document.getElementById('pwd');
+      const TOTAL = 20;
+      const FRAME_W = 120;
+      const FPS = 30;
+      let currentFrame = 0;
+      let targetFrame = 0;
+      let isPwdFocused = false;
+      // 显示欢迎提示
+      setTimeout(() => {
+        tip.style.opacity = 1;
+      }, 400);
+      setTimeout(() => {
+        tip.style.opacity = 0;
+      }, 2200);
+      // 鼠标跟随：水平位置映射到帧号
+      document.addEventListener('mousemove', e => {
+        if (isPwdFocused) return;
+        const wrap = document.querySelector('.login-wrap');
+        const rect = wrap.getBoundingClientRect();
+        const t = (e.clientX - rect.left) / rect.width;
+        targetFrame = Math.max(0, Math.min(TOTAL - 1, Math.floor(t * TOTAL)));
+      });
+      // 平滑更新帧
+      function loop() {
+        if (!isPwdFocused && Math.abs(targetFrame - currentFrame) > 0) {
+          currentFrame += (targetFrame - currentFrame) * 0.25;
+        }
+        // 密码框聚焦：固定到“低头/闭眼”帧
+        if (isPwdFocused) {
+          currentFrame = 18; // 可换成你的“闭眼/低头”帧
+        }
+        cat.style.backgroundPosition = `-${Math.round(currentFrame) * FRAME_W}px 0`;
+        requestAnimationFrame(loop);
+      }
+      loop();
+      // 账号框聚焦：小猫看向输入区
+      account.addEventListener('focus', () => {
+        isPwdFocused = false;
+        targetFrame = 9; // 中间“看输入框”帧
+      });
+      account.addEventListener('blur', () => {
+        // 失去焦点后恢复跟随
+      });
+      // 密码框聚焦：“闭眼/低头”小彩蛋
+      pwd.addEventListener('focus', () => {
+        isPwdFocused = true;
+      });
+      pwd.addEventListener('blur', () => {
+        isPwdFocused = false;
+      });
+      // 阻止表单默认提交
+      document.getElementById('loginForm').addEventListener('submit', e => {
+        e.preventDefault();
+        alert('登录逻辑可在此接入');
+      });
     </script>
-</body>
-
+  </body>
 </html>
+<!-- 怎么替换小猫素材
+- 准备20张透明PNG（120×150），合成横向雪碧图 cat_sprite.png。
+- 把 CSS 里 background-image 换成你的图片地址：
+background-image: url('/cat_sprite.png'); -->

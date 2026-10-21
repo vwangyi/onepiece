@@ -2,14 +2,22 @@
 * {
   margin: 0;
   padding: 0;
+  user-select: none;
   box-sizing: border-box !important;
 }
 
 input {
   border: none; // 去掉input边框
   background-color: transparent; // 去掉input的背景色
+  font-size: 16px; /* 用户输入的文本大小 */
 }
 
 input:focus {
   outline: none; // 去掉input聚焦后的边框
+}
+
+input::placeholder {
+  font-size: 14px; /* 占位文本大小 */
+  color: #999;
+  font-weight: 200;
 }
