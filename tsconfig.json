@@ -1,6 +1,6 @@
 {
   "exclude": ["node_modules", "dist"],
-  "include": ["apps/app-nest", "apps/app-vue"],
+  // "include": ["apps/app-nest", "apps/app-vue"],
   "compilerOptions": {
     "jsx": "preserve", // 或 "react-jsx" (Vue 3.4+)
     "noEmit": true,
