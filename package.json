@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "",
+    "dev": "node ./scripts/dev-all.js",
     "vue:dev": "pnpm --filter app-vue dev",
     "nest:dev": "pnpm --filter app-nest start:dev",
     "packages:dev": "node ./scripts/dev.js",
