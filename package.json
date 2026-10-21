@@ -5,7 +5,11 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev:vue": "pnpm --filter app-vue dev",
+    "dev": "",
+    "vue:dev": "pnpm --filter app-vue dev",
+    "nest:dev": "pnpm --filter app-nest start:dev",
+    "packages:dev": "node ./scripts/dev.js",
+    "packages:build": "node ./scripts/build.js",
     "preinstall": "npx only-allow pnpm",
     "prettier": "prettier --write \"**/*.{js,ts,mjs,cjs,json,tsx,css,less,scss,vue,html,md}\"",
     "eslint": "eslint",
@@ -17,8 +21,6 @@
     "precommit": "lint-staged",
     "prepare": "husky",
     "commit": "git-cz",
-    "build": "node ./scripts/build.js",
-    "dev": "node ./scripts/dev.js",
     "test": "vitest",
     "publish:utils": "pnpm --filter \"onepiece-utils\" publish --no-git-checks",
     "demo": "node ./demo.js"
