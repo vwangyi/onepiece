@@ -99,7 +99,7 @@ function handleClickTask(task: Task) {
   }
   &.active {
     border-left: 2px solid #296fe6;
-    background-color: #323130;
+    background-color: #3b3a39 !important;
   }
 }
 

@@ -3,6 +3,7 @@
 <template>
   <div class="add-task">
     <div class="add-task-input">
+      <div class="add-task-input-icon"></div>
       <input
         type="text"
         placeholder="添加任务"

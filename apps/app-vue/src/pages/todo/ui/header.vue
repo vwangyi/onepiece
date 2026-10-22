@@ -41,6 +41,7 @@ $header-height: 48px;
   width: 100vw;
   height: 48px;
   background-color: #1b1a19;
+  border-bottom: solid 1px #484644; // --bg-separator
 }
 
 .logo {
