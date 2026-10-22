@@ -39,7 +39,6 @@ const handleMouseLeave = () => {
     <div
       class="add-task-input"
       style="
-        margin: 8px 0;
         background-color: #11100f;
         color: #78bafd;
         font-size: 20px;
