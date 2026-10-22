@@ -1,10 +1,54 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
-const hover = ref(false);
+
+interface Task {
+  key: symbol;
+  hover: boolean;
+}
+
+const tasks = ref([
+  {
+    key: Symbol(),
+    hover: false
+  },
+  {
+    key: Symbol(),
+    hover: false
+  },
+  {
+    key: Symbol(),
+    hover: false
+  },
+  {
+    key: Symbol(),
+    hover: false
+  }
+]);
+
+const handleMouseEnter = (task: Task) => {
+  tasks.value = tasks.value.map(t => ({ ...t, hover: t.key === task.key }));
+};
+
+const handleMouseLeave = () => {
+  tasks.value = tasks.value.map(t => ({ ...t, hover: false }));
+};
 </script>
 
 <template>
   <div class="add-task">
+    <div
+      class="add-task-input"
+      style="
+        margin: 8px 0;
+        background-color: #11100f;
+        color: #78bafd;
+        font-size: 20px;
+        font-weight: 400;
+      "
+    >
+      <div class="iconfont icon-taiyang font-size-22-px"></div>
+      <div style="margin-left: 8px">我的一天</div>
+    </div>
     <div class="add-task-input">
       <div class="iconfont icon-jiahao add-task-input-icon"></div>
       <input
@@ -22,17 +66,19 @@ const hover = ref(false);
     </div>
 
     <div
+      v-for="(t, i) in tasks"
+      :key="t.key"
       class="add-task-input"
-      style="margin-top: 30px"
+      style="margin-top: 8px"
     >
       <div
-        :class="`iconfont ${hover ? 'icon-webicon19' : 'icon-webicon206'} add-task-checkbox-icon`"
-        @mouseenter="hover = true"
-        @mouseleave="hover = false"
+        :class="`iconfont ${t.hover ? 'icon-webicon19' : 'icon-webicon206'} add-task-checkbox-icon`"
+        @mouseenter="handleMouseEnter(t)"
+        @mouseleave="handleMouseLeave"
       ></div>
       <input
         type="text"
-        placeholder="添加任务"
+        :placeholder="`任务${i + 1}`"
       />
     </div>
   </div>
@@ -135,5 +181,9 @@ const hover = ref(false);
   margin: 0 14px 0 0;
   font-size: 24px;
   color: #296fe6;
+}
+
+.iconfont.icon-taiyang.font-size-22-px {
+  font-size: 22px;
 }
 </style>

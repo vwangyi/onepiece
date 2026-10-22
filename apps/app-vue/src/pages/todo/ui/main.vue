@@ -11,7 +11,7 @@ import AddTask from './add-task.vue';
     <div class="content">
       <AddTask></AddTask>
     </div>
-    <!-- <div class="drawer"></div> -->
+    <div class="drawer"></div>
   </div>
 </template>
 
