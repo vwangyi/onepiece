@@ -35,7 +35,6 @@ const ignores = [
   '.*',
   '.vscode',
   'docs',
-  'zdemo',
   '**/.nuxt/**'
   // 'apps/new-world/*',
   // 'app/s/all-blue/*',

@@ -1,13 +1,29 @@
 {
-  "name": "onepiece-types",
-  "version": "1.0.0",
+  "name": "onepiece-api",
+  "version": "1.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rollup -c"
   },
-  "keywords": [],
-  "author": "",
+  "exports": {
+    "require": "./dist/index.cjs",
+    "import": "./dist/index.js"
+  },
+  "keywords": [
+    "study",
+    "useless"
+  ],
+  "files": [
+    "/dist"
+  ],
+  "author": "xx",
   "license": "ISC",
-  "packageManager": "pnpm@10.17.1"
+  "packageManager": "pnpm@10.17.1",
+  "devDependencies": {
+    "rollup": "^4.59.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-terser": "^7.0.2"
+  }
 }
