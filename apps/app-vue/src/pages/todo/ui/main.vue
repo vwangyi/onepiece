@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Category from './category.vue';
 import AddTask from './add-task.vue';
+import Detail from './detail.vue';
 </script>
 
 <template>
@@ -11,7 +12,9 @@ import AddTask from './add-task.vue';
     <div class="content">
       <AddTask></AddTask>
     </div>
-    <div class="drawer"></div>
+    <div class="drawer">
+      <Detail></Detail>
+    </div>
   </div>
 </template>
 
@@ -39,6 +42,7 @@ import AddTask from './add-task.vue';
     width: 360px;
     height: 100%;
     background-color: #252423;
+    background-color: red;
   }
 }
 </style>
