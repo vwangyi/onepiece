@@ -6,6 +6,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  src: '',
   size: 40
 });
 </script>
