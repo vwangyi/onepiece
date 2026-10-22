@@ -1,9 +1,12 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { ref } from 'vue';
+const hover = ref(false);
+</script>
 
 <template>
   <div class="add-task">
     <div class="add-task-input">
-      <div class="add-task-input-icon"></div>
+      <div class="iconfont icon-jiahao add-task-input-icon"></div>
       <input
         type="text"
         placeholder="添加任务"
@@ -17,6 +20,21 @@
       </div>
       <div class="add-task-button">添加</div>
     </div>
+
+    <div
+      class="add-task-input"
+      style="margin-top: 30px"
+    >
+      <div
+        :class="`iconfont ${hover ? 'icon-webicon19' : 'icon-webicon206'} add-task-checkbox-icon`"
+        @mouseenter="hover = true"
+        @mouseleave="hover = false"
+      ></div>
+      <input
+        type="text"
+        placeholder="添加任务"
+      />
+    </div>
   </div>
 </template>
 
@@ -24,7 +42,6 @@
 .add-task {
   width: 100%;
   height: auto;
-  background-color: #252423;
   color: #fff;
   overflow: hidden;
   border-radius: 4px;
@@ -41,12 +58,21 @@
   align-items: center;
   font-size: 14px;
   font-weight: 100;
-  > input {
+  background-color: #252423;
+  .add-task-input-icon {
+    width: 28px;
+    height: 28px;
+    text-align: center;
+    line-height: 28px;
+    margin: 0 14px 0 0;
+  }
+  input {
     width: 100%;
   }
 }
 .add-task-btn-container {
   display: flex;
+  background-color: #252423;
   justify-content: space-between;
   align-items: center;
   border-top: solid 1px #605e5c;
@@ -89,5 +115,25 @@
 }
 .add-task-btn.iconfont.icon-zhongfu2.font-size-24-px {
   font-size: 24px;
+}
+
+// 下面是一样 后续抽离
+.iconfont.icon-webicon206.add-task-checkbox-icon {
+  width: 28px;
+  height: 28px;
+  text-align: center;
+  line-height: 28px;
+  margin: 0 14px 0 0;
+  font-size: 24px;
+  color: #296fe6;
+}
+.iconfont.icon-webicon19.add-task-checkbox-icon {
+  width: 28px;
+  height: 28px;
+  text-align: center;
+  line-height: 28px;
+  margin: 0 14px 0 0;
+  font-size: 24px;
+  color: #296fe6;
 }
 </style>
