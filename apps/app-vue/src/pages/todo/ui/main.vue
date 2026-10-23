@@ -2,7 +2,6 @@
 import Category from './category.vue';
 import AddTask from './add-task.vue';
 import Drawer from './drawer.vue';
-import { ref } from 'vue';
 import { useTodoStore } from '../model/todo';
 
 const todoStore = useTodoStore();
@@ -17,7 +16,7 @@ const todoStore = useTodoStore();
       <AddTask></AddTask>
     </div>
     <div
-      v-show="todoStore.currentTask"
+      v-if="todoStore.currentTask"
       class="drawer"
     >
       <Drawer></Drawer>
