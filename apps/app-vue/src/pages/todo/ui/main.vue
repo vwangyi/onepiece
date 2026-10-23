@@ -42,7 +42,6 @@ import Detail from './detail.vue';
     width: 360px;
     height: 100%;
     background-color: #252423;
-    background-color: red;
   }
 }
 </style>
