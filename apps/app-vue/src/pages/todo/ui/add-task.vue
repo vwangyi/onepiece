@@ -1,52 +1,27 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
-
-interface Task {
-  key: symbol;
-  hover: boolean;
-}
-
-const tasks = ref([
-  {
-    key: Symbol(),
-    hover: false
-  },
-  {
-    key: Symbol(),
-    hover: false
-  },
-  {
-    key: Symbol(),
-    hover: false
-  },
-  {
-    key: Symbol(),
-    hover: false
-  }
-]);
+import { useTodoStore } from '../model/todo';
+import type { Task } from '../model/types';
+const todoStore = useTodoStore();
 
 const handleMouseEnter = (task: Task) => {
-  tasks.value = tasks.value.map(t => ({ ...t, hover: t.key === task.key }));
+  todoStore.hoverAtCheckbox(task);
 };
 
 const handleMouseLeave = () => {
-  tasks.value = tasks.value.map(t => ({ ...t, hover: false }));
+  todoStore.notHoverAtCheckbox();
 };
+
+function handleClickTask(t: Task) {
+  console.log(1);
+  todoStore.selectedTask(t);
+}
 </script>
 
 <template>
   <div class="add-task">
-    <div
-      class="add-task-input"
-      style="
-        background-color: #11100f;
-        color: #78bafd;
-        font-size: 20px;
-        font-weight: 400;
-      "
-    >
+    <div class="task-title">
       <div class="iconfont icon-taiyang font-size-22-px"></div>
-      <div style="margin-left: 8px">我的一天</div>
+      <div class="task-title-text">我的一天</div>
     </div>
     <div class="add-task-input">
       <div class="iconfont icon-jiahao add-task-input-icon"></div>
@@ -64,21 +39,29 @@ const handleMouseLeave = () => {
       <div class="add-task-button">添加</div>
     </div>
 
-    <div
-      v-for="(t, i) in tasks"
-      :key="t.key"
-      class="add-task-input"
-      style="margin-top: 8px"
-    >
+    <div class="task-list">
       <div
-        :class="`iconfont ${t.hover ? 'icon-webicon19' : 'icon-webicon206'} add-task-checkbox-icon`"
-        @mouseenter="handleMouseEnter(t)"
-        @mouseleave="handleMouseLeave"
-      ></div>
-      <input
-        type="text"
-        :placeholder="`任务${i + 1}`"
-      />
+        v-for="(t, i) in todoStore.tasks"
+        :key="t.key"
+        :class="{
+          'add-task-input': true,
+          'task-item': true,
+          'active': t.active
+        }"
+        @click="handleClickTask(t)"
+      >
+        <div
+          :class="{
+            'iconfont': true,
+            'add-task-checkbox-icon': true,
+            'icon-webicon19': t.hover,
+            'icon-webicon206': !t.hover
+          }"
+          @mouseenter="handleMouseEnter(t)"
+          @mouseleave="handleMouseLeave"
+        ></div>
+        <div>{{ `${t.active}任务${i + 1}==` }}</div>
+      </div>
     </div>
   </div>
 </template>
@@ -86,12 +69,28 @@ const handleMouseLeave = () => {
 <style lang="scss" scoped>
 .add-task {
   width: 100%;
-  height: auto;
+  height: 100%;
   color: #fff;
   overflow: hidden;
   border-radius: 4px;
 
   margin-top: 24px;
+}
+.task-title {
+  width: 100%;
+  height: 52px;
+  padding: 0 16px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #11100f;
+  color: #78bafd;
+  font-size: 20px;
+  font-weight: 400;
+
+  .task-title-text {
+    margin-left: 8px;
+  }
 }
 
 .add-task-input {
@@ -184,5 +183,24 @@ const handleMouseLeave = () => {
 
 .iconfont.icon-taiyang.font-size-22-px {
   font-size: 22px;
+}
+
+.task-list {
+  width: 100%;
+  height: calc(100% - 52px - 52px - 45px - 48px);
+  margin: 16px 0 0 0;
+  // border: 1px solid red;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.task-item {
+  margin: 8px 0;
+  &.active {
+    background-color: #3b3a39 !important;
+  }
+}
+.task-item:hover {
+  background-color: #323130;
+  cursor: pointer;
 }
 </style>

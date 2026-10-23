@@ -24,6 +24,7 @@ imshow
 jiahao
 jiezhiriqi
 jihua
+jinji
 keep_fnames
 ksize
 lufei
@@ -43,6 +44,7 @@ qiankun
 quanbu
 quxiao
 RAII
+renwuyanqi
 RETR
 rili
 rtype
