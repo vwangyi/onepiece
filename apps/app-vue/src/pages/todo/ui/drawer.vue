@@ -54,6 +54,111 @@ const handleMouseLeave = () => {
           @mouseleave="handleMouseLeave"
         ></div>
       </div>
+
+      <div class="add-task-day">
+        <div
+          :class="{
+            'iconfont': true,
+            'add-task-checkbox-icon': true,
+            'icon-webicon19': true
+            // 'icon-webicon19': todoStore.currentTask!.hover,
+            // 'icon-webicon206': !todoStore.currentTask!.hover
+          }"
+          @mouseenter="handleMouseEnter"
+          @mouseleave="handleMouseLeave"
+        ></div>
+        <div class="input">已添加到 “我的一天”</div>
+
+        <div
+          :class="{
+            'iconfont': true,
+            'add-task-checkbox-icon': true,
+            'icon-zhongyao': todoStore.currentTask!.hover,
+            'icon-zhongyao1': !todoStore.currentTask!.hover
+          }"
+          @mouseenter="handleMouseEnter"
+          @mouseleave="handleMouseLeave"
+        ></div>
+      </div>
+      <div class="warn-deadline-repeat">
+        <div class="add-task-warn">
+          <div
+            :class="{
+              'iconfont': true,
+              'add-task-checkbox-icon': true,
+              'icon-webicon19': true
+              // 'icon-webicon19': todoStore.currentTask!.hover,
+              // 'icon-webicon206': !todoStore.currentTask!.hover
+            }"
+            @mouseenter="handleMouseEnter"
+            @mouseleave="handleMouseLeave"
+          ></div>
+          <div class="input">已添加到 “我的一天”</div>
+
+          <div
+            :class="{
+              'iconfont': true,
+              'add-task-checkbox-icon': true,
+              'icon-zhongyao': todoStore.currentTask!.hover,
+              'icon-zhongyao1': !todoStore.currentTask!.hover
+            }"
+            @mouseenter="handleMouseEnter"
+            @mouseleave="handleMouseLeave"
+          ></div>
+        </div>
+
+        <div class="add-task-deadline">
+          <div
+            :class="{
+              'iconfont': true,
+              'add-task-checkbox-icon': true,
+              'icon-webicon19': true
+              // 'icon-webicon19': todoStore.currentTask!.hover,
+              // 'icon-webicon206': !todoStore.currentTask!.hover
+            }"
+            @mouseenter="handleMouseEnter"
+            @mouseleave="handleMouseLeave"
+          ></div>
+          <div class="input">已添加到 “我的一天”</div>
+
+          <div
+            :class="{
+              'iconfont': true,
+              'add-task-checkbox-icon': true,
+              'icon-zhongyao': todoStore.currentTask!.hover,
+              'icon-zhongyao1': !todoStore.currentTask!.hover
+            }"
+            @mouseenter="handleMouseEnter"
+            @mouseleave="handleMouseLeave"
+          ></div>
+        </div>
+
+        <div class="add-task-repeat">
+          <div
+            :class="{
+              'iconfont': true,
+              'add-task-checkbox-icon': true,
+              'icon-webicon19': true
+              // 'icon-webicon19': todoStore.currentTask!.hover,
+              // 'icon-webicon206': !todoStore.currentTask!.hover
+            }"
+            @mouseenter="handleMouseEnter"
+            @mouseleave="handleMouseLeave"
+          ></div>
+          <div class="input">已添加到 “我的一天”</div>
+
+          <div
+            :class="{
+              'iconfont': true,
+              'add-task-checkbox-icon': true,
+              'icon-zhongyao': todoStore.currentTask!.hover,
+              'icon-zhongyao1': !todoStore.currentTask!.hover
+            }"
+            @mouseenter="handleMouseEnter"
+            @mouseleave="handleMouseLeave"
+          ></div>
+        </div>
+      </div>
     </div>
     <div class="drawer-footer">
       <div
@@ -114,6 +219,10 @@ const handleMouseLeave = () => {
     padding: 8px 0px;
   }
 }
+.add-task-input:hover {
+  background-color: #323130;
+  cursor: pointer;
+}
 .iconfont.icon-webicon206.add-task-checkbox-icon {
   width: 28px;
   height: 28px;
@@ -152,18 +261,14 @@ const handleMouseLeave = () => {
   color: #296fe6;
 }
 
-.add-task-input:hover {
-  background-color: #323130;
-  cursor: pointer;
-}
-
 .drawer-footer {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   height: 58px;
-  border-top: solid 1px #484644; // --bg-separator
+  // border-top: solid 1px #484644; // --bg-separator
   color: #fff;
   padding: 0 24px;
   .icon-tuichu {
@@ -187,5 +292,162 @@ const handleMouseLeave = () => {
     color: #a5a3a1;
     font-weight: 200;
   }
+}
+.drawer-footer::before {
+  content: '';
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 0.5px;
+  width: 100%;
+  // background: #edebe9;
+  background: #605e5c; // var(--bg-border);
+}
+
+.add-task-day {
+  width: 326px;
+  min-height: 52px;
+  // padding: 0 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 100;
+  color: #fff;
+  color: #78bafd;
+  background-color: #252423;
+  margin-top: 16px;
+  .input {
+    width: 326px;
+    height: auto;
+    overflow-wrap: anywhere;
+    word-break: break-word; /* 兼容旧浏览器兜底 */
+    white-space: pre-wrap; /* 保留用户输入的换行和空格 */
+    outline: none;
+    font-size: 16px;
+    line-height: 1.8; /* 推荐：无单位，按字体大小倍数计算 */
+    font-size: 16px;
+    padding: 8px 0px;
+  }
+}
+.add-task-day:hover {
+  background-color: #323130;
+  cursor: pointer;
+}
+
+//
+.warn-deadline-repeat {
+  margin: 8px 0;
+}
+
+// 提醒 warn
+.add-task-warn {
+  width: 326px;
+  min-height: 52px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 100;
+  color: #fff;
+  color: #78bafd;
+  background-color: #252423;
+  .input {
+    width: 326px;
+    height: auto;
+    overflow-wrap: anywhere;
+    word-break: break-word; /* 兼容旧浏览器兜底 */
+    white-space: pre-wrap; /* 保留用户输入的换行和空格 */
+    outline: none;
+    font-size: 16px;
+    line-height: 1.8; /* 推荐：无单位，按字体大小倍数计算 */
+    font-size: 16px;
+    padding: 8px 0px;
+  }
+}
+.add-task-warn:hover {
+  background-color: #323130;
+  cursor: pointer;
+}
+// 截止日期 deadline
+.add-task-deadline {
+  position: relative;
+  width: 326px;
+  min-height: 52px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 100;
+  color: #fff;
+  color: #78bafd;
+  background-color: #252423;
+  // border-top: solid 1px #484644;
+  // border-bottom: solid 1px #484644; // --bg-separator
+  .input {
+    width: 326px;
+    height: auto;
+    overflow-wrap: anywhere;
+    word-break: break-word; /* 兼容旧浏览器兜底 */
+    white-space: pre-wrap; /* 保留用户输入的换行和空格 */
+    outline: none;
+    font-size: 16px;
+    line-height: 1.8; /* 推荐：无单位，按字体大小倍数计算 */
+    font-size: 16px;
+    padding: 8px 0px;
+  }
+}
+
+.add-task-deadline::before {
+  content: '';
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 0.5px;
+  width: 100%;
+  background: #323130; // var(--bg-border);
+}
+.add-task-deadline::after {
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  height: 0.5px;
+  width: 100%;
+  // background: #edebe9;
+  background: #323130; // var(--bg-border); 605e5c
+}
+.add-task-deadline:hover {
+  background-color: #323130;
+  cursor: pointer;
+}
+// 重复 repeat
+.add-task-repeat {
+  width: 326px;
+  min-height: 52px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 100;
+  color: #fff;
+  color: #78bafd;
+  background-color: #252423;
+  .input {
+    width: 326px;
+    height: auto;
+    overflow-wrap: anywhere;
+    word-break: break-word; /* 兼容旧浏览器兜底 */
+    white-space: pre-wrap; /* 保留用户输入的换行和空格 */
+    outline: none;
+    font-size: 16px;
+    line-height: 1.8; /* 推荐：无单位，按字体大小倍数计算 */
+    font-size: 16px;
+    padding: 8px 0px;
+  }
+}
+.add-task-repeat:hover {
+  background-color: #323130;
+  cursor: pointer;
 }
 </style>

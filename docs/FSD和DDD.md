@@ -108,7 +108,7 @@ Shared层中的代码不是提前计划的，而是在开发过程中提取的�
  slices/segments 等模块中 统一采用index.ts 导出。外界不应该访问其内部细节。而是统一访问index.ts
  好处是当你重构模块时，外部导入仍然是index.ts。
 大量 index 文件可能有性能问题。所以 slices/ui/下就不需要index了  通常在slices/index 和 shared/ui/index 就行了
-
+index中有大量的export 可能有性能问题 若存在这种情况 可以不要index文件
 ## 交叉导入 
 交叉导入是指同一 layer 上的一个 slice 从另一个 slice 导入的情况
 
