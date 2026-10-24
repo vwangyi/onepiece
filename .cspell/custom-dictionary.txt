@@ -7,8 +7,10 @@ danxuankuang
 datav
 Datav
 ddepth
+deepseek
 denoise
 dtype
+duckduckgo
 edcf
 elpis
 Emscripten
@@ -89,3 +91,16 @@ zhongfu
 zhongyao
 zhongyaorenwu
 zhongyaoriqi
+bilibili
+reactjs
+leetcode
+gitee
+juejin
+npmjs
+antdv
+youku
+iqiyi
+wenxin
+yuque
+cssinjs
+weibo
