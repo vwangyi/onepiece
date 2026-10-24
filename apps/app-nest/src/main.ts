@@ -6,6 +6,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { MyLogger } from './logger/my-logger';
 
 async function bootstrap() {
+  // 创建一个 nestApp实例
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     bufferLogs: true
   });
@@ -25,7 +26,7 @@ async function bootstrap() {
   );
 
   // 使用自定义 Winston 日志器替换内置 Logger
-  app.useLogger(app.get(MyLogger));
+  // app.useLogger(app.get(MyLogger));
   app.useStaticAssets('public');
   app.use(
     session({

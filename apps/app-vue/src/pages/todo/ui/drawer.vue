@@ -217,6 +217,7 @@ const handleMouseLeave = () => {
     line-height: 1.8; /* 推荐：无单位，按字体大小倍数计算 */
     font-size: 16px;
     padding: 8px 0px;
+    cursor: text;
   }
 }
 .add-task-input:hover {
@@ -414,7 +415,6 @@ const handleMouseLeave = () => {
   left: 0px;
   height: 0.5px;
   width: 100%;
-  // background: #edebe9;
   background: #323130; // var(--bg-border); 605e5c
 }
 .add-task-deadline:hover {
