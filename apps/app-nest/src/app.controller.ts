@@ -7,13 +7,12 @@ export class AppController {
 
   @Get()
   getHello(): string {
-    return 'hell';
     return this.appService.getHello();
   }
 
-  @Get('hello2')
-  getHello2(@Query() name: string): string {
-    console.log('name:', name);
-    return this.appService.getHello2();
-  }
+  // @Get('hello2')
+  // getHello2(@Query() name: string): string {
+  //   console.log('name:', name);
+  //   return this.appService.getHello2();
+  // }
 }

@@ -9,9 +9,9 @@ const todoStore = useTodoStore();
 
 <template>
   <div class="app-main">
-    <!-- <div class="sidebar">
+    <div class="sidebar">
       <Category></Category>
-    </div> -->
+    </div>
     <div class="content">
       <AddTask></AddTask>
     </div>

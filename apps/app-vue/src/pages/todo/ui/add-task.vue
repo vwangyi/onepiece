@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { onMounted } from 'vue';
 import { useTodoStore } from '../model/todo';
 import type { Task } from '../model/types';
 const todoStore = useTodoStore();
@@ -15,6 +16,10 @@ function handleClickTask(t: Task) {
   console.log(1);
   todoStore.selectedTask(t);
 }
+
+onMounted(() => {
+  todoStore.initTasks();
+});
 </script>
 
 <template>
@@ -41,7 +46,7 @@ function handleClickTask(t: Task) {
 
     <div class="task-list">
       <div
-        v-for="(t, i) in todoStore.tasks"
+        v-for="t in todoStore.tasks"
         :key="t.key"
         :class="{
           'add-task-input': true,
@@ -60,7 +65,7 @@ function handleClickTask(t: Task) {
           @mouseenter="handleMouseEnter(t)"
           @mouseleave="handleMouseLeave"
         ></div>
-        <div>{{ `${t.active}任务${i + 1}==` }}</div>
+        <div>{{ t.title }}</div>
       </div>
     </div>
   </div>

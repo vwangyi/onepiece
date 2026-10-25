@@ -1,38 +1,10 @@
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
-import type { Task, TaskCategory } from './types';
+import type { TaskDTO, Task, TaskCategory } from './types';
+import * as ToDo from '../api/todo';
 
 export const useTodoStore = defineStore('todo', () => {
-  const tasks = ref<Task[]>([
-    { key: Symbol(), hover: false, title: '', active: false },
-    { key: Symbol(), hover: false, title: '', active: false },
-    { key: Symbol(), hover: false, title: '', active: false },
-    { key: Symbol(), hover: false, title: '', active: false },
-    { key: Symbol(), hover: false, title: '', active: false },
-    { key: Symbol(), hover: false, title: '', active: false },
-    { key: Symbol(), hover: false, title: '', active: false },
-
-    { key: Symbol(), hover: false, title: '', active: false },
-    { key: Symbol(), hover: false, title: '', active: false },
-    { key: Symbol(), hover: false, title: '', active: false },
-
-    { key: Symbol(), hover: false, title: '', active: false },
-    { key: Symbol(), hover: false, title: '', active: false },
-    { key: Symbol(), hover: false, title: '', active: false },
-
-    { key: Symbol(), hover: false, title: '', active: false },
-    { key: Symbol(), hover: false, title: '', active: false },
-    { key: Symbol(), hover: false, title: '', active: false },
-
-    { key: Symbol(), hover: false, title: '', active: false },
-    { key: Symbol(), hover: false, title: '', active: false },
-    { key: Symbol(), hover: false, title: '', active: false },
-
-    { key: Symbol(), hover: false, title: '', active: false },
-    { key: Symbol(), hover: false, title: '', active: false },
-    { key: Symbol(), hover: false, title: '', active: false }
-  ]);
-
+  const tasks = ref<Task[]>([]);
   const currentTask = computed(() => {
     return tasks.value.find(task => task.active);
   });
@@ -137,6 +109,18 @@ export const useTodoStore = defineStore('todo', () => {
     document.title = `${task.title} - To Do`;
   }
 
+  async function initTasks() {
+    const res = await ToDo.findAll();
+    tasks.value = res.data.map((dto: TaskDTO): Task => ({
+      key: Symbol(), // 前端生成
+      hover: false, // 前端默认
+      active: false, // 前端默认
+      ...dto
+    }));
+
+    console.log('111', tasks.value);
+  }
+
   return {
     closeDrawer,
     taskCategory,
@@ -148,6 +132,7 @@ export const useTodoStore = defineStore('todo', () => {
     notHoverAtCheckbox,
     selectedTask,
     currentTask,
-    deleteTask
+    deleteTask,
+    initTasks
   };
 });

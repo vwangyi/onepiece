@@ -70,6 +70,7 @@ const LINK_SEEDS: LinkSeed[] = [
     'https://github.com/vwangyi',
     ['vwangyi', 'github', '我的github']
   ],
+  ['chatgpt', 'https://github.com/vwangyi', ['chatgpt']],
   [
     'DeepSeek',
     'https://chat.deepseek.com/a/chat/s/e45bfff4-f22f-45af-8654-701964fbbf12',
@@ -556,7 +557,7 @@ const columns = [
             title="将覆盖当前列表，恢复为内置链接，确定吗？"
             @confirm="handleRestoreDefaults"
           >
-            <a-button>恢复默认</a-button>
+            <a-button style="background-color: black">恢复默认</a-button>
           </a-popconfirm>
           <a-button
             type="primary"
