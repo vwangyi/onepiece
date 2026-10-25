@@ -40,7 +40,7 @@ const handleMouseLeave = () => {
           contenteditable="true"
           class="input"
         >
-          {{ new Array(100).fill('忍').join('') }}
+          {{ todoStore.currentTask!.title }}
         </div>
 
         <div

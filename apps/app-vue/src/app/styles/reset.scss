@@ -5,7 +5,11 @@
   user-select: none;
   box-sizing: border-box !important;
 }
-
+html,
+body {
+  // 禁用弹性滚动
+  overscroll-behavior: none; /* 或者 overscroll-behavior-y: none; */
+}
 input {
   border: none; // 去掉input边框
   background-color: transparent; // 去掉input的背景色

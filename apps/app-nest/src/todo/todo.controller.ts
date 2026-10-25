@@ -16,7 +16,6 @@ export class TodoController {
     return this.todoService.create(createTodoDto);
   }
 
-  // 查询待办列表 分页示例: GET /todo?page=1&pageSize=10
   @Get()
   findAll(
     @Query('title') title?: string,

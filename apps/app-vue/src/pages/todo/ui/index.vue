@@ -15,5 +15,6 @@ import ToDoAppMain from './main.vue';
   width: 100vw;
   height: 100vh;
   background-color: rgb(37, 36, 35);
+  overflow: hidden;
 }
 </style>
