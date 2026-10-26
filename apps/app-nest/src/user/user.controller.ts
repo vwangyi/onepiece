@@ -1,11 +1,5 @@
-import {
-  Get,
-  Post,
-  Patch,
-  Delete,
-  ValidationPipe,
-  UseGuards
-} from '@nestjs/common';
+import { ValidationPipe, UseGuards } from '@nestjs/common';
+import { Get, Post, Patch, Delete } from '@nestjs/common';
 import { Controller } from '@nestjs/common';
 import { Body, Param } from '@nestjs/common';
 import { UserService } from './user.service';
