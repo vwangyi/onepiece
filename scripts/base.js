@@ -73,7 +73,8 @@ async function getRollupConfig(root) {
       file: path.resolve(dist, `index.${format}.js`),
       sourcemap: true,
       globals: {
-        vue: 'Vue'
+        vue: 'Vue',
+        axios: 'axios'
       }
     };
     if (format === 'iife') {

@@ -450,6 +450,10 @@ importers:
 
   packages/onepiece-design: {}
 
+  packages/onepiece-design-react: {}
+
+  packages/onepiece-design-vue: {}
+
   packages/onepiece-entities: {}
 
   packages/onepiece-features: {}

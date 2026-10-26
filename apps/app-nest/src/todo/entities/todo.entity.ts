@@ -5,8 +5,8 @@ export class Todo {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ comment: '所属用户' })
-  userId: number;
+  // @Column({ name: 'user_id', comment: '所属用户' })
+  // userId: number;
 
   @Column({ length: 100, comment: '待办标题' })
   title: string;
@@ -24,11 +24,11 @@ export class Todo {
   })
   status: number;
 
-  @Column({ comment: '开始时间' })
-  startTime: Date;
+  // @Column({ comment: '开始时间' })
+  // startTime: Date;
 
-  @Column({ comment: '结束时间' })
-  endTime: Date;
+  // @Column({ comment: '结束时间' })
+  // endTime: Date;
 
   @CreateDateColumn({ comment: '创建时间' })
   createTime: Date;
