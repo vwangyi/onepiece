@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import Category from './category.vue';
 import AddTask from './add-task.vue';
+import Drawer from './drawer.vue';
+import { useTodoStore } from '../model/todo';
+
+const todoStore = useTodoStore();
 </script>
 
 <template>
@@ -11,7 +15,12 @@ import AddTask from './add-task.vue';
     <div class="content">
       <AddTask></AddTask>
     </div>
-    <!-- <div class="drawer"></div> -->
+    <div
+      v-if="todoStore.currentTask"
+      class="drawer"
+    >
+      <Drawer></Drawer>
+    </div>
   </div>
 </template>
 
@@ -38,7 +47,7 @@ import AddTask from './add-task.vue';
   .drawer {
     width: 360px;
     height: 100%;
-    background-color: #252423;
+    background-color: #201f1e;
   }
 }
 </style>

@@ -1,11 +1,5 @@
-import {
-  IsNotEmpty,
-  IsString,
-  IsOptional,
-  IsInt,
-  Length,
-  IsIn
-} from 'class-validator';
+import { IsInt, Length, IsIn } from 'class-validator';
+import { IsNotEmpty, IsString, IsOptional } from 'class-validator';
 
 export class CreateTodoDto {
   @IsNotEmpty({ message: '标题不能为空' })
@@ -20,6 +14,6 @@ export class CreateTodoDto {
 
   @IsOptional()
   @IsInt({ message: '状态必须为整数' })
-  @IsIn([0, 1], { message: '状态值只能为0(未完成)或1(已完成)' })
+  @IsIn([0, 1], { message: '状态值只能为0或1(0-未完成 1-已完成)' })
   status?: number;
 }

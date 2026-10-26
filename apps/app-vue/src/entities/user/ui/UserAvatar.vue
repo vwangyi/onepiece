@@ -6,13 +6,14 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  src: '/default-avatar.png',
   size: 40
 });
 </script>
 
 <template>
   <img
-    :src="props.src ?? '/default-avatar.png'"
+    :src="props.src"
     :alt="props.name"
     :width="props.size"
     :height="props.size"

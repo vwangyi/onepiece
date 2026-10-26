@@ -1,15 +1,7 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Patch,
-  Delete,
-  Body,
-  Param,
-  Query,
-  ValidationPipe,
-  UseInterceptors
-} from '@nestjs/common';
+import { Controller } from '@nestjs/common';
+import { ValidationPipe, UseInterceptors } from '@nestjs/common';
+import { Body, Param, Query } from '@nestjs/common';
+import { Get, Post, Patch, Delete } from '@nestjs/common';
 import { TodoService } from './todo.service';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
@@ -19,14 +11,11 @@ import { TransformInterceptor } from './todo.interceptor';
 @UseInterceptors(TransformInterceptor)
 export class TodoController {
   constructor(private readonly todoService: TodoService) {}
-
-  // 新增待办
   @Post()
   create(@Body(ValidationPipe) createTodoDto: CreateTodoDto) {
     return this.todoService.create(createTodoDto);
   }
 
-  // 查询待办列表 分页示例: GET /todo?page=1&pageSize=10
   @Get()
   findAll(
     @Query('title') title?: string,

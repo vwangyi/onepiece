@@ -3,6 +3,7 @@ import URL from 'node:url';
 import fs from 'node:fs';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import json from '@rollup/plugin-json';
 import typescript from '@rollup/plugin-typescript';
 import vue from '@vitejs/plugin-vue';
 import postcss from 'rollup-plugin-postcss';
@@ -17,7 +18,7 @@ export const clearDist = packageName => {
   }
 };
 
-const packages = ['onepiece-utils'];
+const packages = ['onepiece-utils', 'onepiece-api'];
 
 // 获取所有子包的绝对路径
 function getPackageRoots() {
@@ -41,10 +42,11 @@ async function getRollupConfig(root) {
   const rollupOptions = {
     input: entry,
     sourcemap: true,
-    external: ['vue'], // 排除vue 由宿主提供
+    external: ['vue', 'axios'], // 排除vue 由宿主提供
     plugins: [
       nodeResolve(),
       commonjs(),
+      json(),
       typescript({
         tsconfig,
         // 官方插件（rollup 4 兼容，持续维护）。这里必须显式关掉 noEmit：
@@ -71,7 +73,8 @@ async function getRollupConfig(root) {
       file: path.resolve(dist, `index.${format}.js`),
       sourcemap: true,
       globals: {
-        vue: 'Vue'
+        vue: 'Vue',
+        axios: 'axios'
       }
     };
     if (format === 'iife') {

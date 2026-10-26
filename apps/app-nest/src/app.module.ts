@@ -39,43 +39,45 @@ import { HttpExceptionFilter } from './logger/http-exception.filter';
       })
     }),
     // 自定义日志模块
-    LoggerModule,
-    UserModule,
-    UploadModule,
-    AuthModule,
-    TodoModule,
-    ChatModule
+    // LoggerModule,
+    // UserModule,
+    // UploadModule,
+    // AuthModule,
+    TodoModule
+    // ChatModule
   ],
   controllers: [AppController],
   providers: [
-    AppService,
+    AppService
     // 全局响应拦截器
-    {
-      provide: APP_INTERCEPTOR,
-      useClass: ResponseInterceptor
-    },
-    // 全局异常过滤器
-    {
-      provide: APP_FILTER,
-      useClass: HttpExceptionFilter
-    },
-    {
-      provide: 'test_xxx',
-      useValue: {
-        price: '10',
-        name: '棒棒糖'
-      }
-    },
-    {
-      provide: 'random',
-      useFactory: (a, b) => Math.random(),
-      inject: ['test_xxx', AppService]
-    }
+    // {
+    //   provide: APP_INTERCEPTOR,
+    //   useClass: ResponseInterceptor
+    // },
+    // // 全局异常过滤器
+    // {
+    //   provide: APP_FILTER,
+    //   useClass: HttpExceptionFilter
+    // },
+    // {
+    //   provide: 'test_xxx',
+    //   useValue: {
+    //     price: '10',
+    //     name: '棒棒糖'
+    //   }
+    // },
+    // {
+    //   provide: 'random',
+    //   useFactory: (a, b) => Math.random(),
+    //   inject: ['test_xxx', AppService]
+    // }
   ]
 })
-export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    // 全局请求日志中间件
-    consumer.apply(LoggerMiddleware).forRoutes('*');
-  }
+
+// implements NestModule
+export class AppModule {
+  // configure(consumer: MiddlewareConsumer) {
+  //   // 全局请求日志中间件
+  //   consumer.apply(LoggerMiddleware).forRoutes('*');
+  // }
 }
