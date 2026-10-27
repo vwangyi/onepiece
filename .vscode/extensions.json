@@ -5,7 +5,8 @@
     "Vue.vscode-typescript-vue-plugin", // vue插件
     "GitHub.copilot-chat", // AI copilot
     "dbaeumer.vscode-eslint", // eslint插件
-    "esbenp.prettier-vscode" // prettier插件
+    "esbenp.prettier-vscode", // prettier插件
+    "ritwickdey.LiveServer" // Live Server 插件
   ],
   // 不推荐的扩展（避免冲突）
   "unwantedRecommendations": [
