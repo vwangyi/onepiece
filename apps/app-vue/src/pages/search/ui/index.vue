@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, reactive, ref, watch } from 'vue';
+import { computed, reactive, ref, watch, onMounted } from 'vue';
 import { message } from 'ant-design-vue';
 import type { FormInstance } from 'ant-design-vue';
 import {
@@ -466,6 +466,10 @@ const columns = [
   { title: '关键字', dataIndex: 'keywords', width: '30%' },
   { title: '操作', dataIndex: 'operation', width: '16%' }
 ];
+
+onMounted(() => {
+  document.title = 'Search';
+});
 </script>
 
 <template>
