@@ -3,7 +3,6 @@ import { computed, ref } from 'vue';
 import type { TaskDTO, Task, TaskCategory } from './types';
 import * as ToDo from '../api/todo';
 import { isArray } from 'onepiece-utils';
-import { ta } from 'zod/v4/locales';
 
 export const useTodoStore = defineStore('todo', () => {
   const tasks = ref<Task[]>([]);

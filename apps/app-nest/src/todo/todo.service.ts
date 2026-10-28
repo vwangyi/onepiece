@@ -57,13 +57,13 @@ export class TodoService {
     ) {
       return await this.todoRepository.find({
         where,
-        order: { createTime: 'DESC' }
+        order: { createDate: 'DESC' }
       });
     }
 
     const [list, total] = await this.todoRepository.findAndCount({
       where,
-      order: { createTime: 'DESC' },
+      order: { createDate: 'DESC' },
       skip: (page - 1) * pageSize,
       take: pageSize
     });

@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "node ./scripts/dev-all.js",
     "vue:dev": "pnpm --filter app-vue dev",
-    "nest:dev": "pnpm --filter app-nest start:dev",
+    "nest:dev": "pnpm --filter app-nest dev",
     "packages:dev": "node ./scripts/dev.js",
     "packages:build": "node ./scripts/build.js",
     "preinstall": "npx only-allow pnpm",
