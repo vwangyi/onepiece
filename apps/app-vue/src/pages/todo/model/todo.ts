@@ -42,7 +42,7 @@ export const useTodoStore = defineStore('todo', () => {
     {
       key: Symbol(),
       icon: 'icon-jihua',
-      title: '计划内',
+      title: '进行中',
       total: 55,
       active: false
     },

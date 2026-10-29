@@ -1,3 +1,9 @@
+## get post patch put delete 方法
+
+patch 和 put 区别
+
+##
+
 定义： 路由负责把 HTTP 请求映射到 Controller 方法。
 组成： @Controller() + HTTP 方法装饰器。
 参数： @Param()、@Query()、@Body()。

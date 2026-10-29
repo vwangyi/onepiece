@@ -35,11 +35,37 @@ export class Todo {
   })
   status: number;
 
-  // @Column({ comment: '开始时间' })
-  // startTime: Date;
+  @Column({
+    type: 'datetime',
+    name: 'plan_start',
+    nullable: true,
+    comment: '计划开始（计划内）'
+  })
+  planStart: Date | null;
 
-  // @Column({ comment: '结束时间' })
-  // endTime: Date;
+  @Column({
+    type: 'datetime',
+    name: 'plan_end',
+    nullable: true,
+    comment: '计划结束（已延期判断依据）'
+  })
+  planEnd: Date | null;
+
+  @Column({
+    type: 'datetime',
+    name: 'due_at',
+    nullable: true,
+    comment: '截止时间'
+  })
+  dueAt: Date | null;
+
+  @Column({
+    type: 'datetime',
+    name: 'completed_at',
+    nullable: true,
+    comment: '完成时间'
+  })
+  completedAt: Date | null;
 
   @CreateDateColumn({ comment: '创建时间' })
   createDate: Date;
@@ -64,7 +90,7 @@ CREATE TABLE todo (
   plan_start    DATETIME NULL,      -- 计划开始（计划内）
   plan_end      DATETIME NULL,      -- 计划结束（已延期判断依据）
   due_at        DATETIME NULL,      -- 截止时间
-  completed_at  DATETIME NULL,
+  completed_at  DATETIME NULL,      -- 完成时间 
   created_at    DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
