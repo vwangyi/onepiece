@@ -11,10 +11,11 @@
 01_database
 
 
-Nestjs Nodejs 
+Nodejs 
 
+Nestjs 
 
-JavaScript
-TypeScript
+TypeScript JavaScript
+
 Vue
 
