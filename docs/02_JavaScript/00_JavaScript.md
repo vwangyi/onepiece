@@ -150,15 +150,6 @@ var是函数作用域
  
 
 
-
-
-
-
-
-
-
-
-
 MDN官网：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript
 ES官网：https://ecma-international.org/technical-committees/tc39/
 w3c官网：https://www.w3.org/standards/

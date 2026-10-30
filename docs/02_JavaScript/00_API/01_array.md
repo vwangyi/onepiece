@@ -14,6 +14,7 @@
 - 数组扁平化 flat
 - 数组去重 reduce
 - 数组判断 some includes every Array.isArray() [] instanceof Array
+- 数组查找
 
 ## 创建数组
 

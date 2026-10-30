@@ -1,47 +1,26 @@
-# DOM
-- Document Object Model 文档对象模型
-- dom对象 的数据结构是一个 tree 
+## DOM
+
+dom是文档对象模型。通过 document.query系列 document.get系列 document.createElement 等方法创建的dom对象。
+
+
+
+
 
 
 dom中有12中类型
 
 
 
-- 创建dom
-
-
-- dom增
-
-- dom 删
-
-- dom 改
-
-- dom 查
-
-## 创建dom 
-```js
-const div = document.createElement('div'); // js方式
- 
-<div id="app">123</div> // h5方式
-const div = document.getElementById('app');
-
-
-const title = document.title // 只有一个title标签 
-const body = document.body // 只有一个body标签 
-const html = document.documentElement // 只有一个html标签 
-const dom2 = document.getElementById('id'); // 传id
-const dom3 = document.querySelector('#box1 .hello ')  // 传css选择器
-const dom4 = document.querySelectorAll('css选择器名')  // 传css选择器 
-
-
-```
-
-
 ## dom增 
 ```js 
 
 dom1.appendChild(dom2) // 挂在父亲内部的最后
-dom1.insertBefore(dom2, dom3) // 挂在父亲内部指定元素之前
+dom1.insertBefore(dom2, dom3) // 挂在父亲内部指定元素之前 
+dom1.insertAdjacentHTML('beforebegin', '<div></div>') // 在本身之前插入dom  兄弟关系
+dom1.insertAdjacentHTML('afterbegin', '<div></div>') // 在本身之后插入dom  兄弟关系
+
+dom1.insertAdjacentHTML('beforeend', '<div></div>') // 在内部头部插入  父子关系
+dom1.insertAdjacentHTML('afterend', '<div></div>') // 在内部尾部插入  父子关系
 
 ```
 
@@ -65,12 +44,6 @@ DOM.className = '我是DOM的class属性值' // 本质修改class
 dom1.setAttribute('属性名', '属性值')   // 设置一个DOM属性  行内样式
 
 
-
-dom1.insertAdjacentHTML('beforebegin', '<div></div>') // 在本身之前插入dom  兄弟关系
-dom1.insertAdjacentHTML('afterbegin', '<div></div>') // 在本身之后插入dom  兄弟关系
-
-dom1.insertAdjacentHTML('beforeend', '<div></div>') // 在内部头部插入  父子关系
-dom1.insertAdjacentHTML('afterend', '<div></div>') // 在内部尾部插入  父子关系
 ```
 
 
