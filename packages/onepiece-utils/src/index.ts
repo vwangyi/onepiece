@@ -36,3 +36,28 @@ export function isNumber(n: unknown): boolean {
 export async function getUserMedia() {
   return await navigator.mediaDevices.getUserMedia();
 }
+
+// 判断小数
+export function isDecimal(num: unknown) {
+  return typeof num === 'number' && isFinite(num) && num % 1 !== 0;
+}
+
+// 判断正数（大于0）
+export function isPositive(num: unknown) {
+  return typeof num === 'number' && num > 0;
+}
+
+// 判断负数（小于0）
+export function isNegative(num: unknown) {
+  return typeof num === 'number' && num < 0;
+}
+
+// 判断NaN
+export function isNaN(n: unknown) {
+  return typeof n === 'number' && Number.isNaN(n);
+}
+
+// 判断整数
+export function isInteger(n: unknown) {
+  return typeof n === 'number' && Number.isInteger(n);
+}
