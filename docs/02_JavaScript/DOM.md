@@ -2,59 +2,34 @@
 
 dom是文档对象模型。通过 document.query系列 document.get系列 document.createElement 等方法创建的dom对象。
 
+## dom常用方法
 
+remove() 删除自己
+removeAttribute() 删除属性
 
+setAttribute
 
+appendChild
+insertBefore
+insertAdjacentHTML
 
+## dom常用属性
+innerText
+innerHTML
+style 
+className
+id
+children
+parentNode 
 
 dom中有12中类型
 
-
-
-## dom增 
-```js 
-
-dom1.appendChild(dom2) // 挂在父亲内部的最后
-dom1.insertBefore(dom2, dom3) // 挂在父亲内部指定元素之前 
-dom1.insertAdjacentHTML('beforebegin', '<div></div>') // 在本身之前插入dom  兄弟关系
-dom1.insertAdjacentHTML('afterbegin', '<div></div>') // 在本身之后插入dom  兄弟关系
-
-dom1.insertAdjacentHTML('beforeend', '<div></div>') // 在内部头部插入  父子关系
-dom1.insertAdjacentHTML('afterend', '<div></div>') // 在内部尾部插入  父子关系
-
-```
-
-## dom删 
-```js 
-dom.remove(); // 自己删自己 
-dom1.removeAttribute('属性名')   // 删除一个DOM属性
-```
-
-## dom改
-```js 
-dom1.innerText = '修改DOM的内容'
-dom1.innerHTML = '<span>修改DOM的内容</span>'
-// innerText 和 innerHTML的区别是 innerHTML可以解析标签
-
-dom1.style.属性名 = ''  // 添加行内样式 修改的css少
-dom1.className = '类名'  // css里面定义好类名 修改的css多 
-DOM.id = '我是DOM的id属性值'
-DOM.className = '我是DOM的class属性值' // 本质修改class 
-
-dom1.setAttribute('属性名', '属性值')   // 设置一个DOM属性  行内样式
-
-
-```
+ 
+ 
 
 
 ## dom查
-```js 
-console.log( dom1.children ) // 返回伪数组
-console.log( dom1.children[0] ) // 拿第一个
-console.log( dom1.children[dom1.children.length - 1] ) // 拿最后一个
-console.log( dom1.children )
-
-
+```js  
 
 dom.parentNode   // 获取父节点 如果是定位脱标就是 父亲就是相对定位的父级
 dom.nextSibling   // 获取下一个节点
