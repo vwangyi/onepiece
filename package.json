@@ -23,7 +23,7 @@
     "commit": "git-cz",
     "test": "vitest",
     "publish:utils": "pnpm --filter \"onepiece-utils\" publish --no-git-checks",
-    "demo": "node ./demo.js"
+    "demo": "node ./demo.mjs"
   },
   "config": {
     "commitizen": {
