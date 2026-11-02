@@ -7,7 +7,8 @@
     "dbaeumer.vscode-eslint", // eslint插件
     "esbenp.prettier-vscode", // prettier插件
     "ritwickdey.LiveServer", // Live Server 插件
-    "UrdaSoft.selection-to-file-vscode-extension" // 选中文本追加到文件，用于记录生词
+    "UrdaSoft.selection-to-file-vscode-extension", // 选中文本追加到文件，用于记录生词
+    "vscode-icons-team.vscode-icons"
   ],
   // 不推荐的扩展（避免冲突）
   "unwantedRecommendations": [
