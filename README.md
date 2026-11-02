@@ -1,4 +1,4 @@
-# 🚀 项目名称
+# 🚀 OnePiece
 
 <p align="center">
   <img src="https://img.shields.io/badge/version-1.0.0-blue.svg" alt="version">
@@ -69,8 +69,8 @@
 
 ```bash
 # 克隆仓库
-git clone https://github.com/yourname/your-repo.git
-cd your-repo
+git clone https://github.com/vwangyi/onepiece.git
+cd onepiece
 
 # 安装依赖
 pnpm install
@@ -124,7 +124,7 @@ const instance = new YourLib({
 ## 📂 项目结构
 
 ```
-your-repo/
+onepiece/
 ├── src/                # 源码目录
 │   ├── components/     # 组件
 │   ├── utils/          # 工具函数
@@ -161,7 +161,7 @@ your-repo/
 
 ## 🐛 问题反馈
 
-如果遇到问题，请 [提交 Issue](https://github.com/yourname/your-repo/issues)，并附上：
+如果遇到问题，请 [提交 Issue](https://github.com/vwangyi/onepiece/issues)，并附上：
 
 - 复现步骤
 - 期望行为
@@ -180,12 +180,12 @@ your-repo/
 
 感谢所有贡献者！
 
-<a href="https://github.com/yourname/your-repo/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=yourname/your-repo" />
+<a href="https://github.com/vwangyi/onepiece/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=vwangyi/onepiece" />
 </a>
 
 ---
 
 <p align="center">
-  Made with ❤️ by <a href="https://github.com/yourname">Your Name</a>
+  Made with ❤️ by <a href="https://github.com/vwangyi">Your Name</a>
 </p>
