@@ -3,6 +3,126 @@
     console.log(1111)
 </script>
 
+
+## 创建数组
+创建数组用 字面量方式[]、 new Array()、  Array.of()  来创建。
+
+## 是否是数组
+是否是数组用 Array.isArray() 和 intanceof Array
+
+## 数组浅拷贝
+数组浅拷贝用 slice 传入开始索引和结束索引，支持反向索引。返回新数组，不影响原数组。
+
+
+## 数组去重
+基础类型用 ...new Set()，对象数组用 reduce() + Object.values() 利用了对象的key不能重复的特性。
+
+## 数组扁平化用 flat 
+
+## 数组查找
+数组查找用 some every find 找不到返回undefined，findIndex找不到返回-1  indexOf includes
+
+## 数组排序
+数组排序用 sort reverse
+
+## 数组映射
+数组映射用 map()，map()返回新数组，不影响原数组。
+
+## 数组过滤
+数组过滤用 filter()，filter()返回新数组，不影响原数组。
+
+## 数组合并 
+数组合并用 concat 和 展开运算符 ...，concat()返回新数组，不影响原数组。
+
+
+## 数组清空
+清空数组用 arr.length = 0 或者 赋值一个新数组。 区别就是 legnth赋值0 地址不会变。
+
+## 取出数组项
+取出数组项 用 下标或解构赋值。 
+
+## 数组追加项
+数组追加项用 push 和 unshift 返回新长度 
+
+## 数组删除项
+数组删除项用 pop 和 shift，返回删除的元素。删中间用 splice()，传入开始下标和删除的项数，splice()返回删除的元素组成的新数组，影响原数组。
+
+## 数组修改项
+数组修改项用 下标 或 splice()
+
+## 数组转字符串
+数组转字符串用join 
+
+## 类数组转数组
+类数组是只有长度和下标，通过 Array.from()转为数组 或者用展开运算符 ... 
+
+
+
+## dom
+dom是文档对象模型。
+
+## 创建dom
+创建dom 通过document.createElement方法 或 document.querySelector 或 document.getElementById 等方式拿到dom 
+
+## 删除dom
+删除dom 通过 dom.remove() 
+
+## 事件对象
+事件对象是绑定事件后通过回调函数的参数拿到。 
+e.target / e.currentTarget
+e.preventDefault()
+e.stopPropagation()
+e.key / e.code（键盘）
+e.clientX / pageX（鼠标）
+
+## 事件绑定 
+事件绑定通过 dom.addEventListener() 和 dom.onclick = function(){} 方式绑定。解绑通过 removeEventListener 和 dom.onclick = null 方式解绑。
+
+## 事件类型
+
+
+鼠标事件：click dblclick contextmenu 
+mouse系列有 down up move over enter out leave
+
+mousedown mouseup mousemove  mouseover(冒泡) mouseout mouseenter(不冒泡) mouseleave
+
+
+表单事件：input focus blur change
+鼠标事件：click dblclick contextmenu mousedown mouseup mousemove  mouseover(冒泡) mouseout mouseenter(不冒泡) mouseleave
+键盘事件：keydown keyup
+窗口事件：resize scroll whell
+手指事件：touchstart touchmove touchend
+拖拽事件：dragstart drag dragend
+放置事件：dragover drop dragenter dragleave
+
+
+
+## 阻止默认行为
+阻止默认行为是 通过事件对象 e.preventDefault()
+
+## 事件冒泡
+
+## 事件捕获
+
+## 事件委托
+
+## 事件流
+DOM事件流分为三个阶段 捕获阶段 目标阶段 冒泡阶段
+
+
+## dom常用方法
+innerText
+innerHTML
+textContent
+
+
+
+## 进入全屏
+进入全屏通过 document.documentElement.requestFullscreen() 而退出全屏通过 document.exitFullscreen() 退出全屏。
+ 
+
+
+
 # Math 数学对象
 ```js
 Math.floor(1.2) // 2 向上取整

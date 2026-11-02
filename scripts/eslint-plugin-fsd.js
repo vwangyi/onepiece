@@ -22,7 +22,7 @@ const LAYER_ORDER = [
   'app'
 ];
 
-/** 无切片概念的层：里面的目录直接就是 segment。 */
+/** 无切片概念的层：里面的目录直接就是 segment段 */
 const SLICELESS_LAYERS = new Set(['shared', 'app']);
 
 /**
