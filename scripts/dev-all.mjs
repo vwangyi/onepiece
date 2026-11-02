@@ -1,7 +1,7 @@
 /**
  * 一键启动开发环境：
  *   1. nest:dev      —— NestJS（tsc watch），等端口可连后再继续
- *   2. packages:dev  —— rollup watch 打包子包，等首次打包完成后继续
+ *   2. pkg:dev  —— rollup watch 打包子包，等首次打包完成后继续
  *   3. vue:dev       —— Vite 前端（依赖子包 dist 产物，所以必须最后启动）
  *
  * 整个过程共用一个终端，日志带 [nest] / [pkg] / [vue] 前缀。
@@ -46,7 +46,7 @@ const tasks = [
   {
     tag: 'pkg',
     colorCode: 35,
-    script: 'packages:dev',
+    script: 'pkg:dev',
     readyPatterns: [/打包完成/, /BUNDLE_END/],
     readyTimeout: 120_000,
     settle: 300 // 首次产物落盘留一点余量

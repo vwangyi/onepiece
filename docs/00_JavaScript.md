@@ -233,7 +233,25 @@ setFullYear setMonth setDate setHours setMinutes setSeconds
 inputDOm的change事件可以拿到 file文件对象
 
 
+## 
+scroll家族
+scrollTop 可读写
+scrollLeft 可读写
+scrollHeight 只读
+scrollWidth  只读
 
+offset家族
+offsetTop
+offsetLeft
+offsetHeight
+offsetWidth
+offsetParent
+
+client家族
+clientTop
+clientLeft
+clientHeight
+clientWidth
 
 
 ## 表单元素
