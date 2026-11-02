@@ -1322,7 +1322,7 @@ let和const的唯一区别是 const必须赋值且不能修改。
 
 
 ## 检测数据类型
-typeof、instanceof、Object.prototype.toString.call() 
+typeof、instanceof、toString.call() , 所有对象的方法都会在 Object.prototype 上共享 包括window对象 也是从Object.prototype继承来的
 
 
 ## typeof null返回什么
