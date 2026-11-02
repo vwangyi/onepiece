@@ -48,12 +48,12 @@ const LEGACY_TOP_DIRS = new Set([
 const SRC_ROOT = 'src';
 const ALIAS_PREFIX = '@/';
 
-/** app-vue 的 src 目录标识，用于把绝对路径转成 src-relative 形式 */
-const SRC_MARKER = '/apps/app-vue/src/';
+/** app-micro-vue 的 src 目录标识，用于把绝对路径转成 src-relative 形式 */
+const SRC_MARKER = '/apps/app-micro-vue/src/';
 
 /**
  * 把当前文件的绝对/相对路径转成 "src/xxx/yyy" 形式。
- * @returns {string | null} 不在 app-vue/src 内时返回 null
+ * @returns {string | null} 不在 app-micro-vue/src 内时返回 null
  */
 function toSrcRelative(filePath) {
   if (!filePath) return null;
@@ -62,8 +62,8 @@ function toSrcRelative(filePath) {
   if (normalized.includes(SRC_MARKER)) {
     return `src/${normalized.split(SRC_MARKER)[1]}`;
   }
-  if (normalized.startsWith('apps/app-vue/src/')) {
-    return `src/${normalized.slice('apps/app-vue/src/'.length)}`;
+  if (normalized.startsWith('apps/app-micro-vue/src/')) {
+    return `src/${normalized.slice('apps/app-micro-vue/src/'.length)}`;
   }
   return null;
 }

@@ -350,7 +350,7 @@ export default defineConfig([
     }
   },
 
-  /* app-vue 的 FSD 架构约束
+  /* app-micro-vue 的 FSD 架构约束
    * 完整检查跑 `pnpm fsd`（steiger），这里负责编辑器里的实时红波浪线。
    * 层级倒挂与跨切片引用直接拦error；公共 API 绕行先报 warn，
    * 因为存量代码里还有不少直接引内部文件的地方，等重构推进再收紧。
@@ -359,11 +359,11 @@ export default defineConfig([
     // ESLint 10 的 files glob 不支持 {a,b} 花括号展开，必须逐个列出，
     // 否则这个配置块匹配不到任何文件、规则会静默失效。
     files: [
-      'apps/app-vue/src/**/*.ts',
-      'apps/app-vue/src/**/*.tsx',
-      'apps/app-vue/src/**/*.js',
-      'apps/app-vue/src/**/*.jsx',
-      'apps/app-vue/src/**/*.vue'
+      'apps/app-micro-vue/src/**/*.ts',
+      'apps/app-micro-vue/src/**/*.tsx',
+      'apps/app-micro-vue/src/**/*.js',
+      'apps/app-micro-vue/src/**/*.jsx',
+      'apps/app-micro-vue/src/**/*.vue'
     ],
     plugins: { fsd: fsdPlugin },
     rules: {

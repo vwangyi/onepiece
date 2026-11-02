@@ -5,7 +5,7 @@
  *      pnpm fsd:watch     改代码时实时重跑
  *      pnpm fsd:fix       自动修可修的（补 index.ts 公共 API、改复数命名）
  *
- * 注意：扫描范围由 package.json 里的脚本参数指定（apps/app-vue/src），
+ * 注意：扫描范围由 package.json 里的脚本参数指定（apps/app-micro-vue/src），
  * 不用在配置里写 files。因为 steiger 要求每个配置块必须携带
  * rules / ignores / meta 之一，单独一个只含 files 的块会被判为无效配置。
  */
