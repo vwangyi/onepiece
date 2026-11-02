@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
 import type { TaskDTO, Task, TaskCategory } from './types';
 import * as ToDo from '../api/todo';
+import { isArray } from 'onepiece-utils';
 
 export const useTodoStore = defineStore('todo', () => {
   const tasks = ref<Task[]>([]);
@@ -41,7 +42,7 @@ export const useTodoStore = defineStore('todo', () => {
     {
       key: Symbol(),
       icon: 'icon-jihua',
-      title: '计划内',
+      title: '进行中',
       total: 55,
       active: false
     },
@@ -111,12 +112,14 @@ export const useTodoStore = defineStore('todo', () => {
 
   async function initTasks() {
     const res = await ToDo.findAll();
-    tasks.value = res.data.map((dto: TaskDTO): Task => ({
-      key: Symbol(), // 前端生成
-      hover: false, // 前端默认
-      active: false, // 前端默认
-      ...dto
-    }));
+    if (res.success && isArray(res.data)) {
+      tasks.value = res.data.map((dto: TaskDTO): Task => ({
+        key: Symbol(),
+        hover: false,
+        active: false,
+        ...dto
+      }));
+    }
 
     console.log('111', tasks.value);
   }

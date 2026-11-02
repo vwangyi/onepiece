@@ -8,12 +8,7 @@ export class CreateTodoDto {
   title: string;
 
   @IsOptional()
-  @IsString()
-  @Length(0, 500, { message: '描述长度不能超过500' })
-  description?: string;
-
-  @IsOptional()
   @IsInt({ message: '状态必须为整数' })
-  @IsIn([0, 1], { message: '状态值只能为0或1(0-未完成 1-已完成)' })
+  @IsIn([0, 1, 2], { message: '状态值只能为0或1(0-未完成 1-进行中 2-已完成)' })
   status?: number;
 }

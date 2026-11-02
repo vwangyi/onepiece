@@ -23,6 +23,7 @@ pnpm-debug.log*
 *.sln
 *.sw?
 *.workbuddy
+*.worktrees
 # .vscode/
 
 # OS

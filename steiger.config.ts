@@ -12,7 +12,7 @@
 import { defineConfig } from 'steiger';
 import fsd from '@feature-sliced/steiger-plugin';
 
-export default defineConfig([
+export default [
   ...fsd.configs.recommended,
 
   /* ============ 存量代码豁免 ============
@@ -92,4 +92,4 @@ export default defineConfig([
   {
     ignores: ['**/dist/**', '**/*.d.ts']
   }
-]);
+];

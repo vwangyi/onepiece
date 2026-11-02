@@ -17,11 +17,13 @@ import { LoggerMiddleware } from './logger/logger.middleware';
 import { ResponseInterceptor } from './logger/response.interceptor';
 import { HttpExceptionFilter } from './logger/http-exception.filter';
 
+console.log(process.env.NODE_ENV, process.env.NODE_ENV === 'development');
+
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: `.env.${process.env.NODE_ENV || 'dev'}` // 默认 开发环境
+      envFilePath: `.env.${process.env.NODE_ENV}` // 默认 开发环境
     }),
     TypeOrmModule.forRootAsync({
       inject: [ConfigService], // 需要注入 ConfigModule的ConfigService
@@ -32,7 +34,7 @@ import { HttpExceptionFilter } from './logger/http-exception.filter';
         username: configService.get<string>('DB_USERNAME') ?? 'root',
         password: configService.get<string>('DB_PASSWORD') ?? '',
         database: configService.get<string>('DB_DATABASE') ?? 'test',
-        synchronize: process.env.NODE_ENV === 'dev', // 可以修改数据库根据实体和数据库会一致
+        synchronize: process.env.NODE_ENV === 'development', // 可以修改数据库根据实体和数据库会一致
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
         timezone: 'Z',
         logging: true
@@ -40,7 +42,7 @@ import { HttpExceptionFilter } from './logger/http-exception.filter';
     }),
     // 自定义日志模块
     // LoggerModule,
-    // UserModule,
+    UserModule,
     // UploadModule,
     // AuthModule,
     TodoModule
