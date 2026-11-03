@@ -2,6 +2,83 @@
 document.title = 'JavaScript'
 </script>
 
+## 创建数组
+创建数组用 字面量方式[]、 new Array()、  Array.of()  来创建。
+
+## 是否是数组
+是否是数组用 Array.isArray() 和 intanceof Array
+
+## 数组浅拷贝
+数组浅拷贝用 slice 传入开始索引和结束索引，支持反向索引。返回新数组，不影响原数组。
+
+
+## 数组去重
+基础类型用 ...new Set()，对象数组用 reduce() + Object.values() 利用了对象的key不能重复的特性。
+
+## 数组扁平化用 flat 
+
+## 数组查找
+数组查找用 some every find 找不到返回undefined，findIndex找不到返回-1  indexOf includes
+
+## 数组排序
+数组排序用 sort reverse
+
+## 数组映射
+数组映射用 map()，map()返回新数组，不影响原数组。
+
+## 数组过滤
+数组过滤用 filter()，filter()返回新数组，不影响原数组。
+
+## 数组合并 
+数组合并用 concat 和 展开运算符 ...，concat()返回新数组，不影响原数组。
+
+
+## 数组清空
+清空数组用 arr.length = 0 或者 赋值一个新数组。 区别就是 legnth赋值0 地址不会变。
+
+## 取出数组项
+取出数组项 用 下标或解构赋值。 
+
+## 数组追加项
+数组追加项用 push 和 unshift 返回新长度 
+
+## 数组删除项
+数组删除项用 pop 和 shift，返回删除的元素。删中间用 splice()，传入开始下标和删除的项数，splice()返回删除的元素组成的新数组，影响原数组。
+
+## 数组修改项
+数组修改项用 下标 或 splice()
+
+## 数组转字符串
+数组转字符串用join 
+
+## 类数组转数组
+类数组是只有长度和下标，通过 Array.from()转为数组 或者用展开运算符 ... 
+
+
+
+## 创建字符串
+字符串是用单引号、双引号或反引号表示。字符串的特性是一旦创建就不可变。
+
+## 字符串查找
+字符串查找：indexOf includes startsWith endsWith 
+
+## 字符串截取
+字符串截取  substring 和 slice  
+
+## 字符串拼接
+字符串拼接 用模版字符串和+号 
+
+## 字符串替换
+字符串替换 replace 
+
+## 字符串转数组
+字符串分割： split 
+
+
+ 
+
+
+
 
 
 
@@ -1536,58 +1613,6 @@ function a(...args) {
  
 
 
-## 创建数组
-创建数组用 字面量方式[]、 new Array()、  Array.of()  来创建。
-
-## 是否是数组
-是否是数组用 Array.isArray() 和 intanceof Array
-
-## 数组浅拷贝
-数组浅拷贝用 slice 传入开始索引和结束索引，支持反向索引。返回新数组，不影响原数组。
-
-
-## 数组去重
-基础类型用 ...new Set()，对象数组用 reduce() + Object.values() 利用了对象的key不能重复的特性。
-
-## 数组扁平化用 flat 
-
-## 数组查找
-数组查找用 some every find 找不到返回undefined，findIndex找不到返回-1  indexOf includes
-
-## 数组排序
-数组排序用 sort reverse
-
-## 数组映射
-数组映射用 map()，map()返回新数组，不影响原数组。
-
-## 数组过滤
-数组过滤用 filter()，filter()返回新数组，不影响原数组。
-
-## 数组合并 
-数组合并用 concat 和 展开运算符 ...，concat()返回新数组，不影响原数组。
-
-
-## 数组清空
-清空数组用 arr.length = 0 或者 赋值一个新数组。 区别就是 legnth赋值0 地址不会变。
-
-## 取出数组项
-取出数组项 用 下标或解构赋值。 
-
-## 数组追加项
-数组追加项用 push 和 unshift 返回新长度 
-
-## 数组删除项
-数组删除项用 pop 和 shift，返回删除的元素。删中间用 splice()，传入开始下标和删除的项数，splice()返回删除的元素组成的新数组，影响原数组。
-
-## 数组修改项
-数组修改项用 下标 或 splice()
-
-## 数组转字符串
-数组转字符串用join 
-
-## 类数组转数组
-类数组是只有长度和下标，通过 Array.from()转为数组 或者用展开运算符 ... 
-
 
 
 ## dom
@@ -1681,27 +1706,6 @@ const videoElement1 = document.getElementById('videoElement')
 const videoElement2 = document.createElement('video')
 ```
  
-
-## 字符串
-字符串是用单引号、双引号或反引号表示。
-
-
-字符串是不可变的。一旦创建就不能改。所以方法都是返回新串
-查找：indexOf、includes、startsWith、endsWith、search
-截取：slice（支持负索引）、substring（自动交换、负值当 0）、substr（已废弃）
-变换：replace/replaceAll、split、trim、padStart/padEnd、repeat
-模板：反引号支持插值 ${} 和多行
-正则相关：match、matchAll、replace 带函数
-
-
-
-字符串查找：indexOf includes startsWith endsWith 
-字符串截取  substring 和 slice  
-字符串分割： split 
-字符串拼接 用模版字符串和+号 
-字符串替换 replace 
-字符串长度 length
-
 ## 集合Set
 集合Set就是没有顺序且唯一的数组
 
