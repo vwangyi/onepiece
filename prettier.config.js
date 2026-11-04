@@ -1,9 +1,16 @@
 // prettier.config.js
+import { fileURLToPath } from 'node:url';
+
 /**
  * @type {import('prettier').Config}
  * @see https://www.prettier.cn/docs/options.html
  */
 export default {
+  plugins: [
+    fileURLToPath(
+      new URL('./scripts/prettier-plugin-md-script.mjs', import.meta.url)
+    )
+  ],
   // 指定最大换行长度
   printWidth: 80,
   // 只有一个属性时不换行，>=2 个属性时每个属性独占一行

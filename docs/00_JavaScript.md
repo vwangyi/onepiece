@@ -1,5 +1,5 @@
 <script setup>
-document.title = 'JavaScript'
+document.title = 'JavaScript';
 </script>
 
 防抖 (debounce)：适用于搜索框输入、窗口调整等场景。它确保在事件停止触发一段时间后，才执行一次函数。

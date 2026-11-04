@@ -1,18 +1,17 @@
 <script setup>
-// 
+//
 const a = {
-    b: {
-        c: function() {
-            console.log(this)
-            return this
-        }
+  b: {
+    c: function () {
+      console.log(this);
+      return this;
     }
-}
-console.log(a.b.c() === a.b)
+  }
+};
+
+console.log(a.b.c() === a.b);
 const d = a.b.c;
-console.log(d() === window)
-
-
+console.log(d() === window);
 </script>
 
 ## 1. 手写 防抖节流
