@@ -9,7 +9,7 @@
     "ritwickdey.LiveServer", // Live Server 插件
     "UrdaSoft.selection-to-file-vscode-extension", // 选中文本追加到文件，用于记录生词
     "vscode-icons-team.vscode-icons",
-    "street-side-software.CodeSpellChecker" // cspell插件
+    "streetsidesoftware.code-spell-checker" // 拼写检查插件
   ],
   // 不推荐的扩展（避免冲突）
   "unwantedRecommendations": [
