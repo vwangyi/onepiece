@@ -1,22 +1,5 @@
-
-## 1. 手写 防抖节流
-```js
-
-```
-## 2. 手写 instanceof原理
-```js
-
-```
-## 3. 手写 new操作符原理
-```js
-
-```
-## 4. 手写 call/bind/apply
-```js
-
-``` 
-## 5. 考察this指向，输出什么
-```js
+<script setup>
+// 
 const a = {
     b: {
         c: function() {
@@ -28,106 +11,136 @@ const a = {
 console.log(a.b.c() === a.b)
 const d = a.b.c;
 console.log(d() === window)
-``` 
+
+
+</script>
+
+## 1. 手写 防抖节流
+
+```js
+
+```
+
+## 2. 手写 instanceof原理
+
+```js
+
+```
+
+## 3. 手写 new操作符原理
+
+```js
+
+```
+
+## 4. 手写 call/bind/apply
+
+```js
+
+```
+
+## 5. 考察this指向，输出什么
+
+```js
+const a = {
+  b: {
+    c: function () {
+      console.log(this);
+      return this;
+    }
+  }
+};
+console.log(a.b.c() === a.b);
+const d = a.b.c;
+console.log(d() === window);
+```
 
 ## 6. 考察变量提升，输出什么
+
 ```js
 var a = 1;
 function a() {
-    console.log(a);
-    let a = 2;
+  console.log(a);
+  let a = 2;
 }
 console.log(a);
 a();
-``` 
+```
 
+## 7. 考察this指向 输出什么
 
-## 7. 考察this指向 输出什么 
 ```js
-window.a = 100
+window.a = 100;
 function fn() {
-    return {
-        a: 200,
-        callback: () => {
-            console.log(this.a) 
-        }
+  return {
+    a: 200,
+    callback: () => {
+      console.log(this.a);
     }
+  };
 }
 const fn0 = fn();
-fn0.callback()
+fn0.callback();
 ```
 
 ## 8. 手写promise
 
- 
-
-## 写防抖
-```js
-function debounce(fn, delay) {
-  let timer = null;
-  return function (...args) {
-    timer && clearTimeout(timer);
-    timer = setTimeout(() => {
-      fn.apply(this, args) // 仿执行、仿this、仿传参
-    }, delay)
-  }
-}
-```
 ## 写节流
+
 ```js
 function throttle(fn, time) {
   let flag = null; // 节流阀 为真 表示关闭状态 为假表示开启状态
-  return function (...args) { 
+  return function (...args) {
     // flag为假表示 开启节流阀
     if (!flag) {
       fn.apply(this, args); // 当开启节流阀 立即执行一次
       // 执行后 立即关闭节流阀，一段时间后才打开节流阀
-      flag = setTimeout(() => flag = null, time); 
+      flag = setTimeout(() => (flag = null), time);
     }
   };
 }
 ```
 
-## 手写 call apply bind 方法 
-```js 
-// 手写 call apply bind方法 
-// 都是伪代码 js底层是c++实现的 
+## 手写 call apply bind 方法
+
+```js
+// 手写 call apply bind方法
+// 都是伪代码 js底层是c++实现的
 
 // 1 处理第一个参数为null undefined时 指向 globalThis 为原始值时 转为包装类对象 Object('123')
 // 2 通过js的规则 this指向调用者 把真实调用函数挂在第一个参数上来调用 实现this指向第一个参数
 
-function call(ctx, ...args) { 
-    // 若第一个参数为null或undefined 则为globalThis 若为其他基础类型则转为对象 
-    // Object() 传原始型 得到包装类对象
-    ctx = [null, void 0].includes(ctx) ? globalThis : Object(ctx); 
-    // 处理 调用函数的this指向 第一个形参 
-    const fn = this
-    const key = Symbol() // 用symbol来防止第一个参数对象 上有相同的属性  
-    Object.defineProperty(ctx, key, {
-        value: fn,
-        enumerable: false
-    }) 
-    const result = ctx[key](...args) // 利用js的规则 this指向调用者ctx
-    return result
-
+function call(ctx, ...args) {
+  // 若第一个参数为null或undefined 则为globalThis 若为其他基础类型则转为对象
+  // Object() 传原始型 得到包装类对象
+  ctx = [null, void 0].includes(ctx) ? globalThis : Object(ctx);
+  // 处理 调用函数的this指向 第一个形参
+  const fn = this;
+  const key = Symbol(); // 用symbol来防止第一个参数对象 上有相同的属性
+  Object.defineProperty(ctx, key, {
+    value: fn,
+    enumerable: false
+  });
+  const result = ctx[key](...args); // 利用js的规则 this指向调用者ctx
+  return result;
 }
 
-function apply(ctx, args) { 
-    const fn = this
-    if(!Array.isArray(args)) {
-        throw new Error('the second argument must be an array')
-    }
-    fn.myCall(ctx, ...args)
+function apply(ctx, args) {
+  const fn = this;
+  if (!Array.isArray(args)) {
+    throw new Error('the second argument must be an array');
+  }
+  fn.myCall(ctx, ...args);
 }
 
-function bind(ctx, ...args) { 
-    const fn = this
-    return function (...args2) {
-        if(new.target) {
-            return new fn(...args, ...args2)
-        }
-        return fn.apply(ctx, args.concat(args2))
+function bind(ctx, ...args) {
+  const fn = this;
+  return function (...args2) {
+    if (new.target) {
+      return new fn(...args, ...args2);
     }
+    return fn.apply(ctx, args.concat(args2));
+  };
 }
 
 Function.prototype.call1 = call;
@@ -135,35 +148,36 @@ Function.prototype.apply1 = apply;
 Function.prototype.bind1 = bind;
 ```
 
-
 ## 变量提升
-```js 
+
+```js
 var a = 1;
 function a() {
-    console.log(a);
-} 
+  console.log(a);
+}
 console.log(a);
-```  
+```
+
 ## 变量提升
+
 ```js
 console.log(a);
 var a = 1;
 function a() {
-    console.log(a);
-} 
+  console.log(a);
+}
 console.log(a);
 ```
 
 ```js
 var a = 1; // 原本初始化为函数引用地址 这里重新赋值为1
 function a() {
-  console.log(a)
+  console.log(a);
   let a = 2;
 }
 console.log(a); // 打印为1
 a(); // 报错
 ```
-
 
 ## 事件循环
 
@@ -186,8 +200,8 @@ new Promise((resolve, reject) => {
   }, 1000);
   setTimeout(() => {
     resolve('e');
-  }, 1000)
-}).then((res) => {
+  }, 1000);
+}).then(res => {
   console.log(res);
 });
 
@@ -195,7 +209,7 @@ console.log('f');
 
 // 案例2
 setTimeout(() => {
-  new Promise((resolve) => {
+  new Promise(resolve => {
     console.log('b');
     resolve('c');
     setTimeout(() => {
@@ -204,8 +218,7 @@ setTimeout(() => {
         console.log('f');
       });
     });
-  })
-  .then((res) => {
+  }).then(res => {
     console.log(res);
     setTimeout(() => {
       console.log('e');
@@ -219,34 +232,30 @@ console.log('z');
 console.log('a');
 
 new Promise(function (resolve) {
-    console.log('b');
-    for (var i = 1; i <= 2; i++) {
-        setTimeout(() => {
-            console.log(i);
-        }, i * 1000);
-        console.log(i);
-    }
-    resolve();
-})
-.then(function () {
-    console.log('c');
+  console.log('b');
+  for (var i = 1; i <= 2; i++) {
+    setTimeout(() => {
+      console.log(i);
+    }, i * 1000);
+    console.log(i);
+  }
+  resolve();
+}).then(function () {
+  console.log('c');
 });
 
 setTimeout(() => {
-    console.log('d');
-    new Promise(function (resolve) {
-        console.log('e');
-        resolve();
-    })
-    .then(function () {
-        console.log('f');
-    });
+  console.log('d');
+  new Promise(function (resolve) {
+    console.log('e');
+    resolve();
+  }).then(function () {
+    console.log('f');
+  });
 }, 2000);
 ```
 
- 
-
-## 写出创建数组的方式 
+## 写出创建数组的方式
 
 ## 创建 [1,2,3] 4种方式
 
@@ -264,7 +273,7 @@ Array.of(1,2,3)
 
 [...new Set([1, 2, 3, 4])];
 Array.from({ length: 3 });
-Array.from("hello");
+Array.from('hello');
 // 类数组：只有长度和下标
 ```
 
@@ -312,69 +321,67 @@ const list = [
 每次滚动， 都把数据 push到对应列 里面去
 ```
 
-
 ## sdfsdf
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
-
-    <div id="box" style="width: 100px;height: 100px;background-color: red;"></div>
+  <body>
+    <div
+      id="box"
+      style="width: 100px;height: 100px;background-color: red;"
+    ></div>
 
     <script>
-        const dom = document.querySelector('#box')
-        function runjs(t) {
-            const start = performance.now();
-            while (performance.now() - start < t) {
-                // console.log(1); // console.log会导致计时不准
-            }
+      const dom = document.querySelector('#box');
+      function runjs(t) {
+        const start = performance.now();
+        while (performance.now() - start < t) {
+          // console.log(1); // console.log会导致计时不准
         }
-        function handleClick() {
-            dom.style.backgroundColor = 'blue'
-            requestAnimationFrame(() => {
-                console.log('开始渲染')
-            })
-            requestIdleCallback(() => console.log('主线程空闲')) // 追加到空闲队列
-            Promise.resolve().then(() => console.log('清空微任务'))
-            setTimeout(() => {
-                console.log('宏任务1');
-                dom.style.backgroundColor = 'yellow'
-                requestAnimationFrame(() => {
-                    console.log('开始渲染')
-                })
-                requestIdleCallback(() => console.log('主线程空闲')) // 追加到空闲队列
-                Promise.resolve().then(() => console.log('清空微任务'))
-                setTimeout(() => console.log('宏任务2'))
-                runjs(3000); // js会阻塞渲染 
-
-            })
-            runjs(3000);
-
-        }
-        dom.addEventListener('click', handleClick)
-        setTimeout(() => {
-            console.log('宏任务')
-        })
-        Promise.resolve().then(() => console.log('清空微任务'))
+      }
+      function handleClick() {
+        dom.style.backgroundColor = 'blue';
         requestAnimationFrame(() => {
-            console.log('开始渲染')
-        })
-        console.log('初始化 同步任务');
-
+          console.log('开始渲染');
+        });
+        requestIdleCallback(() => console.log('主线程空闲')); // 追加到空闲队列
+        Promise.resolve().then(() => console.log('清空微任务'));
+        setTimeout(() => {
+          console.log('宏任务1');
+          dom.style.backgroundColor = 'yellow';
+          requestAnimationFrame(() => {
+            console.log('开始渲染');
+          });
+          requestIdleCallback(() => console.log('主线程空闲')); // 追加到空闲队列
+          Promise.resolve().then(() => console.log('清空微任务'));
+          setTimeout(() => console.log('宏任务2'));
+          runjs(3000); // js会阻塞渲染
+        });
+        runjs(3000);
+      }
+      dom.addEventListener('click', handleClick);
+      setTimeout(() => {
+        console.log('宏任务');
+      });
+      Promise.resolve().then(() => console.log('清空微任务'));
+      requestAnimationFrame(() => {
+        console.log('开始渲染');
+      });
+      console.log('初始化 同步任务');
     </script>
-</body>
-
+  </body>
 </html>
 ```
-
-
 
 ```js
 setTimeout(function () {
@@ -386,8 +393,6 @@ Promise.resolve().then(function () {
 });
 
 console.log(3);
-
-
 ```
 
 ```js
@@ -404,11 +409,10 @@ setTimeout(function () {
 Promise.resolve().then(a);
 
 console.log(5);
-
-
 ```
 
 // 打印顺序是什么：2 1
+
 ```js
 setTimeout(function () {
   console.log(1);
@@ -471,7 +475,6 @@ Promise.resolve().then(function () {
 console.log(5);
 
 // 5 4 3 6 1 2
-
 ```
 
 # JS事件循环机制 5\*

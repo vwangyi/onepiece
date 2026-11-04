@@ -34,8 +34,9 @@ const ignores = [
   '**/node_modules/**',
   '.*',
   '.vscode',
-  'docs',
-  '**/.nuxt/**'
+  'docs/other',
+  '**/.nuxt/**',
+  '**/.vitepress/cache/'
   // 'apps/new-world/*',
   // 'app/s/all-blue/*',
   // 'scripts',

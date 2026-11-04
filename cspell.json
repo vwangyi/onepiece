@@ -14,7 +14,7 @@
     "**/dist/**",
     "**/build/**",
     "**/lib/**",
-    "**/docs/**",
+    // "**/docs/**",
     "**/vendor/**",
     "**/public/**",
     "**/static/**",
@@ -30,7 +30,8 @@
     "commitlint.config.js",
     ".cspell",
     ".vscode",
-    "docs",
+    "docs/other",
+    "**/.vitepress/cache/",
     ".nuxt"
   ]
 }
