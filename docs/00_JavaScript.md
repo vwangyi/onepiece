@@ -1,7 +1,80 @@
 <script setup>
 document.title = 'JavaScript';
+
+function throttle(fn, wait, { leading = true, trailing = true } = {}) {
+  let timer = null;
+  let lastArgs = null;
+  let lastThis = null;
+
+  function invoke() {
+    fn.apply(lastThis, lastArgs);
+    lastArgs = lastThis = null;
+  }
+
+  function throttled(...args) {
+    lastArgs = args;
+    lastThis = this;
+
+    if (!timer) {
+      if (leading) invoke();
+      timer = setTimeout(() => {
+        timer = null;
+        if (trailing && lastArgs) {
+          invoke();
+          // 若尾调用后还需继续冷却，可再起一个 timer，视需求而定
+        }
+      }, wait);
+    }
+  }
+
+  throttled.cancel = () => {
+    clearTimeout(timer);
+    timer = null;
+    lastArgs = lastThis = null;
+  };
+
+  return throttled;
+}
+
+function throttle(fn, time) {
+  let flag = null;
+  return function (...args) {
+    if (!flag) {
+      fn.apply(this, args);
+      flag = setTimeout(() => (flag = null), time);
+    }
+  };
+}
+
+function throttle(fn, time) {
+  let flag = true; // 节流阀 为真 表示关闭状态 为假表示开启状态
+  let timer = null;
+
+  return function (...args) {
+    // flag为假表示 开启节流阀
+    if (flag) {
+      fn.apply(this, args); // 当开启节流阀 立即执行一次
+      // 执行后 立即关闭节流阀，一段时间后才打开节流阀
+      flag = setTimeout(() => (flag = false), time);
+    }
+  };
+}
+
+function debounce(fn, delay) {
+  let timer = null;
+  return function (...args) {
+    timer && clearTimeout(timer);
+    timer = setTimeout(() => {
+      fn.apply(this, args); // 仿执行、仿this、仿传参
+    }, delay);
+  };
+}
 </script>
 
+## 防抖节流
+
+防抖是 在指定时间内，多次触发都会重新计时，只执行最后一次。使用场景搜索联想
+节流是多次触发在指定时间内只执行一次，不会重新计时。 使用场景 滚动条频繁触发。
 防抖 (debounce)：适用于搜索框输入、窗口调整等场景。它确保在事件停止触发一段时间后，才执行一次函数。
 
 常规模式：连续点击时，只在最后一次点击后的500毫秒执行一次。
@@ -13,8 +86,6 @@ document.title = 'JavaScript';
 首次立即执行：点击后立即执行，并在500毫秒内忽略后续点击。
 
 首次不执行：第一次点击不会立即执行，而是在500毫秒后执行，适合需要延迟初始化的场景。
-
-##
 
 ## 变量提升
 
@@ -37,11 +108,6 @@ document.title = 'JavaScript';
 好处是 可以延长变量的生命周期和模块化开发
 缺点是可能导致内存泄漏
 应用场景是 防抖 节流 esm和commonjs都是使用闭包实现模块化
-
-## 防抖节流
-
-防抖是 在指定时间内，多次触发都会重新计时，只执行最后一次。使用场景搜索联想
-节流是多次触发在指定时间内只执行一次，不会重新计时。 使用场景 滚动条频繁触发。
 
 ## 纯函数
 

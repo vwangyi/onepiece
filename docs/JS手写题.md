@@ -83,22 +83,6 @@ fn0.callback();
 
 ## 8. 手写promise
 
-## 写节流
-
-```js
-function throttle(fn, time) {
-  let flag = null; // 节流阀 为真 表示关闭状态 为假表示开启状态
-  return function (...args) {
-    // flag为假表示 开启节流阀
-    if (!flag) {
-      fn.apply(this, args); // 当开启节流阀 立即执行一次
-      // 执行后 立即关闭节流阀，一段时间后才打开节流阀
-      flag = setTimeout(() => (flag = null), time);
-    }
-  };
-}
-```
-
 ## 手写 call apply bind 方法
 
 ```js

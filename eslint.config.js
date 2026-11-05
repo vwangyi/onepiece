@@ -50,6 +50,7 @@ const baseRules = {
   '@typescript-eslint/no-require-imports': 'off', // 使用require函数
   '@typescript-eslint/no-unused-vars': 'off', // 未使用的变量
   '@typescript-eslint/no-explicit-any': 'off', // 是否允许any
+  '@typescript-eslint/no-this-alias': 'off',
   'no-unreachable': 'off', // 无法访问的代码 比如 return后面的代码
   'no-var': 'error', // 不能使用var
   // 强制在注释中 // 或 /* 使用一致的空格

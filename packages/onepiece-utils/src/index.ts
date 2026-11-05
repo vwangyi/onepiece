@@ -30,9 +30,6 @@ export function isNumber(n: unknown): boolean {
   return typeof n === 'number';
 }
 
-/**
- *
- */
 export async function getUserMedia() {
   return await navigator.mediaDevices.getUserMedia();
 }
@@ -91,50 +88,43 @@ export function createOverload() {
   return overload;
 }
 
-// /**
-//  * 防抖
-//  * @param fn
-//  * @param delay
-//  * @returns
-//  */
-// function debounce(fn, delay) {
-//   let timer = null;
-//   return function (...args) {
-//     timer && clearTimeout(timer);
-//     timer = setTimeout(() => {
-//       fn.apply(this, args); // 仿执行、仿this、仿传参
-//     }, delay);
-//   };
-// }
+/**
+ * 防抖  生产环境建议直接用 lodash
+ * @param fn
+ * @param delay
+ * @param param2
+ * @returns
+ */
+export function debounce1<Args extends unknown[]>(
+  fn: (...args: Args) => void,
+  delay: number
+): ((...args: Args) => void) & { cancel: () => void } {
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  let lastArgs: Args | null = null;
+  let lastThis: unknown = null;
 
-// /**
-//  * 创建一个防抖函数
-//  * https://www.lodashjs.com/docs/lodash.debounce
-//  * @param func 需要防抖的函数
-//  * @param wait 延迟毫秒数
-//  * @param options 选项配置
-//  * @returns 防抖后的函数
-//  */
-// export function debounce<T extends (...args: unknown[]) => unknown>(
-//   func: T,
-//   wait?: number,
-//   options?: DebounceSettings
-// ): DebouncedFunc<T> {
-//   return _.debounce(func, wait, options);
-// }
+  function debounced(this: unknown, ...args: Args): void {
+    lastThis = this;
+    lastArgs = args;
 
-// /**
-//  * 创建一个节流函数
-//  * https://www.lodashjs.com/docs/lodash.throttle
-//  * @param func 需要节流的函数
-//  * @param wait 延迟毫秒数
-//  * @param options 选项配置
-//  * @returns 节流后的函数
-//  */
-// export function throttle<T extends (...args: unknown[]) => unknown>(
-//   func: T,
-//   wait?: number,
-//   options?: ThrottleSettings
-// ): DebouncedFunc<T> {
-//   return _.throttle(func, wait, options);
-// }
+    if (timer !== null) {
+      clearTimeout(timer);
+      timer = null;
+    }
+
+    timer = setTimeout(() => {
+      timer = null;
+      const args2 = lastArgs;
+      const this2 = lastThis;
+      lastArgs = lastThis = null;
+      fn.apply(this2, args2 as Args);
+    }, delay);
+  }
+
+  debounced.cancel = (): void => {
+    if (timer !== null) clearTimeout(timer);
+    timer = null;
+    lastArgs = lastThis = null;
+  };
+  return debounced;
+}
