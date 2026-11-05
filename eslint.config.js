@@ -7,7 +7,7 @@ import eslintPluginPrettier from 'eslint-plugin-prettier';
 import eslintPluginVue from 'eslint-plugin-vue';
 import globals from 'globals';
 // FSD 架构约束的本地插件（零依赖实现，替代已停更的 @feature-sliced/eslint-config）
-import { fsdPlugin } from './scripts/eslint-plugin-fsd.js';
+import { fsdPlugin } from './scripts/eslint-plugin-fsd.mjs';
 /**
  * eslint-config-prettier 会帮我们把处理 eslint中格式化规则 和prettier冲突后 按prettier走
  * eslint-config-prettier 内部维护了一个规则列表，包含了所有可能与 Prettier 产生冲突的 ESLint 规则，然后统一将它们设置为 off。
