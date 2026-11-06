@@ -13,10 +13,41 @@ const d = a.b.c;
 console.log(d() === window);
 </script>
 
-## 1. 手写 防抖节流
+## 1. 闭包实现防抖节流
+
+- 支持cancel取消方法
+- 支持flush 刷新方法
+- 支持 immediate（首次立即执行）选项
 
 ```js
+function debounce(fn, delay) {
+  let timer = null;
+  return function debouncing(...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      fn.apply(this, args);
+    }, delay);
+  };
+}
+```
 
+```js
+function throttle(fn, time) {
+  let flag = true; // 节流阀
+  let timer = null;
+  function throttled(...args) {
+    if (flag) {
+      fn.apply(this, args);
+      flag = false;
+      timer = setTimeout(() => (flag = true), time);
+    }
+  }
+  throttled.cancel = () => {
+    clearTimeout(timer);
+    timer = null;
+  };
+  return throttled;
+}
 ```
 
 ## 2. 手写 instanceof原理

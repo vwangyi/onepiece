@@ -16,13 +16,13 @@ async function dev() {
     );
     watcher.on('event', event => {
       if (event.code === 'START') {
-        console.log(`👁️ 开始监听: ${name}`);
+        console.log(`👁️  开始监听: ${name}`);
       } else if (event.code === 'ERROR') {
         console.error(`❌ ${name}打包失败:`, event.error);
       } else if (event.code === 'BUNDLE_START') {
         console.log(`📦 正在打包: ${name}`);
       } else if (event.code === 'BUNDLE_END') {
-        console.log(`✅ ${name} 打包完成`);
+        console.log(`✅ 打包完成: ${name}`);
       }
     });
   }
