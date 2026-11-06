@@ -10,3 +10,7 @@ v-bind="attrs"
 
 - 传递插槽
   <template #['default']="scoped"></template>
+
+## key
+
+key属性是xx 如何使用

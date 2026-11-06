@@ -46,14 +46,14 @@ this在函数作用域下 跟函数调用方式有关 一般情况下 this指向
 通过new调用 this指向实例对象
 通过 call bind apply调用 this指向第一个参数
 
-## typeof null返回什么
+## typeof null
 
 typeof null 返回 'object'字符串
 
 ## null和undefined区别
 
-null表示值就是null
-undefined表示 没有值 值没有定义
+null表示 这个变量未来是对象 目前还没有对象 所以用null
+undefined表示 没有值 未来可以是任意类型数据。
 
 ## intanceof 操作符的实现原理
 
