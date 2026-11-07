@@ -10,7 +10,6 @@
  */
 import { builders } from 'prettier/doc';
 import { parsers, printers } from 'prettier/plugins/markdown';
-console.log('1');
 const { hardline } = builders;
 
 const PARSER_NAME = 'markdown-vitepress';

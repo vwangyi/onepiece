@@ -8,8 +8,8 @@ import { fileURLToPath } from 'node:url';
 export default {
   plugins: [
     fileURLToPath(
-      new URL('./scripts/prettier-plugin-md-script.mjs', import.meta.url)
-    )
+      new URL('./scripts/prettier-plugin-md-script.mjs', import.meta.url),
+    ),
   ],
   // 指定最大换行长度
   printWidth: 80,
@@ -29,7 +29,8 @@ export default {
   // 在JSX中使用单引号而不是双引号 (true：单引号，false：双引号)
   jsxSingleQuote: true,
   // 多行时尽可能打印尾随逗号 可选值"<none|es5|all>"
-  trailingComma: 'none',
+  // all：对象/数组/函数参数/函数调用/import 全都加；es5：仅对象与数组（兼容老环境）
+  trailingComma: 'all',
   // 在对象，数组括号与文字之间加空格 "{ foo: bar }" (true：有，false：没有)
   bracketSpacing: true,
   // 将 > 多行元素放在最后一行的末尾，而不是单独放在下一行 (true：放末尾，false：单独一行)
@@ -50,5 +51,5 @@ export default {
   endOfLine: 'auto',
   // 这两个选项可用于格式化以给定字符偏移量（分别包括和不包括）开始和结束的代码 (rangeStart：开始，rangeEnd：结束)
   rangeStart: 0,
-  rangeEnd: Infinity
+  rangeEnd: Infinity,
 };
