@@ -14,3 +14,7 @@ v-bind="attrs"
 ## key
 
 key属性是xx 如何使用
+
+keyValue++
+
+<div key="keyValue"></div

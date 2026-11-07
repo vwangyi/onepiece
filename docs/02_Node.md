@@ -26,6 +26,11 @@ fs.readFileSync('a.txt', 'utf8'); // 同步读
 fs.promises.readFile('a.txt', 'utf8'); // 异步读（推荐）
 fs.writeFileSync('b.txt', 'hello');
 fs.readdirSync('./dir');
+
+if (fs.existsSync(dist)) {
+  fs.rmSync(dist, { recursive: true, force: true });
+}
+const content = await fs.promises.readFile(jsonPath, 'utf-8');
 ```
 
 掌握 sync 版和 promises 版就够了，回调版可以跳过。
