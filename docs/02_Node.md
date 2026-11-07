@@ -32,8 +32,6 @@ glboalThis 在node环境下是global 在浏览器环境下是window
 
 ##
 
-fs.readFile
-
 crypto.xxx
 
 ## 同步删除文件或目录

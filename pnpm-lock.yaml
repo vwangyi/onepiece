@@ -394,7 +394,134 @@ importers:
         specifier: ^2.1.0
         version: 2.1.0(@vue/compiler-dom@3.5.43)(@vue/server-renderer@3.5.43)(vitest@4.1.10(@types/node@25.9.5)(vite@7.3.6(@types/node@25.9.5)(jiti@2.7.0)(less@4.6.7)(lightningcss@1.33.0)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.0)))(vue@file:node_packages/vue-3.5.42.tgz(typescript@5.9.3))
 
-  apps/app-main-qiankun: {}
+  apps/app-main-qiankun:
+    dependencies:
+      vue:
+        specifier: ^3.5.43
+        version: 3.5.43(typescript@5.9.3)
+    devDependencies:
+      '@babel/plugin-transform-runtime':
+        specifier: ^8.0.6
+        version: 8.0.6(@babel/core@7.29.7)
+      '@babel/preset-env':
+        specifier: ^8.0.6
+        version: 8.0.6(@babel/core@7.29.7)
+      '@babel/preset-typescript':
+        specifier: ^8.0.7
+        version: 8.0.7(@babel/core@7.29.7)
+      '@rollup/plugin-alias':
+        specifier: ^5.1.1
+        version: 5.1.1(rollup@4.62.2)
+      '@rollup/plugin-babel':
+        specifier: ^6.1.0
+        version: 6.1.0(@babel/core@7.29.7)(@types/babel__core@7.20.5)(rollup@4.62.2)
+      '@rollup/plugin-commonjs':
+        specifier: ^29.0.3
+        version: 29.0.3(rollup@4.62.2)
+      '@rollup/plugin-image':
+        specifier: ^3.0.3
+        version: 3.0.3(rollup@4.62.2)
+      '@rollup/plugin-node-resolve':
+        specifier: ^16.0.3
+        version: 16.0.3(rollup@4.62.2)
+      '@rollup/plugin-replace':
+        specifier: ^5.0.7
+        version: 5.0.7(rollup@4.62.2)
+      '@rollup/plugin-terser':
+        specifier: ^1.0.0
+        version: 1.0.0(rollup@4.62.2)
+      '@rollup/plugin-typescript':
+        specifier: ^11.1.6
+        version: 11.1.6(rollup@4.62.2)(tslib@2.8.1)(typescript@5.9.3)
+      '@types/node':
+        specifier: ^25.9.5
+        version: 25.9.5
+      '@vue/babel-plugin-jsx':
+        specifier: ^3.0.0
+        version: 3.0.0(@babel/core@7.29.7)
+      '@vue/babel-preset-jsx':
+        specifier: ^1.4.0
+        version: 1.4.0(@babel/core@7.29.7)(vue@3.5.43(typescript@5.9.3))
+      babel-loader:
+        specifier: ^10.1.1
+        version: 10.1.1(@babel/core@7.29.7)(webpack@5.111.1)
+      css-loader:
+        specifier: ^7.1.5
+        version: 7.1.5(webpack@5.111.1)
+      css-minimizer-webpack-plugin:
+        specifier: ^8.0.0
+        version: 8.0.0(esbuild@0.28.1)(lightningcss@1.33.0)(webpack@5.111.1)
+      dotenv:
+        specifier: ^16.4.5
+        version: 16.6.1
+      fork-ts-checker-webpack-plugin:
+        specifier: ^9.1.0
+        version: 9.1.0(typescript@5.9.3)(webpack@5.111.1)
+      html-webpack-plugin:
+        specifier: ^5.6.8
+        version: 5.6.8(webpack@5.111.1)
+      mini-css-extract-plugin:
+        specifier: ^2.10.2
+        version: 2.10.2(webpack@5.111.1)
+      rollup-plugin-clear:
+        specifier: ^2.0.7
+        version: 2.0.7
+      rollup-plugin-generate-html-template:
+        specifier: ^1.7.0
+        version: 1.7.0(rollup@4.62.2)
+      rollup-plugin-livereload:
+        specifier: ^2.0.5
+        version: 2.0.5
+      rollup-plugin-postcss:
+        specifier: ^4.0.2
+        version: 4.0.2(postcss@8.5.28)(ts-node@10.9.2(@types/node@25.9.5)(typescript@5.9.3))
+      rollup-plugin-serve:
+        specifier: ^2.0.3
+        version: 2.0.3
+      rollup-plugin-visualizer:
+        specifier: ^7.1.1
+        version: 7.1.1(rolldown@1.2.11)(rollup@4.62.2)
+      rollup-plugin-vue:
+        specifier: ^6.0.0
+        version: 6.0.0(@vue/compiler-sfc@3.5.43)
+      sass:
+        specifier: ^1.104.1
+        version: 1.104.1
+      sass-loader:
+        specifier: ^17.0.1
+        version: 17.0.1(sass@1.104.1)(webpack@5.111.1)
+      terser-webpack-plugin:
+        specifier: ^5.6.1
+        version: 5.6.1(esbuild@0.28.1)(lightningcss@1.33.0)(postcss@8.5.28)(webpack@5.111.1)
+      thread-loader:
+        specifier: ^4.0.4
+        version: 4.0.4(webpack@5.111.1)
+      ts-loader:
+        specifier: ^9.6.2
+        version: 9.6.2(loader-utils@3.3.1)(typescript@5.9.3)(webpack@5.111.1)
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+      vue-loader:
+        specifier: ^17.4.2
+        version: 17.4.2(@vue/compiler-sfc@3.5.43)(vue@3.5.43(typescript@5.9.3))(webpack@5.111.1)
+      vue-tsc:
+        specifier: ^3.3.11
+        version: 3.3.11(typescript@5.9.3)
+      webpack:
+        specifier: ^5.111.1
+        version: 5.111.1(esbuild@0.28.1)(lightningcss@1.33.0)(postcss@8.5.28)(webpack-cli@7.2.3)
+      webpack-bundle-analyzer:
+        specifier: ^5.4.0
+        version: 5.4.0
+      webpack-cli:
+        specifier: ^7.2.3
+        version: 7.2.3(js-yaml@5.4.2)(json5@2.2.3)(webpack-bundle-analyzer@5.4.0)(webpack-dev-server@6.0.0)(webpack@5.111.1)
+      webpack-dev-server:
+        specifier: ^6.0.0
+        version: 6.0.0(webpack-cli@7.2.3)(webpack@5.111.1)
+
+  apps/app-micro-game: {}
 
   apps/app-micro-react: {}
 
@@ -8548,6 +8675,7 @@ packages:
   image-size@0.5.5:
     resolution: {integrity: sha512-6TDAlDPZxUFCv+fuOkIoXT/V/f3Qbq8e37p+YOiYrUv3v9cc3/6x78VdfPgFVaB9dZYeLUfKgHRebpkm/oP2VQ==}
     engines: {node: '>=0.10.0'}
+    deprecated: Please migrate to image-size@2.x
     hasBin: true
 
   immer@10.2.0:
@@ -19418,7 +19546,7 @@ snapshots:
       alien-signals: 3.2.1
       muggle-string: 0.4.1
       path-browserify: 1.0.1
-      picomatch: 4.0.5
+      picomatch: 4.0.7
 
   '@vue/reactivity@3.5.42':
     dependencies:
@@ -23255,7 +23383,7 @@ snapshots:
       pretty-error: 4.0.0
       tapable: 2.3.3
     optionalDependencies:
-      webpack: 5.111.1(esbuild@0.28.1)(lightningcss@1.33.0)(postcss@8.5.28)(webpack-cli@6.0.1)
+      webpack: 5.111.1(esbuild@0.28.1)(lightningcss@1.33.0)(postcss@8.5.28)(webpack-cli@7.2.3)
 
   htmlparser2@6.1.0:
     dependencies:
@@ -24912,7 +25040,7 @@ snapshots:
     dependencies:
       schema-utils: 4.5.0
       tapable: 2.3.3
-      webpack: 5.111.1(esbuild@0.28.1)(lightningcss@1.33.0)(postcss@8.5.28)(webpack-cli@6.0.1)
+      webpack: 5.111.1(esbuild@0.28.1)(lightningcss@1.33.0)(postcss@8.5.28)(webpack-cli@7.2.3)
 
   mini-svg-data-uri@1.4.4: {}
 
@@ -24958,7 +25086,7 @@ snapshots:
       jest-worker: 27.5.1
       schema-utils: 4.5.0
       terser: 5.51.2
-      webpack: 5.111.1(esbuild@0.28.1)(lightningcss@1.33.0)(postcss@8.5.28)(webpack-cli@6.0.1)
+      webpack: 5.111.1(esbuild@0.28.1)(lightningcss@1.33.0)(postcss@8.5.28)(webpack-cli@7.2.3)
     optionalDependencies:
       esbuild: 0.28.1
       lightningcss: 1.33.0
@@ -28185,7 +28313,7 @@ snapshots:
       jest-worker: 27.5.1
       schema-utils: 4.5.0
       terser: 5.51.2
-      webpack: 5.111.1(esbuild@0.28.1)(lightningcss@1.33.0)(postcss@8.5.28)(webpack-cli@6.0.1)
+      webpack: 5.111.1(esbuild@0.28.1)(lightningcss@1.33.0)(postcss@8.5.28)(webpack-cli@7.2.3)
     optionalDependencies:
       esbuild: 0.28.1
       lightningcss: 1.33.0
@@ -29169,7 +29297,7 @@ snapshots:
       chalk: 4.1.2
       hash-sum: 2.0.0
       watchpack: 2.5.2
-      webpack: 5.111.1(esbuild@0.28.1)(lightningcss@1.33.0)(postcss@8.5.28)(webpack-cli@6.0.1)
+      webpack: 5.111.1(esbuild@0.28.1)(lightningcss@1.33.0)(postcss@8.5.28)(webpack-cli@7.2.3)
     optionalDependencies:
       '@vue/compiler-sfc': 3.5.43
       vue: 3.5.43(typescript@5.9.3)
