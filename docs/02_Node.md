@@ -1,12 +1,34 @@
-## path.resolve
+## import.meta.url
 
-path.join方法
-1path.resolve方法
+import.meta.url 是当前esm模块的url
 
-可以把相对路径转为绝对路径
-path.resolve(process.cwd(), "./xxx")
-path.resolve(__dirname, "./xxx")
-path.join(__dirname, 'xx')
+## url怎么转换成path
+
+url.fileURLToPath(import.meta.url)
+
+## url和path的区别
+
+## 路径拼接
+
+路径拼接用 path.join 和 path.resolve
+
+path.resolve是从右往左拼接，直到拼出一个绝对路径为止。没有就用process.cwd()作为绝对路径的基准
+
+##
+
+path.dirname(p)：取文件夹名
+
+path.basename(p)：取文件名
+
+path.extname(p)：取扩展名
+
+## globalThis
+
+glboalThis 在node环境下是global 在浏览器环境下是window
+
+## 同步和异步
+
+同步表示会阻塞事件循环，异步不会阻塞事件循环
 
 ##
 
@@ -14,36 +36,16 @@ fs.readFile
 
 crypto.xxx
 
-## globalThis
+## 同步删除文件或目录
 
-glboalThis 在node环境下是global 在浏览器环境下是window
+fs.rmSync()方法
 
 ## fs模块读写文件
 
-```js
-const fs = require('fs');
-fs.readFileSync('a.txt', 'utf8'); // 同步读
-fs.promises.readFile('a.txt', 'utf8'); // 异步读（推荐）
-fs.writeFileSync('b.txt', 'hello');
-fs.readdirSync('./dir');
+## 读文件
 
-if (fs.existsSync(dist)) {
-  fs.rmSync(dist, { recursive: true, force: true });
-}
-const content = await fs.promises.readFile(jsonPath, 'utf-8');
-```
-
-掌握 sync 版和 promises 版就够了，回调版可以跳过。
-
-## path模块处理路径
-
-- 拼接路径
-
-```js
-path.join(__dirname, 'data', 'a.json');
-path.resolve('./src');
-path.extname('a.txt'); // '.txt'
-```
+同步读文件 用fs.readFileSync('a.txt', 'utf8');
+异步读文件 用fs.promises.readFile('a.txt', 'utf8');
 
 ## process进程信息
 

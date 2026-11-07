@@ -18,7 +18,11 @@ export const clearDist = packageName => {
   }
 };
 
-const packages = ['onepiece-utils', 'onepiece-api'];
+const packages = [
+  'onepiece-api', // api
+  'onepiece-utils'
+  // 'onepiece-design' // 组件
+];
 
 // 获取所有子包的绝对路径
 function getPackageRoots() {
@@ -32,7 +36,7 @@ async function packageJson(root) {
   return JSON.parse(content);
 }
 
-// getRollupConfig 为每个子包 生成 rollup配置
+// 读取每个子包的package.json 并生成对应的rollup配置
 async function getRollupConfig(root) {
   const config = await packageJson(root);
   const tsconfig = path.resolve(root, 'tsconfig.json');
