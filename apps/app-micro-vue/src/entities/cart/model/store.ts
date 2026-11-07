@@ -10,7 +10,7 @@ export const useCartEntityStore = defineStore('entities/cart', () => {
 
   // 2. 计算属性
   const totalQuantity = computed(() =>
-    items.value.reduce((sum, item) => sum + item.quantity, 0)
+    items.value.reduce((sum, item) => sum + item.quantity, 0),
   );
   const isEmpty = computed(() => items.value.length === 0);
 
@@ -34,6 +34,6 @@ export const useCartEntityStore = defineStore('entities/cart', () => {
     totalQuantity,
     isEmpty,
     setCart,
-    clear
+    clear,
   };
 });

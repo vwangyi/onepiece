@@ -32,7 +32,7 @@ export abstract class SquareGroup {
     this._shape.forEach((p, i) => {
       this._squares[i].point = {
         x: this._centerPoint.x + p.x,
-        y: this._centerPoint.y + p.y
+        y: this._centerPoint.y + p.y,
       };
     });
   }
@@ -40,7 +40,7 @@ export abstract class SquareGroup {
   constructor(
     private _shape: Shape,
     private _centerPoint: Point,
-    private _color: string
+    private _color: string,
   ) {
     // 设置小方块的数组
     const arr: Square[] = [];
@@ -63,7 +63,7 @@ export abstract class SquareGroup {
       return this._shape.map(p => {
         const newP: Point = {
           x: -p.y,
-          y: p.x
+          y: p.x,
         };
         return newP;
       });
@@ -72,7 +72,7 @@ export abstract class SquareGroup {
     return this._shape.map(p => {
       const newP: Point = {
         x: p.y,
-        y: -p.x
+        y: -p.x,
       };
       return newP;
     });

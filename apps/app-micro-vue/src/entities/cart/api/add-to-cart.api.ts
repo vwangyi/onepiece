@@ -7,7 +7,7 @@ import type { AddToCartPayload, AddToCartResult } from '../model/types';
  * POST /cart/items  body: { productId, quantity }
  */
 export function addToCartRequest(
-  data: AddToCartPayload
+  data: AddToCartPayload,
 ): Promise<ApiResponse<AddToCartResult>> {
   return request.post('/api/cart/items', { data });
 }

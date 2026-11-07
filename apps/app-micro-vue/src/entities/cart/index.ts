@@ -3,7 +3,7 @@ export type {
   Cart,
   CartItem,
   AddToCartPayload,
-  AddToCartResult
+  AddToCartResult,
 } from './model/types';
 export { useCartEntityStore } from './model/store';
 export { addToCartRequest } from './api';

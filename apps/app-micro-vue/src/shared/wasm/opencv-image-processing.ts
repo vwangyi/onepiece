@@ -68,7 +68,7 @@ export interface Cv {
     dst: CvMat,
     thresh: number,
     maxval: number,
-    type: number
+    type: number,
   ): void;
   adaptiveThreshold(
     src: CvMat,
@@ -77,7 +77,7 @@ export interface Cv {
     adaptiveMethod: number,
     thresholdType: number,
     blockSize: number,
-    C: number
+    C: number,
   ): void;
   equalizeHist(src: CvMat, dst: CvMat): void;
   filter2D(
@@ -87,7 +87,7 @@ export interface Cv {
     kernel: CvMat,
     anchor: unknown,
     delta?: number,
-    borderType?: number
+    borderType?: number,
   ): void;
   /** 从一维数组构造 Mat（OpenCV.js 提供，5.0 起不再有 createMatKernel） */
   matFromArray(rows: number, cols: number, type: number, data: number[]): CvMat;
@@ -100,7 +100,7 @@ export interface Cv {
     alpha: number,
     beta: number,
     normType: number,
-    dtype?: number
+    dtype?: number,
   ): void;
   Sobel(
     src: CvMat,
@@ -111,7 +111,7 @@ export interface Cv {
     ksize: number,
     scale?: number,
     delta?: number,
-    borderType?: number
+    borderType?: number,
   ): void;
   boundingRect(contour: CvMat): {
     x: number;
@@ -123,14 +123,14 @@ export interface Cv {
     image: CvMat,
     edges: CvMat,
     threshold1: number,
-    threshold2: number
+    threshold2: number,
   ): void;
   findContours(
     image: CvMat,
     contours: unknown,
     hierarchy: CvMat,
     mode: number,
-    method: number
+    method: number,
   ): void;
   contourArea(contour: CvMat): number;
   boundingRect(contour: CvMat): {
@@ -144,7 +144,7 @@ export interface Cv {
     curve: CvMat,
     approxCurve: CvMat,
     epsilon: number,
-    closed: boolean
+    closed: boolean,
   ): void;
   getPerspectiveTransform(src: CvMat, dst: CvMat, m: CvMat): void;
   getPerspectiveTransform(src: number[][], dst: number[][], m: CvMat): void;
@@ -155,7 +155,7 @@ export interface Cv {
     dsize: unknown,
     flags: number,
     borderMode: number,
-    borderValue: unknown
+    borderValue: unknown,
   ): void;
   copyMakeBorder(
     src: CvMat,
@@ -165,7 +165,7 @@ export interface Cv {
     left: number,
     right: number,
     borderType: number,
-    value: unknown
+    value: unknown,
   ): void;
   rotate(src: CvMat, dst: CvMat, rotateCode: number): void;
   getBuildInformation?(): string;
@@ -395,7 +395,7 @@ export function detectRectWithOpenCV(imageData: ImageData): OpenCvDetectResult {
       cv.ADAPTIVE_THRESH_MEAN_C,
       cv.THRESH_BINARY,
       15,
-      -2
+      -2,
     );
 
     // 4. 轮廓提取
@@ -406,7 +406,7 @@ export function detectRectWithOpenCV(imageData: ImageData): OpenCvDetectResult {
       contours,
       hierarchy,
       cv.RETR_LIST,
-      cv.CHAIN_APPROX_SIMPLE
+      cv.CHAIN_APPROX_SIMPLE,
     );
 
     const total = contours.size();
@@ -446,7 +446,7 @@ export function detectRectWithOpenCV(imageData: ImageData): OpenCvDetectResult {
             x: bb.x,
             y: bb.y,
             width: bb.width,
-            height: bb.height
+            height: bb.height,
           };
         }
       } else if (area > secondBestArea) {
@@ -479,7 +479,7 @@ export function detectRectWithOpenCV(imageData: ImageData): OpenCvDetectResult {
         x: Math.max(0, Math.min(...xs)),
         y: Math.max(0, Math.min(...ys)),
         width: Math.max(...xs) - Math.min(...xs),
-        height: Math.max(...ys) - Math.min(...ys)
+        height: Math.max(...ys) - Math.min(...ys),
       };
 
       // 倾斜度：外接矩形面积 / 四边形实际面积。
@@ -498,7 +498,7 @@ export function detectRectWithOpenCV(imageData: ImageData): OpenCvDetectResult {
         rect: clampRect(rect, W, H),
         corners: ordered,
         isQuad: true,
-        confidence: scoreConfidence(bestArea, imageArea, skewRatio)
+        confidence: scoreConfidence(bestArea, imageArea, skewRatio),
       };
     }
 
@@ -508,7 +508,7 @@ export function detectRectWithOpenCV(imageData: ImageData): OpenCvDetectResult {
         rect: clamped,
         corners: null,
         isQuad: false,
-        confidence: scoreConfidence(bestArea, imageArea, 1)
+        confidence: scoreConfidence(bestArea, imageArea, 1),
       };
     }
 
@@ -520,7 +520,7 @@ export function detectRectWithOpenCV(imageData: ImageData): OpenCvDetectResult {
 
 /** 把四个角点排成 左上 -> 右上 -> 右下 -> 左下 */
 function orderCorners(
-  pts: Array<{ x: number; y: number }>
+  pts: Array<{ x: number; y: number }>,
 ): Array<{ x: number; y: number }> {
   // 按 x+y 排序：最小的是左上，最大的是右下
   const sorted = [...pts].sort((a, b) => a.x + a.y - (b.x + b.y));
@@ -539,7 +539,7 @@ function clampRect(r: Rect, W: number, H: number): Rect {
     x,
     y,
     width: Math.max(1, Math.min(r.width, W - x)),
-    height: Math.max(1, Math.min(r.height, H - y))
+    height: Math.max(1, Math.min(r.height, H - y)),
   };
 }
 
@@ -551,7 +551,7 @@ function clampRect(r: Rect, W: number, H: number): Rect {
 function scoreConfidence(
   area: number,
   imageArea: number,
-  skewRatio: number
+  skewRatio: number,
 ): number {
   const ratio = area / imageArea;
   let score = 100;
@@ -577,7 +577,7 @@ function scoreConfidence(
 export function perspectiveCorrect(
   imageData: ImageData,
   corners: Array<{ x: number; y: number }>,
-  outWidth?: number
+  outWidth?: number,
 ): ImageData {
   const cv = cvInstance!;
   const pool = new MatPool();
@@ -613,8 +613,8 @@ export function perspectiveCorrect(
         rb.x,
         rb.y,
         lb.x,
-        lb.y
-      ])
+        lb.y,
+      ]),
     );
 
     const dstQuad = pool.track(
@@ -626,13 +626,13 @@ export function perspectiveCorrect(
         outW - 1,
         outH - 1,
         0,
-        outH - 1
-      ])
+        outH - 1,
+      ]),
     );
 
     // 单应矩阵同样是 3x3 的浮点矩阵
     const M = pool.track(
-      cv.matFromArray(3, 3, cv.CV_32FC1, new Array(9).fill(0))
+      cv.matFromArray(3, 3, cv.CV_32FC1, new Array(9).fill(0)),
     );
     cv.getPerspectiveTransform(srcQuad, dstQuad, M);
 
@@ -644,7 +644,7 @@ export function perspectiveCorrect(
       new cv.Size(outW, outH),
       cv.INTER_LINEAR,
       cv.BORDER_CONSTANT,
-      new cv.Scalar(0, 0, 0, 0)
+      new cv.Scalar(0, 0, 0, 0),
     );
 
     return cloneImageData(cv, dst, outW, outH);
@@ -687,7 +687,7 @@ export const OPENCV_DEFAULT_OPTIONS: OpenCvOptimizeOptions = {
   thresholdC: 10,
   emboss: false,
   invert: false,
-  perspective: true
+  perspective: true,
 };
 
 /**
@@ -696,7 +696,7 @@ export const OPENCV_DEFAULT_OPTIONS: OpenCvOptimizeOptions = {
  */
 export function runOpenCVPipeline(
   imageData: ImageData,
-  opts: OpenCvOptimizeOptions
+  opts: OpenCvOptimizeOptions,
 ): { image: ImageData; timings: StepTiming[]; total: number } {
   const cv = cvInstance!;
   const timings: StepTiming[] = [];
@@ -776,7 +776,7 @@ export function runOpenCVPipeline(
           3,
           3,
           cv.CV_32F,
-          [0, -1, 0, -1, 5, -1, 0, -1, 0]
+          [0, -1, 0, -1, 5, -1, 0, -1, 0],
         );
         const next = pool.create();
         cv.filter2D(
@@ -786,7 +786,7 @@ export function runOpenCVPipeline(
           k,
           new cv.Point(-1, -1),
           0,
-          cv.BORDER_CONSTANT
+          cv.BORDER_CONSTANT,
         );
         k.delete();
         cur.delete();
@@ -808,7 +808,7 @@ export function runOpenCVPipeline(
           cv.ADAPTIVE_THRESH_MEAN_C,
           cv.THRESH_BINARY,
           block,
-          opts.thresholdC
+          opts.thresholdC,
         );
         cur.delete();
         cur = next;
@@ -823,7 +823,7 @@ export function runOpenCVPipeline(
           3,
           3,
           cv.CV_32F,
-          [-2, -1, 0, -1, 0, 1, 0, 1, 2]
+          [-2, -1, 0, -1, 0, 1, 0, 1, 2],
         );
         const next = pool.create();
         cv.filter2D(
@@ -833,7 +833,7 @@ export function runOpenCVPipeline(
           k,
           new cv.Point(-1, -1),
           128,
-          cv.BORDER_CONSTANT
+          cv.BORDER_CONSTANT,
         );
         k.delete();
         cur.delete();
@@ -872,7 +872,7 @@ export function cloneImageData(
   cv: Cv,
   mat: CvMat,
   width?: number,
-  height?: number
+  height?: number,
 ): ImageData {
   const w = width ?? mat.cols;
   const h = height ?? mat.rows;

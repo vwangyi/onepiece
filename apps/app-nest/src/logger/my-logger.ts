@@ -6,7 +6,7 @@ import {
   Logger as WinstonLogger,
   createLogger,
   format,
-  transports
+  transports,
 } from 'winston';
 
 /**
@@ -36,8 +36,8 @@ export class MyLogger implements LoggerService, OnModuleInit {
               const appStr = chalk.blue('[Nest]');
               const contextStr = chalk.yellow(`[${context}]`);
               return `${appStr} ${timestamp} ${level} ${contextStr} : ${message}`;
-            })
-          )
+            }),
+          ),
         }),
         // 文件持久化 —— info 级别，按日滚动
         new transports.DailyRotateFile({
@@ -49,9 +49,9 @@ export class MyLogger implements LoggerService, OnModuleInit {
           maxFiles: '7d',
           format: format.combine(
             format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
-            format.json()
+            format.json(),
           ),
-          level: 'info'
+          level: 'info',
         }),
         // 文件持久化 —— error 级别，按日滚动
         new transports.DailyRotateFile({
@@ -63,11 +63,11 @@ export class MyLogger implements LoggerService, OnModuleInit {
           maxFiles: '14d',
           format: format.combine(
             format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
-            format.json()
+            format.json(),
           ),
-          level: 'error'
-        })
-      ]
+          level: 'error',
+        }),
+      ],
     });
   }
 

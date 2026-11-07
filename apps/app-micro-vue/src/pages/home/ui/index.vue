@@ -8,22 +8,22 @@ const imageCaptureStore = useImageCaptureStore();
 
 const open = computed({
   get: () => imageCaptureStore.state.open,
-  set: v => imageCaptureStore.updateOpen(v)
+  set: v => imageCaptureStore.updateOpen(v),
 });
 
 const selectedKeys = computed({
   get: () => imageCaptureStore.state.selectedKeys as string[],
-  set: (v: string[]) => imageCaptureStore.updateSelectedKeys(v)
+  set: (v: string[]) => imageCaptureStore.updateSelectedKeys(v),
 });
 
 const expandedKeys = computed({
   get: () => imageCaptureStore.state.expandedKeys as string[],
-  set: (v: string[]) => imageCaptureStore.updateExpandedKeys(v)
+  set: (v: string[]) => imageCaptureStore.updateExpandedKeys(v),
 });
 
 const treeData = computed({
   get: () => imageCaptureStore.state.treeData as TreeProps['treeData'],
-  set: (v: TreeProps['treeData']) => imageCaptureStore.updateTreeData(v)
+  set: (v: TreeProps['treeData']) => imageCaptureStore.updateTreeData(v),
 });
 </script>
 

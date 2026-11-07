@@ -16,7 +16,7 @@ type ArgsWithoutTarget = [string, EventHandler, ListenerOptions?];
 export function useEventListener<K extends keyof WindowEventMap>(
   event: K,
   handler: (event: WindowEventMap[K]) => void,
-  options?: ListenerOptions
+  options?: ListenerOptions,
 ): WatchStopHandle;
 
 // ---------- 重载 2：window ----------
@@ -24,7 +24,7 @@ export function useEventListener<K extends keyof WindowEventMap>(
   target: Window,
   event: K,
   handler: (event: WindowEventMap[K]) => void,
-  options?: ListenerOptions
+  options?: ListenerOptions,
 ): WatchStopHandle;
 
 // ---------- 重载 3：document ----------
@@ -32,7 +32,7 @@ export function useEventListener<K extends keyof DocumentEventMap>(
   target: Document,
   event: K,
   handler: (event: DocumentEventMap[K]) => void,
-  options?: ListenerOptions
+  options?: ListenerOptions,
 ): WatchStopHandle;
 
 // ---------- 重载 4：HTMLElement / Ref<HTMLElement> ----------
@@ -40,7 +40,7 @@ export function useEventListener<K extends keyof HTMLElementEventMap>(
   target: HTMLElement | Ref<HTMLElement | null | undefined>,
   event: K,
   handler: (event: HTMLElementEventMap[K]) => void,
-  options?: ListenerOptions
+  options?: ListenerOptions,
 ): WatchStopHandle;
 
 // ---------- 重载 5：兜底 ----------
@@ -48,7 +48,7 @@ export function useEventListener(
   target: MaybeRefTarget,
   event: string,
   handler: EventHandler,
-  options?: ListenerOptions
+  options?: ListenerOptions,
 ): WatchStopHandle;
 
 // ---------- 实现签名 ----------
@@ -81,6 +81,6 @@ export function useEventListener(
         element.removeEventListener(event, handler, options);
       });
     },
-    { immediate: true }
+    { immediate: true },
   );
 }

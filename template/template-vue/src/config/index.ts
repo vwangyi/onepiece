@@ -37,14 +37,14 @@ export interface AppConfig {
 
 const envConfig: Record<string, Partial<AppConfig>> = {
   development: devConfig,
-  production: prodConfig
+  production: prodConfig,
 };
 const env = __APP_NODE_ENV__ || 'development';
 
 const config: AppConfig = {
   ...defaultConfig,
   ...envConfig[env],
-  APP_VERSION: env === 'production' ? __APP_VERSION__ : __ENV_VERSION__
+  APP_VERSION: env === 'production' ? __APP_VERSION__ : __ENV_VERSION__,
 };
 
 export default config;

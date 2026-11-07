@@ -100,11 +100,11 @@ import { YourLib } from 'your-lib';
 
 const instance = new YourLib({
   apiKey: 'your-api-key',
-  timeout: 5000
+  timeout: 5000,
 });
 
 const result = await instance.doSomething({
-  name: 'hello'
+  name: 'hello',
 });
 console.log(result);
 ```
@@ -115,7 +115,7 @@ console.log(result);
 const instance = new YourLib({
   plugins: [pluginA, pluginB],
   retry: { max: 3, delay: 1000 },
-  logger: console
+  logger: console,
 });
 ```
 

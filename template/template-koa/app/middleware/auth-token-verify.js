@@ -20,7 +20,7 @@ module.exports = app => {
     '/api/auth/login',
     '/api/user/list',
     '/api/auth/send_email_code', // 发送验证码 不需要登录
-    '/api/auth/login/by_email_code'
+    '/api/auth/login/by_email_code',
   ];
 
   return async (ctx, next) => {
@@ -48,7 +48,7 @@ module.exports = app => {
     // 若没有登录
     if (!isLogin) {
       ctx.cookies.set('token', '', {
-        expires: new Date(0)
+        expires: new Date(0),
       });
 
       // 处理api请求：api请求就没办法重定向了
@@ -57,7 +57,7 @@ module.exports = app => {
         ctx.body = {
           success: false,
           code: 50000,
-          message: 'token已过期，请重新登录'
+          message: 'token已过期，请重新登录',
         };
       }
       // 处理页面请求 就可以重定向

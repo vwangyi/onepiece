@@ -5,22 +5,22 @@ const props = defineProps({
   // 列表数据
   list: {
     type: Array,
-    required: true
+    required: true,
   },
   // 每个列表项的固定高度（px）
   itemHeight: {
     type: Number,
-    required: true
+    required: true,
   },
   // 可视区域外额外渲染的缓冲数量，防止快速滚动出现白屏
   bufferCount: {
     type: Number,
-    default: 5
+    default: 5,
   },
   // 唯一标识字段名或函数
   itemKey: {
     type: [String, Function],
-    default: 'id'
+    default: 'id',
   },
   // 撑高元素（phantom）允许的最大高度。
   // 浏览器对单个滚动容器的内容高度存在上限（Chrome≈33,554,432px，Firefox≈17,895,698px）。
@@ -29,8 +29,8 @@ const props = defineProps({
   // 如果明确只运行在 Chrome/Electron 等环境，可把该值调大（如 33000000）以获得更精确的滚动条。
   maxScrollHeight: {
     type: Number,
-    default: 15000000
-  }
+    default: 15000000,
+  },
 });
 
 // 容器 DOM 引用
@@ -45,7 +45,7 @@ const totalHeight = computed(() => props.list.length * props.itemHeight);
 
 // 撑高元素实际渲染高度：不超过浏览器上限，避免被裁剪
 const phantomHeight = computed(() =>
-  Math.min(totalHeight.value, props.maxScrollHeight)
+  Math.min(totalHeight.value, props.maxScrollHeight),
 );
 
 // 滚动映射比例：把 phantom 滚动区间 [0, phantomHeight - H]
@@ -86,7 +86,7 @@ const visibleData = computed(() => {
 // 可见区域偏移量：让首个渲染项出现在正确的屏幕位置
 // （包含被滚出视口的上半截部分，保证与滚动位置对齐）
 const offsetY = computed(
-  () => scrollTop.value + startIndex.value * props.itemHeight - realTop.value
+  () => scrollTop.value + startIndex.value * props.itemHeight - realTop.value,
 );
 
 // 滚动事件处理
@@ -131,14 +131,14 @@ const resolveKey = item =>
     <div
       class="phantom"
       :style="{
-        height: phantomHeight + 'px'
+        height: phantomHeight + 'px',
       }"
     >
       <!-- 实际渲染的可视区域列表，通过 translateY 偏移 -->
       <div
         class="visible-area"
         :style="{
-          transform: `translateY(${offsetY}px)`
+          transform: `translateY(${offsetY}px)`,
         }"
       >
         <div
@@ -146,7 +146,7 @@ const resolveKey = item =>
           :key="resolveKey(item)"
           class="list-item"
           :style="{
-            height: itemHeight + 'px'
+            height: itemHeight + 'px',
           }"
         >
           <!-- 使用作用域插槽将数据传递给父组件 -->

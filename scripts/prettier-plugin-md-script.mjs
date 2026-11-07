@@ -44,7 +44,7 @@ function embed(path, options) {
         return async textToDoc => {
           try {
             const codeDoc = await textToDoc(code, {
-              parser: resolveParser(openTag)
+              parser: resolveParser(openTag),
             });
             return [openTag, hardline, codeDoc, hardline, closeTag];
           } catch {
@@ -66,19 +66,19 @@ export default {
       parsers: [PARSER_NAME],
       extensions: ['.md'],
       // 让 VS Code 的 prettier 扩展把 markdown 语言也注册进来
-      vscodeLanguageIds: ['markdown']
-    }
+      vscodeLanguageIds: ['markdown'],
+    },
   ],
   parsers: {
     [PARSER_NAME]: {
       ...parsers.markdown,
-      astFormat: AST_FORMAT
-    }
+      astFormat: AST_FORMAT,
+    },
   },
   printers: {
     [AST_FORMAT]: {
       ...markdownPrinter,
-      embed
-    }
-  }
+      embed,
+    },
+  },
 };

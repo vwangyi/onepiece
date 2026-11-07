@@ -4,8 +4,8 @@ const a = {
     c: function () {
       console.log(this);
       return this;
-    }
-  }
+    },
+  },
 };
 
 console.log(a.b.c() === a.b);
@@ -76,8 +76,8 @@ const a = {
     c: function () {
       console.log(this);
       return this;
-    }
-  }
+    },
+  },
 };
 console.log(a.b.c() === a.b);
 const d = a.b.c;
@@ -105,7 +105,7 @@ function fn() {
     a: 200,
     callback: () => {
       console.log(this.a);
-    }
+    },
   };
 }
 const fn0 = fn();
@@ -132,7 +132,7 @@ function call(ctx, ...args) {
   const key = Symbol(); // 用symbol来防止第一个参数对象 上有相同的属性
   Object.defineProperty(ctx, key, {
     value: fn,
-    enumerable: false
+    enumerable: false,
   });
   const result = ctx[key](...args); // 利用js的规则 this指向调用者ctx
   return result;

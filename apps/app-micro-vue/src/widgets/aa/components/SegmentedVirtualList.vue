@@ -5,39 +5,39 @@ const props = defineProps({
   // 列表数据
   list: {
     type: Array,
-    required: true
+    required: true,
   },
   // 每个列表项的固定高度（px）
   itemHeight: {
     type: Number,
-    required: true
+    required: true,
   },
   // 每段条数。单段高度 = segmentSize * itemHeight 必须 ≤ maxScrollHeight，
   // 组件会自动向下取整到安全范围内（单段永不超过浏览器滚动上限，因此不会被裁掉）。
   segmentSize: {
     type: Number,
-    default: 100000
+    default: 100000,
   },
   // 单段允许的最大高度（浏览器滚动内容上限），用于约束 segmentSize。
   maxScrollHeight: {
     type: Number,
-    default: 15000000
+    default: 15000000,
   },
   // 可视区域外额外渲染的缓冲数量，防止快速滚动出现白屏
   bufferCount: {
     type: Number,
-    default: 5
+    default: 5,
   },
   // 唯一标识字段名或函数
   itemKey: {
     type: [String, Function],
-    default: 'id'
+    default: 'id',
   },
   // 容器高度（字符串或数字，数字按 px 处理）
   height: {
     type: [String, Number],
-    default: '500px'
-  }
+    default: '500px',
+  },
 });
 
 const containerRef = ref(null);
@@ -51,20 +51,20 @@ const effectiveSegmentSize = computed(() =>
     1,
     Math.min(
       props.segmentSize,
-      Math.floor(props.maxScrollHeight / props.itemHeight)
-    )
-  )
+      Math.floor(props.maxScrollHeight / props.itemHeight),
+    ),
+  ),
 );
 
 const totalSegments = computed(() =>
-  Math.max(1, Math.ceil(props.list.length / effectiveSegmentSize.value))
+  Math.max(1, Math.ceil(props.list.length / effectiveSegmentSize.value)),
 );
 
 const segmentStart = computed(
-  () => currentSegment.value * effectiveSegmentSize.value
+  () => currentSegment.value * effectiveSegmentSize.value,
 );
 const segmentEnd = computed(() =>
-  Math.min(props.list.length, segmentStart.value + effectiveSegmentSize.value)
+  Math.min(props.list.length, segmentStart.value + effectiveSegmentSize.value),
 );
 const segmentLength = computed(() => segmentEnd.value - segmentStart.value);
 
@@ -72,7 +72,7 @@ const segmentLength = computed(() => segmentEnd.value - segmentStart.value);
 const phantomHeight = computed(() => segmentLength.value * props.itemHeight);
 // 当前段内最大可滚动距离
 const maxTop = computed(() =>
-  Math.max(0, phantomHeight.value - containerHeight.value)
+  Math.max(0, phantomHeight.value - containerHeight.value),
 );
 
 // 段内虚拟列表索引
@@ -92,8 +92,8 @@ const endIndex = computed(() => {
 const visibleData = computed(() =>
   props.list.slice(
     segmentStart.value + startIndex.value,
-    segmentStart.value + endIndex.value
-  )
+    segmentStart.value + endIndex.value,
+  ),
 );
 
 // 偏移量（段内无缩放，恒等于 startIndex * itemHeight）
@@ -175,7 +175,7 @@ onMounted(() => {
   // 用非 passive 监听，以便必要时 preventDefault
   wheelListener = handleWheel;
   containerRef.value?.addEventListener('wheel', wheelListener, {
-    passive: false
+    passive: false,
   });
 });
 onBeforeUnmount(() => {
@@ -192,7 +192,7 @@ onBeforeUnmount(() => {
   <div
     class="segmented-virtual-list"
     :style="{
-      height: typeof height === 'number' ? height + 'px' : height
+      height: typeof height === 'number' ? height + 'px' : height,
     }"
   >
     <div
@@ -204,13 +204,13 @@ onBeforeUnmount(() => {
       <div
         class="phantom"
         :style="{
-          height: phantomHeight + 'px'
+          height: phantomHeight + 'px',
         }"
       >
         <div
           class="visible-area"
           :style="{
-            transform: `translateY(${offsetY}px)`
+            transform: `translateY(${offsetY}px)`,
           }"
         >
           <div
@@ -218,7 +218,7 @@ onBeforeUnmount(() => {
             :key="resolveKey(item)"
             class="list-item"
             :style="{
-              height: itemHeight + 'px'
+              height: itemHeight + 'px',
             }"
           >
             <slot

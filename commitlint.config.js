@@ -27,42 +27,42 @@ export default {
         'wip',
         'workflow',
         'types',
-        'release'
-      ]
-    ]
+        'release',
+      ],
+    ],
   },
   prompt: {
     types: [
       {
         value: 'feat',
-        name: '✨ 1. 新增功能: feat'
+        name: '✨ 1. 新增功能: feat',
       },
       { value: 'fix', name: '🐛 2. 修复缺陷: fix' },
       { value: 'docs', name: '📚 3. 更新文档: docs' },
       {
         value: 'refactor',
-        name: '📦 3. 代码重构(不新增功能也不修复bug): refactor'
+        name: '📦 3. 代码重构(不新增功能也不修复bug): refactor',
       },
       {
         value: 'perf',
-        name: '🚀 4. 提升性能: perf'
+        name: '🚀 4. 提升性能: perf',
       },
       {
         value: 'test',
-        name: '🧪 5. 添加测试: test'
+        name: '🧪 5. 添加测试: test',
       },
       {
         value: 'chore',
-        name: '🔧 6. 杂活(更改构建流程或辅助工具): chore'
+        name: '🔧 6. 杂活(更改构建流程或辅助工具): chore',
       },
       {
         value: 'revert',
-        name: '⏪ 7. 代码回滚: revert'
+        name: '⏪ 7. 代码回滚: revert',
       },
       {
         value: 'style',
-        name: '🎨 8. 样式调整(不影响代码运行): style'
-      }
+        name: '🎨 8. 样式调整(不影响代码运行): style',
+      },
     ],
     scopes: ['root', 'all-blue', 'new-world', 'docs', 'demo', 'packages'],
     allowCustomScopes: true,
@@ -73,7 +73,7 @@ export default {
       subject: '📝 请简要描述更改:',
       body: '🔍 详细描述 (可选):',
       footer: '🔗 关联的 ISSUE 或 BREAKING CHANGE (可选):',
-      confirmCommit: '✅ 确认提交?'
-    }
-  }
+      confirmCommit: '✅ 确认提交?',
+    },
+  },
 };

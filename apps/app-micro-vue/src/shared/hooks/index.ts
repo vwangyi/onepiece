@@ -4,6 +4,6 @@ export { useImageScanner, whenIdle } from './useImageScanner';
 export type {
   DetectStatus,
   ScanStats,
-  UseImageScanner
+  UseImageScanner,
 } from './useImageScanner';
 export { useSocket } from './useSocket';

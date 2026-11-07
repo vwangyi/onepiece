@@ -9,7 +9,7 @@ import {
   useUser,
   updateUser,
   userProfileSchema,
-  type UserProfileFormData
+  type UserProfileFormData,
 } from '@/entities/user';
 
 const { user, loading, error, reload } = useUser();
@@ -25,7 +25,7 @@ watch(
   u => {
     if (u) form.value = { name: u.name, email: u.email };
   },
-  { immediate: true }
+  { immediate: true },
 );
 
 async function handleSave() {

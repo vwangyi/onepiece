@@ -15,20 +15,20 @@ Vue.use(VueI18n);
 const messages = {
   en: {
     ...enLocale,
-    ...elementEnLocale
+    ...elementEnLocale,
   },
   zh: {
     ...zhLocale,
-    ...elementZhLocale
+    ...elementZhLocale,
   },
   es: {
     ...esLocale,
-    ...elementEsLocale
+    ...elementEsLocale,
   },
   ja: {
     ...jaLocale,
-    ...elementJaLocale
-  }
+    ...elementJaLocale,
+  },
 };
 export function getLanguage() {
   const chooseLanguage = Cookies.get('language');
@@ -51,7 +51,7 @@ const i18n = new VueI18n({
   // options: en | zh | es
   locale: getLanguage(),
   // set locale messages
-  messages
+  messages,
 });
 
 export default i18n;

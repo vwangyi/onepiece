@@ -42,7 +42,7 @@ export class UserService {
 
   async register(user: RegisterUserDto) {
     const result = await this.userRepository.findOneBy({
-      username: user.username
+      username: user.username,
     });
     if (result) {
       return new HttpException('用户名已存在', 200);
@@ -72,7 +72,7 @@ export class UserService {
       .createQueryBuilder('user')
       .where('user.username = :username or user.age = :age', {
         username,
-        age
+        age,
       })
       .getMany();
   }

@@ -67,33 +67,33 @@ class FenwickTree {
 const props = defineProps({
   list: {
     type: Array,
-    required: true
+    required: true,
   },
   // 未测量 item 的预估高度（建议取所有 item 高度的上界）
   estimatedItemHeight: {
     type: Number,
-    default: 50
+    default: 50,
   },
   // 单段允许的最大像素高度（浏览器滚动内容上限）
   maxScrollHeight: {
     type: Number,
-    default: 15000000
+    default: 15000000,
   },
   // 可视区域外额外渲染的缓冲数量
   bufferCount: {
     type: Number,
-    default: 5
+    default: 5,
   },
   // 唯一标识字段名或函数
   itemKey: {
     type: [String, Function],
-    default: 'id'
+    default: 'id',
   },
   // 容器高度（字符串或数字，数字按 px 处理）
   height: {
     type: [String, Number],
-    default: '500px'
-  }
+    default: '500px',
+  },
 });
 
 const containerRef = ref(null);
@@ -173,22 +173,22 @@ const totalSegments = computed(() => segments.value.length);
 const currentSegIndex = computed(() =>
   Math.min(
     Math.max(0, displaySegIndex.value),
-    Math.max(0, segments.value.length - 1)
-  )
+    Math.max(0, segments.value.length - 1),
+  ),
 );
 const currentSeg = computed(
-  () => segments.value[currentSegIndex.value] || [0, props.list.length]
+  () => segments.value[currentSegIndex.value] || [0, props.list.length],
 );
 const segStartOffset = computed(() => bit.sum(currentSeg.value[0]));
 const segHeight = computed(() =>
-  Math.max(0, bit.sum(currentSeg.value[1]) - segStartOffset.value)
+  Math.max(0, bit.sum(currentSeg.value[1]) - segStartOffset.value),
 );
 const maxTop = computed(() =>
-  Math.max(0, segHeight.value - containerHeight.value)
+  Math.max(0, segHeight.value - containerHeight.value),
 );
 // 段内滚动距离（钳制到合法范围）
 const localScrollTop = computed(() =>
-  Math.min(Math.max(0, containerScrollTop.value), maxTop.value)
+  Math.min(Math.max(0, containerScrollTop.value), maxTop.value),
 );
 // 视口顶在全局坐标的像素位置（推导值，仅用于渲染/锚点）
 const globalTop = computed(() => segStartOffset.value + localScrollTop.value);
@@ -215,14 +215,14 @@ const endIndex = computed(() => {
 });
 
 const visibleData = computed(() =>
-  props.list.slice(startIndex.value, endIndex.value)
+  props.list.slice(startIndex.value, endIndex.value),
 );
 
 // 可见区域偏移量：让首个渲染 item 出现在正确屏幕位置。
 // 注意：visible-area 是容器内的绝对定位元素，会随滚动一起上移，
 // 因此 offsetY = 首个渲染 item 的「段内全局偏移」即可，不要再减 localScrollTop（否则滚动量被减两遍，item 飞出视口）。
 const offsetY = computed(
-  () => bit.sum(startIndex.value) - segStartOffset.value
+  () => bit.sum(startIndex.value) - segStartOffset.value,
 );
 
 // 撑高元素高度 = 当前段真实高度（已测量则用真实高度，保证 ≤ 上限）
@@ -258,7 +258,7 @@ function scheduleRebuild() {
     const newStart = bit.sum(segments.value[newSeg][0]);
     const newMaxTop = Math.max(
       0,
-      bit.sum(segments.value[newSeg][1]) - newStart - containerHeight.value
+      bit.sum(segments.value[newSeg][1]) - newStart - containerHeight.value,
     );
     const newLocal = Math.min(Math.max(0, anchorTop - newStart), newMaxTop);
     displaySegIndex.value = newSeg;
@@ -345,7 +345,7 @@ onMounted(() => {
     if (needAnchor && anchorDelta !== 0) {
       containerScrollTop.value = Math.max(
         0,
-        containerScrollTop.value + anchorDelta
+        containerScrollTop.value + anchorDelta,
       );
     }
     scheduleRebuild();
@@ -356,7 +356,7 @@ onMounted(() => {
   }
   wheelListener = handleWheel;
   containerRef.value?.addEventListener('wheel', wheelListener, {
-    passive: false
+    passive: false,
   });
 });
 onBeforeUnmount(() => {
@@ -376,7 +376,7 @@ watch(() => props.list.length, initHeights);
   <div
     class="dynamic-segmented-virtual-list"
     :style="{
-      height: typeof height === 'number' ? height + 'px' : height
+      height: typeof height === 'number' ? height + 'px' : height,
     }"
   >
     <div
@@ -387,13 +387,13 @@ watch(() => props.list.length, initHeights);
       <div
         class="phantom"
         :style="{
-          height: phantomHeight + 'px'
+          height: phantomHeight + 'px',
         }"
       >
         <div
           class="visible-area"
           :style="{
-            transform: `translateY(${offsetY}px)`
+            transform: `translateY(${offsetY}px)`,
           }"
         >
           <div

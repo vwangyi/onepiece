@@ -10,7 +10,7 @@ const addToCartStore = useAddToCartStore();
 const handleAdd = () => {
   addToCartStore.execute({
     productId: props.productId,
-    quantity: 1
+    quantity: 1,
   });
 };
 </script>

@@ -9,6 +9,6 @@ export function mapUserDTO(dto: UserDTO): User {
     name: dto.name,
     avatar: dto?.avatar_url ?? undefined,
     role: dto.role as UserRole,
-    createdAt: new Date(dto.created_at)
+    createdAt: new Date(dto.created_at),
   };
 }

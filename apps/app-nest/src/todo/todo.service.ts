@@ -39,7 +39,7 @@ export class TodoService {
     title?: string,
     status?: number,
     page?: number,
-    pageSize?: number
+    pageSize?: number,
   ) {
     const where: Record<string, unknown> = {};
     if (title) {
@@ -57,7 +57,7 @@ export class TodoService {
     ) {
       return await this.todoRepository.find({
         where,
-        order: { createDate: 'DESC' }
+        order: { createDate: 'DESC' },
       });
     }
 
@@ -65,7 +65,7 @@ export class TodoService {
       where,
       order: { createDate: 'DESC' },
       skip: (page - 1) * pageSize,
-      take: pageSize
+      take: pageSize,
     });
     return { list, total, page, pageSize };
   }

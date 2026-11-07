@@ -40,7 +40,7 @@ export async function getUserById(id: string): Promise<User> {
 
 export async function updateUser(
   id: string,
-  payload: { name: string; email: string }
+  payload: { name: string; email: string },
 ): Promise<User> {
   const { data } = await request.patch<UserDTO>(`/users/${id}`, payload);
   return mapUserDTO(data);

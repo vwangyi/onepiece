@@ -51,7 +51,7 @@ onMounted(() => {
         :class="{
           'add-task-input': true,
           'task-item': true,
-          'active': t.active
+          'active': t.active,
         }"
         @click="handleClickTask(t)"
       >
@@ -60,7 +60,7 @@ onMounted(() => {
             'iconfont': true,
             'add-task-checkbox-icon': true,
             'icon-webicon19': t.hover,
-            'icon-webicon206': !t.hover
+            'icon-webicon206': !t.hover,
           }"
           @mouseenter="handleMouseEnter(t)"
           @mouseleave="handleMouseLeave"

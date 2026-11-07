@@ -19,7 +19,7 @@ import pkg from './package.json' with { type: 'json' };
 
 export default ({ mode }) => {
   dotenv.config({
-    path: fileURLToPath(new URL(`.env.${mode}`, import.meta.url))
+    path: fileURLToPath(new URL(`.env.${mode}`, import.meta.url)),
   });
 
   return {
@@ -37,12 +37,12 @@ export default ({ mode }) => {
       plugins: [terser()],
       globals: {
         'react': 'React',
-        'react-dom': 'ReactDOM'
+        'react-dom': 'ReactDOM',
       },
       paths: {
         'react': 'https://cdn.jsdelivr.net/npm/react@18.2.0/+esm',
-        'react-dom': 'https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm'
-      }
+        'react-dom': 'https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm',
+      },
     },
 
     external: ['react', 'react-dom'],
@@ -51,9 +51,9 @@ export default ({ mode }) => {
         entries: [
           {
             find: '@',
-            replacement: fileURLToPath(new URL('src', import.meta.url))
-          }
-        ]
+            replacement: fileURLToPath(new URL('src', import.meta.url)),
+          },
+        ],
       }),
       nodeResolve({
         extensions: [
@@ -65,8 +65,8 @@ export default ({ mode }) => {
           '.mjs',
           '.json',
           '.css',
-          '.scss'
-        ]
+          '.scss',
+        ],
       }),
       commonjs(),
       vue(),
@@ -81,7 +81,7 @@ export default ({ mode }) => {
           '.tsx',
           '.json',
           '.vue',
-          '.scss'
+          '.scss',
         ],
         // exclude: 'node_modules/**',
         babelrc: false,
@@ -93,7 +93,7 @@ export default ({ mode }) => {
           if (/\.vue\?.*type=(style|template)/.test(id)) return false;
           // 只处理 js/ts/vue(script) 相关
           return /\.(js|jsx|ts|tsx|vue)(\?|$)/.test(id);
-        }
+        },
       }),
 
       replace({
@@ -106,7 +106,7 @@ export default ({ mode }) => {
         '__APP_VERSION__': JSON.stringify(pkg.version),
         '__VUE_OPTIONS_API__': true, // Vue3是否支持 Options API
         '__VUE_PROD_DEVTOOLS__': false, // Vue3生产环境是否启用 DevTools Vue 调试工具
-        '__VUE_PROD_HYDRATION_MISMATCH_DETAILS__': false // 生产环境水合失败时 是否显示详细信息
+        '__VUE_PROD_HYDRATION_MISMATCH_DETAILS__': false, // 生产环境水合失败时 是否显示详细信息
       }),
 
       serve('dist'),
@@ -115,15 +115,15 @@ export default ({ mode }) => {
       postcss({
         extensions: ['.css'], // 将scss 解析成css
         extract: true, // 将css 提取到dist目录下
-        modules: true // 增加css的模块化支持
+        modules: true, // 增加css的模块化支持
       }),
       htmlTemplate({
         template: 'public/index.html',
         target: 'dist/index.html',
-        attrs: ['type="module"']
+        attrs: ['type="module"'],
       }),
       image(),
-      visualizer()
-    ]
+      visualizer(),
+    ],
   };
 };

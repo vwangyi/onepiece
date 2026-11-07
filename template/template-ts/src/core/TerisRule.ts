@@ -22,7 +22,7 @@ export class TerisRule {
     const targetSquarePoints: Point[] = shape.map(it => {
       return {
         x: it.x + targetPoint.x,
-        y: it.y + targetPoint.y
+        y: it.y + targetPoint.y,
       };
     });
     // 边界判断
@@ -41,7 +41,7 @@ export class TerisRule {
 
     // 判断是否与已有的方块有重叠
     result = targetSquarePoints.some(p =>
-      exists.some(sq => sq.point.x === p.x && sq.point.y === p.y)
+      exists.some(sq => sq.point.x === p.x && sq.point.y === p.y),
     );
     if (result) {
       return false;
@@ -52,17 +52,17 @@ export class TerisRule {
   static move(
     teris: SquareGroup,
     targetPoint: Point,
-    exists: Square[]
+    exists: Square[],
   ): boolean;
   static move(
     teris: SquareGroup,
     direction: MoveDirection,
-    exists: Square[]
+    exists: Square[],
   ): boolean;
   static move(
     teris: SquareGroup,
     targetPointOrDirection: Point | MoveDirection,
-    exists: Square[]
+    exists: Square[],
   ): boolean {
     if (isPoint(targetPointOrDirection)) {
       if (this.canIMove(teris.shape, targetPointOrDirection, exists)) {
@@ -77,17 +77,17 @@ export class TerisRule {
     if (direction === MoveDirection.down) {
       targetPoint = {
         x: teris.centerPoint.x,
-        y: teris.centerPoint.y + 1
+        y: teris.centerPoint.y + 1,
       };
     } else if (direction === MoveDirection.left) {
       targetPoint = {
         x: teris.centerPoint.x - 1,
-        y: teris.centerPoint.y
+        y: teris.centerPoint.y,
       };
     } else {
       targetPoint = {
         x: teris.centerPoint.x + 1,
-        y: teris.centerPoint.y
+        y: teris.centerPoint.y,
       };
     }
     return this.move(teris, targetPoint, exists);
@@ -101,7 +101,7 @@ export class TerisRule {
   static moveDirectly(
     teris: SquareGroup,
     direction: MoveDirection,
-    exists: Square[]
+    exists: Square[],
   ) {
     while (this.move(teris, direction, exists)) {
       console.log();
@@ -162,7 +162,7 @@ export class TerisRule {
         .forEach(sq => {
           sq.point = {
             x: sq.point.x,
-            y: sq.point.y + 1
+            y: sq.point.y + 1,
           };
         });
 

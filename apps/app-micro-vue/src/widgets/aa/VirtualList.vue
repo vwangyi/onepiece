@@ -7,7 +7,7 @@ import VirtualList from './components/VirtualList.vue';
 const data = new Array(500000).fill(0).map((item, i) => {
   return {
     id: i + 1,
-    name: `Item ${i + 1}`
+    name: `Item ${i + 1}`,
   };
 });
 </script>

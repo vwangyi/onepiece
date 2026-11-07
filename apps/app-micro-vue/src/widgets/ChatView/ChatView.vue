@@ -38,7 +38,7 @@ function createSocket(): Socket {
   socket = io(CHAT_NAMESPACE, {
     transports: ['websocket', 'polling'],
     reconnection: true,
-    reconnectionDelay: 2000
+    reconnectionDelay: 2000,
   });
   return socket;
 }
@@ -58,7 +58,7 @@ function handleUserJoined(data: { username: string; time: string }) {
     username: 'system',
     content: `${data.username} 加入了聊天室`,
     createTime: data.time,
-    type: 'system'
+    type: 'system',
   });
 }
 function handleUserLeft(data: { username: string; time: string }) {
@@ -66,7 +66,7 @@ function handleUserLeft(data: { username: string; time: string }) {
     username: 'system',
     content: `${data.username} 离开了聊天室`,
     createTime: data.time,
-    type: 'system'
+    type: 'system',
   });
   typingUsers.value.delete(data.username);
 }
@@ -168,7 +168,7 @@ function sendMessage() {
   socket?.emit('chatMessage', {
     room: DEFAULT_ROOM,
     username: nickname.value.trim(),
-    content
+    content,
   });
 
   inputMsg.value = '';
@@ -226,7 +226,7 @@ function handleInputKeydown(e: KeyboardEvent) {
 // 消息数量变化时自动滚动到底部
 watch(
   () => msgList.value.length,
-  () => scrollToBottom()
+  () => scrollToBottom(),
 );
 
 /* ---------- 生命周期 ---------- */
@@ -321,7 +321,7 @@ onBeforeUnmount(() => {
             class="msg-row"
             :class="{
               system: msg.type === 'system',
-              self: msg.type === 'user' && msg.username === nickname.trim()
+              self: msg.type === 'user' && msg.username === nickname.trim(),
             }"
           >
             <!-- 系统消息 -->

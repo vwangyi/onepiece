@@ -23,7 +23,7 @@ console.log(process.env.NODE_ENV, process.env.NODE_ENV === 'development');
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: `.env.${process.env.NODE_ENV}` // 默认 开发环境
+      envFilePath: `.env.${process.env.NODE_ENV}`, // 默认 开发环境
     }),
     TypeOrmModule.forRootAsync({
       inject: [ConfigService], // 需要注入 ConfigModule的ConfigService
@@ -37,20 +37,20 @@ console.log(process.env.NODE_ENV, process.env.NODE_ENV === 'development');
         synchronize: process.env.NODE_ENV === 'development', // 可以修改数据库根据实体和数据库会一致
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
         timezone: 'Z',
-        logging: true
-      })
+        logging: true,
+      }),
     }),
     // 自定义日志模块
     // LoggerModule,
     UserModule,
     // UploadModule,
     // AuthModule,
-    TodoModule
+    TodoModule,
     // ChatModule
   ],
   controllers: [AppController],
   providers: [
-    AppService
+    AppService,
     // 全局响应拦截器
     // {
     //   provide: APP_INTERCEPTOR,
@@ -73,7 +73,7 @@ console.log(process.env.NODE_ENV, process.env.NODE_ENV === 'development');
     //   useFactory: (a, b) => Math.random(),
     //   inject: ['test_xxx', AppService]
     // }
-  ]
+  ],
 })
 
 // implements NestModule

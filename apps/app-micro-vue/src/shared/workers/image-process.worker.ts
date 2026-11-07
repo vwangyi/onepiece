@@ -30,7 +30,7 @@ import {
   type OpenCvOptimizeOptions,
   type OpenCvDetectResult,
   type Rect,
-  type StepTiming
+  type StepTiming,
 } from '../wasm/opencv-image-processing';
 
 // ---------------------------------------------------------------------------
@@ -138,7 +138,7 @@ async function ensureOpenCV(): Promise<void> {
   ready = true;
   postMessage({
     type: 'wasm-ready',
-    opencvVersion: opencvVersion()
+    opencvVersion: opencvVersion(),
   } satisfies WorkerResponse);
 }
 
@@ -188,7 +188,7 @@ async function toBlob(image: ImageData): Promise<Blob | null> {
 function toImageData(
   buffer: ArrayBuffer,
   width: number,
-  height: number
+  height: number,
 ): ImageData {
   return new ImageData(new Uint8ClampedArray(buffer), width, height);
 }
@@ -210,7 +210,7 @@ async function handleDetect(msg: DetectMessage): Promise<void> {
     corners: result.corners,
     isQuad: result.isQuad,
     confidence: result.confidence,
-    elapsed: performance.now() - started
+    elapsed: performance.now() - started,
   } satisfies DetectResultMessage);
 }
 
@@ -240,7 +240,7 @@ async function handleProcess(msg: ProcessMessage): Promise<void> {
     postMessage({
       type: 'error',
       id: msg.id,
-      message: '裁剪失败：矩形区域无效'
+      message: '裁剪失败：矩形区域无效',
     } satisfies ErrorMessage);
     return;
   }
@@ -262,7 +262,7 @@ async function handleProcess(msg: ProcessMessage): Promise<void> {
     timings: result.timings,
     total: result.total,
     blob,
-    byteLength: result.image.width * result.image.height * 4
+    byteLength: result.image.width * result.image.height * 4,
   } satisfies ProcessResultMessage);
 }
 
@@ -300,7 +300,7 @@ async function handleEdgePreview(msg: PreviewEdgeMessage): Promise<void> {
     type: 'edge-done',
     id: msg.id,
     width: edge.width,
-    height: edge.height
+    height: edge.height,
   } satisfies EdgePreviewMessage);
 }
 
@@ -320,7 +320,7 @@ ctx.onmessage = async (event: MessageEvent<WorkerRequest>) => {
           type: 'init-done',
           supportsOffscreen: hasCanvas,
           opencvVersion: opencvVersion(),
-          loadMs: performance.now() - t0
+          loadMs: performance.now() - t0,
         } satisfies InitResult);
         break;
       }
@@ -339,7 +339,7 @@ ctx.onmessage = async (event: MessageEvent<WorkerRequest>) => {
       default: {
         postMessage({
           type: 'error',
-          message: `未知消息类型: ${(msg as { type: string }).type}`
+          message: `未知消息类型: ${(msg as { type: string }).type}`,
         } satisfies ErrorMessage);
       }
     }
@@ -347,7 +347,7 @@ ctx.onmessage = async (event: MessageEvent<WorkerRequest>) => {
     const id = 'id' in msg ? (msg as { id?: number }).id : undefined;
     const errorMessage: ErrorMessage = {
       type: 'error',
-      message: err instanceof Error ? err.message : String(err)
+      message: err instanceof Error ? err.message : String(err),
     };
     if (id !== undefined) errorMessage.id = id;
     postMessage(errorMessage);

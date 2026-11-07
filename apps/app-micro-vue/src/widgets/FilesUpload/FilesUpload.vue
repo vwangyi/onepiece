@@ -32,7 +32,7 @@ function createChunk(file, index, chunkSize) {
         end,
         index,
         hash: md5.end(),
-        blob
+        blob,
       });
     };
     reader.readAsArrayBuffer(blob);
@@ -62,13 +62,13 @@ async function handleFile(event) {
     const end = Math.min((i + 1) * threadChunkCount, totalChunks);
     const url = new URL('./workers/chunk.worker.js', import.meta.url);
     const worker = new Worker(url, {
-      type: 'module'
+      type: 'module',
     });
     worker.postMessage({
       file,
       start,
       end,
-      CHUNK_SIZE
+      CHUNK_SIZE,
     });
     worker.onmessage = e => {
       worker.terminate(); // 结束

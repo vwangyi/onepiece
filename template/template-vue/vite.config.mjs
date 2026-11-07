@@ -14,7 +14,7 @@ export default defineConfig(({ mode }) => {
   return {
     resolve: {
       extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx', '.json', '.vue'],
-      alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) }
+      alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },
     },
     define: {
       __BUILD_TOOLS__: JSON.stringify('vite'),
@@ -24,7 +24,7 @@ export default defineConfig(({ mode }) => {
       __APP_VERSION__: JSON.stringify(pkg.version),
       __VUE_OPTIONS_API__: true, // Vue3是否支持 Options API
       __VUE_PROD_DEVTOOLS__: false, // Vue3生产环境是否启用 DevTools Vue 调试工具
-      __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false // 生产环境水合失败时 是否显示详细信息
+      __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false, // 生产环境水合失败时 是否显示详细信息
     },
     plugins: [vue(), vueJsx(), false ? vueDevTools() : false].filter(Boolean),
     server: {
@@ -35,15 +35,15 @@ export default defineConfig(({ mode }) => {
         '/api': {
           target: String(env.BASE_URL), // 后端 NestJS 默认端口
           changeOrigin: true,
-          rewrite: path => path.replace(/^\/api/, '')
+          rewrite: path => path.replace(/^\/api/, ''),
         },
         // /socket.io这个key值是socket.io这个库决定的
         '/socket.io': {
           target: String(env.BASE_URL),
           changeOrigin: true,
-          ws: true // 关键：支持 WebSocket 升级
-        }
-      }
-    }
+          ws: true, // 关键：支持 WebSocket 升级
+        },
+      },
+    },
   };
 });

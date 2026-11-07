@@ -1,3 +1,3 @@
 export default {
-  name: 'elpis-dev'
+  name: 'elpis-dev',
 };

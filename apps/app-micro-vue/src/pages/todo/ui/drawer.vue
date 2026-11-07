@@ -31,7 +31,7 @@ const handleMouseLeave = () => {
             'iconfont': true,
             'add-task-checkbox-icon': true,
             'icon-webicon19': todoStore.currentTask!.hover,
-            'icon-webicon206': !todoStore.currentTask!.hover
+            'icon-webicon206': !todoStore.currentTask!.hover,
           }"
           @mouseenter="handleMouseEnter"
           @mouseleave="handleMouseLeave"
@@ -48,7 +48,7 @@ const handleMouseLeave = () => {
             'iconfont': true,
             'add-task-checkbox-icon': true,
             'icon-zhongyao': todoStore.currentTask!.hover,
-            'icon-zhongyao1': !todoStore.currentTask!.hover
+            'icon-zhongyao1': !todoStore.currentTask!.hover,
           }"
           @mouseenter="handleMouseEnter"
           @mouseleave="handleMouseLeave"
@@ -60,7 +60,7 @@ const handleMouseLeave = () => {
           :class="{
             'iconfont': true,
             'add-task-checkbox-icon': true,
-            'icon-webicon19': true
+            'icon-webicon19': true,
             // 'icon-webicon19': todoStore.currentTask!.hover,
             // 'icon-webicon206': !todoStore.currentTask!.hover
           }"
@@ -74,7 +74,7 @@ const handleMouseLeave = () => {
             'iconfont': true,
             'add-task-checkbox-icon': true,
             'icon-zhongyao': todoStore.currentTask!.hover,
-            'icon-zhongyao1': !todoStore.currentTask!.hover
+            'icon-zhongyao1': !todoStore.currentTask!.hover,
           }"
           @mouseenter="handleMouseEnter"
           @mouseleave="handleMouseLeave"
@@ -86,7 +86,7 @@ const handleMouseLeave = () => {
             :class="{
               'iconfont': true,
               'add-task-checkbox-icon': true,
-              'icon-webicon19': true
+              'icon-webicon19': true,
               // 'icon-webicon19': todoStore.currentTask!.hover,
               // 'icon-webicon206': !todoStore.currentTask!.hover
             }"
@@ -100,7 +100,7 @@ const handleMouseLeave = () => {
               'iconfont': true,
               'add-task-checkbox-icon': true,
               'icon-zhongyao': todoStore.currentTask!.hover,
-              'icon-zhongyao1': !todoStore.currentTask!.hover
+              'icon-zhongyao1': !todoStore.currentTask!.hover,
             }"
             @mouseenter="handleMouseEnter"
             @mouseleave="handleMouseLeave"
@@ -112,7 +112,7 @@ const handleMouseLeave = () => {
             :class="{
               'iconfont': true,
               'add-task-checkbox-icon': true,
-              'icon-webicon19': true
+              'icon-webicon19': true,
               // 'icon-webicon19': todoStore.currentTask!.hover,
               // 'icon-webicon206': !todoStore.currentTask!.hover
             }"
@@ -126,7 +126,7 @@ const handleMouseLeave = () => {
               'iconfont': true,
               'add-task-checkbox-icon': true,
               'icon-zhongyao': todoStore.currentTask!.hover,
-              'icon-zhongyao1': !todoStore.currentTask!.hover
+              'icon-zhongyao1': !todoStore.currentTask!.hover,
             }"
             @mouseenter="handleMouseEnter"
             @mouseleave="handleMouseLeave"
@@ -138,7 +138,7 @@ const handleMouseLeave = () => {
             :class="{
               'iconfont': true,
               'add-task-checkbox-icon': true,
-              'icon-webicon19': true
+              'icon-webicon19': true,
               // 'icon-webicon19': todoStore.currentTask!.hover,
               // 'icon-webicon206': !todoStore.currentTask!.hover
             }"
@@ -152,7 +152,7 @@ const handleMouseLeave = () => {
               'iconfont': true,
               'add-task-checkbox-icon': true,
               'icon-zhongyao': todoStore.currentTask!.hover,
-              'icon-zhongyao1': !todoStore.currentTask!.hover
+              'icon-zhongyao1': !todoStore.currentTask!.hover,
             }"
             @mouseenter="handleMouseEnter"
             @mouseleave="handleMouseLeave"

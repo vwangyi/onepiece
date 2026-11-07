@@ -1876,9 +1876,9 @@ ExecutionContext = {
   LexicalEnvironment: {
     // 词法环境
     EnvironmentRecord: {}, // 存储变量和函数声明
-    outer: reference // 指向外部词法环境（作用域链核心）
+    outer: reference, // 指向外部词法环境（作用域链核心）
   },
-  VariableEnvironment: {}
+  VariableEnvironment: {},
 };
 ```
 

@@ -71,7 +71,7 @@ vue中是data
 class App extends xx {
   construcor() {
     this.state = {
-      a: 1
+      a: 1,
     };
   }
   state = { a: 1 };

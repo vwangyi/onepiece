@@ -25,7 +25,7 @@ const main = {
   warning: chalk.yellow('⚠'),
   error: chalk.red('✖'),
   star: chalk.cyan('✵'),
-  arrow: chalk.yellow('➦')
+  arrow: chalk.yellow('➦'),
 };
 
 const fallback = {
@@ -34,7 +34,7 @@ const fallback = {
   warning: chalk.yellow('‼'),
   error: chalk.red('×'),
   star: chalk.cyan('*'),
-  arrow: chalk.yellow('->')
+  arrow: chalk.yellow('->'),
 };
 
 const logSymbols = isUnicodeSupported() ? main : fallback;

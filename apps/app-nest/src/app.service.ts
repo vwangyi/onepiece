@@ -16,7 +16,7 @@ export class AppService {
   getHello2(): string {
     throw new HttpException(
       'getHello2() 请求异常',
-      HttpStatus.EXPECTATION_FAILED
+      HttpStatus.EXPECTATION_FAILED,
     );
   }
 }

@@ -36,7 +36,7 @@ const ignores = [
   '.vscode',
   'docs/other',
   '**/.nuxt/**',
-  '**/.vitepress/cache/'
+  '**/.vitepress/cache/',
   // 'apps/new-world/*',
   // 'app/s/all-blue/*',
   // 'scripts',
@@ -60,13 +60,13 @@ const baseRules = {
     {
       line: {
         markers: ['/'], // 允许三斜线注释
-        exceptions: ['-', '+']
+        exceptions: ['-', '+'],
       },
       block: {
         markers: ['!'],
-        exceptions: ['*']
-      }
-    }
+        exceptions: ['*'],
+      },
+    },
   ],
   // 关闭声明但未使用的变量的报错
   'no-unused-vars': 'off',
@@ -109,8 +109,8 @@ const baseRules = {
     {
       functions: false, // 允许函数提升
       classes: true,
-      variables: true
-    }
+      variables: true,
+    },
   ],
   // 强制在逗号前后使用一致的空格
   'comma-spacing': 'error',
@@ -154,7 +154,7 @@ const baseRules = {
   'guard-for-in': 'off',
   // 限制每行代码的字数
   'max-len': 'off',
-  'operator-linebreak': 'off'
+  'operator-linebreak': 'off',
 };
 
 // ============ Vue 规则 ============
@@ -197,12 +197,12 @@ const vueRules = {
     'error',
     {
       singleline: {
-        max: 1 // 单行最多1个属性
+        max: 1, // 单行最多1个属性
       },
       multiline: {
-        max: 1 // 多行时每行1个属性
-      }
-    }
+        max: 1, // 多行时每行1个属性
+      },
+    },
   ],
   // vue标签换行
   'vue/singleline-html-element-content-newline': 'off',
@@ -211,8 +211,8 @@ const vueRules = {
     'error',
     {
       singleline: 'ignore',
-      multiline: 'below' // 第一个属性换行
-    }
+      multiline: 'below', // 第一个属性换行
+    },
   ],
   // vue属性顺序
   'vue/attributes-order': [
@@ -229,10 +229,10 @@ const vueRules = {
         'OTHER_DIRECTIVES',
         'OTHER_ATTR',
         'EVENTS',
-        'CONTENT'
+        'CONTENT',
       ],
-      alphabetical: false
-    }
+      alphabetical: false,
+    },
   ],
   // vue方法顺序
   'vue/order-in-components': 'off',
@@ -249,17 +249,17 @@ const vueRules = {
   'vue/no-multi-spaces': [
     'error',
     {
-      ignoreProperties: false
-    }
+      ignoreProperties: false,
+    },
   ],
   'vue/no-v-text-v-html-on-component': 'off',
   // 强制块顺序：script -> template -> style
   'vue/block-order': [
     'error',
     {
-      order: ['script', 'template', 'style']
-    }
-  ]
+      order: ['script', 'template', 'style'],
+    },
+  ],
 };
 
 export default defineConfig([
@@ -271,23 +271,23 @@ export default defineConfig([
     extends: [
       eslint.configs.recommended,
       ...tseslint.configs.recommended,
-      eslintConfigPrettier
+      eslintConfigPrettier,
     ],
     plugins: {
-      prettier: eslintPluginPrettier
+      prettier: eslintPluginPrettier,
     },
     languageOptions: {
       ecmaVersion: 'latest', // ecma语法支持版本
       sourceType: 'module', // 模块化类型
-      parser: tseslint.parser // 解析器
+      parser: tseslint.parser, // 解析器
     },
     rules: {
       ...baseRules,
       // 新增或重写自己的eslint规则
       'no-var': 'error',
       // 关闭所有和prettier冲突的规则
-      ...eslintConfigPrettier.rules
-    }
+      ...eslintConfigPrettier.rules,
+    },
   },
   /* nestjs项目 */
   {
@@ -298,8 +298,8 @@ export default defineConfig([
         ...globals.node, // 添加 Node.js 全局变量
         ...globals.mocha, // 添加 Mocha 全局变量 测试框架
         vi: 'readonly', // 如果使用 Vitest
-        jest: 'readonly' // 如果使用 Jest
-      }
+        jest: 'readonly', // 如果使用 Jest
+      },
     },
     rules: {
       ...baseRules,
@@ -314,33 +314,33 @@ export default defineConfig([
         'error',
         {
           destructuring: 'any', // 解构时也检查
-          ignoreReadBeforeAssign: false // 赋值前读取的变量也检查
-        }
+          ignoreReadBeforeAssign: false, // 赋值前读取的变量也检查
+        },
       ],
 
       // 关闭所有和prettier冲突的规则
-      ...eslintConfigPrettier.rules
-    }
+      ...eslintConfigPrettier.rules,
+    },
   },
   /* 所有的vue项目共享同一套eslint规则 */
   {
     ignores,
     files: [
       'apps/**/*.{ts,js,tsx,jsx,vue}',
-      'packages/**/*.{ts,js,tsx,jsx,vue}'
+      'packages/**/*.{ts,js,tsx,jsx,vue}',
     ],
     extends: [
       ...eslintPluginVue.configs['flat/recommended'],
-      eslintConfigPrettier
+      eslintConfigPrettier,
     ],
     languageOptions: {
       parserOptions: {
         // <script setup lang="ts"> 需要 TS 解析器，否则 import type 等语法会报 Parsing error
-        parser: tseslint.parser
+        parser: tseslint.parser,
       },
       globals: {
-        ...globals.browser
-      }
+        ...globals.browser,
+      },
     },
     rules: {
       ...baseRules,
@@ -348,8 +348,8 @@ export default defineConfig([
       // 新增或重写自己的eslint规则
 
       // 关闭所有和prettier冲突的规则
-      ...eslintConfigPrettier.rules
-    }
+      ...eslintConfigPrettier.rules,
+    },
   },
 
   /* app-micro-vue 的 FSD 架构约束
@@ -365,14 +365,14 @@ export default defineConfig([
       'apps/app-micro-vue/src/**/*.tsx',
       'apps/app-micro-vue/src/**/*.js',
       'apps/app-micro-vue/src/**/*.jsx',
-      'apps/app-micro-vue/src/**/*.vue'
+      'apps/app-micro-vue/src/**/*.vue',
     ],
     plugins: { fsd: fsdPlugin },
     rules: {
       'fsd/no-layer-inversion': 'error',
       'fsd/no-cross-imports': 'error',
-      'fsd/no-public-api-sidestep': 'warn'
-    }
-  }
+      'fsd/no-public-api-sidestep': 'warn',
+    },
+  },
   // ...后续新增其他项目
 ]);

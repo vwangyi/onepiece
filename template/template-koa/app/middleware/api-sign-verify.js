@@ -14,7 +14,7 @@ module.exports = app => {
       '/api/user/list',
       '/api/user/list',
       '/api/user/list',
-      '/api/user/list'
+      '/api/user/list',
     ];
     // 白名单 放行通过
     if (whiteList.some(item => item === ctx.path)) {
@@ -61,7 +61,7 @@ module.exports = app => {
       ctx.body = {
         success: false,
         message: 'signature not correct or api timeout!!',
-        code: 445
+        code: 445,
       };
       return;
     }

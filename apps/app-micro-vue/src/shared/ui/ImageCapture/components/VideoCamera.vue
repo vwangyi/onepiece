@@ -17,9 +17,9 @@ async function openCamera() {
         height: { ideal: 720 },
         // 需要指定某颗摄像头时打开下面这行（deviceId 来自 enumerateDevices）
         // deviceId: { exact: cameraId },
-        facingMode: 'user' // 前置摄像头；'environment' 为后置
+        facingMode: 'user', // 前置摄像头；'environment' 为后置
       },
-      audio: false
+      audio: false,
     });
 
     const video = videoRef.value;

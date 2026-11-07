@@ -37,7 +37,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
       code: status,
       timestamp: new Date().toLocaleString(),
       error: exceptionResponse?.message || exceptionResponse,
-      msg: `${status >= 500 ? 'Server Error' : 'Client Error'}`
+      msg: `${status >= 500 ? 'Server Error' : 'Client Error'}`,
     });
   }
 }

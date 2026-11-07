@@ -118,7 +118,7 @@ xxx.module.ts
   imports: [],
   controllers: [AppController],
   providers: [AppService],
-  exports: [UserService]
+  exports: [UserService],
 })
 export class AppModule {}
 ```

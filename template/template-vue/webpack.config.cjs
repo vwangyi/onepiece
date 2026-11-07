@@ -15,7 +15,7 @@ module.exports = (_, { mode }) => {
   dotenv.config({ path: path.resolve(__dirname, '.env') });
   dotenv.config({
     override: true,
-    path: path.resolve(__dirname, `.env.${mode}`)
+    path: path.resolve(__dirname, `.env.${mode}`),
   });
   const isDev = process.env.NODE_ENV === 'development';
 
@@ -25,7 +25,7 @@ module.exports = (_, { mode }) => {
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.vue', '.jsx', '.scss', '.css'],
       mainFiles: ['index'],
-      alias: { '@': path.resolve(__dirname, './src') }
+      alias: { '@': path.resolve(__dirname, './src') },
     },
     entry: './src/main.ts',
     output: {
@@ -33,13 +33,13 @@ module.exports = (_, { mode }) => {
       clean: true,
       chunkFilename: 'js/[name]_[chunkhash:8].chunk.js',
       assetModuleFilename: 'assets/[name]_[hash:8][ext][query]',
-      filename: 'js/[name]_[contenthash:8].bundle.js'
+      filename: 'js/[name]_[contenthash:8].bundle.js',
     },
     module: {
       rules: [
         {
           test: /\.vue$/,
-          use: ['vue-loader']
+          use: ['vue-loader'],
         },
         {
           test: /\.tsx?$/,
@@ -51,18 +51,18 @@ module.exports = (_, { mode }) => {
                 configFile: path.resolve(__dirname, 'tsconfig.json'),
                 transpileOnly: true, // ts-loader只做编译，不做类型检查
                 appendTsSuffixTo: [/\.vue$/],
-                appendTsxSuffixTo: [/\.vue$/]
-              }
-            }
+                appendTsxSuffixTo: [/\.vue$/],
+              },
+            },
           ],
-          exclude: /node_modules/
+          exclude: /node_modules/,
         },
         {
           test: /\.jsx?$/, // 匹配js 或 jsx 文件
           use: [
             {
               loader: 'thread-loader',
-              options: { workers: os.cpus().length - 1 }
+              options: { workers: os.cpus().length - 1 },
             },
             {
               loader: 'babel-loader', // 使用babel-loader处理js文件
@@ -70,57 +70,57 @@ module.exports = (_, { mode }) => {
                 // presets: ['@babel/preset-env'], // 预设在babel.config.js中使用了 这里就不用了
                 cacheDirectory: true, // 启用babel-loader缓存，提高构建速度
                 cacheCompression: false, // 关闭缓存文件压缩，提升性能，因为压缩需要额外的CPU资源
-                plugins: ['@babel/plugin-transform-runtime'] // 使用transform-runtime插件，减少冗余代码，提高性能
-              }
-            }
+                plugins: ['@babel/plugin-transform-runtime'], // 使用transform-runtime插件，减少冗余代码，提高性能
+              },
+            },
           ],
-          exclude: /node_modules/
+          exclude: /node_modules/,
         },
         {
           test: /\.css$/,
-          use: [MiniCssExtractPlugin.loader, 'css-loader']
+          use: [MiniCssExtractPlugin.loader, 'css-loader'],
         },
         {
           test: /\.s[ac]ss$/i,
-          use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+          use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
         },
         {
           test: /\.(png|jpg|jpeg|gif|svg|webp)$/i,
           type: 'asset', // 用内置asset 处理图片
           // 10kb  单位是b  字节byte  乘1024 转 kb了
           parser: { dataUrlCondition: { maxSize: 10 * 1024 } },
-          generator: { filename: 'img/[name]_[hash:8][ext][query]' }
+          generator: { filename: 'img/[name]_[hash:8][ext][query]' },
         },
         {
           test: /\.(woff2?|eot|ttf|otf)(\?.+)?$/, // 匹配字体文件
           type: 'asset/resource', // 用内置asset/resource 处理字体
-          generator: { filename: 'font/[hash][ext][query]' }
+          generator: { filename: 'font/[hash][ext][query]' },
         },
         {
           test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.+)?$/,
           type: 'asset/resource', // 视频或其他 原封不动的输出到指定地方 都放 assets
-          generator: { filename: 'assets/[hash][ext][query]' }
-        }
-      ]
+          generator: { filename: 'assets/[hash][ext][query]' },
+        },
+      ],
     },
     plugins: [
       false
         ? new BundleAnalyzerPlugin({
             analyzerMode: 'static',
             reportFilename: 'bundle-report.html',
-            openAnalyzer: true
+            openAnalyzer: true,
           })
         : null,
       // ForkTsCheckerWebpackPlugin 只做类型检查,不做编译
       new ForkTsCheckerWebpackPlugin({
         async: process.env.NODE_ENV === 'development',
-        typescript: { configFile: path.resolve(__dirname, 'tsconfig.json') }
+        typescript: { configFile: path.resolve(__dirname, 'tsconfig.json') },
       }),
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, './public/index.html'),
         title: process?.env?.APP_TITLE,
         favicon: path.resolve(__dirname, './public/favicon.ico'),
-        templateParameters: { faviconVersion: pkg.version }
+        templateParameters: { faviconVersion: pkg.version },
       }),
       new VueLoaderPlugin(),
       // 4. 把变量注入前端业务代码，src 中可用 __APP_NODE_ENV__ 访问 process.env.NODE_ENV
@@ -132,18 +132,18 @@ module.exports = (_, { mode }) => {
         __APP_VERSION__: JSON.stringify(pkg.version),
         __VUE_OPTIONS_API__: true, // Vue3是否支持 Options API
         __VUE_PROD_DEVTOOLS__: false, // Vue3生产环境是否启用 DevTools Vue 调试工具
-        __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false // 生产环境水合失败时 是否显示详细信息
+        __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false, // 生产环境水合失败时 是否显示详细信息
       }),
       new MiniCssExtractPlugin({
         filename: 'css/[name]_[contenthash:6].css',
-        chunkFilename: 'common_[hash:5].css'
-      })
+        chunkFilename: 'common_[hash:5].css',
+      }),
     ].filter(Boolean),
     devServer: {
       port: Number(process.env.PORT),
       open: true,
       hot: true,
-      historyApiFallback: true
+      historyApiFallback: true,
     },
     /**
      * 配置打包输出优化 （配置代码分割 模块合并 缓存 TreeShaking 代码压缩等优化策略）
@@ -179,7 +179,7 @@ module.exports = (_, { mode }) => {
             priority: 50, // 【非常重要】优先级必须比 vendor 高！
             // enforce: true,   // 强制生效，即使体积很小也单独打包
             reuseExistingChunk: true, // 允许复用
-            filename: 'js/[name]_[contenthash:6].js' // 打包后的文件名会包含这个名字
+            filename: 'js/[name]_[contenthash:6].js', // 打包后的文件名会包含这个名字
           },
 
           'echarts': {
@@ -189,7 +189,7 @@ module.exports = (_, { mode }) => {
             priority: 50, // 【非常重要】优先级必须比 vendor 高！
             enforce: true, // 强制生效，即使体积很小也单独打包
             reuseExistingChunk: true, // 允许复用
-            filename: 'js/[name]_[contenthash:6].js' // 打包后的文件名会包含这个名字
+            filename: 'js/[name]_[contenthash:6].js', // 打包后的文件名会包含这个名字
           },
 
           'ant-design-vue': {
@@ -199,7 +199,7 @@ module.exports = (_, { mode }) => {
             priority: 50, // 【非常重要】优先级必须比 vendor 高！
             enforce: true, // 强制生效，即使体积很小也单独打包
             reuseExistingChunk: true, // 允许复用
-            filename: 'js/[name]_[contenthash:6].js' // 打包后的文件名会包含这个名字
+            filename: 'js/[name]_[contenthash:6].js', // 打包后的文件名会包含这个名字
           },
           'vue': {
             chunks: 'all',
@@ -208,7 +208,7 @@ module.exports = (_, { mode }) => {
             priority: 50, // 【非常重要】优先级必须比 vendor 高！
             enforce: true, // 强制生效，即使体积很小也单独打包
             reuseExistingChunk: true, // 允许复用
-            filename: 'js/[name]_[contenthash:6].js' // 打包后的文件名会包含这个名字
+            filename: 'js/[name]_[contenthash:6].js', // 打包后的文件名会包含这个名字
           },
 
           // 第三方依赖库
@@ -220,7 +220,7 @@ module.exports = (_, { mode }) => {
             priority: 10, // 优先级 数字越大 优先级越高
             // enforce: true, // 为true 强制执行 表示 忽略 import的分割
             // enforce: false, // 为false，允许其他规则介入
-            reuseExistingChunk: true // 复用已有的公共 chunk
+            reuseExistingChunk: true, // 复用已有的公共 chunk
             // filename: '[name].js', // 会多生成一个js 不知道什么意思
           },
           /**
@@ -235,7 +235,7 @@ module.exports = (_, { mode }) => {
             minSize: 1, // 最小分割文件大小设置为 1字节
             priority: 5, // 优先级 数字越大 优先级越高 比 第三方依赖库 优先级高
             reuseExistingChunk: true, // 复用已有的公共 chunk
-            enforce: true // 强制拆分（如果前面条件都满足但依旧不生效，可尝试）
+            enforce: true, // 强制拆分（如果前面条件都满足但依旧不生效，可尝试）
           },
           // xx: {}
           'common-css': {
@@ -245,15 +245,15 @@ module.exports = (_, { mode }) => {
             minSize: 0, // 不限制最小体积
             priority: 100,
             enforce: true, // 强制提取
-            reuseExistingChunk: true
+            reuseExistingChunk: true,
             // ❌ 不要写 filename，写了也无效
-          }
-        }
+          },
+        },
       },
       // 将 webpack运行时 生成的代码 单独打包到 runtime.js 比如： runtime~entry.dashboard_9183948e.js
       // runtimeChunk: true,
       runtimeChunk: {
-        name: entrypoint => `runtime_${entrypoint.name}` // 指定输出到 runtime 文件夹
+        name: entrypoint => `runtime_${entrypoint.name}`, // 指定输出到 runtime 文件夹
       },
       minimize: true,
       minimizer: [
@@ -299,7 +299,7 @@ module.exports = (_, { mode }) => {
         //     keep_fnames: false // 不保留函数名
         //   }
         // })
-      ]
-    }
+      ],
+    },
   };
 };

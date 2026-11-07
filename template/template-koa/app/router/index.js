@@ -7,7 +7,7 @@ const router = new Router(); // ({ prefix: '/api/koa/' });
 // 批量注册所有 .js 路由文件（排除 app.js 自身）
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const routeFiles = (await readdir(__dirname)).filter(
-  file => file.endsWith('.js') && file !== 'index.js'
+  file => file.endsWith('.js') && file !== 'index.js',
 );
 for (const file of routeFiles) {
   const module = await import(join(__dirname, file));

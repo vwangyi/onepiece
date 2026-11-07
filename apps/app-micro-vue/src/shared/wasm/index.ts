@@ -5,12 +5,12 @@ export {
   opencvVersion,
   detectRectWithOpenCV,
   perspectiveCorrect,
-  OPENCV_DEFAULT_OPTIONS
+  OPENCV_DEFAULT_OPTIONS,
 } from './opencv-image-processing';
 export type {
   Rect,
   StepTiming,
   CvMat,
   Cv,
-  OpenCvDetectResult
+  OpenCvDetectResult,
 } from './opencv-image-processing';

@@ -16,57 +16,57 @@ export const useTodoStore = defineStore('todo', () => {
       icon: 'icon-mingtian3x',
       title: '明天',
       total: 52,
-      active: false
+      active: false,
     },
     {
       key: Symbol(),
       icon: 'icon-taiyang',
       title: '我的一天',
       total: 52,
-      active: true
+      active: true,
     },
     {
       key: Symbol(),
       icon: 'icon-zhongyaorenwu',
       title: '重要',
       total: 15,
-      active: false
+      active: false,
     },
     {
       key: Symbol(),
       icon: 'icon-jinji',
       title: '紧急',
       total: 1,
-      active: false
+      active: false,
     },
     {
       key: Symbol(),
       icon: 'icon-jihua',
       title: '进行中',
       total: 55,
-      active: false
+      active: false,
     },
     {
       key: Symbol(),
       icon: 'icon-renwuyanqi',
       title: '已延期',
       total: 53,
-      active: false
+      active: false,
     },
     {
       key: Symbol(),
       icon: 'icon-yiwancheng',
       title: '已完成',
       total: 53,
-      active: false
+      active: false,
     },
     {
       key: Symbol(),
       icon: 'icon-quanbu',
       title: '全部',
       total: 545,
-      active: false
-    }
+      active: false,
+    },
   ]);
 
   /* 选中 TaskCategory */
@@ -117,7 +117,7 @@ export const useTodoStore = defineStore('todo', () => {
         key: Symbol(),
         hover: false,
         active: false,
-        ...dto
+        ...dto,
       }));
     }
 
@@ -136,6 +136,6 @@ export const useTodoStore = defineStore('todo', () => {
     selectedTask,
     currentTask,
     deleteTask,
-    initTasks
+    initTasks,
   };
 });

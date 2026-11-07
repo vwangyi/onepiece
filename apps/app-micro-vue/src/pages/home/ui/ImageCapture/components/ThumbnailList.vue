@@ -10,7 +10,7 @@ const props = defineProps<ThumbnailListProps>();
 
 const thumbnailList = computed(() => {
   return props.treeData?.find(item =>
-    props.selectedKeys.includes(String(item.key))
+    props.selectedKeys.includes(String(item.key)),
   )?.children;
 });
 

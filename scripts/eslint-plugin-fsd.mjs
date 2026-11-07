@@ -19,7 +19,7 @@ const LAYER_ORDER = [
   'features',
   'widgets',
   'pages',
-  'app'
+  'app',
 ];
 
 /** 无切片概念的层：里面的目录直接就是 segment段 */
@@ -42,7 +42,7 @@ const LEGACY_TOP_DIRS = new Set([
   'components',
   'router',
   'views',
-  'config'
+  'config',
 ]);
 
 const SRC_ROOT = 'src';
@@ -135,7 +135,7 @@ function resolveOwner(path) {
     slice: null,
     depth: parts.length,
     crossFor: null,
-    isCrossImport: false
+    isCrossImport: false,
   };
 
   if (SLICELESS_LAYERS.has(layer)) return base;
@@ -165,9 +165,9 @@ const noLayerInversion = {
     docs: { description: 'FSD：只能向下依赖，禁止引用更高层' },
     messages: {
       upward:
-        'FSD 层级约束：{{from}} 不能引用更高层的 {{to}}。请通过 props/事件向上传递数据，或将该逻辑下沉到 {{to}} 层。'
+        'FSD 层级约束：{{from}} 不能引用更高层的 {{to}}。请通过 props/事件向上传递数据，或将该逻辑下沉到 {{to}} 层。',
     },
-    schema: []
+    schema: [],
   },
   create(context) {
     const srcPath = toSrcRelative(context.filename ?? context.getFilename());
@@ -191,11 +191,11 @@ const noLayerInversion = {
         context.report({
           node,
           messageId: 'upward',
-          data: { from: owner.layer, to: target.layer }
+          data: { from: owner.layer, to: target.layer },
         });
-      }
+      },
     };
-  }
+  },
 };
 
 // ============ 规则 2 & 3：跨切片 + 公共 API ============
@@ -223,9 +223,9 @@ const noCrossImports = {
       cross:
         'FSD 跨切片引用：{{fromLayer}}/{{fromSlice}} 不能引用同层的 {{toLayer}}/{{toSlice}}。若确实需要共享，请把公共部分下沉到 shared，或由被引用切片开设 @x 出口（{{toLayer}}/{{toSlice}}/@x/{{fromSlice}}）。',
       crossWrongConsumer:
-        'FSD @x 交叉导入越权：{{toLayer}}/{{toSlice}}/@x 是为「{{intended}}」切片开设的公共 API，{{fromSlice}} 不能引用它。请让 {{toSlice}} 补一个 @x/{{fromSlice}} 出口。'
+        'FSD @x 交叉导入越权：{{toLayer}}/{{toSlice}}/@x 是为「{{intended}}」切片开设的公共 API，{{fromSlice}} 不能引用它。请让 {{toSlice}} 补一个 @x/{{fromSlice}} 出口。',
     },
-    schema: []
+    schema: [],
   },
   create(context) {
     const srcPath = toSrcRelative(context.filename ?? context.getFilename());
@@ -258,8 +258,8 @@ const noCrossImports = {
               fromSlice: owner.slice,
               toLayer: target.layer,
               toSlice: target.slice,
-              intended: target.crossFor ?? '(未指定切片)'
-            }
+              intended: target.crossFor ?? '(未指定切片)',
+            },
           });
           return;
         }
@@ -271,12 +271,12 @@ const noCrossImports = {
             fromLayer: owner.layer,
             fromSlice: owner.slice,
             toLayer: target.layer,
-            toSlice: target.slice
-          }
+            toSlice: target.slice,
+          },
         });
-      }
+      },
     };
-  }
+  },
 };
 
 const noPublicApiSidestep = {
@@ -285,9 +285,9 @@ const noPublicApiSidestep = {
     docs: { description: 'FSD：必须经由切片公共 API 引用，禁止直接摸内部文件' },
     messages: {
       sidestep:
-        'FSD 公共 API：{{layer}}/{{slice}} 的内部文件不可被外部直接引用。请在 {{layer}}/{{slice}}/index.ts 中 re-export，并通过它引用。'
+        'FSD 公共 API：{{layer}}/{{slice}} 的内部文件不可被外部直接引用。请在 {{layer}}/{{slice}}/index.ts 中 re-export，并通过它引用。',
     },
-    schema: []
+    schema: [],
   },
   create(context) {
     const srcPath = toSrcRelative(context.filename ?? context.getFilename());
@@ -317,11 +317,11 @@ const noPublicApiSidestep = {
         context.report({
           node,
           messageId: 'sidestep',
-          data: { layer: target.layer, slice: target.slice }
+          data: { layer: target.layer, slice: target.slice },
         });
-      }
+      },
     };
-  }
+  },
 };
 
 /** ESLint 插件对象。配置里用 `plugins: { fsd: fsdPlugin }` 注册。 */
@@ -329,6 +329,6 @@ export const fsdPlugin = {
   rules: {
     'no-layer-inversion': noLayerInversion,
     'no-cross-imports': noCrossImports,
-    'no-public-api-sidestep': noPublicApiSidestep
-  }
+    'no-public-api-sidestep': noPublicApiSidestep,
+  },
 };

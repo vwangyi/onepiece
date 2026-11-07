@@ -21,7 +21,7 @@ export function isArray(arg: unknown) {
 export function debounce<T extends (...args: unknown[]) => unknown>(
   func: T,
   wait?: number,
-  options?: DebounceSettings
+  options?: DebounceSettings,
 ): DebouncedFunc<T> {
   return _.debounce(func, wait, options);
 }
@@ -37,7 +37,7 @@ export function debounce<T extends (...args: unknown[]) => unknown>(
 export function throttle<T extends (...args: unknown[]) => unknown>(
   func: T,
   wait?: number,
-  options?: ThrottleSettings
+  options?: ThrottleSettings,
 ): DebouncedFunc<T> {
   return _.throttle(func, wait, options);
 }

@@ -24,7 +24,7 @@ export function create(program) {
       if (!shell.which('git')) {
         console.log(
           logSymbols.error,
-          chalk.redBright('对不起,运行脚本必须先安装git')
+          chalk.redBright('对不起,运行脚本必须先安装git'),
         );
         shell.exit(1); // 退出当前进程
       }
@@ -32,7 +32,7 @@ export function create(program) {
       if (name.match(/[\u4E00-\u9FFF`~!@#$%&^*[\]()\\;:<.>/?]/g)) {
         console.log(
           logSymbols.error,
-          chalk.redBright('对不起,项目名称存在非法字符')
+          chalk.redBright('对不起,项目名称存在非法字符'),
         );
         return;
       }
@@ -41,15 +41,15 @@ export function create(program) {
       let repository = '';
       if (option.template) {
         const template = templates.find(
-          template => template.name === option.template
+          template => template.name === option.template,
         );
         if (!template) {
           console.log(
             logSymbols.error,
-            `不存在模板${chalk.yellowBright(option.template)}`
+            `不存在模板${chalk.yellowBright(option.template)}`,
           );
           console.log(
-            `\r\n 运行${logSymbols.arrow} ${chalk.cyanBright('duyi-cli list')} 查看所有可用模板\r\n`
+            `\r\n 运行${logSymbols.arrow} ${chalk.cyanBright('duyi-cli list')} 查看所有可用模板\r\n`,
           );
           return;
         }
@@ -57,7 +57,7 @@ export function create(program) {
       } else {
         const answer = await inquirerChoose(
           '请选择一个项目模板拉取',
-          templates
+          templates,
         );
         console.log(answer);
         repository = answer.choose;
@@ -69,11 +69,11 @@ export function create(program) {
       if (fs.existsSync(name) && !option.force) {
         console.log(
           logSymbols.warning,
-          `已经存在项目文件夹${chalk.yellowBright(name)}`
+          `已经存在项目文件夹${chalk.yellowBright(name)}`,
         );
         // 询问是否删除文件夹
         const answer = await inquirerConfirm(
-          `是否删除文件夹${chalk.yellowBright(name)}?`
+          `是否删除文件夹${chalk.yellowBright(name)}?`,
         );
         console.log(answer);
         if (answer.confirm) {
@@ -83,15 +83,15 @@ export function create(program) {
           console.log(
             logSymbols.error,
             chalk.redBright(
-              `对不起,项目创建失败,存在同名文件夹,${chalk.yellowBright(name)}`
-            )
+              `对不起,项目创建失败,存在同名文件夹,${chalk.yellowBright(name)}`,
+            ),
           );
           return;
         }
       } else if (fs.existsSync(name) && option.force) {
         console.log(
           logSymbols.warning,
-          `已经存在项目文件夹${chalk.yellowBright(name)},强制删除`
+          `已经存在项目文件夹${chalk.yellowBright(name)},强制删除`,
         );
         // 删除
         await removeDir(name);

@@ -11,6 +11,6 @@ export const useCounterStore = defineStore('counter', () => {
   return {
     count: readonly(count), // ref需要readonly包裹 防止外部直接赋值
     doubleCount, // computed不需要readonly包裹
-    increment
+    increment,
   };
 });

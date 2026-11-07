@@ -11,8 +11,8 @@ async function dev() {
         plugins: config.plugins,
         external: config.external,
         output: o,
-        watch: config.watch
-      }))
+        watch: config.watch,
+      })),
     );
     watcher.on('event', event => {
       if (event.code === 'START') {

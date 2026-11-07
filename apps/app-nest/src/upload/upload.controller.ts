@@ -19,12 +19,12 @@ export class UploadController {
   @UseInterceptors(FileInterceptor('file'))
   singleFileUpload(
     // 通过这个 参数装饰器@UploadedFile() 可以直接拿到上传过来的文件
-    @UploadedFile() file: Express.Multer.File
+    @UploadedFile() file: Express.Multer.File,
   ) {
     console.log(file);
     return {
       msg: '上传成功',
-      file: file.filename
+      file: file.filename,
     };
   }
 
@@ -33,12 +33,12 @@ export class UploadController {
   @UseInterceptors(FilesInterceptor('files', 3))
   multipleFilesUpload(
     // 通过这个 参数装饰器@UploadedFile() 可以直接拿到上传过来的文件
-    @UploadedFile() files: Express.Multer.File[]
+    @UploadedFile() files: Express.Multer.File[],
   ) {
     console.log(files);
     return {
       msg: '上传成功',
-      files
+      files,
     };
   }
 
@@ -52,8 +52,8 @@ export class UploadController {
   @UseInterceptors(
     FileFieldsInterceptor([
       { name: 'file1', maxCount: 3 },
-      { name: 'file2', maxCount: 3 }
-    ])
+      { name: 'file2', maxCount: 3 },
+    ]),
   )
   multipleFilesUpload2(
     // 通过这个 参数装饰器@UploadedFile() 可以直接拿到上传过来的文件
@@ -61,12 +61,12 @@ export class UploadController {
     files: {
       file1?: Express.Multer.File[];
       file2?: Express.Multer.File[];
-    }
+    },
   ) {
     console.log(files);
     return {
       msg: '上传成功',
-      files
+      files,
     };
   }
 
@@ -75,12 +75,12 @@ export class UploadController {
   @UseInterceptors(AnyFilesInterceptor({ storage }))
   multipleFilesUpload3(
     // 通过这个 参数装饰器@UploadedFile() 可以直接拿到上传过来的文件
-    @UploadedFile() files: Express.Multer.File[]
+    @UploadedFile() files: Express.Multer.File[],
   ) {
     console.log(files);
     return {
       msg: '上传成功',
-      files
+      files,
     };
   }
 

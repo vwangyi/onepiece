@@ -2,7 +2,7 @@ import {
   CallHandler,
   ExecutionContext,
   Injectable,
-  NestInterceptor
+  NestInterceptor,
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -19,8 +19,8 @@ export class TransformInterceptor<T> implements NestInterceptor<T, any> {
       map(data => ({
         success: true,
         data: data ?? null,
-        message: '操作成功'
-      }))
+        message: '操作成功',
+      })),
     );
   }
 }

@@ -33,7 +33,7 @@ module.exports = app => {
       const info = await app.email.sendMail({
         from: {
           name: 'WANGYI', // 显示的发件人名称
-          address: emailConfig.auth.user // 必须和上面auth.user一致
+          address: emailConfig.auth.user, // 必须和上面auth.user一致
         },
         to: email,
         subject: '验证码', // 主题
@@ -113,13 +113,13 @@ module.exports = app => {
               <p>© ${new Date().getFullYear()} WANGYI. 保留所有权利.</p>
             </div>
           </div>
-        `
+        `,
       });
 
       // 存储验证码（key: email, value: {code, expiresAt}）
       verificationCodes.set(email, {
         code: code,
-        expiresAt: expiresAt
+        expiresAt: expiresAt,
       });
 
       return info;

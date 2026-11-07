@@ -39,7 +39,7 @@ function handleClickShutter({ video }: ClickShutterPayload) {
     key: crypto.randomUUID(),
     isLeaf: true,
     // selectable: false,
-    img: imageBase64
+    img: imageBase64,
   };
 
   const newTreeData = props.treeData?.map(item => {

@@ -35,8 +35,8 @@ export const useImageCaptureStore = defineStore(
       treeData: [
         { title: '身份证人像页', key: '0-0', children: [] },
         { title: '身份证人像页', key: '0-0-8', children: [] },
-        { title: '身份证国徽页', key: '0-1', children: [] }
-      ]
+        { title: '身份证国徽页', key: '0-1', children: [] },
+      ],
     });
 
     function incrementTest() {
@@ -65,7 +65,7 @@ export const useImageCaptureStore = defineStore(
       updateOpen,
       updateSelectedKeys,
       updateExpandedKeys,
-      updateTreeData
+      updateTreeData,
     };
-  }
+  },
 );

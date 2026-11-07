@@ -24,7 +24,7 @@ export function createChunk(file, index, chunkSize) {
         end,
         index,
         hash: md5.end(),
-        blob
+        blob,
       });
     };
     reader.readAsArrayBuffer(blob);

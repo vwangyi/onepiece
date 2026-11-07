@@ -11,7 +11,7 @@ import {
   Inject,
   Res,
   Headers,
-  UnauthorizedException
+  UnauthorizedException,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateAuthDto } from './dto/create-auth.dto';
@@ -36,14 +36,14 @@ export class AuthController {
   @Get('jwt2')
   getJwt2(
     @Headers('authorization') authorization: string,
-    @Res({ passthrough: true }) res: Response
+    @Res({ passthrough: true }) res: Response,
   ): string {
     if (authorization) {
       try {
         const token = authorization?.split(' ')?.[1] || '';
         const payload = this.jwtService.verify(token);
         const newToken = this.jwtService.sign({
-          count: payload.count + 1
+          count: payload.count + 1,
         });
         res.setHeader('Authorization', `Bearer ${newToken}`);
       } catch (e) {
@@ -58,7 +58,7 @@ export class AuthController {
 
   @Get('session1')
   getSession(
-    @Session() session: Record<string, any> // 直接通过@Session()装饰器 获得
+    @Session() session: Record<string, any>, // 直接通过@Session()装饰器 获得
   ): number {
     console.log('session', session, typeof session.views);
     session.views = session.views ? session.views + 1 : 1;
@@ -67,7 +67,7 @@ export class AuthController {
 
   @Get('session2')
   getSession2(
-    @Req() req: Request // 也可以通过 @Req装饰器 获得
+    @Req() req: Request, // 也可以通过 @Req装饰器 获得
   ): number {
     const session = req.session;
     console.log('session2', session);

@@ -29,8 +29,8 @@ class UserController extends BaseController {
         list,
         total,
         page,
-        limit
-      }
+        limit,
+      },
     };
   }
 }
@@ -56,13 +56,13 @@ class UserController1 {
       ctx.body = {
         success: true,
         data: result.list,
-        pagination: result.pagination
+        pagination: result.pagination,
       };
     } catch (error) {
       ctx.status = 500;
       ctx.body = {
         success: false,
-        message: error.message
+        message: error.message,
       };
     }
   }

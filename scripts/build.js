@@ -11,7 +11,7 @@ async function build() {
     const bundle = await rollup({
       input: config.input,
       plugins: [...config.plugins, terser()],
-      external: config.external
+      external: config.external,
     });
     const tasks = [];
     for (const output of config.output) {

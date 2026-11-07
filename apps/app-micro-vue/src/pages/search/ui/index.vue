@@ -6,7 +6,7 @@ import {
   DeleteOutlined,
   EditOutlined,
   PlusOutlined,
-  SearchOutlined
+  SearchOutlined,
 } from '@ant-design/icons-vue';
 
 interface LinkData {
@@ -38,23 +38,24 @@ const ENGINES: Engine[] = [
     value: 'google',
     label: 'Google',
     build: query =>
-      `https://www.google.com/search?q=${encodeURIComponent(query)}`
+      `https://www.google.com/search?q=${encodeURIComponent(query)}`,
   },
   {
     value: 'bing',
     label: 'Bing',
-    build: query => `https://www.bing.com/search?q=${encodeURIComponent(query)}`
+    build: query =>
+      `https://www.bing.com/search?q=${encodeURIComponent(query)}`,
   },
   {
     value: 'duckduckgo',
     label: 'DuckDuckGo',
-    build: query => `https://duckduckgo.com/?q=${encodeURIComponent(query)}`
+    build: query => `https://duckduckgo.com/?q=${encodeURIComponent(query)}`,
   },
   {
     value: 'baidu',
     label: '百度',
-    build: query => `https://www.baidu.com/s?wd=${encodeURIComponent(query)}`
-  }
+    build: query => `https://www.baidu.com/s?wd=${encodeURIComponent(query)}`,
+  },
 ];
 
 /**
@@ -68,43 +69,43 @@ const LINK_SEEDS: LinkSeed[] = [
   [
     'vwangyi',
     'https://github.com/vwangyi',
-    ['vwangyi', 'github', '我的github']
+    ['vwangyi', 'github', '我的github'],
   ],
   ['chatgpt', 'https://github.com/vwangyi', ['chatgpt']],
   [
     'DeepSeek',
     'https://chat.deepseek.com/a/chat/s/e45bfff4-f22f-45af-8654-701964fbbf12',
-    ['deepseek', '深度求索', 'ai']
+    ['deepseek', '深度求索', 'ai'],
   ],
   ['bilibili', 'https://www.bilibili.com/', ['bilibili', 'b站', '哔哩哔哩']],
   ['百度', 'https://www.baidu.com/', ['baidu', '百度', '搜索']],
   [
     'NestJS',
     'https://docs.nestjs.cn/introduction/',
-    ['nestjs', 'nest', '后端框架']
+    ['nestjs', 'nest', '后端框架'],
   ],
   [
     'Vue',
     'https://cn.vuejs.org/guide/introduction.html',
-    ['vue', 'vuejs', '前端框架']
+    ['vue', 'vuejs', '前端框架'],
   ],
   [
     'React',
     'https://zh-hans.react.dev/learn',
-    ['react', 'reactjs', '前端框架']
+    ['react', 'reactjs', '前端框架'],
   ],
   ['TypeORM', 'https://www.typeorm.net/', ['typeorm', 'orm', '数据库']],
   ['腾讯视频', 'https://v.qq.com/', ['腾讯视频', 'v.qq', '视频']],
   [
     'Apple',
     'https://www.apple.com.cn/shop/buy-iphone',
-    ['apple', '苹果', 'iphone']
+    ['apple', '苹果', 'iphone'],
   ],
   ['抖音', 'https://www.douyin.com/', ['douyin', '抖音', '短视频']],
   [
     '☁️',
     'https://cloud.tencent.com/',
-    ['腾讯云', 'cloud', 'cloud.tencent.com', '☁️']
+    ['腾讯云', 'cloud', 'cloud.tencent.com', '☁️'],
   ],
   ['Rollup', 'https://cn.rollupjs.org/', ['rollup', '打包工具']],
   ['Webpack', 'https://webpack.docschina.org/', ['webpack', '打包工具']],
@@ -113,31 +114,31 @@ const LINK_SEEDS: LinkSeed[] = [
   [
     'MDN',
     'https://developer.mozilla.org/zh-CN/',
-    ['mdn', 'mozilla', 'web文档']
+    ['mdn', 'mozilla', 'web文档'],
   ],
   [
     'gitee资料',
     'https://duyiedu.yuque.com/fmi7t1/nwhh7g/xa4c761zgp6pa9ac',
-    ['gitee资料', '语雀', '资料']
+    ['gitee资料', '语雀', '资料'],
   ],
   ['掘金', 'https://juejin.cn/', ['掘金', 'juejin', '前端']],
   ['opencv', 'https://opencv.org/', ['opencv', '计算机视觉', 'cv']],
   [
     'opencv.js',
     'https://docs.opencv.org/4.13.0/d5/d10/tutorial_js_root.html',
-    ['opencv.js', 'opencv', 'cv', 'javascript']
+    ['opencv.js', 'opencv', 'cv', 'javascript'],
   ],
   ['npmjs', 'https://www.npmjs.com/', ['npmjs', 'npm', '包管理']],
   ['QQ邮箱', 'https://wx.mail.qq.com/', ['qq邮箱', '邮箱', 'mail']],
   [
     '粤TV专区需求文档',
     'https://docs.qq.com/doc/DVGNNR0Vkd3hUUEtj?_t=1791787087360&nlc=1',
-    ['粤tv', '需求文档', '腾讯文档']
+    ['粤tv', '需求文档', '腾讯文档'],
   ],
   [
     'Ant Design Vue',
     'https://antdv.com/components/overview-cn',
-    ['antdv', 'ant design vue', '组件库']
+    ['antdv', 'ant design vue', '组件库'],
   ],
   ['iconfont', 'https://www.iconfont.cn/home/index', ['iconfont', '图标']],
   ['爱奇艺', 'https://www.iqiyi.com/', ['爱奇艺', 'iqiyi', '视频']],
@@ -146,55 +147,55 @@ const LINK_SEEDS: LinkSeed[] = [
   [
     'markdown',
     'https://markdown.cn/docs/tutorial-basics/basic-syntax',
-    ['markdown', 'md', '语法']
+    ['markdown', 'md', '语法'],
   ],
   [
     'TypeScript',
     'https://www.typescriptlang.org/zh/play/?#code/PTAEiJrQ5+MU3NAYlUAqBPADgUwMoGMBOBLFAF1EBR7QYb9AudUBh-gKBFEE34wejNAAOUCo5QTb9ADeUAXjQbPlAaP6BMxSqAwJUDVcoBiVQGbagAzlEqTLgLFAIW6BFf0CbXoCAGGnTCAKg0D3yoFO5E4CDNQNBygSDlAs56BO00Dw+oH95QBSugYO1AWP-79oUAFpQdkBYOUAseUAWD0B5dUBvuUBVeUAcOUB-SNU5BXRsfCJQVUAGdXtdegCgtkBleUAYrLSlTOJAW+jAVZtANz1AODlAaojALrkJXPzfIvZXQDi5QGlbQFXo4MAYFUqMlVABQEXowHxzQHylQF+A1UBMm0BG710aLAB7ADsAZ2IAQ32AUQAPE4BbFAAbNAA1E-wTgCNH0ABeUAAiAASaHu912oAA6rscPcACZ-HYHQ67R4AOlBAHMABRnK63B7PV54D6PACUenopkAnQ6Ab8VAFBy9lUoEAOASALk9ANHygFwCUCANCNmYAG00A36kcqgmQBhcoBjyMAL2aALE1AM6K-RqgAAo1SAQ-lAPYG2nh9G5gFAAwAESoATNIYgGy5QAXNoApxIagBQ5QAA+oBpzTcVEALqZscgUVSANDlADKugF+EwB6Ov0uLo-EA',
-    ['typescript', 'ts', '在线playground', '类型']
+    ['typescript', 'ts', '在线playground', '类型'],
   ],
   [
     'favicon.io',
     'https://favicon.io/favicon-generator/',
-    ['favicon.io', 'favicon', '图标生成']
+    ['favicon.io', 'favicon', '图标生成'],
   ],
   ['VitePress', 'https://vitepress.dev/zh/', ['vitepress', '文档站']],
   [
     'TypeScript',
     'https://www.typescriptlang.org/zh/play/',
-    ['typescript', 'ts', '在线playground', '类型']
+    ['typescript', 'ts', '在线playground', '类型'],
   ],
   [
     '文心一言',
     'https://wenxin.baidu.com/',
-    ['文心一言', 'wenxin', 'ai', '百度']
+    ['文心一言', 'wenxin', 'ai', '百度'],
   ],
   [
     'FSD',
     'https://feature-sliced.design/zh',
-    ['fsd', 'feature sliced', '前端架构']
+    ['fsd', 'feature sliced', '前端架构'],
   ],
   [
     'FSD',
     'https://github.com/feature-sliced/documentation',
-    ['fsd', 'feature sliced', '架构文档']
+    ['fsd', 'feature sliced', '架构文档'],
   ],
   ['Google', 'https://www.google.com/', ['google', '谷歌', '搜索']],
   [
     'bilibili',
     'https://www.bilibili.com/video/BV1LEtHeEEik/?spm_id_from=333.788.videopod.episodes&vd_source=5e09d0a001ca43a605be940898fb2eef&p=102',
-    ['bilibili', 'b站', 'BV1LEtHeEEik', '视频']
+    ['bilibili', 'b站', 'BV1LEtHeEEik', '视频'],
   ],
   [
     'Google',
     'https://www.google.com/search?q=%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84FSD&sca_esv=37bddda42dba7073&sxsrf=APpeQnugr89kAcEP6hvRKAw6rRCG9TZzHA%3A1792250359837&ei=65HTapy7GcLj2roP8fvY4Aw&iflsig=ABILxe8AAAAAatOf-7lB9L1_cbwirTHHq01TU8zspO9E&uact=5&sclient=gws-wiz&fbs=ABfTbFUhNGvvPEUFOvrsPMHwBXgOm8tUDlxvAZfQkoB3YicE1mGPZRYnWQnVfLvJ8o9wFhut1TkSNdyt_xTnG482-m8_jNwwcBkRKHcY9um8NsbEAOFH2PgxCmquuWOC10kDF9F_uuqfidFF4lS8PqJGqgJ0NAF2kD3RnmOTdrbBY54yhG4Agx7o5njF0WEPInAEWtDhpyrGowj_aJvoJcpn3a5W1aPQyA&aep=10&ntc=1&mstk=AUtExfCiEgneyG8YzLCe2i-ZhfoEuh4azn08_qAVm9kNMpLWvnbqYfAFgP120UQd5UsiTHQfy2LW-csC3gpK263UIAOi9ks457rA0ZZdwIcIqboOh5LPs6gTH9_ZWDQeap_JDjWNTM8aMcqs5e8QKtExBkvbMW1Ga_-OOdk&aioh=3&csuir=1&mtid=-ZHTau6CON7g2roPlaXXgQw&udm=50',
-    ['前端架构fsd', 'fsd搜索', 'google搜索']
+    ['前端架构fsd', 'fsd搜索', 'google搜索'],
   ],
   [
     '语雀',
     'https://www.yuque.com/dashboard/collections',
-    ['语雀', 'yuque', '文档']
-  ]
+    ['语雀', 'yuque', '文档'],
+  ],
 ];
 
 /** 内置快捷链接（首次进入时的初始数据） */
@@ -204,8 +205,8 @@ const DEFAULT_LINKS: LinkData[] = LINK_SEEDS.map(
     logo: '',
     link,
     title,
-    keywords: [...keywords]
-  })
+    keywords: [...keywords],
+  }),
 );
 
 let seq = 0;
@@ -253,7 +254,7 @@ const loadLinks = (): LinkData[] => {
         title: data.title ?? '',
         keywords: Array.isArray(data.keywords)
           ? data.keywords.map(word => String(word))
-          : []
+          : [],
       };
     });
   } catch {
@@ -264,7 +265,7 @@ const loadLinks = (): LinkData[] => {
 const links = ref<LinkData[]>(loadLinks());
 const keyword = ref('');
 const engineValue = ref<string>(
-  localStorage.getItem(ENGINE_STORAGE_KEY) ?? 'google'
+  localStorage.getItem(ENGINE_STORAGE_KEY) ?? 'google',
 );
 
 watch(
@@ -272,7 +273,7 @@ watch(
   value => {
     localStorage.setItem(LINK_STORAGE_KEY, JSON.stringify(value));
   },
-  { deep: true }
+  { deep: true },
 );
 
 watch(engineValue, value => {
@@ -284,7 +285,7 @@ const findByKeyword = (word: string): LinkData | undefined => {
   const target = normalize(word);
   if (!target) return undefined;
   const byKeyword = links.value.find(item =>
-    item.keywords.some(k => normalize(k) === target)
+    item.keywords.some(k => normalize(k) === target),
   );
   if (byKeyword) return byKeyword;
   return links.value.find(item => normalize(item.title) === target);
@@ -306,11 +307,11 @@ const suggestions = computed(() => {
 });
 
 const currentEngine = computed(() =>
-  ENGINES.find(engine => engine.value === engineValue.value)
+  ENGINES.find(engine => engine.value === engineValue.value),
 );
 
 const engineOptions = computed(() =>
-  ENGINES.map(engine => ({ value: engine.value, label: engine.label }))
+  ENGINES.map(engine => ({ value: engine.value, label: engine.label })),
 );
 
 const openLink = (item: LinkData) => {
@@ -379,12 +380,12 @@ const formState = reactive<FormState>({
   title: '',
   link: '',
   logo: '',
-  keywords: []
+  keywords: [],
 });
 
 const rules = {
   title: [{ required: true, message: '请输入名称', trigger: 'blur' }],
-  link: [{ required: true, message: '请输入链接地址', trigger: 'blur' }]
+  link: [{ required: true, message: '请输入链接地址', trigger: 'blur' }],
 };
 
 const resetForm = () => {
@@ -426,7 +427,7 @@ const handleSubmit = async () => {
     title,
     link,
     logo: formState.logo.trim(),
-    keywords: formState.keywords.map(word => word.trim()).filter(Boolean)
+    keywords: formState.keywords.map(word => word.trim()).filter(Boolean),
   };
   const index = links.value.findIndex(item => item.key === payload.key);
   if (index === -1) {
@@ -464,7 +465,7 @@ const columns = [
   { title: '名称', dataIndex: 'title', width: '20%' },
   { title: '链接', dataIndex: 'link', width: '34%' },
   { title: '关键字', dataIndex: 'keywords', width: '30%' },
-  { title: '操作', dataIndex: 'operation', width: '16%' }
+  { title: '操作', dataIndex: 'operation', width: '16%' },
 ];
 
 onMounted(() => {

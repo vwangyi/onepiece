@@ -16,8 +16,8 @@ module.exports = app => {
       path: path.resolve(process.cwd(), './public/'), // 前端打包后的产物位置 app/public/xx.html
       nunjucksConfig: {
         noCache: true,
-        trimABlocks: true
-      }
-    })
+        trimABlocks: true,
+      },
+    }),
   );
 };

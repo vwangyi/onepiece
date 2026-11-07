@@ -5,7 +5,7 @@ import SegmentedVirtualList from './components/SegmentedVirtualList.vue';
 const data = new Array(1000000).fill(0).map((item, i) => {
   return {
     id: i + 1,
-    name: `Item ${i + 1}`
+    name: `Item ${i + 1}`,
   };
 });
 </script>

@@ -16,21 +16,21 @@ module.exports = app => {
     log4js.configure({
       appenders: {
         console: {
-          type: 'console'
+          type: 'console',
         },
         // 日志 文件切割
         dateFile: {
           type: 'dateFile',
           filename: './logs/application.log',
-          pattern: '.yyyy-MM-dd' // 以年月日切割日志
-        }
+          pattern: '.yyyy-MM-dd', // 以年月日切割日志
+        },
       },
       categories: {
         default: {
           appenders: ['console', 'dateFile'],
-          level: 'trace'
-        }
-      }
+          level: 'trace',
+        },
+      },
     });
     logger = log4js.getLogger();
   }

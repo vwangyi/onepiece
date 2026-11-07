@@ -43,7 +43,7 @@ const {
   capture,
   toggleEdgePreview,
   download,
-  reset
+  reset,
 } = useImageScanner();
 
 // 优化参数：复制一份，避免污染模块级常量
@@ -70,7 +70,7 @@ const overlayStyle = computed(() => {
   const scale = vw / DETECT_WIDTH;
   const toPct = (x: number, y: number) => ({
     x: ((x * scale) / vw) * 100,
-    y: ((y * scale) / vh) * 100
+    y: ((y * scale) / vh) * 100,
   });
 
   // 优先画四边形轮廓
@@ -84,7 +84,7 @@ const overlayStyle = computed(() => {
       height: '100%',
       clipPath: `polygon(${pts
         .map(p => `${p.x.toFixed(2)}% ${p.y.toFixed(2)}%`)
-        .join(', ')})`
+        .join(', ')})`,
     };
   }
 
@@ -96,7 +96,7 @@ const overlayStyle = computed(() => {
     left: `${left.toFixed(2)}%`,
     top: `${top.toFixed(2)}%`,
     width: `${(((r.width * scale) / vw) * 100).toFixed(2)}%`,
-    height: `${(((r.height * scale) / vh) * 100).toFixed(2)}%`
+    height: `${(((r.height * scale) / vh) * 100).toFixed(2)}%`,
   };
 });
 
@@ -144,8 +144,8 @@ const presets: Array<{
       thresholdC: 10,
       emboss: false,
       invert: false,
-      perspective: true
-    }
+      perspective: true,
+    },
   },
   {
     key: 'bw',
@@ -162,8 +162,8 @@ const presets: Array<{
       thresholdC: 10,
       emboss: false,
       invert: false,
-      perspective: true
-    }
+      perspective: true,
+    },
   },
   {
     key: 'clarity',
@@ -180,8 +180,8 @@ const presets: Array<{
       thresholdC: 10,
       emboss: false,
       invert: false,
-      perspective: true
-    }
+      perspective: true,
+    },
   },
   {
     key: 'emboss',
@@ -198,9 +198,9 @@ const presets: Array<{
       thresholdC: 10,
       emboss: true,
       invert: false,
-      perspective: true
-    }
-  }
+      perspective: true,
+    },
+  },
 ];
 
 function applyPreset(patch: Partial<OpenCvOptimizeOptions>): void {
@@ -450,7 +450,7 @@ const hasResult = computed(() => !!resultUrl.value);
               <span
                 class="timing-bar-inner"
                 :style="{
-                  width: `${Math.min(100, (step.ms / (slowestStep?.ms || 1)) * 100)}%`
+                  width: `${Math.min(100, (step.ms / (slowestStep?.ms || 1)) * 100)}%`,
                 }"
               />
             </span>

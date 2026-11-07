@@ -14,5 +14,5 @@ export const AppDataSource = new DataSource({
   // entities: [User],
   entities: ['./**/entities/*.entity.ts'], // 任意文件下的*.entity.ts 都是实体文件
   migrations: [],
-  subscribers: []
+  subscribers: [],
 });

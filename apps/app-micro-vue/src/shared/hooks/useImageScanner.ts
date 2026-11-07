@@ -12,11 +12,11 @@ import { onBeforeUnmount, ref, shallowRef } from 'vue';
 import type {
   OpenCvOptimizeOptions,
   Rect,
-  StepTiming
+  StepTiming,
 } from '../wasm/opencv-image-processing';
 import type {
   WorkerRequest,
-  WorkerResponse
+  WorkerResponse,
 } from '../workers/image-process.worker';
 
 /** 巡边检测的降采样宽度：越小越快，160~320 之间比较稳 */
@@ -116,7 +116,7 @@ export function useImageScanner() {
     outputWidth: 0,
     outputHeight: 0,
     opencvVersion: '',
-    opencvLoadMs: 0
+    opencvLoadMs: 0,
   });
 
   let worker: Worker | null = null;
@@ -154,7 +154,7 @@ export function useImageScanner() {
 
     worker = new Worker(
       new URL('../workers/image-process.worker.ts', import.meta.url),
-      { type: 'module' }
+      { type: 'module' },
     );
 
     worker.onmessage = (event: MessageEvent<WorkerResponse>) => {
@@ -165,7 +165,7 @@ export function useImageScanner() {
           stats.value = {
             ...stats.value,
             opencvVersion: msg.opencvVersion,
-            opencvLoadMs: msg.loadMs
+            opencvLoadMs: msg.loadMs,
           };
           ready.value = true;
           break;
@@ -209,7 +209,7 @@ export function useImageScanner() {
             processMs: msg.total,
             roundTripMs: performance.now() - sentAt,
             outputWidth: msg.width,
-            outputHeight: msg.height
+            outputHeight: msg.height,
           };
           processing.value = false;
           break;
@@ -265,9 +265,9 @@ export function useImageScanner() {
         video: {
           facingMode: 'environment',
           width: { ideal: 1920 },
-          height: { ideal: 1080 }
+          height: { ideal: 1080 },
         },
-        audio: false
+        audio: false,
       });
       stream.value = media;
       video.srcObject = media;
@@ -316,7 +316,7 @@ export function useImageScanner() {
 
   function ensureDetectCanvas(
     w: number,
-    h: number
+    h: number,
   ): CanvasRenderingContext2D | null {
     if (!detectCanvas) detectCanvas = document.createElement('canvas');
     if (detectCanvas.width !== w || detectCanvas.height !== h) {
@@ -327,7 +327,7 @@ export function useImageScanner() {
     }
     if (!detectCtx) {
       detectCtx = detectCanvas.getContext('2d', {
-        willReadFrequently: true
+        willReadFrequently: true,
       });
     }
     return detectCtx;
@@ -386,9 +386,9 @@ export function useImageScanner() {
               id,
               data: frame.data.buffer,
               width: dw,
-              height: dh
+              height: dh,
             },
-            [frame.data.buffer]
+            [frame.data.buffer],
           );
         } catch (err) {
           error.value = `巡边提交失败: ${
@@ -426,25 +426,25 @@ export function useImageScanner() {
       y,
       width: Math.max(
         1,
-        Math.min(video.videoWidth - x, Math.round(r.width * scale))
+        Math.min(video.videoWidth - x, Math.round(r.width * scale)),
       ),
       height: Math.max(
         1,
-        Math.min(video.videoHeight - y, Math.round(r.height * scale))
-      )
+        Math.min(video.videoHeight - y, Math.round(r.height * scale)),
+      ),
     };
   }
 
   /** 角点缩放到原始分辨率 */
   function scaleCorners(
-    pts: Array<{ x: number; y: number }>
+    pts: Array<{ x: number; y: number }>,
   ): Array<{ x: number; y: number }> {
     const video = videoRef.value;
     if (!video || !video.videoWidth) return pts;
     const scale = video.videoWidth / DETECT_WIDTH;
     return pts.map(p => ({
       x: Math.round(p.x * scale),
-      y: Math.round(p.y * scale)
+      y: Math.round(p.y * scale),
     }));
   }
 
@@ -453,7 +453,7 @@ export function useImageScanner() {
    */
   function capture(
     options: OpenCvOptimizeOptions,
-    useDetectedRect = true
+    useDetectedRect = true,
   ): void {
     const video = videoRef.value;
     if (!video || !cameraOn.value || !worker) {
@@ -477,7 +477,7 @@ export function useImageScanner() {
     captureCanvas.width = vw;
     captureCanvas.height = vh;
     const ctx2d = captureCanvas.getContext('2d', {
-      willReadFrequently: true
+      willReadFrequently: true,
     });
     if (!ctx2d) {
       error.value = '无法创建画布上下文';
@@ -502,7 +502,7 @@ export function useImageScanner() {
         x: Math.round((vw - w) / 2),
         y: Math.round((vh - h) / 2),
         width: w,
-        height: h
+        height: h,
       };
       sourceCorners = null;
     }
@@ -530,9 +530,9 @@ export function useImageScanner() {
             height: vh,
             rect: sourceRect,
             corners: sourceCorners,
-            options: plainOptions
+            options: plainOptions,
           },
-          [frame.data.buffer]
+          [frame.data.buffer],
         );
       } catch (err) {
         processing.value = false;
@@ -563,7 +563,7 @@ export function useImageScanner() {
     captureCanvas.width = dw;
     captureCanvas.height = dh;
     const ctx2d = captureCanvas.getContext('2d', {
-      willReadFrequently: true
+      willReadFrequently: true,
     });
     if (!ctx2d) return;
     ctx2d.drawImage(video, 0, 0, dw, dh);
@@ -576,9 +576,9 @@ export function useImageScanner() {
           id: ++detectSeq,
           data: small.data.buffer,
           width: dw,
-          height: dh
+          height: dh,
         },
-        [small.data.buffer]
+        [small.data.buffer],
       );
     } catch (err) {
       error.value = `边缘预览提交失败: ${
@@ -609,7 +609,7 @@ export function useImageScanner() {
       outputWidth: 0,
       outputHeight: 0,
       opencvVersion: stats.value.opencvVersion,
-      opencvLoadMs: 0
+      opencvLoadMs: 0,
     };
     processing.value = false;
   }
@@ -648,7 +648,7 @@ export function useImageScanner() {
     capture,
     toggleEdgePreview,
     download,
-    reset
+    reset,
   };
 }
 

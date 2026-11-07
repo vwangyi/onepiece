@@ -161,7 +161,7 @@ export class Game {
       !TerisRule.canIMove(
         this._curTeris.shape,
         this._curTeris.centerPoint,
-        this._exists
+        this._exists,
       )
     ) {
       // 游戏结束
@@ -187,7 +187,7 @@ export class Game {
     while (teris.squares.some(it => it.point.y < 0)) {
       teris.centerPoint = {
         x: teris.centerPoint.x,
-        y: teris.centerPoint.y + 1
+        y: teris.centerPoint.y + 1,
       };
     }
   }

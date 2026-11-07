@@ -14,7 +14,7 @@ export const useChatStore = defineStore('chat', () => {
     socket.value = io('/chat', {
       transports: ['websocket', 'polling'],
       reconnection: true,
-      reconnectionDelay: 2000
+      reconnectionDelay: 2000,
     });
   }
 
@@ -56,6 +56,6 @@ export const useChatStore = defineStore('chat', () => {
   socket.value?.on('connect', connectSuccess); // 断线后自动重连
   socket.value?.on('connect_error', connectError); // 连接失败触发
   return {
-    init // 进入聊天室
+    init, // 进入聊天室
   };
 });

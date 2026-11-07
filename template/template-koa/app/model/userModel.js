@@ -32,7 +32,7 @@ class UserModel {
     const [result] = await this.mysql2.execute(sql, [
       userData.username,
       userData.password,
-      userData.email
+      userData.email,
     ]);
     return result.insertId;
   }

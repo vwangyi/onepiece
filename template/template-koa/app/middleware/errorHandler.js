@@ -21,7 +21,7 @@ export function errorHandler(app) {
       ctx.body = {
         success: false,
         code: 50000,
-        message: message || '网络异常 请稍后重试'
+        message: message || '网络异常 请稍后重试',
       };
     }
   };

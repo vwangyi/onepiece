@@ -97,7 +97,7 @@ export function createOverload() {
  */
 export function debounce1<Args extends unknown[]>(
   fn: (...args: Args) => void,
-  delay: number
+  delay: number,
 ): ((...args: Args) => void) & { cancel: () => void } {
   let timer: ReturnType<typeof setTimeout> | null = null;
   let lastArgs: Args | null = null;

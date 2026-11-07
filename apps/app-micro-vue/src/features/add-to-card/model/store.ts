@@ -42,6 +42,6 @@ export const useAddToCartStore = defineStore('features/add-to-card', () => {
   return {
     isLoading,
     error,
-    execute
+    execute,
   };
 });

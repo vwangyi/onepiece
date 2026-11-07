@@ -17,7 +17,7 @@ export function formatTime(time?: string | number | Date) {
   console.log(
     '格式化时间今天显示',
     time,
-    sameDay ? `${hh}:${mm}` : `${d.getMonth() + 1}-${d.getDate()} ${hh}:${mm}`
+    sameDay ? `${hh}:${mm}` : `${d.getMonth() + 1}-${d.getDate()} ${hh}:${mm}`,
   );
   return sameDay
     ? `${hh}:${mm}`

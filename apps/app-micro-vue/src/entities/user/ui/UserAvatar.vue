@@ -7,7 +7,7 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   src: '/default-avatar.png',
-  size: 40
+  size: 40,
 });
 </script>
 

@@ -9,10 +9,10 @@ const { sep } = path;
 module.exports = app => {
   const middlewaresPath = path.resolve(
     process.cwd(),
-    `.${sep}app${sep}middlewares`
+    `.${sep}app${sep}middlewares`,
   );
   let fileList = glob.sync(
-    path.resolve(middlewaresPath, `.${sep}**${sep}**.js`)
+    path.resolve(middlewaresPath, `.${sep}**${sep}**.js`),
   );
   fileList = fileList.filter(item => !item.endsWith('index.js'));
 

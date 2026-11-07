@@ -6,7 +6,7 @@ const data = new Array(400000).fill(0).map((item, i) => {
   return {
     id: i + 1,
     name: `Item ${i + 1}`,
-    h: 40 + ((i * 37) % 21) // 40 ~ 60，不定高度
+    h: 40 + ((i * 37) % 21), // 40 ~ 60，不定高度
   };
 });
 </script>
@@ -22,7 +22,7 @@ const data = new Array(400000).fill(0).map((item, i) => {
         <div
           class="custom-item"
           :style="{
-            height: item.h + 'px'
+            height: item.h + 'px',
           }"
         >
           <span class="idx">#{{ item.id }}</span>

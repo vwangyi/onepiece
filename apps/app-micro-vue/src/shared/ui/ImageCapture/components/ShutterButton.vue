@@ -5,7 +5,7 @@
 
 import type {
   ShutterButtonEmits,
-  ShutterButtonProps
+  ShutterButtonProps,
 } from '../types/ShutterButton';
 
 const props = defineProps<ShutterButtonProps>();
