@@ -14,10 +14,45 @@ fs.readFile
 
 crypto.xxx
 
-## process
-
-process是挂在全局对象global上 通过 global.process访问 也可以省略global
-
 ## globalThis
 
-glboalThis 在 node环境下是 global对象 在浏览器环境下 是window对象
+glboalThis 在node环境下是global 在浏览器环境下是window
+
+## fs模块读写文件
+
+```js
+const fs = require('fs');
+fs.readFileSync('a.txt', 'utf8'); // 同步读
+fs.promises.readFile('a.txt', 'utf8'); // 异步读（推荐）
+fs.writeFileSync('b.txt', 'hello');
+fs.readdirSync('./dir');
+```
+
+掌握 sync 版和 promises 版就够了，回调版可以跳过。
+
+## path模块处理路径
+
+- 拼接路径
+
+```js
+path.join(__dirname, 'data', 'a.json');
+path.resolve('./src');
+path.extname('a.txt'); // '.txt'
+```
+
+## process进程信息
+
+- 拿环境变量 拿命令行参数 拿当前工作目录 退出进程
+
+```js
+process.argv; // 命令行参数
+process.env.NODE_ENV;
+process.cwd(); // 当前工作目录
+process.exit(1);
+```
+
+## 子进程child_process
+
+## crypto加密
+
+## os操作系统信息
