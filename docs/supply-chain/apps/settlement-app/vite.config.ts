@@ -12,10 +12,7 @@ export default defineConfig(({ command, mode }) => {
   return {
     // 生产构建必须生成子应用自己的绝对资源地址；否则 qiankun 执行
     // import('/assets/...') 时会错误地从主应用 Origin 请求文件。
-    base:
-      command === 'build'
-        ? (env.VITE_SETTLEMENT_PUBLIC_BASE ?? 'http://localhost:6175/')
-        : '/',
+    base: command === 'build' ? (env.VITE_SETTLEMENT_PUBLIC_BASE ?? 'http://localhost:6175/') : '/',
     // qiankun 开发模式不能执行 React Fast Refresh 注入的 ESM 前导脚本。
     // 构建时仍使用 React 插件，开发时由 Vite 内置的 esbuild 转换 JSX。
     plugins: [
