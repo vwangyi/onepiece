@@ -1,16 +1,5 @@
 <script setup>
-const a = {
-  b: {
-    c: function () {
-      console.log(this);
-      return this;
-    },
-  },
-};
-
-console.log(a.b.c() === a.b);
-const d = a.b.c;
-console.log(d() === window);
+// 手写项目脑图
 </script>
 
 ## 1. 闭包实现防抖节流

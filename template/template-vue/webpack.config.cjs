@@ -12,11 +12,9 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = (_, { mode }) => {
+  const envPath = path.resolve(__dirname, `.env.${mode}`);
   dotenv.config({ path: path.resolve(__dirname, '.env') });
-  dotenv.config({
-    override: true,
-    path: path.resolve(__dirname, `.env.${mode}`),
-  });
+  dotenv.config({ override: true, path: envPath });
   const isDev = process.env.NODE_ENV === 'development';
 
   return {

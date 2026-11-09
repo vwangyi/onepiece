@@ -9,3 +9,4 @@ sep 路径分隔符
 
 sync 同步
 async 异步
+extension 扩展 简称 ext
