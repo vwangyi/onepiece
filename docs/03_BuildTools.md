@@ -4,7 +4,7 @@ loader是用来处理非js文件
 
 plugin用来扩展webapck功能
 
-## ====== webpack ======
+## ======================================= webpack =======================================
 
 ## webpack打包模式
 
@@ -37,6 +37,8 @@ webpack注入变量到业务代码 通过 插件 webpack插件的DefinePlugin() 
 ## webpack环境安装
 
 环境：pnpm i -D webpack@5 webpack-cli@5
+
+## ======================================= webpack =======================================
 
 ## babel.config.cjs 如果需要兼容性就用babel
 
