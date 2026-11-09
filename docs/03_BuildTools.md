@@ -14,43 +14,29 @@ webpack打包模式 指定 mode 为 developement 或 production
 
 打包入口是 entry 配置一个相对路径。
 
-```js
-export default {
-  entry: './src/main.ts',
-};
-```
-
 ## webpack打包出口
 
 打包出口是 output.path 配置一个绝对路径。
-
-```js
-const path = require('node:path');
-export default {
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-  },
-};
-```
 
 ## webpack的源码映射
 
 通过 devtool 指定为 'source-map'
 
-##
+## webpack指定模版文件
 
-## webpack.config.cjs
+webpack 指定模版文件 通过 html-webpack-plugin插件 传配置项 template 给一个绝对路径。
 
-环境：pnpm i -D webpack webpack-cli webpack-dev-server html-webpack-plugin dotenv
+## webpack开发服务器
 
-entry 相对路径
-output.path 绝对路径
-插件 html-webpack-plugin 参数 template 绝对路径
-插件 webpack.DefinePlugin 把环境变量文件注入到业务代码
-通过 dotenv 读取 .env 环境变量
+webpack开发服务器 需要安装 webpack-dev-server 通过 npx webpack serve 启动开发服务器。
 
-开发环境：npx webpack serve
-生产环境：npx webpack
+## webpack注入变量到业务代码
+
+webpack注入变量到业务代码 通过 插件 webpack插件的DefinePlugin() 传一个配置项 key为变量名 value为值 value是字符串需要用 JSON.strtingfly包裹一下。
+
+## webpack环境安装
+
+环境：pnpm i -D webpack@5 webpack-cli@5
 
 ## babel.config.cjs 如果需要兼容性就用babel
 
@@ -92,15 +78,15 @@ compilerOptions.allowImportingTsExtensions 为true 表示允许导入ts时，写
 
 devServer.hot: true
 
-## history路由
+## webpack使用history路由
 
 devServer.historyApiFallback: true
 
-## 优化 - 代码分割
+## webpack代码分割
 
 optimization.splitChunks
 
-## 优化 - 代码压缩
+## webpack代码压缩
 
 optimization.minimize: true,
 optimization.minimizer
