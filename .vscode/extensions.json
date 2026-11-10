@@ -9,7 +9,8 @@
     "ritwickdey.LiveServer", // Live Server 插件
     "vscode-icons-team.vscode-icons", // 文件icon插件
     "streetsidesoftware.code-spell-checker", // 拼写检查插件
-    "usernamehw.errorlens" // 行内显示错误/警告提示
+    "usernamehw.errorlens", // 行内显示错误/警告提示
+    "ms-ceintl.vscode-language-pack-zh-hans" // 中文插件
   ],
   // 不推荐的扩展（避免冲突）
   "unwantedRecommendations": [
