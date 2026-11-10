@@ -1,0 +1,510 @@
+term,cn,category,example
+create,创建,General,createUser()
+update,更新,General,updateUser()
+delete,删除,General,deleteUser()
+fetch,获取,General,fetchData()
+get,获取,General,getUser()
+set,设置,General,setValue()
+add,添加,General,addItem()
+remove,移除,General,removeItem()
+handle,处理,General,handleClick()
+render,渲染,General,renderView()
+mount,挂载,Frontend,onMounted()
+unmount,卸载,Frontend,onUnmounted()
+validate,校验,General,validateForm()
+parse,解析,General,JSON.parse()
+format,格式化,General,formatDate()
+serialize,序列化,General,serializeData()
+deserialize,反序列化,General,deserializeData()
+transform,转换,General,transformData()
+map,映射,JS/TS,array.map()
+filter,过滤,JS/TS,array.filter()
+reduce,归约,JS/TS,array.reduce()
+find,查找,JS/TS,array.find()
+sort,排序,JS/TS,array.sort()
+merge,合并,General,mergeObjects()
+split,拆分,JS/TS,str.split()
+join,连接,JS/TS,array.join()
+bind,绑定,JS/TS,fn.bind()
+emit,触发/发出,Nest,eventEmitter.emit()
+trigger,触发,General,triggerEvent()
+listen,监听,Node,server.listen()
+subscribe,订阅,General,observable.subscribe()
+publish,发布,General,publishEvent()
+dispatch,派发,Frontend,store.dispatch()
+commit,提交,Git,git commit
+rollback,回滚,DB,transaction.rollback()
+retry,重试,General,retryRequest()
+fallback,降级,General,fallbackValue
+cache,缓存,General,cache.set()
+invalidate,失效,General,invalidateCache()
+compile,编译,General,compileCode()
+bundle,打包,Frontend,bundleApp()
+deploy,部署,DevOps,deployApp()
+build,构建,DevOps,npm run build
+test,测试,Test,runTest()
+mock,模拟,Test,mockUser()
+log,记录日志,Node,logger.log()
+trace,追踪,Node,stack trace
+debug,调试,General,debugApp()
+configure,配置,General,configureApp()
+initialize,初始化,General,initializeApp()
+bootstrap,启动,Nest,NestFactory.create()
+register,注册,Nest,registerModule()
+resolve,解析/解决,General,resolvePromise()
+reject,拒绝,JS/TS,Promise.reject()
+approve,批准,General,approveRequest()
+authorize,授权,Nest,authorizeUser()
+authenticate,认证,Nest,authenticateUser()
+redirect,重定向,Frontend,redirectTo()
+proxy,代理,Node,proxyRequest()
+forward,转发,Node,forwardRequest()
+intercept,拦截,Nest,interceptRequest()
+inject,注入,Nest,@Inject()
+provide,提供,Nest,providers
+consume,消费,Node,consumeMessage()
+produce,生产,Node,produceMessage()
+schedule,调度,Nest,@Cron()
+execute,执行,General,executeQuery()
+invoke,调用,General,invokeFunction()
+instantiate,实例化,JS/TS,new User()
+extend,继承/扩展,JS/TS,class A extends B
+implement,实现,JS/TS,class A implements B
+override,重写,JS/TS,override method
+expose,暴露,Nest,exposePort()
+deprecate,弃用,General,deprecated API
+migrate,迁移,DB,runMigration()
+seed,填充初始数据,DB,seedDatabase()
+throttle,节流,Frontend,throttle(fn)
+debounce,防抖,Frontend,debounce(fn)
+hydrate,水合,Frontend,hydrateApp()
+normalize,规范化,General,normalizeData()
+sanitize,清洗,General,sanitizeInput()
+escape,转义,General,escapeHtml()
+encode,编码,General,encodeURI()
+decode,解码,General,decodeURI()
+encrypt,加密,Node,encryptData()
+decrypt,解密,Node,decryptData()
+hash,哈希,Node,hashPassword()
+sign,签名,Node,signToken()
+verify,验证,Node,verifyToken()
+refresh,刷新,General,refreshToken()
+revoke,撤销,General,revokeToken()
+expire,过期,General,tokenExpired
+timeout,超时,Node,setTimeout()
+abort,中止,Node,abortRequest()
+cancel,取消,General,cancelRequest()
+queue,排队,Node,queueJob()
+batch,批处理,DB,batchInsert()
+paginate,分页,DB,paginateQuery()
+aggregate,聚合,DB,aggregateData()
+group,分组,DB,groupBy()
+count,计数,DB,countRows()
+sum,求和,DB,sumValues()
+diff,差异,Git,git diff
+patch,补丁,General,applyPatch()
+snapshot,快照,DB,snapshot()
+rollout,发布,DevOps,rolloutDeploy()
+scale,扩容,DevOps,scaleService()
+balance,负载均衡,DevOps,loadBalance()
+monitor,监控,DevOps,monitorApp()
+benchmark,基准测试,Test,runBenchmark()
+semantic,语义化,Frontend,<article>
+accessibility,可访问性,Frontend,a11y
+ARIA,无障碍属性,Frontend,aria-label
+responsive,响应式,Frontend,responsive layout
+breakpoint,断点,Frontend,768px
+media query,媒体查询,Frontend,@media
+viewport,视口,Frontend,meta viewport
+flexbox,弹性布局,Frontend,display:flex
+grid,网格布局,Frontend,display:grid
+box model,盒模型,Frontend,margin padding
+margin,外边距,Frontend,margin:0
+padding,内边距,Frontend,padding:8px
+border,边框,Frontend,border:1px
+selector,选择器,Frontend,.class
+specificity,优先级,Frontend,specificity
+pseudo-class,伪类,Frontend,:hover
+pseudo-element,伪元素,Frontend,::before
+stacking context,层叠上下文,Frontend,z-index
+z-index,层级,Frontend,z-index:10
+position,定位,Frontend,position:absolute
+display,显示方式,Frontend,display:block
+overflow,溢出,Frontend,overflow:hidden
+transition,过渡,Frontend,transition:all
+animation,动画,Frontend,animation:fade
+transform,变换,Frontend,transform:scale()
+keyframe,关键帧,Frontend,@keyframes
+variable,变量,Frontend,--color
+preprocessor,预处理器,Frontend,Sass
+reset,重置样式,Frontend,reset.css
+normalize,规范化样式,Frontend,normalize.css
+utility class,工具类,Frontend,.mt-4
+BEM,命名法,Frontend,block__element--modifier
+layout,布局,Frontend,layout
+component,组件,Frontend,UserCard
+template,模板,Frontend,<template>
+slot,插槽,Frontend,<slot>
+modal,弹窗,Frontend,Modal
+dialog,对话框,Frontend,<dialog>
+menu,菜单,Frontend,Menu
+tab,标签页,Frontend,Tabs
+table,表格,Frontend,Table
+row,行,Frontend,tr
+column,列,Frontend,td
+cell,单元格,Frontend,cell
+header,头部,Frontend,header
+footer,底部,Frontend,footer
+sidebar,侧边栏,Frontend,sidebar
+form,表单,Frontend,form
+field,字段,Frontend,field
+input,输入框,Frontend,input
+button,按钮,Frontend,button
+checkbox,复选框,Frontend,checkbox
+radio,单选框,Frontend,radio
+dropdown,下拉框,Frontend,dropdown
+tooltip,提示,Frontend,tooltip
+toast,轻提示,Frontend,toast
+pagination,分页器,Frontend,pagination
+breadcrumb,面包屑,Frontend,breadcrumb
+carousel,轮播,Frontend,carousel
+drawer,抽屉,Frontend,drawer
+accordion,折叠面板,Frontend,accordion
+loading,加载,Frontend,loading
+skeleton,骨架屏,Frontend,skeleton
+placeholder,占位符,Frontend,placeholder
+disabled,禁用,Frontend,disabled
+readonly,只读,Frontend,readonly
+required,必填,Frontend,required
+invalid,无效,Frontend,invalid
+valid,有效,Frontend,valid
+scope,作用域,JS/TS,scope
+closure,闭包,JS/TS,closure
+hoisting,变量提升,JS/TS,hoisting
+prototype,原型,JS/TS,prototype
+inheritance,继承,JS/TS,inheritance
+call stack,调用栈,JS/TS,call stack
+event loop,事件循环,JS/TS,event loop
+task queue,任务队列,JS/TS,task queue
+microtask,微任务,JS/TS,microtask
+callback,回调,JS/TS,callback
+promise,承诺对象,JS/TS,Promise
+async,异步,JS/TS,async
+await,等待,JS/TS,await
+event delegation,事件委托,JS/TS,delegation
+bubbling,冒泡,JS/TS,bubbling
+capturing,捕获,JS/TS,capturing
+immutable,不可变,JS/TS,immutable
+mutation,变更,JS/TS,mutation
+shallow copy,浅拷贝,JS/TS,shallow copy
+deep copy,深拷贝,JS/TS,deep copy
+destructuring,解构,JS/TS,destructuring
+spread,展开,JS/TS,spread
+optional chaining,可选链,JS/TS,?.
+nullish coalescing,空值合并,JS/TS,??
+module,模块,JS/TS,module
+import,导入,JS/TS,import
+export,导出,JS/TS,export
+default,默认,JS/TS,default
+named export,具名导出,JS/TS,named export
+namespace,命名空间,JS/TS,namespace
+type annotation,类型注解,JS/TS,: string
+inference,推断,JS/TS,inference
+interface,接口,JS/TS,interface
+type alias,类型别名,JS/TS,type User
+generics,泛型,JS/TS,<T>
+union,联合类型,JS/TS,A | B
+intersection,交叉类型,JS/TS,A & B
+enum,枚举,JS/TS,enum
+tuple,元组,JS/TS,[string number]
+utility type,工具类型,JS/TS,Partial<T>
+decorator,装饰器,JS/TS,@decorator
+declaration file,声明文件,JS/TS,.d.ts
+strict mode,严格模式,JS/TS,strict
+type guard,类型守卫,JS/TS,typeof x
+assertion,断言,JS/TS,as User
+overload,重载,JS/TS,overload
+optional,可选,JS/TS,?
+nullable,可空,JS/TS,null
+undefined,未定义,JS/TS,undefined
+null,空值,JS/TS,null
+NaN,非数字,JS/TS,NaN
+truthy,真值,JS/TS,truthy
+falsy,假值,JS/TS,falsy
+synchronous,同步,JS/TS,sync
+asynchronous,异步,JS/TS,async
+blocking,阻塞,JS/TS,blocking
+non-blocking,非阻塞,JS/TS,non-blocking
+mutable,可变,JS/TS,mutable
+reference,引用,JS/TS,reference
+value,值,JS/TS,value
+primitive,原始类型,JS/TS,string
+object,对象,JS/TS,object
+array,数组,JS/TS,array
+function,函数,JS/TS,function
+arrow function,箭头函数,JS/TS,() => {}
+higher-order function,高阶函数,JS/TS,HOF
+pure function,纯函数,JS/TS,pure
+side effect,副作用,JS/TS,side effect
+recursion,递归,JS/TS,recursion
+iterate,迭代,JS/TS,iterate
+iterator,迭代器,JS/TS,iterator
+generator,生成器,JS/TS,function*
+runtime,运行时,Node,node
+event-driven,事件驱动,Node,EventEmitter
+non-blocking I/O,非阻塞 I/O,Node,fs.readFile
+stream,流,Node,createReadStream
+buffer,缓冲区,Node,Buffer.from()
+backpressure,背压,Node,backpressure
+pipe,管道,Node,readable.pipe()
+transform,转换流,Node,Transform
+readable,可读,Node,Readable
+writable,可写,Node,Writable
+duplex,双工,Node,Duplex
+process,进程,Node,process.env
+cluster,集群,Node,cluster.fork()
+worker thread,工作线程,Node,Worker
+child process,子进程,Node,fork()
+environment variable,环境变量,Node,process.env
+package,包,Node,package.json
+dependency,依赖,Node,dependencies
+devDependency,开发依赖,Node,devDependencies
+peerDependency,对等依赖,Node,peerDependencies
+lockfile,锁文件,Node,package-lock.json
+semver,语义化版本,Node,^1.0.0
+script,脚本,Node,npm run
+npx,包执行器,Node,npx nest
+monorepo,单仓库多包,Node,workspaces
+workspace,工作区,Node,workspace
+middleware,中间件,Node,app.use()
+routing,路由,Node,router.get()
+handler,处理器,Node,handler()
+auth,认证,Node,auth
+authorization,授权,Node,authorization
+hash,哈希,Node,crypto
+salt,盐,Node,salt
+encryption,加密,Node,crypto
+session,会话,Node,session
+cookie,Cookie,Node,cookie
+CORS,跨域,Node,cors()
+CSRF,跨站请求伪造,Node,csrf
+XSS,跨站脚本,Node,xss
+SQL injection,SQL 注入,Node,sanitize
+rate limiting,限流,Node,rateLimit
+reverse proxy,反向代理,Node,nginx
+logging,日志,Node,logger
+monitoring,监控,Node,monitor
+benchmark,基准测试,Node,benchmark
+memory leak,内存泄漏,Node,leak
+garbage collection,垃圾回收,Node,gc
+callback hell,回调地狱,Node,nested callbacks
+promise chain,Promise 链,Node,then chain
+error-first callback,错误优先回调,Node,"callback(err, data)"
+unhandled rejection,未处理拒绝,Node,process.on
+graceful shutdown,优雅关闭,Node,SIGTERM
+hot reload,热重载,Node,nodemon
+debugger,调试器,Node,node inspect
+stack trace,调用栈追踪,Node,stack trace
+event emitter,事件发射器,Node,EventEmitter
+fs,文件系统,Node,fs
+path,路径,Node,path
+os,操作系统,Node,os
+http,超文本传输,Node,http
+https,安全传输,Node,https
+crypto,加密,Node,crypto
+zlib,压缩,Node,zlib
+querystring,查询字符串,Node,querystring
+url,统一资源定位符,Node,URL
+stream pipe,流管道,Node,pipe
+graceful degradation,优雅降级,Node,fallback
+module,模块,Nest,@Module
+controller,控制器,Nest,@Controller
+provider,提供者,Nest,providers
+service,服务,Nest,@Injectable
+dependency injection,依赖注入,Nest,DI
+decorator,装饰器,Nest,@Injectable
+metadata,元数据,Nest,@SetMetadata
+reflector,反射器,Nest,Reflector
+guard,守卫,Nest,@UseGuards
+interceptor,拦截器,Nest,@UseInterceptors
+pipe,管道,Nest,ValidationPipe
+middleware,中间件,Nest,configure
+exception filter,异常过滤器,Nest,@Catch
+DTO,数据传输对象,Nest,CreateUserDto
+entity,实体,Nest,UserEntity
+repository,仓库,Nest,UserRepository
+ORM,对象关系映射,Nest,TypeORM
+TypeORM,TypeORM,Nest,@Entity
+Prisma,Prisma,Nest,PrismaService
+Mongoose,Mongoose,Nest,@Schema
+validation,校验,Nest,ValidationPipe
+serialization,序列化,Nest,ClassSerializerInterceptor
+lifecycle hook,生命周期钩子,Nest,OnModuleInit
+bootstrap,启动,Nest,NestFactory.create
+configuration,配置,Nest,ConfigModule
+microservice,微服务,Nest,@MessagePattern
+transport,传输层,Nest,Transport
+message pattern,消息模式,Nest,@MessagePattern
+event pattern,事件模式,Nest,@EventPattern
+gateway,网关,Nest,@WebSocketGateway
+GraphQL resolver,解析器,Nest,@Resolver
+subscription,订阅,Nest,@Subscription
+schema first,模式优先,Nest,GraphQL schema
+code first,代码优先,Nest,GraphQL code
+health check,健康检查,Nest,@HealthCheck
+throttler,限流器,Nest,ThrottlerGuard
+cache manager,缓存管理器,Nest,CacheModule
+schedule,定时任务,Nest,@Cron
+queue,队列,Nest,BullModule
+Bull,队列库,Nest,Bull
+Redis,Redis,Nest,RedisModule
+strategy,策略,Nest,PassportStrategy
+Passport,Passport,Nest,AuthGuard
+JWT,JWT,Nest,JwtService
+request-scoped,请求作用域,Nest,Scope.REQUEST
+singleton,单例,Nest,Scope.DEFAULT
+transient,瞬态,Nest,Scope.TRANSIENT
+circular dependency,循环依赖,Nest,forwardRef
+dynamic module,动态模块,Nest,forRoot
+custom provider,自定义提供者,Nest,useClass
+injection token,注入令牌,Nest,@Inject
+forwardRef,前向引用,Nest,forwardRef
+execution context,执行上下文,Nest,ExecutionContext
+argument host,参数宿主,Nest,ArgumentsHost
+class-validator,类校验器,Nest,@IsString
+class-transformer,类转换器,Nest,plainToInstance
+validation pipe,校验管道,Nest,ValidationPipe
+global guard,全局守卫,Nest,APP_GUARD
+route guard,路由守卫,Nest,CanActivate
+role,角色,Nest,@Roles
+permission,权限,Nest,permission
+policy,策略,Nest,policy
+scope,作用域,Nest,Scope
+provider token,提供者令牌,Nest,USER_REPOSITORY
+module reference,模块引用,Nest,ModuleRef
+application context,应用上下文,Nest,createApplicationContext
+NestFactory,工厂,Nest,NestFactory
+@Module,模块装饰器,Nest,@Module({})
+@Controller,控制器装饰器,Nest,@Controller('users')
+@Injectable,可注入装饰器,Nest,@Injectable()
+@Inject,注入装饰器,Nest,@Inject(TOKEN)
+@UseGuards,使用守卫,Nest,@UseGuards(AuthGuard)
+@UseInterceptors,使用拦截器,Nest,@UseInterceptors(LoggingInterceptor)
+@UsePipes,使用管道,Nest,@UsePipes(ValidationPipe)
+@Catch,捕获异常,Nest,@Catch(HttpException)
+@Get/@Post/@Put/@Patch/@Delete,请求方法装饰器,Nest,@Get()
+@Body/@Query/@Param,参数装饰器,Nest,@Body()
+@Req/@Res,请求响应装饰器,Nest,@Req()
+@SetMetadata,设置元数据,Nest,@SetMetadata()
+database,数据库,DB/API,database
+schema,模式,DB/API,schema
+migration,迁移,DB/API,migration
+seed,初始数据,DB/API,seed
+query,查询,DB/API,query
+join,连接,DB/API,join
+index,索引,DB/API,index
+primary key,主键,DB/API,id
+foreign key,外键,DB/API,userId
+transaction,事务,DB/API,transaction
+commit,提交,DB/API,commit
+rollback,回滚,DB/API,rollback
+relation,关系,DB/API,relation
+one-to-many,一对多,DB/API,User->Posts
+many-to-many,多对多,DB/API,User<->Roles
+eager loading,急加载,DB/API,eager
+lazy loading,懒加载,DB/API,lazy
+pagination,分页,DB/API,page/limit
+sorting,排序,DB/API,sort
+filtering,过滤,DB/API,filter
+aggregate,聚合,DB/API,aggregate
+model,模型,DB/API,model
+entity,实体,DB/API,entity
+repository,仓库,DB/API,repository
+service,服务,DB/API,service
+controller,控制器,DB/API,controller
+REST,表述性状态转移,DB/API,REST API
+GraphQL,图查询语言,DB/API,GraphQL
+endpoint,端点,DB/API,/users
+request,请求,DB/API,request
+response,响应,DB/API,response
+authentication,认证,DB/API,auth
+authorization,授权,DB/API,authz
+permission,权限,DB/API,permission
+role,角色,DB/API,role
+unit test,单元测试,Test,unit test
+integration test,集成测试,Test,integration
+e2e test,端到端测试,Test,e2e
+mock,模拟,Test,mock
+stub,桩,Test,stub
+spy,间谍,Test,spy
+assertion,断言,Test,expect
+coverage,覆盖率,Test,coverage
+fixture,测试夹具,Test,fixture
+CI/CD,持续集成/持续交付,DevOps,CI/CD
+pipeline,流水线,DevOps,pipeline
+deploy,部署,DevOps,deploy
+build,构建,DevOps,build
+artifact,构建产物,DevOps,artifact
+container,容器,DevOps,Docker
+Docker,Docker,DevOps,docker run
+image,镜像,DevOps,image
+volume,卷,DevOps,volume
+orchestration,编排,DevOps,Kubernetes
+Kubernetes,Kubernetes,DevOps,k8s
+serverless,无服务器,DevOps,serverless
+cloud,云,DevOps,cloud
+VM,虚拟机,DevOps,VM
+repository,仓库,Git,repository
+branch,分支,Git,branch
+commit,提交,Git,commit
+merge,合并,Git,merge
+rebase,变基,Git,rebase
+conflict,冲突,Git,conflict
+pull request,合并请求,Git,PR
+code review,代码评审,Git,review
+issue,问题,Git,issue
+tag,标签,Git,tag
+release,发布,Git,release
+fork,分叉,Git,fork
+clone,克隆,Git,clone
+stash,暂存,Git,stash
+cherry-pick,拣选提交,Git,cherry-pick
+monolith,单体,Architecture,monolith
+microservice,微服务,Architecture,microservice
+modular,模块化,Architecture,modular
+layer,分层,Architecture,layer
+separation of concerns,关注点分离,Architecture,SoC
+SOLID,面向对象设计原则,Architecture,SOLID
+DRY,不要重复,Architecture,DRY
+KISS,保持简单,Architecture,KISS
+coupling,耦合,Architecture,coupling
+cohesion,内聚,Architecture,cohesion
+abstraction,抽象,Architecture,abstraction
+encapsulation,封装,Architecture,encapsulation
+inheritance,继承,Architecture,inheritance
+polymorphism,多态,Architecture,polymorphism
+composition,组合,Architecture,composition
+dependency injection,依赖注入,Architecture,DI
+inversion of control,控制反转,Architecture,IoC
+singleton,单例,Architecture,singleton
+factory,工厂,Architecture,factory
+strategy,策略,Architecture,strategy
+observer,观察者,Architecture,observer
+adapter,适配器,Architecture,adapter
+decorator,装饰器,Architecture,decorator
+proxy,代理,Architecture,proxy
+facade,外观,Architecture,facade
+repository pattern,仓库模式,Architecture,repository
+CQRS,命令查询职责分离,Architecture,CQRS
+event sourcing,事件溯源,Architecture,event sourcing
+message queue,消息队列,Architecture,MQ
+pub/sub,发布订阅,Architecture,pubsub
+idempotency,幂等性,Architecture,idempotent
+consistency,一致性,Architecture,consistency
+scalability,可扩展性,Architecture,scalability
+availability,可用性,Architecture,availability
+fault tolerance,容错,Architecture,fault tolerance
+latency,延迟,Architecture,latency
+throughput,吞吐量,Architecture,throughput
+concurrency,并发,Architecture,concurrency
+parallelism,并行,Architecture,parallelism
