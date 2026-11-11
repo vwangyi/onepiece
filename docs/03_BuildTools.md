@@ -1,9 +1,3 @@
-##
-
-loader是用来处理非js文件
-
-plugin用来扩展webapck功能
-
 ## ======================================= webpack =======================================
 
 ## webpack打包模式
@@ -13,6 +7,10 @@ webpack打包模式 指定 mode 为 developement 或 production
 ## webpack打包入口
 
 打包入口是 entry 配置一个相对路径。
+
+```js
+
+```
 
 ## webpack打包出口
 
@@ -32,11 +30,38 @@ webpack开发服务器 需要安装 webpack-dev-server 通过 npx webpack serve 
 
 ## webpack注入变量到业务代码
 
-webpack注入变量到业务代码 通过 插件 webpack插件的DefinePlugin() 传一个配置项 key为变量名 value为值 value是字符串需要用 JSON.strtingfly包裹一下。
+通过 webpack.DefinePlugin()插件 传一个配置项
+key是注入的变量名
+value是注入的变量值 字符串需要用JSON.strtingfly包裹一下。
+
+```js
+const webpack = require('webpack');
+export default {
+  plugins: [
+    new window.DefinePlugin({
+      key: JSON.stringfly('string'),
+    }),
+  ],
+};
+```
 
 ## webpack环境安装
 
 环境：pnpm i -D webpack@5 webpack-cli@5
+
+## webpack 插件
+
+plugins 用来扩展webapck功能
+
+plugins: [],数组
+
+## webpack loader
+
+loader是用来处理非js文件
+
+## webpack开发服务器打开history路由
+
+通过 devServer.historyApiFallback 为 true
 
 ## ======================================= webpack =======================================
 
@@ -80,10 +105,6 @@ compilerOptions.allowImportingTsExtensions 为true 表示允许导入ts时，写
 
 devServer.hot: true
 
-## webpack使用history路由
-
-devServer.historyApiFallback: true
-
 ## webpack代码分割
 
 optimization.splitChunks
@@ -98,11 +119,3 @@ optimization.minimizer
 optimization.usedExports 为true
 
 应该具名导入 而不是 整体导入
-
-## rollup
-
-## vite
-
-```
-
-```
