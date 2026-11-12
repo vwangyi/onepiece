@@ -1,40 +1,44 @@
 const path = require('node:path');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const { VueLoaderPlugin } = require('vue-loader');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: './src/app/main.ts',
+  entry: './src/app/main.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
   },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.vue', '.jsx', '.scss', '.css'],
+    mainFiles: ['index'],
+    alias: { '@': path.resolve(__dirname, './src') },
+  },
   devServer: {
     port: 4000,
+    // historyApiFallback: true,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
   },
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        use: [
-          'babel-loader',
-          {
-            loader: 'ts-loader',
-            options: {
-              configFile: path.resolve(__dirname, 'tsconfig.json'),
-              transpileOnly: true, // ts-loader只做编译，不做类型检查
-              appendTsSuffixTo: [/\.vue$/],
-              appendTsxSuffixTo: [/\.vue$/],
-            },
-          },
-        ],
-        exclude: /node_modules/,
+        test: /\.vue$/,
+        use: ['vue-loader'],
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },
   plugins: [
-    // ForkTsCheckerWebpackPlugin 只做类型检查,不做编译
-    new ForkTsCheckerWebpackPlugin({
-      async: process.env.NODE_ENV === 'development',
-      typescript: { configFile: path.resolve(__dirname, 'tsconfig.json') },
+    new VueLoaderPlugin(),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, './public/index.html'),
+      // title: process?.env?.APP_TITLE,
+      // favicon: path.resolve(__dirname, './public/favicon.ico'),
+      // templateParameters: { faviconVersion: pkg.version },
     }),
   ],
 };

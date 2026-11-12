@@ -1,3 +1,3 @@
 <template>
-  <div>11</div>
+  <div>我是home</div>
 </template>

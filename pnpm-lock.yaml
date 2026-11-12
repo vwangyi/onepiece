@@ -429,13 +429,23 @@ importers:
         version: 3.3.14(typescript@6.0.3)
 
   apps/app-main-qiankun2:
+    dependencies:
+      qiankun:
+        specifier: ^2.10.16
+        version: 2.10.16
     devDependencies:
       babel-loader:
         specifier: ^10.1.1
         version: 10.1.1(@babel/core@7.29.7)(webpack@5.111.1)
       fork-ts-checker-webpack-plugin:
         specifier: ^9.1.0
-        version: 9.1.0(typescript@5.9.3)(webpack@5.111.1)
+        version: 9.1.0(typescript@6.0.3)(webpack@5.111.1)
+      html-webpack-plugin:
+        specifier: ^5.6.8
+        version: 5.6.8(webpack@5.111.1)
+      vue-loader:
+        specifier: ^17.4.2
+        version: 17.4.2(@vue/compiler-sfc@3.5.45)(vue@file:node_packages/vue-3.5.42.tgz(typescript@5.9.3))(webpack@5.111.1)
       webpack:
         specifier: ^5.111.1
         version: 5.111.1(esbuild@0.28.1)(lightningcss@1.33.0)(postcss@8.5.32)(webpack-cli@6.0.1)
@@ -446,32 +456,33 @@ importers:
         specifier: ^5.2.7
         version: 5.2.7(webpack-cli@6.0.1)(webpack@5.111.1)
 
-  apps/app-main-wujie: {}
-
   apps/app-micro-datav:
     dependencies:
-      vue:
-        specifier: ^3.5.44
-        version: 3.5.45(typescript@6.0.3)
+      qiankun:
+        specifier: ^2.10.16
+        version: 2.10.16
     devDependencies:
-      '@types/node':
-        specifier: ^24.19.2
-        version: 24.19.2
-      '@vitejs/plugin-vue':
-        specifier: ^6.0.10
-        version: 6.0.10(vite@8.3.6(@types/node@24.19.2)(esbuild@0.28.1)(jiti@2.7.0)(less@4.6.7)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.0))(vue@3.5.45(typescript@6.0.3))
-      '@vue/tsconfig':
-        specifier: ^0.9.1
-        version: 0.9.1(typescript@6.0.3)(vue@3.5.45(typescript@6.0.3))
-      typescript:
-        specifier: ~6.0.3
-        version: 6.0.3
-      vite:
-        specifier: ^8.3.6
-        version: 8.3.6(@types/node@24.19.2)(esbuild@0.28.1)(jiti@2.7.0)(less@4.6.7)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.0)
-      vue-tsc:
-        specifier: ^3.3.14
-        version: 3.3.14(typescript@6.0.3)
+      babel-loader:
+        specifier: ^10.1.1
+        version: 10.1.1(@babel/core@7.29.7)(webpack@5.111.1)
+      fork-ts-checker-webpack-plugin:
+        specifier: ^9.1.0
+        version: 9.1.0(typescript@6.0.3)(webpack@5.111.1)
+      html-webpack-plugin:
+        specifier: ^5.6.8
+        version: 5.6.8(webpack@5.111.1)
+      vue-loader:
+        specifier: ^17.4.2
+        version: 17.4.2(@vue/compiler-sfc@3.5.45)(vue@file:node_packages/vue-3.5.42.tgz(typescript@5.9.3))(webpack@5.111.1)
+      webpack:
+        specifier: ^5.111.1
+        version: 5.111.1(esbuild@0.28.1)(lightningcss@1.33.0)(postcss@8.5.32)(webpack-cli@6.0.1)
+      webpack-cli:
+        specifier: ^6.0.1
+        version: 6.0.1(webpack-dev-server@5.2.7)(webpack@5.111.1)
+      webpack-dev-server:
+        specifier: ^5.2.7
+        version: 5.2.7(webpack-cli@6.0.1)(webpack@5.111.1)
 
   apps/app-micro-game: {}
 
@@ -512,7 +523,7 @@ importers:
         version: 6.30.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       vite-plugin-qiankun:
         specifier: 1.0.15
-        version: 1.0.15(typescript@5.9.3)(vite@8.3.6(@types/node@25.9.5)(esbuild@0.28.1)(jiti@2.7.0)(less@4.6.7)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.0))
+        version: 1.0.15(typescript@6.0.3)(vite@8.3.6(@types/node@25.9.5)(esbuild@0.28.1)(jiti@2.7.0)(less@4.6.7)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.0))
     devDependencies:
       '@vitejs/plugin-react':
         specifier: ^5.0.2
@@ -9520,6 +9531,7 @@ packages:
 
   vue-loader@17.4.2:
     resolution: {integrity: sha512-yTKOA4R/VN4jqjw4y5HrynFL8AK0Z3/Jt7eOJXEitsm0GMRHDBjCfCiuTiLP7OESvsZYo2pATCWhDqxC5ZrM6w==}
+    version: 17.4.2
     peerDependencies:
       '@vue/compiler-sfc': '*'
       vue: '*'
@@ -14412,6 +14424,15 @@ snapshots:
     optionalDependencies:
       typescript: 5.9.3
 
+  cosmiconfig@8.3.6(typescript@6.0.3):
+    dependencies:
+      import-fresh: 3.3.1
+      js-yaml: 4.3.0
+      parse-json: 5.2.0
+      path-type: 4.0.0
+    optionalDependencies:
+      typescript: 6.0.3
+
   cosmiconfig@9.0.2(typescript@5.9.3):
     dependencies:
       env-paths: 2.2.1
@@ -15551,12 +15572,12 @@ snapshots:
       typescript: 5.9.3
       webpack: 5.106.2(esbuild@0.28.1)(lightningcss@1.33.0)(postcss@8.5.32)
 
-  fork-ts-checker-webpack-plugin@9.1.0(typescript@5.9.3)(webpack@5.111.1):
+  fork-ts-checker-webpack-plugin@9.1.0(typescript@6.0.3)(webpack@5.111.1):
     dependencies:
       '@babel/code-frame': 7.29.7
       chalk: 4.1.2
       chokidar: 4.0.3
-      cosmiconfig: 8.3.6(typescript@5.9.3)
+      cosmiconfig: 8.3.6(typescript@6.0.3)
       deepmerge: 4.3.1
       fs-extra: 10.1.0
       memfs: 3.5.3
@@ -15565,7 +15586,7 @@ snapshots:
       schema-utils: 3.3.0
       semver: 7.8.5
       tapable: 2.3.3
-      typescript: 5.9.3
+      typescript: 6.0.3
       webpack: 5.111.1(esbuild@0.28.1)(lightningcss@1.33.0)(postcss@8.5.32)(webpack-cli@6.0.1)
 
   form-data@4.0.6:
@@ -15888,7 +15909,7 @@ snapshots:
       pretty-error: 4.0.0
       tapable: 2.3.3
     optionalDependencies:
-      webpack: 5.111.1(esbuild@0.28.1)(lightningcss@1.33.0)(postcss@8.5.28)(webpack-cli@6.0.1)
+      webpack: 5.111.1(esbuild@0.28.1)(lightningcss@1.33.0)(postcss@8.5.32)(webpack-cli@6.0.1)
 
   htmlparser2@10.1.0:
     dependencies:
@@ -19340,10 +19361,10 @@ snapshots:
     optionalDependencies:
       '@nuxt/kit': 4.5.2(magic-string@1.4.5)(magicast@0.5.4)(rolldown@1.2.16)(unplugin@3.7.0(esbuild@0.28.1)(rolldown@1.2.16)(rollup@4.62.2)(vite@7.3.6(@types/node@25.9.5)(jiti@2.7.0)(less@4.6.7)(lightningcss@1.33.0)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.0))(webpack@5.111.1(esbuild@0.28.1)(lightningcss@1.33.0)(postcss@8.5.32)))
 
-  vite-plugin-qiankun@1.0.15(typescript@5.9.3)(vite@8.3.6(@types/node@25.9.5)(esbuild@0.28.1)(jiti@2.7.0)(less@4.6.7)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.0)):
+  vite-plugin-qiankun@1.0.15(typescript@6.0.3)(vite@8.3.6(@types/node@25.9.5)(esbuild@0.28.1)(jiti@2.7.0)(less@4.6.7)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.0)):
     dependencies:
       cheerio: 1.2.0
-      typescript: 5.9.3
+      typescript: 6.0.3
       vite: 8.3.6(@types/node@25.9.5)(esbuild@0.28.1)(jiti@2.7.0)(less@4.6.7)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.0)
 
   vite-plugin-vue-devtools@8.1.5(@nuxt/kit@4.5.2(magic-string@1.4.5)(magicast@0.5.4)(rolldown@1.2.16)(unplugin@3.7.0(esbuild@0.28.1)(rolldown@1.2.16)(rollup@4.62.2)(vite@7.3.6(@types/node@25.9.5)(jiti@2.7.0)(less@4.6.7)(lightningcss@1.33.0)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.0))(webpack@5.111.1(esbuild@0.28.1)(lightningcss@1.33.0)(postcss@8.5.32))))(vite@7.3.6(@types/node@25.9.5)(jiti@2.7.0)(less@4.6.7)(lightningcss@1.33.0)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.0))(vue@file:node_packages/vue-3.5.42.tgz(typescript@5.9.3)):
@@ -19575,6 +19596,16 @@ snapshots:
     optionalDependencies:
       '@vue/compiler-sfc': 3.5.43
       vue: 3.5.43(typescript@6.0.3)
+
+  vue-loader@17.4.2(@vue/compiler-sfc@3.5.45)(vue@file:node_packages/vue-3.5.42.tgz(typescript@5.9.3))(webpack@5.111.1):
+    dependencies:
+      chalk: 4.1.2
+      hash-sum: 2.0.0
+      watchpack: 2.5.2
+      webpack: 5.111.1(esbuild@0.28.1)(lightningcss@1.33.0)(postcss@8.5.32)(webpack-cli@6.0.1)
+    optionalDependencies:
+      '@vue/compiler-sfc': 3.5.45
+      vue: file:node_packages/vue-3.5.42.tgz(typescript@5.9.3)
 
   vue-router@4.6.4(vue@3.5.43(typescript@6.0.3)):
     dependencies:

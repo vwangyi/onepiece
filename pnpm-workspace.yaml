@@ -1,6 +1,5 @@
 packages:
   - 'apps/*'
-  # - 'template/*'
   - 'packages/*'
   - 'docs'
   - '!**/demo/**' # 排除 **/demo/** 这个包

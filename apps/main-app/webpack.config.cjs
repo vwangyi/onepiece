@@ -40,7 +40,6 @@ module.exports = (_, argv) => {
         template: path.resolve(__dirname, 'public/index.html'),
       }),
     ],
-    devtool: isProduction ? 'source-map' : 'eval-cheap-module-source-map',
     devServer: {
       allowedHosts: 'all',
       historyApiFallback: true,
