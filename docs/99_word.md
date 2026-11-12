@@ -8,3 +8,5 @@ sync 同步
 async 异步
 extension 扩展 简称 ext
 build 构建
+know 知道
+unknow 不知道 未知

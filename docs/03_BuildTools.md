@@ -63,6 +63,10 @@ loader是用来处理非js文件
 
 通过 devServer.historyApiFallback 为 true
 
+## 处理ts
+
+通过 ts-loader 做编译 用 xxx 做类型检查。
+
 ## ======================================= webpack =======================================
 
 ## babel.config.cjs 如果需要兼容性就用babel
