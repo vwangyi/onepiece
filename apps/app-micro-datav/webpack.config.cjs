@@ -7,7 +7,7 @@ module.exports = {
   entry: './src/app/main.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/datav/', // 首尾都要斜杠
+    publicPath: '/',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.vue', '.jsx', '.scss', '.css'],
