@@ -7,6 +7,7 @@ module.exports = {
   entry: './src/app/main.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.vue', '.jsx', '.scss', '.css'],
@@ -15,7 +16,7 @@ module.exports = {
   },
   devServer: {
     port: 4000,
-    // historyApiFallback: true,
+    historyApiFallback: true,
     headers: {
       'Access-Control-Allow-Origin': '*',
     },

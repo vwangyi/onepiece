@@ -63,9 +63,13 @@ loader是用来处理非js文件
 
 通过 devServer.historyApiFallback 为 true
 
+## output.publicPath
+
+output.publicPath 资源加载前缀 部署到 根路径 就是 / , 部署到 子路径 就是 /子路径/ ， 默认是 空字符串表示 相对index.html
+
 ## 处理ts
 
-通过 ts-loader 做编译 用 xxx 做类型检查。
+通过 ts-loader 做编译 用 ForkTsCheckerWebpackPlugin 做类型检查。
 
 ## ======================================= webpack =======================================
 
