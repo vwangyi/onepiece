@@ -24,7 +24,8 @@
     "commit": "git-cz",
     "test": "vitest",
     "publish:utils": "pnpm --filter \"onepiece-utils\" publish --no-git-checks",
-    "demo": "node ./demo.mjs"
+    "demo": "node ./demo.mjs",
+    "kill-port": "node scripts/kill-port.mjs"
   },
   "config": {
     "commitizen": {

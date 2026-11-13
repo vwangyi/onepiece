@@ -20,7 +20,7 @@ async function render(props = {}) {
 
   router = createDatavRouter(createWebHistory());
   router.afterEach(to => {
-    document.title = `订单管理 `;
+    document.title = `datav 子应用`;
   });
   app = createApp(App);
   app.use(router);
