@@ -3,7 +3,7 @@ import {
   PrimaryGeneratedColumn,
   Column,
   PrimaryColumn,
-  CreateDateColumn
+  CreateDateColumn,
 } from 'typeorm';
 
 @Entity()
@@ -45,8 +45,8 @@ export class User {
         }
         return value;
       },
-      from: (value: Date): Date => value
-    }
+      from: (value: Date): Date => value,
+    },
   })
   birthday: Date;
 
@@ -73,21 +73,21 @@ export class User {
     length: 20,
     nullable: true,
     default: 'Alive',
-    comment: '状态（Alive, Deceased, Unknown）'
+    comment: '状态（Alive, Deceased, Unknown）',
   })
   status: string;
 
   @Column({
     length: 100,
     nullable: true,
-    comment: '所属组织/海贼团（如：草帽一伙）'
+    comment: '所属组织/海贼团（如：草帽一伙）',
   })
   affiliation: string;
 
   @Column({
     length: 100,
     nullable: true,
-    comment: '职位/身份（如：船长，航海士）'
+    comment: '职位/身份（如：船长，航海士）',
   })
   occupation: string;
 
@@ -99,7 +99,7 @@ export class User {
     type: 'varchar',
     length: 50,
     nullable: true,
-    comment: '恶魔果实能力名称'
+    comment: '恶魔果实能力名称',
   })
   devilFruit: string | null;
 

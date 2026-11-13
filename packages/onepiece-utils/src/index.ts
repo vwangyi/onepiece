@@ -30,9 +30,6 @@ export function isNumber(n: unknown): boolean {
   return typeof n === 'number';
 }
 
-/**
- *
- */
 export async function getUserMedia() {
   return await navigator.mediaDevices.getUserMedia();
 }
@@ -89,4 +86,45 @@ export function createOverload() {
     map.set(key, fn);
   };
   return overload;
+}
+
+/**
+ * 防抖  生产环境建议直接用 lodash
+ * @param fn
+ * @param delay
+ * @param param2
+ * @returns
+ */
+export function debounce1<Args extends unknown[]>(
+  fn: (...args: Args) => void,
+  delay: number,
+): ((...args: Args) => void) & { cancel: () => void } {
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  let lastArgs: Args | null = null;
+  let lastThis: unknown = null;
+
+  function debounced(this: unknown, ...args: Args): void {
+    lastThis = this;
+    lastArgs = args;
+
+    if (timer !== null) {
+      clearTimeout(timer);
+      timer = null;
+    }
+
+    timer = setTimeout(() => {
+      timer = null;
+      const args2 = lastArgs;
+      const this2 = lastThis;
+      lastArgs = lastThis = null;
+      fn.apply(this2, args2 as Args);
+    }, delay);
+  }
+
+  debounced.cancel = (): void => {
+    if (timer !== null) clearTimeout(timer);
+    timer = null;
+    lastArgs = lastThis = null;
+  };
+  return debounced;
 }

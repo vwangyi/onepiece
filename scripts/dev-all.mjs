@@ -38,10 +38,10 @@ const tasks = [
     // Nest 启动成功或端口已监听；自定义 winston 日志可能吞掉内置提示，所以两者取其一
     readyPatterns: [
       /Nest application successfully started/i,
-      /Application is running on/i
+      /Application is running on/i,
     ],
     readyPort: Number(process.env.PORT ?? 3000),
-    readyTimeout: 180_000
+    readyTimeout: 180_000,
   },
   {
     tag: 'pkg',
@@ -49,13 +49,13 @@ const tasks = [
     script: 'pkg:dev',
     readyPatterns: [/打包完成/, /BUNDLE_END/],
     readyTimeout: 120_000,
-    settle: 300 // 首次产物落盘留一点余量
+    settle: 300, // 首次产物落盘留一点余量
   },
   {
     tag: 'vue',
     colorCode: 32,
-    script: 'vue:dev'
-  }
+    script: 'vue:dev',
+  },
 ];
 
 const children = [];
@@ -94,7 +94,7 @@ function startTask(task) {
     cwd: ROOT,
     env: { ...process.env, FORCE_COLOR: '1' },
     stdio: ['ignore', 'pipe', 'pipe'],
-    detached: !isWin
+    detached: !isWin,
   });
 
   const state = {
@@ -103,7 +103,7 @@ function startTask(task) {
     buffer: '',
     exited: false,
     onExit: [],
-    markReady: null
+    markReady: null,
   };
   children.push(state);
 
@@ -149,7 +149,7 @@ function waitReady(state) {
     readyPatterns = [],
     readyPort,
     readyTimeout = 0,
-    settle = 0
+    settle = 0,
   } = state.def;
 
   return new Promise(resolve => {

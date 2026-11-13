@@ -6,7 +6,7 @@ import { Point, IViewer } from './types';
 export class Square {
   private _point: Point = {
     x: 0,
-    y: 0
+    y: 0,
   };
   private _color: string = '';
 

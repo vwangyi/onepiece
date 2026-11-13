@@ -1,8 +1,12 @@
-
 unique 去重 独一无二的
-
 toggle 切换
-
-
-前端就是画页面的。主要写 数据逻辑 渲染逻辑 交互逻辑。
-后端就是存数据库的。主要是 校验数据 过滤数据 存储数据 查询数据。
+dirname 文件夹名
+basename 文件名
+extname 文件扩展名
+sep 路径分隔符
+sync 同步
+async 异步
+extension 扩展 简称 ext
+build 构建
+know 知道
+unknow 不知道 未知

@@ -29,12 +29,12 @@ export default {
     plugins: [terser()],
     globals: {
       'react': 'React',
-      'react-dom': 'ReactDOM'
+      'react-dom': 'ReactDOM',
     },
     paths: {
       'react': 'https://cdn.jsdelivr.net/npm/react@18.2.0/+esm',
-      'react-dom': 'https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm'
-    }
+      'react-dom': 'https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm',
+    },
   },
 
   external: ['react', 'react-dom'],
@@ -46,20 +46,20 @@ export default {
       babelHelpers: 'runtime',
       include: 'src/**',
       exclude: 'node_modules/**',
-      extensions: ['.js', '.jsx', '.ts', '.tsx']
+      extensions: ['.js', '.jsx', '.ts', '.tsx'],
     }),
 
     replace({
       'preventAssignment': true,
-      'process.env.NODE_ENV': JSON.stringify('production')
+      'process.env.NODE_ENV': JSON.stringify('production'),
     }),
     alias({
       entries: [
         {
           find: '@',
-          replacement: fileURLToPath(new URL('src', import.meta.url))
-        }
-      ]
+          replacement: fileURLToPath(new URL('src', import.meta.url)),
+        },
+      ],
     }),
 
     serve('dist'),
@@ -68,14 +68,14 @@ export default {
     postcss({
       extensions: ['.css'], // 将scss 解析成css
       extract: true, // 将css 提取到dist目录下
-      modules: true // 增加css的模块化支持
+      modules: true, // 增加css的模块化支持
     }),
     htmlTemplate({
       template: 'public/index.html',
       target: 'dist/index.html',
-      attrs: ['type="module"']
+      attrs: ['type="module"'],
     }),
     image(),
-    visualizer()
-  ]
+    visualizer(),
+  ],
 };

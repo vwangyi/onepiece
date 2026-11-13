@@ -1,4 +1,4 @@
- ## get post patch put delete 方法
+## get post patch put delete 方法
 
 patch 和 put 区别
 
@@ -118,7 +118,7 @@ xxx.module.ts
   imports: [],
   controllers: [AppController],
   providers: [AppService],
-  exports: [UserService]
+  exports: [UserService],
 })
 export class AppModule {}
 ```

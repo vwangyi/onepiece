@@ -19,8 +19,8 @@ async function bootstrap() {
         .setVersion('1.1.0') // 文档版本
         .addTag('cats添加标签') // 添加标签
         .addBearerAuth() // 添加 Bearer Token 认证支持
-        .build()
-    )
+        .build(),
+    ),
   );
 
   // 使用自定义 Winston 日志器替换内置 Logger

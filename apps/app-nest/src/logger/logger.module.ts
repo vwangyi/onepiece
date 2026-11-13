@@ -3,6 +3,6 @@ import { MyLogger } from './my-logger';
 
 @Module({
   providers: [MyLogger],
-  exports: [MyLogger]
+  exports: [MyLogger],
 })
 export class LoggerModule {}

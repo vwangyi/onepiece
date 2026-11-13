@@ -9,7 +9,7 @@ export interface ResponseData<T> {
 }
 
 export async function request<T>(
-  config: AxiosRequestConfig
+  config: AxiosRequestConfig,
 ): Promise<ResponseData<T>> {
   try {
     const res: AxiosResponse = await axios.request<AxiosRequestConfig>(config);
@@ -22,7 +22,7 @@ export async function request<T>(
     const result: ResponseData<T> = {
       success: false,
       message: 'msg',
-      data: null
+      data: null,
     };
     return Promise.resolve(result);
   }
@@ -30,14 +30,14 @@ export async function request<T>(
 
 request.get = function <T>(
   url: string,
-  config: AxiosRequestConfig
+  config: AxiosRequestConfig,
 ): Promise<ResponseData<T>> {
   return request<T>({ url, method: 'GET', ...config });
 };
 
 request.post = function <T>(
   url: string,
-  config: AxiosRequestConfig
+  config: AxiosRequestConfig,
 ): Promise<ResponseData<T>> {
   return request<T>({ url, method: 'POST', ...config });
 };

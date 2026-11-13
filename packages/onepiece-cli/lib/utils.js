@@ -28,7 +28,7 @@ export function isUnicodeSupported() {
 export async function removeDir(dir) {
   const spinner = ora({
     text: `正在删除文件夹${chalk.cyan(dir)}`,
-    color: 'yellow'
+    color: 'yellow',
   }).start();
 
   try {
@@ -49,7 +49,7 @@ export const inquirerConfirm = async message => {
   const answer = await inquirer.prompt({
     type: 'confirm',
     name: 'confirm',
-    message
+    message,
   });
   return answer;
 };
@@ -59,7 +59,7 @@ export const inquirerChoose = async (message, choices, type = 'list') => {
     type,
     name: 'choose',
     message,
-    choices
+    choices,
   });
   return answer;
 };
@@ -74,9 +74,9 @@ export const inquirerInputs = async messages => {
       return {
         name: msg.name,
         type: 'input',
-        message: msg.message
+        message: msg.message,
       };
-    })
+    }),
   );
   return answers;
 };
@@ -89,7 +89,7 @@ export const inquirerInput = async message => {
   const answer = await inquirer.prompt({
     type: 'input',
     name: 'input',
-    message
+    message,
   });
   return answer;
 };
@@ -102,7 +102,7 @@ export function npmInstall(dir) {
   ) {
     console.log(
       logSymbols.error,
-      chalk.yellowBright('对不起,依赖安装失败,请手动安装')
+      chalk.yellowBright('对不起,依赖安装失败,请手动安装'),
     );
     shell.exit(1);
   }
@@ -130,7 +130,7 @@ export async function changePackageJson(name, info) {
   } catch (err) {
     console.log(
       logSymbols.error,
-      chalk.red('对不起,修改自定义package.json失败,请手动修改')
+      chalk.red('对不起,修改自定义package.json失败,请手动修改'),
     );
     console.log(err);
   }

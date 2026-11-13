@@ -21,14 +21,14 @@ export class SquarePageViewer implements IViewer {
           width: PageConfig.SquareSize.width,
           height: PageConfig.SquareSize.height,
           border: '1px solid #ccc',
-          boxSizing: 'border-box'
+          boxSizing: 'border-box',
         })
         .appendTo(this.container);
     }
     this.dom.css({
       left: this.square.point.x * PageConfig.SquareSize.width,
       top: this.square.point.y * PageConfig.SquareSize.height,
-      background: this.square.color
+      background: this.square.color,
     });
   }
 
@@ -41,6 +41,6 @@ export class SquarePageViewer implements IViewer {
 
   constructor(
     private square: Square,
-    private container: JQuery<HTMLElement>
+    private container: JQuery<HTMLElement>,
   ) {}
 }

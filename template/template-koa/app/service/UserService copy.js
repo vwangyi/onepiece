@@ -11,11 +11,11 @@ module.exports = app => {
     async create({ username, nickname, desc, sex }) {
       const userId = (global?.crypto?.randomUUID() || uuidv4())?.replace(
         /-/g,
-        ''
+        '',
       );
       const password = generator.generate({
         length: 8,
-        numbers: true
+        numbers: true,
       });
 
       await app.knex('user').insert({
@@ -26,7 +26,7 @@ module.exports = app => {
         desc,
         sex,
         isDelete: 1,
-        create_time: moment().format('YYYY-MM-DD HH:mm:ss')
+        create_time: moment().format('YYYY-MM-DD HH:mm:ss'),
       });
       return userId;
     }
@@ -37,10 +37,10 @@ module.exports = app => {
         .knex('user')
         .update({
           isDelete: 0,
-          update_time: moment().format('YYYY-MM-DD HH:mm:ss')
+          update_time: moment().format('YYYY-MM-DD HH:mm:ss'),
         })
         .where({
-          user_id: userId
+          user_id: userId,
         });
     }
 
@@ -57,10 +57,10 @@ module.exports = app => {
         .knex('user')
         .update({
           ...tmp,
-          update_time: moment().format('YYYY-MM-DD HH:mm:ss')
+          update_time: moment().format('YYYY-MM-DD HH:mm:ss'),
         })
         .where({
-          user_id: userId
+          user_id: userId,
         });
     }
 
@@ -78,7 +78,7 @@ module.exports = app => {
         createTimeStart,
         createTimeEnd,
         page,
-        size
+        size,
       } = condition;
 
       const query = {};
@@ -122,7 +122,7 @@ module.exports = app => {
     async findOneByUserId(userId) {
       const result = await app.knex('user').select('*').where({
         user_id: userId,
-        isDelete: 1
+        isDelete: 1,
       });
       return result[0] ?? {};
     }
@@ -137,7 +137,7 @@ module.exports = app => {
         .where({
           username,
           password,
-          isDelete: 1
+          isDelete: 1,
         })
         .limit(1); // 限制查一条
       return res[0];
@@ -147,7 +147,7 @@ module.exports = app => {
     async findByEmail(email) {
       const result = await app.knex('user').select('*').where({
         email,
-        isDelete: 1
+        isDelete: 1,
       });
       return result[0] ?? null;
     }
@@ -156,18 +156,18 @@ module.exports = app => {
     async createByEmail(email) {
       const userId = (global?.crypto?.randomUUID() || uuidv4())?.replace(
         /-/g,
-        ''
+        '',
       );
       const password = generator.generate({
         length: 8,
-        numbers: true
+        numbers: true,
       });
 
       await app.knex('user').insert({
         user_id: userId,
         email,
         isDelete: 1,
-        create_time: moment().format('YYYY-MM-DD HH:mm:ss')
+        create_time: moment().format('YYYY-MM-DD HH:mm:ss'),
       });
       return userId;
     }

@@ -16,11 +16,11 @@ import { extname } from 'path';
             .map(() => Math.round(Math.random() * 16).toString(16))
             .join('');
           cb(null, `${name}${extname(file.originalname)}`);
-        }
-      })
-    })
+        },
+      }),
+    }),
   ],
   controllers: [UploadController],
-  providers: [UploadService]
+  providers: [UploadService],
 })
 export class UploadModule {}

@@ -5,7 +5,7 @@
  *      pnpm fsd:watch     改代码时实时重跑
  *      pnpm fsd:fix       自动修可修的（补 index.ts 公共 API、改复数命名）
  *
- * 注意：扫描范围由 package.json 里的脚本参数指定（apps/app-vue/src），
+ * 注意：扫描范围由 package.json 里的脚本参数指定（apps/app-micro-vue/src），
  * 不用在配置里写 files。因为 steiger 要求每个配置块必须携带
  * rules / ignores / meta 之一，单独一个只含 files 的块会被判为无效配置。
  */
@@ -25,8 +25,8 @@ export default [
   {
     files: ['**/shared/**'],
     rules: {
-      'fsd/segments-by-purpose': 'off'
-    }
+      'fsd/segments-by-purpose': 'off',
+    },
   },
 
   // shared/assets、shared/styles 是纯静态目录，不会被 import，
@@ -38,11 +38,11 @@ export default [
     files: [
       '**/shared/assets/**',
       '**/shared/styles/**',
-      '**/shared/workers/**'
+      '**/shared/workers/**',
     ],
     rules: {
-      'fsd/public-api': 'off'
-    }
+      'fsd/public-api': 'off',
+    },
   },
 
   // 实体名复数形式：当前是 user（单数），FSD 建议统一复数。
@@ -54,8 +54,8 @@ export default [
   {
     files: ['**/entities/**'],
     rules: {
-      'fsd/inconsistent-naming': 'off'
-    }
+      'fsd/inconsistent-naming': 'off',
+    },
   },
 
   /* ============ @x 交叉导入目录 ============
@@ -67,8 +67,8 @@ export default [
   {
     files: ['**/entities/*/@x/**'],
     rules: {
-      'fsd/no-segmentless-slices': 'off'
-    }
+      'fsd/no-segmentless-slices': 'off',
+    },
   },
 
   /* ============ insignificant-slice：暂时关闭 ============
@@ -84,12 +84,12 @@ export default [
    */
   {
     rules: {
-      'fsd/insignificant-slice': 'off'
-    }
+      'fsd/insignificant-slice': 'off',
+    },
   },
 
   /* ============ 不检查的文件 ============ */
   {
-    ignores: ['**/dist/**', '**/*.d.ts']
-  }
+    ignores: ['**/dist/**', '**/*.d.ts'],
+  },
 ];

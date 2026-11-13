@@ -13,11 +13,11 @@ import { JwtStrategy } from './jwt.strategy';
     PassportModule,
     JwtModule.register({
       secret: 'hello key',
-      signOptions: { expiresIn: '7d' } // 过期时间 60s 表示60秒 7d表示7day
-    })
+      signOptions: { expiresIn: '7d' }, // 过期时间 60s 表示60秒 7d表示7day
+    }),
   ],
   controllers: [AuthController],
   providers: [AuthService, LocalStrategy, JwtStrategy],
-  exports: [AuthService]
+  exports: [AuthService],
 })
 export class AuthModule {}

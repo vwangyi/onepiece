@@ -15,7 +15,7 @@ export class ChatService {
     const chat = this.chatRepository.create({
       room: createChatDto.room || 'public',
       username: createChatDto.username,
-      content: createChatDto.content
+      content: createChatDto.content,
     });
     return await this.chatRepository.save(chat);
   }
@@ -26,7 +26,7 @@ export class ChatService {
       where: { room },
       order: { id: 'DESC' },
       skip: (page - 1) * pageSize,
-      take: pageSize
+      take: pageSize,
     });
     // 数据库倒序取最新一页，反转后按时间正序返回
     return { list: list.reverse(), total, page, pageSize };

@@ -3,5 +3,5 @@ export default {
   PORT: 1111,
   NODE_ENV: 'development',
   APP_VERSION: '1.1.1',
-  BUILD_TOOLS: 'xxx'
+  BUILD_TOOLS: 'xxx',
 };

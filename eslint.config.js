@@ -7,7 +7,7 @@ import eslintPluginPrettier from 'eslint-plugin-prettier';
 import eslintPluginVue from 'eslint-plugin-vue';
 import globals from 'globals';
 // FSD 架构约束的本地插件（零依赖实现，替代已停更的 @feature-sliced/eslint-config）
-import { fsdPlugin } from './scripts/eslint-plugin-fsd.js';
+import { fsdPlugin } from './scripts/eslint-plugin-fsd.mjs';
 /**
  * eslint-config-prettier 会帮我们把处理 eslint中格式化规则 和prettier冲突后 按prettier走
  * eslint-config-prettier 内部维护了一个规则列表，包含了所有可能与 Prettier 产生冲突的 ESLint 规则，然后统一将它们设置为 off。
@@ -34,8 +34,9 @@ const ignores = [
   '**/node_modules/**',
   '.*',
   '.vscode',
-  'docs',
-  '**/.nuxt/**'
+  'docs/other',
+  '**/.nuxt/**',
+  '**/.vitepress/cache/',
   // 'apps/new-world/*',
   // 'app/s/all-blue/*',
   // 'scripts',
@@ -49,6 +50,7 @@ const baseRules = {
   '@typescript-eslint/no-require-imports': 'off', // 使用require函数
   '@typescript-eslint/no-unused-vars': 'off', // 未使用的变量
   '@typescript-eslint/no-explicit-any': 'off', // 是否允许any
+  '@typescript-eslint/no-this-alias': 'off',
   'no-unreachable': 'off', // 无法访问的代码 比如 return后面的代码
   'no-var': 'error', // 不能使用var
   // 强制在注释中 // 或 /* 使用一致的空格
@@ -58,13 +60,13 @@ const baseRules = {
     {
       line: {
         markers: ['/'], // 允许三斜线注释
-        exceptions: ['-', '+']
+        exceptions: ['-', '+'],
       },
       block: {
         markers: ['!'],
-        exceptions: ['*']
-      }
-    }
+        exceptions: ['*'],
+      },
+    },
   ],
   // 关闭声明但未使用的变量的报错
   'no-unused-vars': 'off',
@@ -107,8 +109,8 @@ const baseRules = {
     {
       functions: false, // 允许函数提升
       classes: true,
-      variables: true
-    }
+      variables: true,
+    },
   ],
   // 强制在逗号前后使用一致的空格
   'comma-spacing': 'error',
@@ -152,7 +154,7 @@ const baseRules = {
   'guard-for-in': 'off',
   // 限制每行代码的字数
   'max-len': 'off',
-  'operator-linebreak': 'off'
+  'operator-linebreak': 'off',
 };
 
 // ============ Vue 规则 ============
@@ -195,12 +197,12 @@ const vueRules = {
     'error',
     {
       singleline: {
-        max: 1 // 单行最多1个属性
+        max: 1, // 单行最多1个属性
       },
       multiline: {
-        max: 1 // 多行时每行1个属性
-      }
-    }
+        max: 1, // 多行时每行1个属性
+      },
+    },
   ],
   // vue标签换行
   'vue/singleline-html-element-content-newline': 'off',
@@ -209,8 +211,8 @@ const vueRules = {
     'error',
     {
       singleline: 'ignore',
-      multiline: 'below' // 第一个属性换行
-    }
+      multiline: 'below', // 第一个属性换行
+    },
   ],
   // vue属性顺序
   'vue/attributes-order': [
@@ -227,10 +229,10 @@ const vueRules = {
         'OTHER_DIRECTIVES',
         'OTHER_ATTR',
         'EVENTS',
-        'CONTENT'
+        'CONTENT',
       ],
-      alphabetical: false
-    }
+      alphabetical: false,
+    },
   ],
   // vue方法顺序
   'vue/order-in-components': 'off',
@@ -247,17 +249,17 @@ const vueRules = {
   'vue/no-multi-spaces': [
     'error',
     {
-      ignoreProperties: false
-    }
+      ignoreProperties: false,
+    },
   ],
   'vue/no-v-text-v-html-on-component': 'off',
   // 强制块顺序：script -> template -> style
   'vue/block-order': [
     'error',
     {
-      order: ['script', 'template', 'style']
-    }
-  ]
+      order: ['script', 'template', 'style'],
+    },
+  ],
 };
 
 export default defineConfig([
@@ -269,23 +271,23 @@ export default defineConfig([
     extends: [
       eslint.configs.recommended,
       ...tseslint.configs.recommended,
-      eslintConfigPrettier
+      eslintConfigPrettier,
     ],
     plugins: {
-      prettier: eslintPluginPrettier
+      prettier: eslintPluginPrettier,
     },
     languageOptions: {
       ecmaVersion: 'latest', // ecma语法支持版本
       sourceType: 'module', // 模块化类型
-      parser: tseslint.parser // 解析器
+      parser: tseslint.parser, // 解析器
     },
     rules: {
       ...baseRules,
       // 新增或重写自己的eslint规则
       'no-var': 'error',
       // 关闭所有和prettier冲突的规则
-      ...eslintConfigPrettier.rules
-    }
+      ...eslintConfigPrettier.rules,
+    },
   },
   /* nestjs项目 */
   {
@@ -296,8 +298,8 @@ export default defineConfig([
         ...globals.node, // 添加 Node.js 全局变量
         ...globals.mocha, // 添加 Mocha 全局变量 测试框架
         vi: 'readonly', // 如果使用 Vitest
-        jest: 'readonly' // 如果使用 Jest
-      }
+        jest: 'readonly', // 如果使用 Jest
+      },
     },
     rules: {
       ...baseRules,
@@ -312,33 +314,33 @@ export default defineConfig([
         'error',
         {
           destructuring: 'any', // 解构时也检查
-          ignoreReadBeforeAssign: false // 赋值前读取的变量也检查
-        }
+          ignoreReadBeforeAssign: false, // 赋值前读取的变量也检查
+        },
       ],
 
       // 关闭所有和prettier冲突的规则
-      ...eslintConfigPrettier.rules
-    }
+      ...eslintConfigPrettier.rules,
+    },
   },
   /* 所有的vue项目共享同一套eslint规则 */
   {
     ignores,
     files: [
       'apps/**/*.{ts,js,tsx,jsx,vue}',
-      'packages/**/*.{ts,js,tsx,jsx,vue}'
+      'packages/**/*.{ts,js,tsx,jsx,vue}',
     ],
     extends: [
       ...eslintPluginVue.configs['flat/recommended'],
-      eslintConfigPrettier
+      eslintConfigPrettier,
     ],
     languageOptions: {
       parserOptions: {
         // <script setup lang="ts"> 需要 TS 解析器，否则 import type 等语法会报 Parsing error
-        parser: tseslint.parser
+        parser: tseslint.parser,
       },
       globals: {
-        ...globals.browser
-      }
+        ...globals.browser,
+      },
     },
     rules: {
       ...baseRules,
@@ -346,11 +348,11 @@ export default defineConfig([
       // 新增或重写自己的eslint规则
 
       // 关闭所有和prettier冲突的规则
-      ...eslintConfigPrettier.rules
-    }
+      ...eslintConfigPrettier.rules,
+    },
   },
 
-  /* app-vue 的 FSD 架构约束
+  /* app-micro-vue 的 FSD 架构约束
    * 完整检查跑 `pnpm fsd`（steiger），这里负责编辑器里的实时红波浪线。
    * 层级倒挂与跨切片引用直接拦error；公共 API 绕行先报 warn，
    * 因为存量代码里还有不少直接引内部文件的地方，等重构推进再收紧。
@@ -359,18 +361,18 @@ export default defineConfig([
     // ESLint 10 的 files glob 不支持 {a,b} 花括号展开，必须逐个列出，
     // 否则这个配置块匹配不到任何文件、规则会静默失效。
     files: [
-      'apps/app-vue/src/**/*.ts',
-      'apps/app-vue/src/**/*.tsx',
-      'apps/app-vue/src/**/*.js',
-      'apps/app-vue/src/**/*.jsx',
-      'apps/app-vue/src/**/*.vue'
+      'apps/app-micro-vue/src/**/*.ts',
+      'apps/app-micro-vue/src/**/*.tsx',
+      'apps/app-micro-vue/src/**/*.js',
+      'apps/app-micro-vue/src/**/*.jsx',
+      'apps/app-micro-vue/src/**/*.vue',
     ],
     plugins: { fsd: fsdPlugin },
     rules: {
       'fsd/no-layer-inversion': 'error',
       'fsd/no-cross-imports': 'error',
-      'fsd/no-public-api-sidestep': 'warn'
-    }
-  }
+      'fsd/no-public-api-sidestep': 'warn',
+    },
+  },
   // ...后续新增其他项目
 ]);

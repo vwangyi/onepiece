@@ -13,11 +13,11 @@ class AuthService extends BaseService {
     const result = await this.email.sendMail({
       from: {
         name: 'WANGYI', // 显示的发件人名称
-        address: this.config.EMAIL.auth.user // 发件人
+        address: this.config.EMAIL.auth.user, // 发件人
       },
       to: email, // 收件人
       subject: '验证码', // 主题
-      text: `您的验证码是：${code}，该验证码${expiresAt / 1000 / 60}分钟内有效。` // 纯文本内容（备用）
+      text: `您的验证码是：${code}，该验证码${expiresAt / 1000 / 60}分钟内有效。`, // 纯文本内容（备用）
     });
     return result;
   }

@@ -27,7 +27,7 @@ export class UserController {
   @Post('login')
   async login(
     @Body(ValidationPipe) user: LoginUserDto, // 这里用了 管道 来校验
-    @Res({ passthrough: true }) res: Response
+    @Res({ passthrough: true }) res: Response,
   ) {
     const result = await this.userService.login(user);
 
@@ -36,8 +36,8 @@ export class UserController {
       const token = await this.jwtService.signAsync({
         user: {
           id: result.id,
-          username: result.username
-        }
+          username: result.username,
+        },
       });
 
       res.header('Authorization', token);
@@ -45,13 +45,13 @@ export class UserController {
       return {
         message: '登录成功',
         data: result,
-        code: 200
+        code: 200,
       };
     }
     return {
       message: '登录失败',
       code: 400,
-      data: null
+      data: null,
     };
   }
 

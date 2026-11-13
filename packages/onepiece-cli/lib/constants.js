@@ -3,18 +3,18 @@ export const templates = [
   {
     name: 'webpack-template',
     value: 'yingside/webpack-template',
-    desc: '基于webpack5的vue3项目模板'
+    desc: '基于webpack5的vue3项目模板',
   },
   {
     name: 'vue-cli-template',
     value: 'yingside/vue-cli-template',
-    desc: '基于vue-cli4的vue3项目模板'
+    desc: '基于vue-cli4的vue3项目模板',
   },
   {
     name: 'vite-template',
     value: 'yingside/vite-template',
-    desc: '基于vite的vue3 + 前端工具链项目模板'
-  }
+    desc: '基于vite的vue3 + 前端工具链项目模板',
+  },
 ];
 
 export const messages = [
@@ -26,18 +26,18 @@ export const messages = [
         return '项目名称存在非法字符';
       }
       return true;
-    }
+    },
   },
   {
     message: '请输入项目关键词(,分割):',
-    name: 'keywords'
+    name: 'keywords',
   },
   {
     message: '请输入项目描述:',
-    name: 'description'
+    name: 'description',
   },
   {
     message: '请输入作者名称:',
-    name: 'author'
-  }
+    name: 'author',
+  },
 ];

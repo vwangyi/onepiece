@@ -3,7 +3,7 @@ import {
   ExecutionContext,
   Inject,
   Injectable,
-  NestInterceptor
+  NestInterceptor,
 } from '@nestjs/common';
 import { map, Observable } from 'rxjs';
 import type { Request } from 'express';
@@ -36,7 +36,7 @@ export class ResponseInterceptor implements NestInterceptor {
         `;
         this.logger.log(logFormat, 'Response LoggerInterceptor');
         return data;
-      })
+      }),
     );
   }
 }

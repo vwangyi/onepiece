@@ -5,5 +5,7 @@ public
 .nuxt
 node_modules
 pnpm-lock.yaml
-docs
-docs/**
+# docs
+# docs/**
+docs/other
+**/.vitepress/cache/

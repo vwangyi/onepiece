@@ -22,7 +22,7 @@ export class TodoController {
     @Query('title') title?: string,
     @Query('status') status?: number,
     @Query('page') page?: number,
-    @Query('pageSize') pageSize?: number
+    @Query('pageSize') pageSize?: number,
   ) {
     return this.todoService.findAll(title, status, page, pageSize);
   }
@@ -37,7 +37,7 @@ export class TodoController {
   @Patch(':id')
   update(
     @Param('id') id: string,
-    @Body(ValidationPipe) updateTodoDto: UpdateTodoDto
+    @Body(ValidationPipe) updateTodoDto: UpdateTodoDto,
   ) {
     return this.todoService.update(+id, updateTodoDto);
   }

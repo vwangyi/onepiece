@@ -9,7 +9,7 @@ const storage = multer.diskStorage({
       .map(() => Math.round(Math.random() * 16).toString(16))
       .join('');
     cb(null, `${name}${extname(file.originalname)}`);
-  }
+  },
 });
 
 export { storage };

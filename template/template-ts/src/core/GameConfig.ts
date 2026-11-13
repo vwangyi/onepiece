@@ -1,11 +1,11 @@
 export default {
   panelSize: {
     width: 12,
-    height: 20
+    height: 20,
   },
   nextSize: {
     width: 6,
-    height: 6
+    height: 6,
   },
   levels: [
     { score: 0, duration: 1500 },
@@ -18,6 +18,6 @@ export default {
     { score: 3000, duration: 300 },
     { score: 4000, duration: 300 },
     { score: 5000, duration: 200 },
-    { score: 6000, duration: 100 }
-  ]
+    { score: 6000, duration: 100 },
+  ],
 };

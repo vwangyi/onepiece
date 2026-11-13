@@ -6,7 +6,7 @@ import {
   MessageBody,
   ConnectedSocket,
   OnGatewayConnection,
-  OnGatewayDisconnect
+  OnGatewayDisconnect,
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
 import { ChatService } from './chat.service';
@@ -22,7 +22,7 @@ interface OnlineUser {
 
 @WebSocketGateway({
   namespace: '/chat',
-  cors: { origin: '*' } // 开发环境允许跨域
+  cors: { origin: '*' }, // 开发环境允许跨域
 })
 export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer()
@@ -50,7 +50,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
       // 广播离开消息 + 最新在线列表
       this.server.to(user.room).emit('userLeft', {
         username: user.username,
-        time: new Date().toISOString()
+        time: new Date().toISOString(),
       });
       this.emitOnlineUsers(user.room);
       this.logger.log(`${user.username} 离开房间 ${user.room}`);
@@ -64,7 +64,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @SubscribeMessage('join')
   async handleJoin(
     @ConnectedSocket() client: Socket,
-    @MessageBody() body: { username: string; room?: string }
+    @MessageBody() body: { username: string; room?: string },
   ) {
     const username = String(body?.username || '')
       .trim()
@@ -83,7 +83,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     for (const [socketId, user] of this.onlineUsers) {
       if (user.username === username) {
         this.server.to(socketId).emit('kicked', {
-          message: '您的昵称在其他地方登录'
+          message: '您的昵称在其他地方登录',
         });
         this.onlineUsers.delete(socketId);
       }
@@ -93,7 +93,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
       socketId: client.id,
       username,
       room,
-      joinTime: Date.now()
+      joinTime: Date.now(),
     });
     await client.join(room);
 
@@ -104,7 +104,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     // 房间内广播上线通知 + 在线列表
     this.server.to(room).emit('userJoined', {
       username,
-      time: new Date().toISOString()
+      time: new Date().toISOString(),
     });
     this.emitOnlineUsers(room);
     this.logger.log(`${username} 加入房间 ${room}`);
@@ -115,7 +115,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   async handleChatMessage(
     @ConnectedSocket() client: Socket,
     @MessageBody(new ValidationPipe({ whitelist: true }))
-    body: CreateChatDto
+    body: CreateChatDto,
   ) {
     const user = this.onlineUsers.get(client.id);
     if (!user) {
@@ -132,7 +132,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     const saved = await this.chatService.create({
       room: user.room,
       username: user.username,
-      content: content.slice(0, 2000)
+      content: content.slice(0, 2000),
     });
 
     this.server.to(user.room).emit('chatMessage', saved);
@@ -142,13 +142,13 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @SubscribeMessage('typing')
   handleTyping(
     @ConnectedSocket() client: Socket,
-    @MessageBody() body: { typing: boolean }
+    @MessageBody() body: { typing: boolean },
   ) {
     const user = this.onlineUsers.get(client.id);
     if (!user) return;
     client.to(user.room).emit('typing', {
       username: user.username,
-      typing: !!body?.typing
+      typing: !!body?.typing,
     });
   }
 
@@ -158,7 +158,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     const user = this.onlineUsers.get(client.id);
     if (user) {
       client.emit('onlineUsers', {
-        users: this.getOnlineUsers(user.room)
+        users: this.getOnlineUsers(user.room),
       });
     }
   }
@@ -167,14 +167,14 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @SubscribeMessage('history')
   async handleHistory(
     @ConnectedSocket() client: Socket,
-    @MessageBody() body: { page?: number; pageSize?: number }
+    @MessageBody() body: { page?: number; pageSize?: number },
   ) {
     const user = this.onlineUsers.get(client.id);
     if (!user) return;
     const history = await this.chatService.findHistory(
       user.room,
       Math.max(1, Number(body?.page) || 1),
-      Math.min(100, Number(body?.pageSize) || 50)
+      Math.min(100, Number(body?.pageSize) || 50),
     );
     client.emit('history', history);
   }
@@ -184,7 +184,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   // 统计某房间在线用户并广播
   private emitOnlineUsers(room: string) {
     this.server.to(room).emit('onlineUsers', {
-      users: this.getOnlineUsers(room)
+      users: this.getOnlineUsers(room),
     });
   }
 

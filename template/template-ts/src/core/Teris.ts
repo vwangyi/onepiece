@@ -9,10 +9,10 @@ export class TShape extends SquareGroup {
         { x: -1, y: 0 },
         { x: 0, y: 0 },
         { x: 1, y: 0 },
-        { x: 0, y: -1 }
+        { x: 0, y: -1 },
       ],
       _centerPoint,
-      _color
+      _color,
     );
   }
 }
@@ -24,10 +24,10 @@ export class LShape extends SquareGroup {
         { x: -2, y: 0 },
         { x: -1, y: 0 },
         { x: 0, y: 0 },
-        { x: 0, y: -1 }
+        { x: 0, y: -1 },
       ],
       _centerPoint,
-      _color
+      _color,
     );
   }
 }
@@ -39,10 +39,10 @@ export class LMirrorShape extends SquareGroup {
         { x: 2, y: 0 },
         { x: 1, y: 0 },
         { x: 0, y: 0 },
-        { x: 0, y: -1 }
+        { x: 0, y: -1 },
       ],
       _centerPoint,
-      _color
+      _color,
     );
   }
 }
@@ -54,10 +54,10 @@ export class SShape extends SquareGroup {
         { x: 0, y: 0 },
         { x: 1, y: 0 },
         { x: 0, y: 1 },
-        { x: -1, y: 1 }
+        { x: -1, y: 1 },
       ],
       _centerPoint,
-      _color
+      _color,
     );
   }
 
@@ -74,10 +74,10 @@ export class SMirrorShape extends SquareGroup {
         { x: 0, y: 0 },
         { x: -1, y: 0 },
         { x: 0, y: 1 },
-        { x: 1, y: 1 }
+        { x: 1, y: 1 },
       ],
       _centerPoint,
-      _color
+      _color,
     );
   }
 
@@ -94,10 +94,10 @@ export class SquareShape extends SquareGroup {
         { x: 0, y: 0 },
         { x: 1, y: 0 },
         { x: 0, y: 1 },
-        { x: 1, y: 1 }
+        { x: 1, y: 1 },
       ],
       _centerPoint,
-      _color
+      _color,
     );
   }
 
@@ -113,10 +113,10 @@ export class LineShape extends SquareGroup {
         { x: -1, y: 0 },
         { x: 0, y: 0 },
         { x: 1, y: 0 },
-        { x: 2, y: 0 }
+        { x: 2, y: 0 },
       ],
       _centerPoint,
-      _color
+      _color,
     );
   }
 
@@ -134,10 +134,10 @@ export class UShape extends SquareGroup {
         { x: 0, y: 0 },
         { x: 1, y: 0 },
         { x: -1, y: -1 },
-        { x: 1, y: -1 }
+        { x: 1, y: -1 },
       ],
       _centerPoint,
-      _color
+      _color,
     );
   }
 }
@@ -150,7 +150,7 @@ export const shapes = [
   SMirrorShape,
   SquareShape,
   LineShape,
-  UShape
+  UShape,
 ];
 
 export const colors = ['red', 'green', 'blue', 'orange'];

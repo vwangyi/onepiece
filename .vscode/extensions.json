@@ -7,8 +7,10 @@
     "dbaeumer.vscode-eslint", // eslint插件
     "esbenp.prettier-vscode", // prettier插件
     "ritwickdey.LiveServer", // Live Server 插件
-    "UrdaSoft.selection-to-file-vscode-extension", // 选中文本追加到文件，用于记录生词
-    "vscode-icons-team.vscode-icons"
+    "vscode-icons-team.vscode-icons", // 文件icon插件
+    "streetsidesoftware.code-spell-checker", // 拼写检查插件
+    "usernamehw.errorlens", // 行内显示错误/警告提示
+    "ms-ceintl.vscode-language-pack-zh-hans" // 中文插件
   ],
   // 不推荐的扩展（避免冲突）
   "unwantedRecommendations": [

@@ -7,7 +7,7 @@ class TodoModel extends BaseModel {
       todo_id: this.uuid(),
       is_delete: 0,
       create_time: this.now(),
-      ...data
+      ...data,
     };
     const keys = Object.keys(obj).join('`, `');
     const values = Object.values(obj).join(`', '`);

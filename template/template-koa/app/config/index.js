@@ -20,5 +20,5 @@ try {
 // 合并配置：环境配置覆盖默认配置
 export default {
   ...defaultConfig,
-  ...envConfig.default
+  ...envConfig.default,
 };

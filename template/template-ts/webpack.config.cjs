@@ -8,12 +8,12 @@ module.exports = defineConfig((_, { mode }) => {
   return {
     resolve: {
       extensions: ['.ts', '.js'],
-      alias: { '@': path.resolve(__dirname, 'src') }
+      alias: { '@': path.resolve(__dirname, 'src') },
     },
     entry: './src/index.ts',
     output: {
       path: path.resolve(__dirname, './dist'),
-      clean: true
+      clean: true,
     },
     module: {
       rules: [
@@ -23,21 +23,21 @@ module.exports = defineConfig((_, { mode }) => {
             {
               loader: 'ts-loader',
               options: {
-                transpileOnly: true
-              }
-            }
-          ]
-        }
-      ]
+                transpileOnly: true,
+              },
+            },
+          ],
+        },
+      ],
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, './public/index.html')
-      })
+        template: path.resolve(__dirname, './public/index.html'),
+      }),
     ],
     devServer: {
       port: 1236,
-      open: true
-    }
+      open: true,
+    },
   };
 });

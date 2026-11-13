@@ -26,14 +26,14 @@ export type Shape = Point[];
 export enum MoveDirection {
   left,
   right,
-  down
+  down,
 }
 
 export enum GameStatus {
   init, // 未开始
   playing, // 进行中,
   pause, // 暂停
-  over // 游戏结束
+  over, // 游戏结束
 }
 
 export interface GameViewer {

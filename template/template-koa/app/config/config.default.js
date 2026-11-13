@@ -11,7 +11,7 @@ export default {
     password: process.env.DB_PASSWORD,
     waitForConnections: true,
     connectionLimit: 10, // 连接池最大连接数
-    queueLimit: 0
+    queueLimit: 0,
   },
   KNEX: {
     client: 'mysql2',
@@ -20,13 +20,13 @@ export default {
       port: process.env.DB_PORT, // 云数据库上粘贴过来的
       database: process.env.DB_DATABASE, // 数据库名称
       user: process.env.DB_USER, // 数据库用户名 一般是root
-      password: process.env.DB_PASSWORD // 数据库密码
+      password: process.env.DB_PASSWORD, // 数据库密码
     },
     // 连接池 最大连接数20 最小连接数5
     pool: {
       min: 5,
-      max: 20
-    }
+      max: 20,
+    },
   },
   EMAIL: {
     host: 'smtp.qq.com', // QQ邮箱SMTP服务器
@@ -34,21 +34,21 @@ export default {
     secure: true, // 465端口必须为true
     auth: {
       user: 'codewy@qq.com', // 你的QQ邮箱
-      pass: 'nvcwyjuvtjugcjjh' // 你的SMTP授权码（16位）
+      pass: 'nvcwyjuvtjugcjjh', // 你的SMTP授权码（16位）
     },
     // 连接池配置（提升性能）
     pool: true,
     maxConnections: 5,
-    maxMessages: 100
+    maxMessages: 100,
   },
   jwt: {
     secret: process.env.JWT_SECRET || 'your-secret-key',
-    expiresIn: process.env.JWT_EXPIRES_IN || '7d'
+    expiresIn: process.env.JWT_EXPIRES_IN || '7d',
   },
 
   redis: {
     host: process.env.REDIS_HOST || 'localhost',
     port: parseInt(process.env.REDIS_PORT) || 6379,
-    password: process.env.REDIS_PASSWORD || ''
-  }
+    password: process.env.REDIS_PASSWORD || '',
+  },
 };

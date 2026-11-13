@@ -8,8 +8,8 @@ const onepieceStyle = chalk.greenBright.bold(
     horizontalLayout: 'default',
     verticalLayout: 'default',
     width: 80,
-    whitespaceBreak: true
-  })
+    whitespaceBreak: true,
+  }),
 );
 const tip = `运行 ${chalk.cyan(`${name} <command> --help`)} 用于查看指定命令的详细用法。`;
 

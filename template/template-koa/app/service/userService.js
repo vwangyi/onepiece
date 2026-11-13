@@ -62,8 +62,8 @@ class UserService1 {
         total,
         totalPages,
         hasNext: page < totalPages,
-        hasPrev: page > 1
-      }
+        hasPrev: page > 1,
+      },
     };
   }
 

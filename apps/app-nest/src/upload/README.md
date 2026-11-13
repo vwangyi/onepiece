@@ -33,8 +33,8 @@ const s3 = new S3Client({
   endpoint: `https://${process.env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
   credentials: {
     accessKeyId: process.env.R2_ACCESS_KEY_ID,
-    secretAccessKey: process.env.R2_SECRET_ACCESS_KEY
-  }
+    secretAccessKey: process.env.R2_SECRET_ACCESS_KEY,
+  },
 });
 ```
 
@@ -54,7 +54,7 @@ async function getUploadUrl(fileName: string, contentType: string) {
   const command = new PutObjectCommand({
     Bucket: process.env.R2_BUCKET_NAME,
     Key: `uploads/${Date.now()}-${fileName}`, // 给文件一个唯一路径
-    ContentType: contentType
+    ContentType: contentType,
   });
   // 生成一个 5 分钟内有效的上传链接
   return getSignedUrl(s3, command, { expiresIn: 300 });

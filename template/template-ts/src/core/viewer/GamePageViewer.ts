@@ -9,7 +9,7 @@ import PageConfig from './PageConfig';
 export class GamePageViewer implements GameViewer {
   onGamePause(): void {
     this.msgDom.css({
-      display: 'flex'
+      display: 'flex',
     });
     this.msgDom.find('p').html('游戏暂停');
   }
@@ -18,7 +18,7 @@ export class GamePageViewer implements GameViewer {
   }
   onGameOver(): void {
     this.msgDom.css({
-      display: 'flex'
+      display: 'flex',
     });
     this.msgDom.find('p').html('游戏结束');
   }
@@ -34,11 +34,11 @@ export class GamePageViewer implements GameViewer {
     // 1. 设置宽高
     this.panelDom.css({
       width: GameConfig.panelSize.width * PageConfig.SquareSize.width,
-      height: GameConfig.panelSize.height * PageConfig.SquareSize.height
+      height: GameConfig.panelSize.height * PageConfig.SquareSize.height,
     });
     this.nextDom.css({
       width: GameConfig.nextSize.width * PageConfig.SquareSize.width,
-      height: GameConfig.nextSize.height * PageConfig.SquareSize.height
+      height: GameConfig.nextSize.height * PageConfig.SquareSize.height,
     });
 
     // 2. 注册键盘事件

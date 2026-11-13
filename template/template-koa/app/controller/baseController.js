@@ -31,7 +31,7 @@ class BaseController {
     ctx.body = {
       success: true,
       data,
-      message
+      message,
     };
   }
 
@@ -46,7 +46,7 @@ class BaseController {
       code,
       success: false,
       data: null,
-      message
+      message,
     };
   }
 }

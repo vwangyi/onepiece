@@ -52,7 +52,7 @@ describe('测试 project 相关接口', function () {
     tmpRequest = tmpRequest.set('s_t', st);
     tmpRequest = tmpRequest.set('s_sign', md5(`${signKey}_${st}`));
     tmpRequest = tmpRequest.query({
-      proj_key: 'xxxxxxxxxxxxx'
+      proj_key: 'xxxxxxxxxxxxx',
     });
     const res = await tmpRequest;
 
@@ -121,7 +121,7 @@ describe('测试 project 相关接口', function () {
       tmpRequest = tmpRequest.set('s_t', st);
       tmpRequest = tmpRequest.set('s_sign', md5(`${signKey}_${st}`));
       tmpRequest = tmpRequest.query({
-        proj_key: projKey
+        proj_key: projKey,
       });
       const res = await tmpRequest;
       assert(res.body.success === true);
@@ -173,7 +173,7 @@ describe('测试 project 相关接口', function () {
     tmpRequest = tmpRequest.set('s_t', st);
     tmpRequest = tmpRequest.set('s_sign', md5(`${signKey}_${st}`));
     tmpRequest = tmpRequest.query({
-      proj_key: projKey
+      proj_key: projKey,
     });
     const res = await tmpRequest;
 
@@ -184,7 +184,7 @@ describe('测试 project 相关接口', function () {
     // 断言 返回的数据长度 应该和 projectList里面的modelKey的长度是一样的 否则就报错
     assert(
       list.length ===
-        projectList.filter(item => item.modelKey === modelKey).length
+        projectList.filter(item => item.modelKey === modelKey).length,
     );
 
     for (let i = 0; i < list.length; ++i) {

@@ -18,7 +18,11 @@ export const clearDist = packageName => {
   }
 };
 
-const packages = ['onepiece-utils', 'onepiece-api'];
+const packages = [
+  'onepiece-api', // api
+  'onepiece-utils',
+  // 'onepiece-design', // 组件
+];
 
 // 获取所有子包的绝对路径
 function getPackageRoots() {
@@ -32,7 +36,7 @@ async function packageJson(root) {
   return JSON.parse(content);
 }
 
-// getRollupConfig 为每个子包 生成 rollup配置
+// 读取每个子包的package.json 并生成对应的rollup配置
 async function getRollupConfig(root) {
   const config = await packageJson(root);
   const tsconfig = path.resolve(root, 'tsconfig.json');
@@ -58,13 +62,13 @@ async function getRollupConfig(root) {
           outDir: dist,
           declaration: true,
           declarationDir: dist,
-          sourceMap: true
-        }
+          sourceMap: true,
+        },
       }),
       vue(),
-      postcss()
+      postcss(),
     ],
-    dir: dist
+    dir: dist,
   };
   const output = [];
   for (const format of formats) {
@@ -74,13 +78,13 @@ async function getRollupConfig(root) {
       sourcemap: true,
       globals: {
         vue: 'Vue',
-        axios: 'axios'
-      }
+        axios: 'axios',
+      },
     };
     if (format === 'iife') {
       // 包名里的 `-` 不是合法 JS 标识符，需要转成驼峰
       outputItem.name = name.replace(/[^a-zA-Z0-9_$]+(.)?/g, (_, c) =>
-        c ? c.toUpperCase() : ''
+        c ? c.toUpperCase() : '',
       );
     }
     output.push(outputItem);
@@ -90,7 +94,7 @@ async function getRollupConfig(root) {
   rollupOptions.watch = {
     include: path.resolve(root, 'src/**'),
     exclude: path.resolve(root, 'node_modules/**'),
-    clearScreen: false
+    clearScreen: false,
   };
   return rollupOptions;
 }

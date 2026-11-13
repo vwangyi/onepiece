@@ -3,7 +3,7 @@ import {
   ExecutionContext,
   Inject,
   Injectable,
-  UnauthorizedException
+  UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Observable } from 'rxjs';
@@ -15,7 +15,7 @@ export class LoginGuard implements CanActivate {
   private jwtService: JwtService;
 
   canActivate(
-    context: ExecutionContext
+    context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
     const request = context.switchToHttp().getRequest<Request>();
 

@@ -12,12 +12,12 @@ import { AuthModule } from '../auth/auth.module';
     JwtModule.register({
       global: true,
       secret: 'MySecret',
-      signOptions: { expiresIn: '7d' } // 过期时间 60s 表示60秒 7d表示7day
+      signOptions: { expiresIn: '7d' }, // 过期时间 60s 表示60秒 7d表示7day
     }),
-    forwardRef(() => AuthModule) // 解决循环引用问题 所以不能直接引用其他模块
+    forwardRef(() => AuthModule), // 解决循环引用问题 所以不能直接引用其他模块
   ],
   controllers: [UserController],
   providers: [UserService],
-  exports: [UserService]
+  exports: [UserService],
 })
 export class UserModule {}

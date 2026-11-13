@@ -16,7 +16,7 @@ export class Todo {
     type: 'tinyint',
     name: 'is_important',
     comment: '是否重要 0-不重要 1-重要',
-    default: 0
+    default: 0,
   })
   isImportant: number;
 
@@ -24,14 +24,14 @@ export class Todo {
     type: 'tinyint',
     name: 'is_urgent',
     comment: '是否紧急 0-不紧急 1-紧急',
-    default: 0
+    default: 0,
   })
   isUrgent: number;
 
   @Column({
     type: 'tinyint',
     default: 0,
-    comment: '状态: 0待办 1进行中 2已完成'
+    comment: '状态: 0待办 1进行中 2已完成',
   })
   status: number;
 
@@ -39,7 +39,7 @@ export class Todo {
     type: 'datetime',
     name: 'plan_start',
     nullable: true,
-    comment: '计划开始（计划内）'
+    comment: '计划开始（计划内）',
   })
   planStart: Date | null;
 
@@ -47,7 +47,7 @@ export class Todo {
     type: 'datetime',
     name: 'plan_end',
     nullable: true,
-    comment: '计划结束（已延期判断依据）'
+    comment: '计划结束（已延期判断依据）',
   })
   planEnd: Date | null;
 
@@ -55,7 +55,7 @@ export class Todo {
     type: 'datetime',
     name: 'due_at',
     nullable: true,
-    comment: '截止时间'
+    comment: '截止时间',
   })
   dueAt: Date | null;
 
@@ -63,7 +63,7 @@ export class Todo {
     type: 'datetime',
     name: 'completed_at',
     nullable: true,
-    comment: '完成时间'
+    comment: '完成时间',
   })
   completedAt: Date | null;
 
