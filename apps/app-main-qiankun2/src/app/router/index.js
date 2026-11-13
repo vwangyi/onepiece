@@ -2,28 +2,17 @@ import { createWebHistory, createRouter } from 'vue-router';
 
 const routes = [
   { path: '/', component: () => import('@/pages/home') },
-  // {
-  //   path: '/',
-  //   redirect: '/orders/list',
-  // },
-  // {
-  //   path: '/orders/:pathMatch(.*)*',
-  //   component: RoutePortal,
-  //   meta: {
-  //     appName: 'order',
-  //   },
-  // },
-  // {
-  //   path: '/finance/:pathMatch(.*)*',
-  //   component: RoutePortal,
-  //   meta: {
-  //     appName: 'finance',
-  //   },
-  // },
-  // {
-  //   path: '/:pathMatch(.*)*',
-  //   redirect: '/orders/list',
-  // },
+  {
+    path: '/datav/:pathMatch(.*)*',
+    component: () => import('@/pages/home'),
+    meta: {
+      appName: 'datav',
+    },
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/',
+  },
 ];
 const router = createRouter({
   history: createWebHistory(),

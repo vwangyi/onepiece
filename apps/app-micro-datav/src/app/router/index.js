@@ -25,9 +25,10 @@ const routes = [
   //   redirect: '/orders/list',
   // },
 ];
-const router = createRouter({
-  history: createWebHistory(),
-  routes,
-});
 
-export default router;
+export function createDatavRouter(history) {
+  return createRouter({
+    history,
+    routes,
+  });
+}

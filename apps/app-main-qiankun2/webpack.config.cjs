@@ -1,6 +1,7 @@
 const path = require('node:path');
 const { VueLoaderPlugin } = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
   mode: 'development',
@@ -40,6 +41,11 @@ module.exports = {
       // title: process?.env?.APP_TITLE,
       // favicon: path.resolve(__dirname, './public/favicon.ico'),
       // templateParameters: { faviconVersion: pkg.version },
+    }),
+    new webpack.DefinePlugin({
+      __VUE_OPTIONS_API__: true,
+      __VUE_PROD_DEVTOOLS__: true,
+      __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: true,
     }),
   ],
 };

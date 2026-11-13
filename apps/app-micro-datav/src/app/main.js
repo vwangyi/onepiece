@@ -1,13 +1,47 @@
-import { createApp, nextTick } from 'vue';
-import App from './App';
-import router from './router';
-import { setupQiankun } from './micro-apps';
+import './public-path';
+import { createApp } from 'vue';
+import { createWebHashHistory } from 'vue-router';
+import App from './App.vue';
+import { createDatavRouter } from './router';
 
-const app = createApp(App);
-app.use(router);
+let app = null;
+let router = null;
+let mountNode = null;
 
-router.isReady().then(async () => {
-  app.mount('#app'); // 本项目主应用启动挂载后 再启动qiankun
-  // await nextTick();
-  // setupQiankun();
-});
+async function render(props = {}) {
+  mountNode = props.container
+    ? props.container.querySelector('#app')
+    : document.querySelector('#app');
+
+  router = createDatavRouter(createWebHashHistory());
+
+  router.afterEach(to => {
+    document.title = `订单管理 - ${to.meta.title}`;
+  });
+
+  app = createApp(App);
+  app.use(router);
+
+  await router.isReady();
+  app.mount(mountNode);
+}
+
+export async function bootstrap() {
+  console.info('[order-app] bootstrap');
+}
+
+export async function mount(props = {}) {
+  await render(props);
+}
+
+export async function unmount() {
+  app?.unmount();
+  app = null;
+  router = null;
+  mountNode = null;
+}
+
+// 独立运行兜底
+if (!window.__POWERED_BY_QIANKUN__) {
+  void render();
+}
