@@ -6,7 +6,8 @@ const microApps = [
     name: 'datav-app',
     label: 'datav子应用',
     entry: '//localhost:5020', // 子应用的入口地址
-    activeRule: '/datav/', // 路由前缀
+    // 不要带尾斜杠，否则访问 /datav 时前缀匹配失败会被下面的 catch-all 路由重定向回首页
+    activeRule: '/datav', // 路由前缀
     defaultPath: '/datav/list', // 子应用的默认路由 完整路由
     container: '#subapp-viewport',
   },

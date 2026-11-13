@@ -1,32 +1,12 @@
-import { createWebHistory, createRouter } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 
 const routes = [
+  { path: '/', redirect: '/datav/list' },
   { path: '/datav/list', component: () => import('@/pages/home') },
-  // {
-  //   path: '/',
-  //   redirect: '/orders/list',
-  // },
-  // {
-  //   path: '/orders/:pathMatch(.*)*',
-  //   component: RoutePortal,
-  //   meta: {
-  //     appName: 'order',
-  //   },
-  // },
-  // {
-  //   path: '/finance/:pathMatch(.*)*',
-  //   component: RoutePortal,
-  //   meta: {
-  //     appName: 'finance',
-  //   },
-  // },
-  // {
-  //   path: '/:pathMatch(.*)*',
-  //   redirect: '/orders/list',
-  // },
+  { path: '/:pathMatch(.*)*', redirect: '/datav/list' },
 ];
 
-export function createDatavRouter(history) {
+export function createDatavRouter(history = createWebHistory()) {
   return createRouter({
     history,
     routes,
