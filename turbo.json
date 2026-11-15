@@ -10,6 +10,32 @@
       "persistent": true
     },
     "lint": {},
-    "test": {}
+    "test": {},
+
+    "//#pkg:build": {
+      "cache": false,
+      "outputs": [],
+      "passThroughEnv": ["*"]
+    },
+
+    "//#nest:dev": {
+      "cache": false,
+      "persistent": true,
+      "passThroughEnv": ["*"]
+    },
+
+    "//#pkg:dev": {
+      "cache": false,
+      "persistent": true,
+      "dependsOn": ["//#pkg:build"],
+      "passThroughEnv": ["*"]
+    },
+
+    "//#vue:dev": {
+      "cache": false,
+      "persistent": true,
+      "dependsOn": ["//#pkg:build"],
+      "passThroughEnv": ["*"]
+    }
   }
 }
