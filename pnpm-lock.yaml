@@ -498,6 +498,8 @@ importers:
         specifier: ^7.0.0
         version: 7.2.1
 
+  apps/app-nuxt: {}
+
   docs:
     devDependencies:
       vitepress:
