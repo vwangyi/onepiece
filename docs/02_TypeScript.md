@@ -2,11 +2,6 @@
 
 ts两种用途。编译和类型检查。
 
-前端是 webpack构建工具做编译，ts只做类型检查。
-后端是 ts也要做编译也做类型检查。
-
-##
-
 https://www.typescriptlang.org/zh/play/
 
 ## ts
