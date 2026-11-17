@@ -4,9 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const pkg = require('./package.json');
 
-// 必须和主应用 registerMicroApps 里的 name 保持一致
-const APP_NAME = 'datav-app';
-
 module.exports = {
   mode: 'development',
   entry: './src/app/main.js',
@@ -15,7 +12,10 @@ module.exports = {
     publicPath: '/',
     // qiankun 要求子应用产物以 UMD 形式把生命周期挂到 window 上，
     // 否则主应用会报 You need to export lifecycle functions in xxx entry
-    library: { name: APP_NAME, type: 'umd' },
+    library: {
+      type: 'umd', // 配合导出的钩子
+      name: pkg.name, // 建议必须和主应用 registerMicroApps 里的 name 保持一致
+    },
     globalObject: 'window',
     chunkLoadingGlobal: `webpackJsonp_${pkg.name}`,
   },

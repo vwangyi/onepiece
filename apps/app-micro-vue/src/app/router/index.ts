@@ -25,16 +25,6 @@ export const routes: RouteRecordRaw[] = [
     component: () => import('@/pages/search'),
   },
   {
-    path: '/datav',
-    name: 'Datav',
-    component: () => import('@/pages/datav'),
-  },
-  {
-    path: '/teller',
-    name: 'Teller',
-    component: () => import('@/pages/teller'),
-  },
-  {
     path: '/video',
     name: 'Video',
     component: () => import('@/pages/video'),

@@ -9,22 +9,18 @@ let router = null;
 let mountNode = null;
 
 async function render(props = {}) {
-  // 不能直接用 document.querySelector('#app')，主应用根节点也是 #app
-  mountNode = props.container
-    ? props.container.querySelector('#app')
-    : document.querySelector('#app');
-
+  if (props.container) {
+    mountNode = props.container.querySelector('#app');
+  } else {
+    mountNode = document.querySelector('#app');
+  }
   if (!mountNode) {
     throw new Error('[datav-app] 挂载容器 #app 不存在');
   }
-
-  router = createDatavRouter(createWebHistory());
-  router.afterEach(to => {
-    document.title = `datav 子应用`;
-  });
+  router = createDatavRouter(createWebHistory('/datav'));
+  router.afterEach(to => (document.title = `子应用`));
   app = createApp(App);
   app.use(router);
-
   await router.isReady();
   app.mount(mountNode);
 }
@@ -44,7 +40,7 @@ export async function unmount() {
   mountNode = null;
 }
 
-// 独立运行兜底
+// 独自运行兜底
 if (!window.__POWERED_BY_QIANKUN__) {
   void render();
 }

@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "dev111": "turbo run dev",
+    "dev:turbo": "turbo run //#nest:dev //#pkg:dev //#vue:dev",
     "dev": "node ./scripts/dev-all.mjs",
     "vue:dev": "pnpm --filter app-micro-vue dev",
     "nest:dev": "pnpm --filter app-nest dev",

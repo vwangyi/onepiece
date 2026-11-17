@@ -1,3 +1,6 @@
+词，分词，中文，示例，
+reduce re-du-ce 简化、归纳 [].reduce()
+
 term,cn,category,example
 create,创建,General,createUser()
 update,更新,General,updateUser()
