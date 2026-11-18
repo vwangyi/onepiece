@@ -18,3 +18,7 @@ key属性是xx 如何使用
 keyValue++
 
 <div key="keyValue"></div
+
+## computed和watch区别
+
+computed只能是同步的 ，watch 可以同步可以异步
