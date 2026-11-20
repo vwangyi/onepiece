@@ -22,3 +22,5 @@ keyValue++
 ## computed和watch区别
 
 computed只能是同步的 ，watch 可以同步可以异步
+
+推荐优先有watch 方便后续改为异步获取数据。
