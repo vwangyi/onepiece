@@ -2,9 +2,10 @@
 
 ## let和var区别
 
-作用域
-数据类型
-this指向
+## 作用域和作用域链
+
+## 数据类型
+## this指向
 Array的api
 Promise
 迭代器对象
@@ -59,32 +60,19 @@ V8引擎
 事件循环是为了解决单线程语言实现异步编程的排队机制。
 先同步后异步 先微任务后宏任务，执行栈每次执行宏任务前 都会轮询微任务队列 清空微任务队列后再执行一个宏任务。
 
-常见微任务
-
-- promise的 then catch finally
-- queueMicrotask
-- new window.MutationObserver(函数);
-  常见宏任务有
-- script标签
-- setTimeout
-- setInterval
-- 交互事件 比如 点击 按键
-- IO操作 读取文件 网络请求回调
-
-## 交互事件
-
-click keydown
-
-## IO操作
+常见的微任务有 `promise .then .catch .finally` 
+常见的宏任务有 `script标签` `延时器` `交互事件` `IO操作`
 
 ## 事件循环的一轮是指什么
 
-- 宏任务 -> 同步任务 -> 清空微任务队列 -> 判断渲染 -> 判断空闲 —> 下一轮的一个宏任务
+- 宏任务 -> 同步任务 -> 清空微任务队列 -> 判断浏览器渲染 -> 判断浏览器空闲 —> 下一轮的一个宏任务
 - 也就是说 有多少个宏任务就有多少轮
 
-前端安全 XSS
+## 前端安全 XSS
 跨域
-脚本延迟加载 defer async
+## 脚本延迟加载 defer async
+
+
 闭包
 防抖节流
 浏览器存储 cookies localStorage sessionStorage indexedDB

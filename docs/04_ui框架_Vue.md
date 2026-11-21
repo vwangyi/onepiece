@@ -1,3 +1,9 @@
+## ref和reactive 
+
+## computed和watch 
+
+
+
 ## 透传
 
 v-bind="attrs"
