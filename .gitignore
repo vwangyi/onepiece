@@ -4,7 +4,8 @@ dist/
 build/
 **/stats.html
 .env
-.env.* 
+.env.*
+.turbo
 # !.env.dev
 # !.env.production
 # !.env.development
@@ -16,6 +17,7 @@ yarn-error.log*
 pnpm-debug.log*
 
 # IDE
+# .vscode/
 .idea/
 *.suo
 *.ntvs*
@@ -24,7 +26,9 @@ pnpm-debug.log*
 *.sw?
 *.workbuddy
 *.worktrees
-# .vscode/
+.wu
+.zed
+
 
 # OS
 .DS_Store
@@ -37,11 +41,11 @@ Thumbs.db
 coverage/
 *.local
 *.cache
-*.tmp 
+*.tmp
 **/.vitepress/cache/
 
 # Git
-.git/ 
+.git/
 
 # Logs
 logs
@@ -90,5 +94,3 @@ __screenshots__/
 .vuepress/.cache
 # VuePress 默认构建生成的静态文件目录
 .vuepress/dist
-
- 
