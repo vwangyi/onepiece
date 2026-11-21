@@ -1,8 +1,6 @@
-## ref和reactive 
+## ref和reactive
 
-## computed和watch 
-
-
+## computed和watch
 
 ## 透传
 
