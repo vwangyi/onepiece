@@ -1,14 +1,14 @@
 ## webpack打包入口
 
-- 打包入口是 entry 配置一个相对路径。
+- entry 配置一个相对路径。
 
 ## webpack打包出口
 
-- 打包出口是 output.path 配置一个绝对路径。
+- output.path 配置一个绝对路径。
 
 ## webpack指定模版文件
 
-webpack 指定模版文件 通过 html-webpack-plugin插件 传配置项 template 给一个绝对路径。
+html-webpack-plugin 传一个template绝对路径
 
 ## webpack开发服务器
 
