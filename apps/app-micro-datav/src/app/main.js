@@ -25,6 +25,11 @@ async function render(props = {}) {
   app.mount(mountNode);
 }
 
+// 独自运行兜底
+if (!window.__POWERED_BY_QIANKUN__) {
+  void render();
+}
+
 export async function bootstrap() {
   console.info('[datav-app] bootstrap');
 }
@@ -38,9 +43,4 @@ export async function unmount() {
   app = null;
   router = null;
   mountNode = null;
-}
-
-// 独自运行兜底
-if (!window.__POWERED_BY_QIANKUN__) {
-  void render();
 }

@@ -116,8 +116,8 @@ module.exports = (_, { mode }) => {
       }),
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, './public/index.html'),
-        title: process?.env?.APP_TITLE,
         favicon: path.resolve(__dirname, './public/favicon.ico'),
+        title: process?.env?.APP_TITLE,
         templateParameters: { faviconVersion: pkg.version },
       }),
       new VueLoaderPlugin(),
