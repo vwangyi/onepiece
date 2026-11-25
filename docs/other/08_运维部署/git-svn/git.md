@@ -22,7 +22,7 @@ git log --graph --pretty=oneline --abbrev-commit --all  # 查看分支合并图
 # 直接删除.git 隐藏文件夹 重新git init 重新建立版本库 
 git branch -d 分支名 # 删除本地分支 （会检查当前分支是否合并过）
 git branch -D 分支名 # 强制删除本地分支 （不做任何检查 强制删除 （少用））
-git push origin -d 分支名 # 删除远程分支  git push origin -d pro 
+git push origin -d 分支名 # 删除远程分支  git push origin --delete image-1
 git branch -dr origin/远程分支名 # 删除追踪分支 （只是删除了本地分支和远程分支的关联 并没有删除本地和远程的分支）
 
   
