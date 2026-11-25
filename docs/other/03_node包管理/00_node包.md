@@ -40,4 +40,19 @@ devEngines.packageManager
       "version": "^11.20.0",
       "onFail": "download"
     }
-  },
+  }
+
+
+## 发布到
+npm config set registry 网址。
+## 发布npm包
+发布npm包 通过 npm publish
+
+白名单：package.json的files
+黑名单：.npmignore文件
+
+```sh
+npm login
+npm whoami 
+npm publish
+```

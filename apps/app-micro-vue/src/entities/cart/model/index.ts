@@ -1,1 +1,1 @@
-export { addToCartRequest } from './add-to-cart.api';
+export { addToCartRequest } from '../api/add-to-cart.api';

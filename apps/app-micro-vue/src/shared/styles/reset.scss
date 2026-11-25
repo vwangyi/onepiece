@@ -6,10 +6,10 @@
 }
 
 input {
-  border: none; // 去掉input边框
-  background-color: transparent; // 去掉input的背景色
+  border: none; /* 去掉input边框 */
+  background-color: transparent; /* 去掉input的背景色 */
 }
 
 input:focus {
-  outline: none; // 去掉input聚焦后的边框
+  outline: none; /* 去掉input聚焦后的边框 */
 }
