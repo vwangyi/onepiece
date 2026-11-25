@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack serve --mode development",
     "build": "webpack --mode production",
-    "上面直接替换为下面的某一个": "上面直接替换为下面的某一个",
+    "": "上面直接替换为下面的某一个",
     "vite:dev": "vite --mode development",
     "vite:build": "vite build --mode production",
     "webpack:dev": "webpack serve --mode development",

@@ -21,17 +21,7 @@ module.exports = (_, { mode }) => {
     mode,
     devtool: isDev ? false : 'source-map',
     resolve: {
-      extensions: [
-        '.ts',
-        '.tsx',
-        '.js',
-        '.jsx',
-        '.vue',
-        '.scss',
-        '.css',
-        '.mjs',
-        '.json',
-      ],
+      extensions: ['.ts', '.tsx', '.js', '.jsx', '.vue', '.scss', '.css'],
       mainFiles: ['index'],
       alias: { '@': path.resolve(__dirname, './src') },
     },
