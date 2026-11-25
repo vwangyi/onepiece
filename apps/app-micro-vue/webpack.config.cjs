@@ -136,7 +136,10 @@ module.exports = (_, { mode }) => {
         template: path.resolve(__dirname, './public/index.html'),
         favicon: path.resolve(__dirname, './public/favicon.png'),
         title: process?.env?.APP_TITLE,
-        templateParameters: { faviconVersion: pkg.version },
+        templateParameters: {
+          FAVICON_VERSION: pkg.version,
+          APP_TITLE: process?.env?.APP_TITLE,
+        },
       }),
       new VueLoaderPlugin(),
       // 4. 把变量注入前端业务代码，src 中可用 __APP_NODE_ENV__ 访问 process.env.NODE_ENV
