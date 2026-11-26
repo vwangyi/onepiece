@@ -1,5 +1,4 @@
-import type { Links } from '../model/search';
-export const links: Links[] = [
+export const links = [
   {
     key: 0,
     title: '百度',

@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import * as searchApi from '../api/search';
 
-export interface Links {
+interface Links {
   key: number;
   title: string;
   link: string;
@@ -13,7 +13,8 @@ export const searchStore = defineStore('search', () => {
   const links = ref<Links[]>([]);
 
   async function init() {
-    links.value = await searchApi.getSearch();
+    // 调用后端api接口方法 都应该传泛型 并且泛型和返回值数据类型一致
+    links.value = await searchApi.getSearch<Links[]>();
   }
 
   function handleSearch(keyword: string) {

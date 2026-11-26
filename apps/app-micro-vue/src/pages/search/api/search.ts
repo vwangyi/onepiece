@@ -1,7 +1,6 @@
 import { links } from './data';
-import { Links } from '../model/search';
-export async function getSearch(): Promise<Links[]> {
-  return await new Promise((resolve, reject) => {
-    resolve(links);
+export async function getSearch<T>(): Promise<T> {
+  return await new Promise(resolve => {
+    resolve(links as T);
   });
 }
