@@ -150,3 +150,13 @@ export function setEmojiFavicon(emoji: string) {
   ctx.fillText(emoji, 32, 36);
   setFavicon(canvas.toDataURL('image/png'));
 }
+
+// google.com >>> https://google.com
+export function normalizeUrl(value: string) {
+  const url = value.trim();
+  if (!url) return '';
+  if (/^(https?:)?\/\//i.test(url)) {
+    return url.startsWith('//') ? `https:${url}` : url;
+  }
+  return `https://${url}`;
+}

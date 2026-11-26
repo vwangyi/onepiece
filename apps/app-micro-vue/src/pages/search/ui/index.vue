@@ -227,6 +227,8 @@ const normalizeUrl = (value: string) => {
   }
   return `https://${url}`;
 };
+normalizeUrl('baidu.com');
+normalizeUrl('https://baidu.com');
 
 /** 没配 logo 时，取站点自己的 favicon；取不到 Avatar 会自动降级为首字母 */
 const faviconOf = (link: string) => {
@@ -479,7 +481,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="search">
+  <div
+    v-if="false"
+    class="search"
+  >
     <div class="content">
       <div class="google-logo">
         <img
@@ -487,11 +492,18 @@ onMounted(() => {
           alt="google"
         />
       </div>
-      <div class="google-search"></div>
+      <div class="google-search">
+        <!-- <a-input
+          v-model="keyword"
+          class="inp"
+        ></a-input> -->
+
+        <textarea class="text-area"></textarea>
+      </div>
     </div>
   </div>
   <div
-    v-if="false"
+    v-if="true"
     class="search-page"
   >
     <section class="search-panel">
@@ -761,6 +773,18 @@ onMounted(() => {
   background-color: #363840;
   /* 临时用这个来控制上下距离 */
   margin-bottom: 300px;
+
+  > .text-area {
+    width: 100%;
+    min-height: 100%;
+    background-color: transparent;
+    outline: none;
+    border: none;
+  }
+  > .text-area:focus {
+    outline: none;
+    border: none;
+  }
 }
 </style>
 
