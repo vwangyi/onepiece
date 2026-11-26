@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import gSvg from './g-svg.svg';
-// import GoogleSvg from './google-svg.svg';
+import GoogleSvg from './google-svg.svg';
 import { computed, reactive, ref, watch, onMounted } from 'vue';
 import { message } from 'ant-design-vue';
 import { setFavicon, setEmojiFavicon } from 'onepiece-utils';
@@ -482,7 +482,10 @@ onMounted(() => {
   <div class="search">
     <div class="content">
       <div class="google-logo">
-        <!-- <GoogleSvg></GoogleSvg> -->
+        <img
+          :src="GoogleSvg"
+          alt="google"
+        />
       </div>
       <div class="google-search"></div>
     </div>
