@@ -90,6 +90,20 @@ module.exports = (_, { mode }) => {
           test: /\.s[ac]ss$/i,
           use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
         },
+        // {
+        //   test: /\.svg$/,
+        //   // 如果你的项目里还有其他地方需要把 svg 当图片用，可以用 resourceQuery 区分
+        //   // 但为了简单起见，这里假设所有 svg 都作为组件处理   svg既可以当《组件》用也可以当《图片》用
+        //   use: [
+        //     'babel-loader', // 如果 svg 内的脚本需要转译
+        //     {
+        //       loader: 'vue-svg-loader',
+        //       options: {
+        //         svgo: true, // 开启 SVGO 优化
+        //       },
+        //     },
+        //   ],
+        // },
         {
           test: /\.(png|jpg|jpeg|gif|svg|webp)$/i,
           type: 'asset', // 用内置asset 处理图片

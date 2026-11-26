@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import gSvg from './g-svg.svg';
+// import GoogleSvg from './google-svg.svg';
 import { computed, reactive, ref, watch, onMounted } from 'vue';
 import { message } from 'ant-design-vue';
+import { setFavicon, setEmojiFavicon } from 'onepiece-utils';
 import type { FormInstance } from 'ant-design-vue';
 import {
   DeleteOutlined,
@@ -469,12 +472,25 @@ const columns = [
 ];
 
 onMounted(() => {
-  document.title = 'Search';
+  document.title = 'Google';
+  console.log('google', gSvg);
+  setFavicon(gSvg);
 });
 </script>
 
 <template>
-  <div class="search-page">
+  <div class="search">
+    <div class="content">
+      <div class="google-logo">
+        <!-- <GoogleSvg></GoogleSvg> -->
+      </div>
+      <div class="google-search"></div>
+    </div>
+  </div>
+  <div
+    v-if="false"
+    class="search-page"
+  >
     <section class="search-panel">
       <h1 class="search-panel__title">搜索</h1>
       <p class="search-panel__desc">
@@ -706,6 +722,44 @@ onMounted(() => {
     </a-modal>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.search {
+  width: 100vw;
+  height: 100vh;
+  background-color: #22242a; /* 暗色背景色 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  max-width: 700px;
+  min-width: 272px;
+  height: auto;
+  // background-color: aquamarine;
+}
+
+.google-logo {
+  width: 272px;
+  height: 92px;
+  margin: 20px auto;
+}
+
+.google-search {
+  width: 688px;
+  height: 50px;
+  box-sizing: border-box;
+  min-height: 50px;
+  border: 1px solid #4d5156;
+  box-shadow: none;
+  border-radius: 26px;
+  margin: 0 auto;
+  background-color: #363840;
+  /* 临时用这个来控制上下距离 */
+  margin-bottom: 300px;
+}
+</style>
 
 <style lang="scss" scoped>
 /**

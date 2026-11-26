@@ -6,6 +6,7 @@ import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import vueDevTools from 'vite-plugin-vue-devtools';
 import pkg from './package.json' with { type: 'json' };
+import svgLoader from 'vite-svg-loader';
 
 const cwd = process.cwd();
 
@@ -36,7 +37,14 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
         '~': fileURLToPath(new URL('./src/views/DemoView', import.meta.url)),
       },
     },
-    plugins: [vue(), vueJsx(), false ? vueDevTools() : false].filter(Boolean),
+    plugins: [
+      svgLoader({
+        defaultImport: 'url', // 关键：默认作为 URL 处理，避免 img 标签报错
+      }),
+      vue(),
+      vueJsx(),
+      false ? vueDevTools() : false,
+    ].filter(Boolean),
     worker: {
       // 必须用 ES module 格式的 Worker。
       // 原因：图像处理 Worker 里通过 `?url` 动态引入 OpenCV（12MB 的 UMD 文件），

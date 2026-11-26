@@ -6,8 +6,8 @@ import type { RouteRecordRaw } from 'vue-router';
 export const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect: '/tasks',
-    name: 'HomePage',
+    name: 'Search',
+    component: () => import('@/pages/search'),
   },
   {
     path: '/tasks',
@@ -18,11 +18,6 @@ export const routes: RouteRecordRaw[] = [
     path: '/admin',
     name: 'AdminPage',
     component: () => import('@/pages/admin'),
-  },
-  {
-    path: '/search',
-    name: 'Search',
-    component: () => import('@/pages/search'),
   },
   {
     path: '/video',
