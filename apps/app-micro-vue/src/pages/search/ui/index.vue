@@ -5,12 +5,16 @@ import { computed, reactive, ref, watch, onMounted } from 'vue';
 import { message } from 'ant-design-vue';
 import { setFavicon, setEmojiFavicon } from 'onepiece-utils';
 import type { FormInstance } from 'ant-design-vue';
+import { useSearchStore } from '@/pages/search/model/search';
+
 import {
   DeleteOutlined,
   EditOutlined,
   PlusOutlined,
   SearchOutlined,
 } from '@ant-design/icons-vue';
+
+const searchStore = useSearchStore();
 
 interface LinkData {
   key: string;
@@ -477,14 +481,17 @@ onMounted(() => {
   document.title = 'Google';
   console.log('google', gSvg);
   setFavicon(gSvg);
+  searchStore.init();
 });
+
+function handleEnter() {
+  console.log('handleEnter');
+  searchStore.handleSearch(keyword.value);
+}
 </script>
 
 <template>
-  <div
-    v-if="false"
-    class="search"
-  >
+  <div class="search">
     <div class="content">
       <div class="google-logo">
         <img
@@ -493,17 +500,17 @@ onMounted(() => {
         />
       </div>
       <div class="google-search">
-        <!-- <a-input
-          v-model="keyword"
+        <a-input
+          v-model:value="keyword"
           class="inp"
-        ></a-input> -->
-
-        <textarea class="text-area"></textarea>
+          @press-enter="handleEnter"
+        ></a-input>
+        <!-- <textarea class="text-area" :value=""></textarea> -->
       </div>
     </div>
   </div>
   <div
-    v-if="true"
+    v-if="false"
     class="search-page"
   >
     <section class="search-panel">

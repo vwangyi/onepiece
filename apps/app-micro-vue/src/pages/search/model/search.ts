@@ -9,7 +9,7 @@ interface Links {
   keywords: string[];
 }
 
-export const searchStore = defineStore('search', () => {
+export const useSearchStore = defineStore('search', () => {
   const links = ref<Links[]>([]);
 
   async function init() {
@@ -33,6 +33,7 @@ export const searchStore = defineStore('search', () => {
   }
 
   return {
+    init,
     handleSearch,
   };
 });
