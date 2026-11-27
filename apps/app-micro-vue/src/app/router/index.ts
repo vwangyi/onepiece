@@ -10,6 +10,11 @@ export const routes: RouteRecordRaw[] = [
     component: () => import('@/pages/search'),
   },
   {
+    path: '/links',
+    name: 'Links',
+    component: () => import('@/pages/links'),
+  },
+  {
     path: '/tasks',
     name: 'ToDo',
     component: () => import('@/pages/todo'),
