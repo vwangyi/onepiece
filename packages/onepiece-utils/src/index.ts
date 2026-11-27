@@ -128,3 +128,35 @@ export function debounce1<Args extends unknown[]>(
   };
   return debounced;
 }
+
+export function setFavicon(url: string) {
+  let link: HTMLLinkElement = document.querySelector("link[rel~='icon']")!;
+  if (!link) {
+    link = document.createElement('link');
+    link.rel = 'icon';
+    document.head.appendChild(link);
+  }
+  link.href = url;
+}
+
+export function setEmojiFavicon(emoji: string) {
+  const canvas = document.createElement('canvas');
+  canvas.width = 64;
+  canvas.height = 64;
+  const ctx: CanvasRenderingContext2D = canvas.getContext('2d')!;
+  ctx.font = '56px serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(emoji, 32, 36);
+  setFavicon(canvas.toDataURL('image/png'));
+}
+
+// google.com >>> https://google.com
+export function normalizeUrl(value: string) {
+  const url = value.trim();
+  if (!url) return '';
+  if (/^(https?:)?\/\//i.test(url)) {
+    return url.startsWith('//') ? `https:${url}` : url;
+  }
+  return `https://${url}`;
+}

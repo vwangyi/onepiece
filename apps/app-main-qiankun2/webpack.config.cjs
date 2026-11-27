@@ -11,7 +11,7 @@ module.exports = {
     publicPath: '/',
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.vue', '.jsx', '.scss', '.css'],
+    extensions: ['.ts', '.tsx', '.vue', '.js', '.jsx', '.scss', '.css'],
     mainFiles: ['index'],
     alias: { '@': path.resolve(__dirname, './src') },
   },
