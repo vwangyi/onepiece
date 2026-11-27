@@ -30,7 +30,7 @@ module.exports = (_, { mode }) => {
       path: path.resolve(__dirname, './dist'),
       clean: true,
       chunkFilename: 'js/[name]_[chunkhash:8].chunk.js',
-      assetModuleFilename: 'assets/[name]_[hash:8][ext][query]',
+      assetModuleFilename: 'assets/[name]_[contenthash:8][ext][query]',
       filename: 'js/[name]_[contenthash:8].bundle.js',
     },
     module: {
@@ -95,17 +95,17 @@ module.exports = (_, { mode }) => {
           type: 'asset', // 用内置asset 处理图片
           // 10kb  单位是b  字节byte  乘1024 转 kb了
           parser: { dataUrlCondition: { maxSize: 10 * 1024 } },
-          generator: { filename: 'img/[name]_[hash:8][ext][query]' },
+          generator: { filename: 'img/[name]_[contenthash:8][ext][query]' },
         },
         {
           test: /\.(woff2?|eot|ttf|otf)(\?.+)?$/, // 匹配字体文件
           type: 'asset/resource', // 用内置asset/resource 处理字体
-          generator: { filename: 'font/[hash][ext][query]' },
+          generator: { filename: 'font/[contenthash][ext][query]' },
         },
         {
           test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.+)?$/,
           type: 'asset/resource', // 视频或其他 原封不动的输出到指定地方 都放 assets
-          generator: { filename: 'assets/[hash][ext][query]' },
+          generator: { filename: 'assets/[contenthash][ext][query]' },
         },
       ],
     },
@@ -145,7 +145,7 @@ module.exports = (_, { mode }) => {
       }),
       new MiniCssExtractPlugin({
         filename: 'css/[name]_[contenthash:6].css',
-        chunkFilename: 'common[name]_[contenthash:6]_[hash:5].css',
+        chunkFilename: 'css/[name]_[contenthash:6].chunk.css',
       }),
     ].filter(Boolean),
     devServer: {
@@ -153,6 +153,21 @@ module.exports = (_, { mode }) => {
       open: true,
       hot: true,
       historyApiFallback: true,
+
+      proxy: [
+        {
+          context: ['/api'],
+          target: process.env.BASE_URL, // 后端 NestJS 默认端口
+          changeOrigin: true,
+          pathRewrite: { '^/api': '' },
+        },
+        {
+          context: ['/socket.io'],
+          target: process.env.BASE_URL, // 后端 NestJS 默认端口
+          changeOrigin: true,
+          ws: true, // 关键：支持 WebSocket 升级
+        },
+      ],
     },
     /**
      * 配置打包输出优化 （配置代码分割 模块合并 缓存 TreeShaking 代码压缩等优化策略）
