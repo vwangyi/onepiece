@@ -21,7 +21,7 @@ export const links = [
     key: 3,
     title: 'DeepSeek',
     link: 'https://chat.deepseek.com',
-    keywords: ['deepseek', '深度求索', 'ai'],
+    keywords: ['deepseek', '深度求索', 'ds'],
   },
   {
     key: 4,

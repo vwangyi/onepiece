@@ -39,8 +39,11 @@ keep_fnames
 ksize
 leetcode
 lufei
+Machuichejian
 maxval
 mingtian
+noopener
+noreferrer
 npmjs
 nuxt
 Nuxt
@@ -107,7 +110,3 @@ zhongfu
 zhongyao
 zhongyaorenwu
 zhongyaoriqi
-noopener
-noreferrer
-
-

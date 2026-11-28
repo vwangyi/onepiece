@@ -28,3 +28,16 @@ keyValue++
 computed只能是同步的 ，watch 可以同步可以异步
 
 推荐优先有watch 方便后续改为异步获取数据。
+
+## KeepAlive
+
+是什么：KeepAlive可以在动态切换组件时，缓存不显示的组件实例。
+输入框内容没有丢失
+
+通过 include / exclude 做 条件缓存
+
+onActivated / activated：
+
+onDeactivated / deactivated
+
+应用场景 标签页

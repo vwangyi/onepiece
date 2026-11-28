@@ -7,18 +7,15 @@ import { useSearchStore } from '@/pages/search/model/search';
 
 const searchStore = useSearchStore();
 
-const keyword = ref('');
-
 onMounted(() => {
   document.title = 'Google';
-  console.log('google', gSvg);
   setFavicon(gSvg);
-  searchStore.init();
+  searchStore.updateLinks();
 });
 
 function handleEnter() {
-  console.log('handleEnter');
-  searchStore.handleSearch(keyword.value);
+  searchStore.handleSearch(searchStore.keyword);
+  searchStore.updateKeyword('');
 }
 </script>
 
@@ -32,13 +29,29 @@ function handleEnter() {
         />
       </div>
       <div class="google-search">
-        <button @click="$router.push('/links')">添加常用链接</button>
-        <a-input
-          v-model:value="keyword"
-          class="inp"
-          @press-enter="handleEnter"
-        ></a-input>
-        <!-- <textarea class="text-area" :value=""></textarea> -->
+        <div
+          class="google-add"
+          title="添加常用链接"
+          @click="$router.push('/links')"
+        >
+          <div class="img iconfont icon-jiahao1"></div>
+        </div>
+
+        <input
+          class="google-inp"
+          type="text"
+          :value="searchStore.keyword"
+          @input="
+            e => searchStore.updateKeyword((e.target as HTMLInputElement).value)
+          "
+          @keyup.enter="handleEnter"
+        />
+        <div class="google-enter">
+          <div
+            class="img iconfont icon-Machuichejian"
+            :style="{ opacity: searchStore.keyword.length ? 1 : 0.4 }"
+          ></div>
+        </div>
       </div>
     </div>
   </div>
@@ -68,6 +81,9 @@ function handleEnter() {
 }
 
 .google-search {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   width: 688px;
   height: 50px;
   box-sizing: border-box;
@@ -79,17 +95,41 @@ function handleEnter() {
   background-color: #363840;
   /* 临时用这个来控制上下距离 */
   margin-bottom: 300px;
+}
 
-  > .text-area {
-    width: 100%;
-    min-height: 100%;
-    background-color: transparent;
-    outline: none;
-    border: none;
+.google-inp {
+  flex: 1;
+  height: 100%;
+  font-size: 16px;
+  color: #fff;
+}
+
+%btn-base {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .img {
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 24px;
+    color: white;
   }
-  > .text-area:focus {
-    outline: none;
-    border: none;
-  }
+}
+
+.google-add {
+  cursor: pointer;
+  @extend %btn-base;
+}
+.google-enter {
+  @extend %btn-base;
+}
+.google-add:hover .img {
+  background-color: #4d5157 !important;
 }
 </style>

@@ -562,23 +562,9 @@ importers:
         specifier: ^0.10.0
         version: 0.10.0
 
-  packages/onepiece-config: {}
-
   packages/onepiece-design: {}
 
-  packages/onepiece-design-react: {}
-
-  packages/onepiece-design-vue: {}
-
-  packages/onepiece-entities: {}
-
-  packages/onepiece-features: {}
-
-  packages/onepiece-lib: {}
-
-  packages/onepiece-shared: {}
-
-  packages/onepiece-types: {}
+  packages/onepiece-tracker: {}
 
   packages/onepiece-utils: {}
 
